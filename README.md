@@ -1,6 +1,6 @@
 #README
 
-##What is EmperorNortonCommands/Ddate?
+##What is EmperorNortonCommands/lib/Ddate?
 
 EmperorNortonCommands/Ddate is an almost faithful recreation of the ddate
 command provided by the *util-linux* standard package of the Linux operating

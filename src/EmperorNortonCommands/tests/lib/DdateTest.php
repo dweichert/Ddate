@@ -7,7 +7,7 @@
 
 namespace EmperorNortonCommands\tests\lib;
 
-use EmperorNortonCommands\lib;
+use EmperorNortonCommands\lib\Ddate;
 
 /**
  * Class DdateTest.
@@ -19,7 +19,7 @@ class DdateTest extends \PHPUnit_Framework_TestCase
     /**
      * Object instance to be tested.
      *
-     * @var lib\Ddate
+     * @var Ddate
      */
     protected $_object;
 
@@ -28,7 +28,7 @@ class DdateTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->_object = new lib\Ddate();
+        $this->_object = new Ddate();
     }
 
     /**

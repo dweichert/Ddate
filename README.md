@@ -1,5 +1,7 @@
 #README
 
+[![Build Status](https://travis-ci.org/dweichert/Ddate.svg?branch=master)](https://travis-ci.org/dweichert/Ddate) [![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
+
 ##What is EmperorNortonCommands/lib/Ddate?
 
 EmperorNortonCommands/lib/Ddate is an almost faithful recreation of the ddate
@@ -20,8 +22,6 @@ Returns the date in Discordian date format. If called with no arguments,
 the current system date will be used. Alternatively, a Gregorian date may
 be specified as the second argument of the function, in form of a day,
 month and year (dmY), e.g. 29022012 (for the 29th of February 2012).
-
-[![Build Status](https://travis-ci.org/dweichert/Ddate.svg?branch=master)](https://travis-ci.org/dweichert/Ddate) [![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
 
 If a format string is specified as the first argument, the Discordian date
 will be returned in a format specified by the string. This mechanism works

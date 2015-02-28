@@ -8,12 +8,32 @@ EmperorNortonCommands/lib/Ddate is an almost faithful recreation of the ddate
 command provided by the *util-linux* standard package of the Linux operating
 system in PHP. It converts Gregorian to Discordian dates.
 
-##Public properties
+##Installation
 
-None.
+The easiest way to install the library is adding it as a dependency to your
+project's composer.json file.
 
-##Public methods
+    $ composer require ddate/ddate "dev-master"
 
+##Usage
+
+```
+// use the class Ddate
+
+use EmperorNortonCommands\lib\Ddate;
+
+class Foo
+{
+    public function foo()
+    {
+        // set $date to the current Discordian date using the default format
+        $ddate = new Ddate();
+        $date = $ddate->ddate();
+
+        // for mor formatting options and setting custom dates see below
+    }
+}
+```
 ###ddate
 
     string ddate ( [string $format, int $date] )

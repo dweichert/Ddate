@@ -115,6 +115,41 @@ class Ddate
     protected $_yearGregorian = 0;
 
     /**
+     * Discordian day number.
+     *
+     * @var integer
+     */
+    protected $_dayDiscordian = 0;
+
+    /**
+     * Discordian season number.
+     *
+     * @var integer
+     */
+    protected $_seasonDiscordian = 0;
+
+    /**
+     * Discordian year number.
+     *
+     * @var integer
+     */
+    protected $_yearDiscordian = 0;
+
+    /**
+     * Discordian week day.
+     *
+     * @var integer
+     */
+    protected $_weekDayDiscordian = 0;
+
+    /**
+     * The day of the year.
+     *
+     * @var integer
+     */
+    protected $_dayOfYear = 0;
+
+    /**
      * Representation of date as Unix timestamp.
      *
      * @var integer
@@ -126,7 +161,7 @@ class Ddate
      *
      * @var string
      */
-    protected $_ddateOutput;
+    protected $_format;
 
     /**
      * Returns array of all supported format strings.
@@ -163,93 +198,27 @@ class Ddate
             throw new \InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
         $this->_setFormat($format);
-
-        // Calculate date parts
-        $year = $this->_yearGregorian + $this->_curseOfGreyface;
-        if ($this->_isStTibsDay())
-        {
-            $abbrevWkDay = 'FNORD';
-            $wkDay = 'FNORD';
-            $season = 'FNORD';
-            $abbrevSeason = 'FNORD';
-            $ordinalDay = 'FNORD';
-            $cardinalDay = 'FNORD';
-        }
-        else
-        {
-            $leapYearOffset = date('L', $this->_timestamp);
-            if ($this->_getDayOfYear() < 60)
-            {
-                $leapYearOffset = 0;
-                $seasonIdx = 0;
-            }
-            else
-            {
-                $dayOfYearMinusStTibs = $this->_getDayOfYear() - $leapYearOffset;
-                for ($i = 0; $i < 5; $i++)
-                {
-                    if ($dayOfYearMinusStTibs < (74 + $i * 73))
-                    {
-                        $seasonIdx = $i;
-                        break;
-                    }
-                }
-            }
-            $wkDayIdx = ($this->_getDayOfYear() - (1 + $leapYearOffset)) % 5;
-            $abbrevWkDay = $this->_abbrevDays[$wkDayIdx];
-            $wkDay = $this->_days[$wkDayIdx];
-            $season = $this->_seasons[$seasonIdx];
-            $abbrevSeason = $this->_abbrevSeasons[$seasonIdx];
-            $ordinalDay = (($this->_getDayOfYear() - (1 + $leapYearOffset)) % 73) + 1;
-            $cardinalDay = $this->_getCardinalDay($ordinalDay);
-        }
-        $daysUntilXday = $this->_getDaysUntilXday();
-
-        // Replace fields in format string
-        if ($this->_isStTibsDay())
-        {
-            $this->_ddateOutput = preg_replace('/%{(.)*%}/', $this->_holydays['2902'], $this->_ddateOutput);
-        }
-        else
-        {
-            $this->_ddateOutput = str_replace('%{', '', $this->_ddateOutput);
-            $this->_ddateOutput = str_replace('%}', '', $this->_ddateOutput);
-        }
-        if ($this->_isHolyday())
-        {
-            $this->_ddateOutput = str_replace('%N', '', $this->_ddateOutput);
-            $this->_ddateOutput = str_replace('%H', $this->_holydays[$this->_getDayMonth()], $this->_ddateOutput);
-        }
-        else
-        {
-            $this->_ddateOutput = preg_replace('/%N(.)*/s', '', $this->_ddateOutput);
-            $this->_ddateOutput = str_replace('%H', 'no Holyday', $this->_ddateOutput);
-        }
-        $this->_ddateOutput = str_replace('%a', $abbrevWkDay, $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%A', $wkDay, $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%B', $season, $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%b', $abbrevSeason, $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%e', $cardinalDay, $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%d', $ordinalDay, $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%Y', $year, $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%X', $daysUntilXday, $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%t', "\t", $this->_ddateOutput);
-        $this->_ddateOutput = str_replace('%n', "\n", $this->_ddateOutput);
-        return $this->_ddateOutput;
+        return $this->_getFormattedDiscordianDate();
     }
 
     /**
      * Get cardinal day from ordinal day.
      *
+     * Returns "FNORD" on St. Tibs Day.
+     *
      * @param  integer $day
      * @return string
      */
-    protected function _getCardinalDay($day)
+    protected function _getCardinalDay()
     {
-        $suffix = 'th';
-        if (!in_array($day, array(11, 12, 13)))
+        if ($this->_isStTibsDay())
         {
-            $lastDigitDay = substr($day, -1, 1);
+            return 'FNORD';
+        }
+        $suffix = 'th';
+        if (!in_array($this->_getDiscordianDay(), array(11, 12, 13)))
+        {
+            $lastDigitDay = substr($this->_getDiscordianDay(), -1, 1);
             switch ($lastDigitDay)
             {
                 case '1':
@@ -265,7 +234,7 @@ class Ddate
                     break;
             }
         }
-        return $day . $suffix;
+        return $this->_getDiscordianDay() . $suffix;
     }
 
     /**
@@ -374,14 +343,18 @@ class Ddate
     }
 
     /**
-     * Get day of year.
+     * Get days since 1st of January.
      *
      * @return integer
      */
     protected function _getDayOfYear()
     {
+        if ($this->_dayOfYear != 0)
+        {
+            return $this->_dayOfYear;
+        }
         $januaryFirst = gmmktime(0, 0, 0, 1, 1, $this->_yearGregorian);
-        return (integer)($this->_timestamp - $januaryFirst) / 86400 + 1;
+        return $this->_dayOfYear = (integer)($this->_timestamp - $januaryFirst) / 86400 + 1;
     }
 
     /**
@@ -411,6 +384,230 @@ class Ddate
         {
             $format = '%{%A, %B %d,%} %Y YOLD';
         }
-        $this->_ddateOutput = (string)$format;
+        $this->_format = (string)$format;
+    }
+
+    /**
+     * Get Discordian year.
+     *
+     * @return integer
+     */
+    protected function _getDiscordianYear()
+    {
+        if (0 != $this->_yearDiscordian)
+        {
+            return $this->_yearDiscordian;
+        }
+        return $this->_yearDiscordian = $this->_yearGregorian + $this->_curseOfGreyface;
+    }
+
+    /**
+     * Get Discordian season.
+     *
+     * Returns "FNORD" on St. Tibs Day.
+     *
+     * @return integer|string
+     */
+    protected function _getDiscordianSeason()
+    {
+        if ($this->_isStTibsDay())
+        {
+            return 'FNORD';
+        }
+        if (0 != $this->_seasonDiscordian)
+        {
+            return $this->_seasonDiscordian;
+        }
+        $this->_calculateDiscordianDate();
+        return $this->_seasonDiscordian;
+    }
+
+    /**
+     * Get Discordian (ordinal) day.
+     *
+     * Returns "FNORD" on St. Tibs Day.
+     *
+     * @return integer|string
+     */
+    protected function _getDiscordianDay()
+    {
+        if ($this->_isStTibsDay())
+        {
+            return 'FNORD';
+        }
+        if (0 != $this->_dayDiscordian)
+        {
+            return $this->_dayDiscordian;
+        }
+        $this->_calculateDiscordianDate();
+        return $this->_dayDiscordian;
+    }
+
+    /**
+     * Get Discordian day of the week.
+     *
+     * Returns "FNORD" on St. Tibs Day.
+     *
+     * @return integer|string
+     */
+    protected function _getDiscordianWeekDay()
+    {
+        if ($this->_isStTibsDay())
+        {
+            return 'FNORD';
+        }
+        if (0 != $this->_weekDayDiscordian)
+        {
+            return $this->_weekDayDiscordian;
+        }
+        $this->_calculateDiscordianDate();
+        return $this->_weekDayDiscordian;
+    }
+
+    /**
+     * Get Discrodian season name.
+     *
+     * @return string
+     */
+    protected function _getDiscordianSeasonName()
+    {
+        if ($this->_isStTibsDay())
+        {
+            return 'FNORD';
+        }
+        return (string)$this->_seasons[$this->_getDiscordianSeason()];
+    }
+
+    /**
+     * Get abbreviated Discordian season name.
+     *
+     * @return string
+     */
+    protected function _getAbbreviatedSeasonName()
+    {
+        if ($this->_isStTibsDay())
+        {
+            return 'FNORD';
+        }
+        return $this->_abbrevSeasons[$this->_getDiscordianSeason()];
+    }
+
+    /**
+     * Get Discordian week day name.
+     *
+     * @return string
+     */
+    protected function _getDiscordianWeekDayName()
+    {
+        if ($this->_isStTibsDay())
+        {
+            return 'FNORD';
+        }
+        return (string)$this->_days[$this->_getDiscordianWeekDay()];
+    }
+
+    /**
+     * Get abbreviated Discordian week day name.
+     *
+     * @return string
+     */
+    protected function _getAbbreviatedWeekDayName()
+    {
+        if ($this->_isStTibsDay())
+        {
+            return 'FNORD';
+        }
+        return $this->_abbrevDays[$this->_getDiscordianWeekDay()];
+    }
+
+    /**
+     * Calculate Discordian date.
+     */
+    protected function _calculateDiscordianDate()
+    {
+        $this->_weekDayDiscordian = ($this->_getDayOfYear() - (1 + $this->_getOffset())) % 5;
+        $this->_seasonDiscordian =  $this->_calculateSeason();
+        $this->_dayDiscordian = (($this->_getDayOfYear() - (1 + $this->_getOffset())) % 73) + 1;
+    }
+
+    /**
+     * Get offset for leap years.
+     *
+     * In leap years for days after the 60th day of the year, i.e. 29th of
+     * February there is an offset of 1 day to be taken into account.
+     *
+     * @return integer
+     */
+    protected function _getOffset()
+    {
+        if ($this->_getDayOfYear() < 60)
+        {
+            return 0;
+        }
+        return (integer)date('L', $this->_timestamp);
+    }
+
+    /**
+     * Calculate Discordian season.
+     *
+     * @return integer
+     */
+    protected function _calculateSeason()
+    {
+        $seasonIdx = 0;
+        if ($this->_getDayOfYear() > 59)
+        {
+            $dayOfYearMinusStTibs = $this->_getDayOfYear() - $this->_getOffset();
+            for ($i = 0; $i < 5; $i++)
+            {
+                if ($dayOfYearMinusStTibs < (74 + $i * 73))
+                {
+                    $seasonIdx = $i;
+                    break;
+                }
+            }
+            return $seasonIdx;
+        }
+        return $seasonIdx;
+    }
+
+    /**
+     * Get formatted Discordian date.
+     *
+     * @return string
+     */
+    protected function _getFormattedDiscordianDate()
+    {
+        $output = $this->_format;
+        if ($this->_isStTibsDay())
+        {
+            $output = preg_replace('/%{(.)*%}/', $this->_holydays['2902'], $output);
+        }
+        else
+        {
+            $output = str_replace('%{', '', $output);
+            $output = str_replace('%}', '', $output);
+        }
+        if ($this->_isHolyday())
+        {
+            $output = str_replace('%N', '', $output);
+            $output = str_replace('%H', $this->_holydays[$this->_getDayMonth()], $output);
+        }
+        else
+        {
+            $output = preg_replace('/%N(.)*/s', '', $output);
+            $output = str_replace('%H', 'no Holyday', $output);
+        }
+        $output = str_replace('%a', $this->_getAbbreviatedWeekDayName(), $output);
+        $output = str_replace('%A', $this->_getDiscordianWeekDayName(), $output);
+        $output = str_replace('%B', $this->_getDiscordianSeasonName(), $output);
+        $output = str_replace('%b', $this->_getAbbreviatedSeasonName(), $output);
+        $output = str_replace('%e', $this->_getCardinalDay(), $output);
+        $output = str_replace('%d', $this->_getDiscordianDay(), $output);
+        $output = str_replace('%Y', $this->_getDiscordianYear(), $output);
+        $output = str_replace('%X', $this->_getDaysUntilXday(), $output);
+        $output = str_replace('%t', "\t", $output);
+        $output = str_replace('%n', "\n", $output);
+        return (string)$output;
     }
 }

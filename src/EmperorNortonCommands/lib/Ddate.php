@@ -158,24 +158,11 @@ class Ddate
      */
     public function ddate($format = null, $date = null)
     {
-        // Validate and sanitize input and set internal date and format
-        if (null == $date)
+        if (!$this->_setDate($date))
         {
-            $date = new \DateTime();
-            $this->_setInternalDate($date->format('dmY'));
+            throw new \InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
-        else
-        {
-            if (!$this->_setInternalDate($date))
-            {
-                throw new \InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
-            }
-        }
-        if (null == $format || (is_object($format) && !method_exists($format, '__toString')))
-        {
-            $format = '%{%A, %B %d,%} %Y YOLD';
-        }
-        $this->_ddateOutput = (string)$format;
+        $this->_setFormat($format);
 
         // Calculate date parts
         $year = $this->_yearGregorian + $this->_curseOfGreyface;
@@ -287,8 +274,13 @@ class Ddate
      * @param  integer $date Gregorian date (dmY)
      * @return boolean
      */
-    protected function _setInternalDate($date)
+    protected function _setDate($date)
     {
+        if (null == $date)
+        {
+            $dateObj = new \DateTime();
+            $date = $dateObj->format('dmY');
+        }
         if (!is_numeric($date) && 8 != strlen($date))
         {
             return false;
@@ -369,5 +361,21 @@ class Ddate
         $diff = $xDay->diff($date);
         $daysUntilXday = $diff->days;
         return (integer)$daysUntilXday;
+    }
+
+    /**
+     * Sets format to internal property.
+     *
+     * If no format string is given default format string is used as fallback.
+     *
+     * @param string $format
+     */
+    protected function _setFormat($format)
+    {
+        if (null == $format || (is_object($format) && !method_exists($format, '__toString')))
+        {
+            $format = '%{%A, %B %d,%} %Y YOLD';
+        }
+        $this->_ddateOutput = (string)$format;
     }
 }

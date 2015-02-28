@@ -150,6 +150,14 @@ class DdateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test to see if build fails as expected.
+     */
+    public function testTravisFails()
+    {
+        self::assertEquals('will fail', $this->_object->ddate());
+    }
+
+    /**
      * Test ddate with no arguments.
      *
      * Test default behaviour uses expected format and is the same as if

@@ -271,7 +271,7 @@ class Ddate
     /**
      * Set date from input.
      *
-     * @param  integer $date Gregorian date (dmY)
+     * @param  string $date Gregorian date (dmY)
      * @return boolean
      */
     protected function _setDate($date)
@@ -279,18 +279,24 @@ class Ddate
         if (null == $date)
         {
             $dateObj = new \DateTime();
-            $date = $dateObj->format('dmY');
+            return $this->_setDateFromObject($dateObj);
         }
+        return $this->_setDateFromString($date);
+    }
+
+    /**
+     * Sets date from string.
+     *
+     * @param  string $date Gregorian date (dmY)
+     * @return boolean
+     */
+    protected function _setDateFromString($date)
+    {
         if (!is_numeric($date) && 8 != strlen($date))
         {
             return false;
         }
-        else
-        {
-            $year = (integer)substr($date, 4, 4);
-            $month = (integer)substr($date, 2, 2);
-            $day = (integer)substr($date, 0, 2);
-        }
+        list($year, $month, $day) = $this->_splitIntoParts($date);
         if (!checkdate($month, $day, $year))
         {
             return false;
@@ -298,9 +304,38 @@ class Ddate
         $this->_dayGregorian = $day;
         $this->_monthGregorian = $month;
         $this->_yearGregorian = $year;
-        $this->_timestamp = gmmktime(
-            0, 0, 0, $this->_monthGregorian, $this->_dayGregorian, $this->_yearGregorian
-        );
+        $this->_timestamp = gmmktime(0, 0, 0, $this->_monthGregorian, $this->_dayGregorian, $this->_yearGregorian);
+        return true;
+    }
+
+    /**
+     * Splits date string into parts.
+     *
+     * Returns array($day, $month, $year).
+     *
+     * @param  string $date Gregorian date (dmY)
+     * @return array
+     */
+    protected function _splitIntoParts($date)
+    {
+        $year = (integer)substr($date, 4, 4);
+        $month = (integer)substr($date, 2, 2);
+        $day = (integer)substr($date, 0, 2);
+        return array($year, $month, $day);
+    }
+
+    /**
+     * Sets date from DateTime object.
+     *
+     * @param  \DateTime $dateObj
+     * @return boolean
+     */
+    protected function _setDateFromObject(\DateTime $dateObj)
+    {
+        $this->_dayGregorian = (integer)$dateObj->format('d');
+        $this->_monthGregorian = (integer)$dateObj->format('m');
+        $this->_yearGregorian = (integer)$dateObj->format('Y');
+        $this->_timestamp = $dateObj->getTimestamp();
         return true;
     }
 

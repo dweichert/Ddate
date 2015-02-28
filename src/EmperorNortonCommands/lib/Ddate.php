@@ -15,14 +15,14 @@ namespace EmperorNortonCommands\lib;
 class Ddate
 {
     /**
-     * Offset of Discordian year compared to Gregorian year.
+     * Curse of Greyface.
      *
      * The Curse of Greyface occurred in 1 YOLD and thus defines the offset
      * from the Gregorian calendar, according to which it was 1166 BC.
      *
      * @var integer
      */
-    protected $_offsetDiscordianGregorianYear = 1166;
+    protected $_curseOfGreyface = 1166;
 
     /**
      * Discordian Holydays.
@@ -178,7 +178,7 @@ class Ddate
         $this->_ddateOutput = (string)$format;
 
         // Calculate date parts
-        $year = $this->_yearGregorian + $this->_offsetDiscordianGregorianYear;
+        $year = $this->_yearGregorian + $this->_curseOfGreyface;
         if ($this->_isStTibsDay())
         {
             $abbrevWkDay = 'FNORD';

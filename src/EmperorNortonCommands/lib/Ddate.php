@@ -124,6 +124,13 @@ class Ddate
     protected $_localeData;
 
     /**
+     * Discordian date converter.
+     *
+     * @var DdateConverter
+     */
+    protected $_converter;
+
+    /**
      * Constructor method.
      *
      * @param LocaleData $localeData class providing localized messages
@@ -134,6 +141,7 @@ class Ddate
         {
             $this->_localeData = new LocaleDataEn();
         }
+        $this->_converter = new DdateConverter();
     }
 
     /**
@@ -502,50 +510,10 @@ class Ddate
      */
     protected function _calculateDiscordianDate()
     {
-        $this->_weekDayDiscordian = ($this->_getDayOfYear() - (1 + $this->_getOffset())) % 5;
-        $this->_seasonDiscordian =  $this->_calculateSeason();
-        $this->_dayDiscordian = (($this->_getDayOfYear() - (1 + $this->_getOffset())) % 73) + 1;
-    }
-
-    /**
-     * Get offset for leap years.
-     *
-     * In leap years for days after the 60th day of the year, i.e. 29th of
-     * February there is an offset of 1 day to be taken into account.
-     *
-     * @return integer
-     */
-    protected function _getOffset()
-    {
-        if ($this->_getDayOfYear() < 60)
-        {
-            return 0;
-        }
-        return (integer)date('L', $this->_timestamp);
-    }
-
-    /**
-     * Calculate Discordian season.
-     *
-     * @return integer
-     */
-    protected function _calculateSeason()
-    {
-        $seasonIdx = 0;
-        if ($this->_getDayOfYear() > 59)
-        {
-            $dayOfYearMinusStTibs = $this->_getDayOfYear() - $this->_getOffset();
-            for ($i = 0; $i < 5; $i++)
-            {
-                if ($dayOfYearMinusStTibs < (74 + $i * 73))
-                {
-                    $seasonIdx = $i;
-                    break;
-                }
-            }
-            return $seasonIdx;
-        }
-        return $seasonIdx;
+        $leapYear = date('L', $this->_timestamp);
+        $this->_weekDayDiscordian = $this->_converter->calculateDayOfWeek($leapYear, $this->_getDayOfYear());
+        $this->_dayDiscordian = $this->_converter->calculateDayofSeason($leapYear, $this->_getDayOfYear());
+        $this->_seasonDiscordian =  $this->_converter->calculateSeason($leapYear, $this->_getDayOfYear());
     }
 
     /**
@@ -556,27 +524,8 @@ class Ddate
     protected function _getFormattedDiscordianDate()
     {
         $output = $this->_format;
-        if ($this->_isStTibsDay())
-        {
-            $holidays = $this->_localeData->getHolydays();
-            $output = preg_replace('/%{(.)*%}/', $holidays['2902'], $output);
-        }
-        else
-        {
-            $output = str_replace('%{', '', $output);
-            $output = str_replace('%}', '', $output);
-        }
-        if ($this->_isHolyday())
-        {
-            $output = str_replace('%N', '', $output);
-            $holidays = $this->_localeData->getHolydays();
-            $output = str_replace('%H', $holidays[$this->_getDayMonth()], $output);
-        }
-        else
-        {
-            $output = preg_replace('/%N(.)*/s', '', $output);
-            $output = str_replace('%H', 'no Holyday', $output);
-        }
+        $output = $this->_replaceStTibsPlaceholders($output);
+        $output = $this->_replaceHolidayPlaceholders($output);
         $output = str_replace('%a', $this->_getAbbreviatedWeekDayName(), $output);
         $output = str_replace('%A', $this->_getDiscordianWeekDayName(), $output);
         $output = str_replace('%B', $this->_getDiscordianSeasonName(), $output);
@@ -588,5 +537,50 @@ class Ddate
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
+    }
+
+    /**
+     * Replaces %{ and %} placeholders in given string.
+     *
+     * @param  string $string
+     * @return string
+     */
+    protected function _replaceStTibsPlaceholders($string)
+    {
+        if ($this->_isStTibsDay())
+        {
+            $holidays = $this->_localeData->getHolydays();
+            $string = preg_replace('/%{(.)*%}/', $holidays['2902'], $string);
+            return $string;
+        }
+        else
+        {
+            $string = str_replace('%{', '', $string);
+            $string = str_replace('%}', '', $string);
+            return $string;
+        }
+    }
+
+    /**
+     * Replaces %N and %H in given string.
+     *
+     * @param  string $string
+     * @return string
+     */
+    protected function _replaceHolidayPlaceholders($string)
+    {
+        if ($this->_isHolyday())
+        {
+            $string = str_replace('%N', '', $string);
+            $holidays = $this->_localeData->getHolydays();
+            $string = str_replace('%H', $holidays[$this->_getDayMonth()], $string);
+            return $string;
+        }
+        else
+        {
+            $string = preg_replace('/%N(.)*/s', '', $string);
+            $string = str_replace('%H', 'no Holyday', $string);
+            return $string;
+        }
     }
 }

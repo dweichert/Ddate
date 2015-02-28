@@ -16,6 +16,23 @@ namespace EmperorNortonCommands\lib;
 class DdateConverter
 {
     /**
+     * Curse of Greyface.
+     *
+     * The Curse of Greyface occurred in 1 YOLD and thus defines the offset
+     * from the Gregorian calendar, according to which it was 1166 BC.
+     *
+     * @var integer
+     */
+    protected $_curseOfGreyface = 1166;
+
+    /**
+     * Discordian year number.
+     *
+     * @var integer
+     */
+    protected $_yearDiscordian = 0;
+
+    /**
      * Calculate day of Discordian week.
      *
      * @param  boolean $leapYear  set true for leap years
@@ -63,6 +80,35 @@ class DdateConverter
             return $seasonIdx;
         }
         return $seasonIdx;
+    }
+
+    /**
+     * Get Discordian year.
+     *
+     * @param  integer $gregorianYear
+     * @return integer
+     */
+    public function calculateYear($gregorianYear)
+    {
+        if (0 != $this->_yearDiscordian)
+        {
+            return $this->_yearDiscordian;
+        }
+        return $this->_yearDiscordian = $gregorianYear + $this->_curseOfGreyface;
+    }
+
+    /**
+     * Calculate days until X-Day.
+     *
+     * @param  \DateTime $date
+     * @return integer
+     */
+    public function calculateDaysUntilXday(\DateTime $date)
+    {
+        $xDay = new \DateTime('8661-07-05');
+        $diff = $xDay->diff($date);
+        $daysUntilXday = $diff->days;
+        return (integer)$daysUntilXday;
     }
 
     /**

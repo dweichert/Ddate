@@ -15,16 +15,6 @@ namespace EmperorNortonCommands\lib;
 class Ddate
 {
     /**
-     * Curse of Greyface.
-     *
-     * The Curse of Greyface occurred in 1 YOLD and thus defines the offset
-     * from the Gregorian calendar, according to which it was 1166 BC.
-     *
-     * @var integer
-     */
-    protected $_curseOfGreyface = 1166;
-
-    /**
      * Supported format string fields and description.
      *
      * @var string[]
@@ -80,13 +70,6 @@ class Ddate
      * @var integer
      */
     protected $_seasonDiscordian = 0;
-
-    /**
-     * Discordian year number.
-     *
-     * @var integer
-     */
-    protected $_yearDiscordian = 0;
 
     /**
      * Discordian week day.
@@ -187,7 +170,6 @@ class Ddate
      *
      * Returns "FNORD" on St. Tibs Day.
      *
-     * @param  integer $day
      * @return string
      */
     protected function _getCardinalDay()
@@ -339,20 +321,6 @@ class Ddate
     }
 
     /**
-     * Calculate days until X-Day.
-     *
-     * @return integer
-     */
-    protected function _getDaysUntilXday()
-    {
-        $xDay = new \DateTime('8661-07-05');
-        $date = new \DateTime($this->_yearGregorian . '-' . $this->_monthGregorian . '-' . $this->_dayGregorian);
-        $diff = $xDay->diff($date);
-        $daysUntilXday = $diff->days;
-        return (integer)$daysUntilXday;
-    }
-
-    /**
      * Sets format to internal property.
      *
      * If no format string is given default format string is used as fallback.
@@ -366,20 +334,6 @@ class Ddate
             $format = '%{%A, %B %d,%} %Y YOLD';
         }
         $this->_format = (string)$format;
-    }
-
-    /**
-     * Get Discordian year.
-     *
-     * @return integer
-     */
-    protected function _getDiscordianYear()
-    {
-        if (0 != $this->_yearDiscordian)
-        {
-            return $this->_yearDiscordian;
-        }
-        return $this->_yearDiscordian = $this->_yearGregorian + $this->_curseOfGreyface;
     }
 
     /**
@@ -532,8 +486,8 @@ class Ddate
         $output = str_replace('%b', $this->_getAbbreviatedSeasonName(), $output);
         $output = str_replace('%e', $this->_getCardinalDay(), $output);
         $output = str_replace('%d', $this->_getDiscordianDay(), $output);
-        $output = str_replace('%Y', $this->_getDiscordianYear(), $output);
-        $output = str_replace('%X', $this->_getDaysUntilXday(), $output);
+        $output = str_replace('%Y', $this->_converter->calculateYear($this->_yearGregorian), $output);
+        $output = $this->_replaceXDayPlaceholder($output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
@@ -582,5 +536,17 @@ class Ddate
             $string = str_replace('%H', 'no Holyday', $string);
             return $string;
         }
+    }
+
+    /**
+     * Replaces %X in given string.
+     *
+     * @param  string $string
+     * @return string
+     */
+    protected function _replaceXDayPlaceholder($string)
+    {
+        $date = new \DateTime($this->_yearGregorian . '-' . $this->_monthGregorian . '-' . $this->_dayGregorian);
+        return str_replace('%X', $this->_converter->calculateDaysUntilXday($date), $string);
     }
 }

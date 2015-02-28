@@ -25,53 +25,6 @@ class Ddate
     protected $_curseOfGreyface = 1166;
 
     /**
-     * Discordian Holydays.
-     *
-     * @var string[]
-     */
-    protected $_holydays = array(
-        '0501' => 'Mungday',
-        '1902' => 'Chaoflux',
-        '2902' => 'St. Tib\'s Day',
-        '1903' => 'Mojoday',
-        '0305' => 'Discoflux',
-        '3105' => 'Syaday',
-        '1507' => 'Conflux',
-        '1208' => 'Zaraday',
-        '2609' => 'Bureflux',
-        '2410' => 'Maladay',
-        '0812' => 'Afflux'
-    );
-
-    /**
-     * Full names of the day of the week.
-     *
-     * @var string[]
-     */
-    protected $_days = array('Sweetmorn', 'Boomtime', 'Pungenday', 'Prickle-Prickle', 'Setting Orange');
-
-    /**
-     * Abbreviated names of the day of the week.
-     *
-     * @var string[]
-     */
-    protected $_abbrevDays = array('SM', 'BT', 'PD', 'PP', 'SO');
-
-    /**
-     * Full names of the season.
-     *
-     * @var string[]
-     */
-    protected $_seasons = array('Chaos', 'Discord', 'Confusion', 'Bureaucracy', 'The Aftermath');
-
-    /**
-     * Abbreviated names of the seasons.
-     *
-     * @var string[]
-     */
-    protected $_abbrevSeasons = array('Chs', 'Dsc', 'Cfn', 'Bcy', 'Afm');
-
-    /**
      * Supported format string fields and description.
      *
      * @var string[]
@@ -162,6 +115,26 @@ class Ddate
      * @var string
      */
     protected $_format;
+
+    /**
+     * Locale data.
+     *
+     * @var LocaleData
+     */
+    protected $_localeData;
+
+    /**
+     * Constructor method.
+     *
+     * @param LocaleData $localeData class providing localized messages
+     */
+    public function __construct(LocaleData $localeData = null)
+    {
+        if (is_null($localeData))
+        {
+            $this->_localeData = new LocaleDataEn();
+        }
+    }
 
     /**
      * Returns array of all supported format strings.
@@ -325,7 +298,7 @@ class Ddate
      */
     protected function _isHolyday()
     {
-        return array_key_exists($this->_getDayMonth(), $this->_holydays);
+        return array_key_exists($this->_getDayMonth(), $this->_localeData->getHolydays());
     }
 
     /**
@@ -475,7 +448,8 @@ class Ddate
         {
             return 'FNORD';
         }
-        return (string)$this->_seasons[$this->_getDiscordianSeason()];
+        $seasons = $this->_localeData->getSeasons();
+        return (string)$seasons[$this->_getDiscordianSeason()];
     }
 
     /**
@@ -489,7 +463,8 @@ class Ddate
         {
             return 'FNORD';
         }
-        return $this->_abbrevSeasons[$this->_getDiscordianSeason()];
+        $abbrevSeasons = $this->_localeData->getAbbrevSeasons();
+        return $abbrevSeasons[$this->_getDiscordianSeason()];
     }
 
     /**
@@ -503,7 +478,8 @@ class Ddate
         {
             return 'FNORD';
         }
-        return (string)$this->_days[$this->_getDiscordianWeekDay()];
+        $days = $this->_localeData->getDays();
+        return (string)$days[$this->_getDiscordianWeekDay()];
     }
 
     /**
@@ -517,7 +493,8 @@ class Ddate
         {
             return 'FNORD';
         }
-        return $this->_abbrevDays[$this->_getDiscordianWeekDay()];
+        $abbrevDays = $this->_localeData->getAbbrevDays();
+        return $abbrevDays[$this->_getDiscordianWeekDay()];
     }
 
     /**
@@ -581,7 +558,8 @@ class Ddate
         $output = $this->_format;
         if ($this->_isStTibsDay())
         {
-            $output = preg_replace('/%{(.)*%}/', $this->_holydays['2902'], $output);
+            $holidays = $this->_localeData->getHolydays();
+            $output = preg_replace('/%{(.)*%}/', $holidays['2902'], $output);
         }
         else
         {
@@ -591,7 +569,8 @@ class Ddate
         if ($this->_isHolyday())
         {
             $output = str_replace('%N', '', $output);
-            $output = str_replace('%H', $this->_holydays[$this->_getDayMonth()], $output);
+            $holidays = $this->_localeData->getHolydays();
+            $output = str_replace('%H', $holidays[$this->_getDayMonth()], $output);
         }
         else
         {

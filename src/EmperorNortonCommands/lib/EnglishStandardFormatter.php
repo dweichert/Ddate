@@ -91,12 +91,6 @@ class EnglishStandardFormatter extends DdateFormatter
         $output = str_replace('%X', $ddate->getDaysUntilXDay(), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
-
-        $needle = 'Today\'s St. Tib\'s Day 3178 YOLD 2428623 days \'til X-Day';
-        if (0 === strpos($output, $needle))
-        {
-            var_dump($ddate);
-        }
         return (string)$output;
     }
 

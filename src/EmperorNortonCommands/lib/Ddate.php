@@ -31,15 +31,30 @@ class Ddate
     /**
      * Constructor method.
      *
-     * @param FormatterFactory $formatter  Discordian date formatter
+     * @param DdateConverter   $converter         OPTIONAL Converts Gregorian to Discordian dates
+     * @param FormatterFactory $formatterFactory  OPTIONAL Discordian date formatter
      */
-    public function __construct(FormatterFactory $formatter = null)
+    public function __construct(
+        DdateConverter $converter = null,
+        FormatterFactory $formatterFactory = null
+    )
     {
-        if (is_null($formatter))
+        if (is_null($formatterFactory))
         {
             $this->_formatterFactory = new FormatterFactory();
         }
-        $this->_converter = new DdateConverter();
+        else
+        {
+            $this->_formatterFactory = $formatterFactory;
+        }
+        if (is_null($converter))
+        {
+            $this->_converter = new DdateConverter();
+        }
+        else
+        {
+            $this->_converter = $converter;
+        }
     }
 
     /**

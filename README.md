@@ -30,7 +30,7 @@ class Foo
         $ddate = new Ddate();
         $date = $ddate->ddate();
 
-        // for mor formatting options and setting custom dates see below
+        // for more formatting options and setting custom dates see below
     }
 }
 ```

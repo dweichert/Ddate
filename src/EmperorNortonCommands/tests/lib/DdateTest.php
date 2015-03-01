@@ -8,7 +8,7 @@
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
-use EmperorNortonCommands\lib\StandardFormatter;
+use EmperorNortonCommands\lib\EnglishStandardFormatter;
 
 /**
  * Class DdateTest.
@@ -169,7 +169,7 @@ class DdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSupportedFormatFields()
     {
-        $formatter = new StandardFormatter();
+        $formatter = new EnglishStandardFormatter();
         $expected = $formatter->getSupportedFormatStringFields();
         $actual = $this->_object->getSupportedFormatStringFields();
         self::assertEquals($expected, $actual);

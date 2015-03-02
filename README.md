@@ -36,7 +36,7 @@ class Foo
 ```
 ###ddate
 
-    string ddate ( [string $format, int $date] )
+    string ddate ( [string $format, int $date, string $locale] )
 
 Returns the date in Discordian date format. If called with no arguments,
 the current system date will be used. Alternatively, a Gregorian date may
@@ -47,6 +47,11 @@ If a format string is specified as the first argument, the Discordian date
 will be returned in a format specified by the string. This mechanism works
 similarly to the format string mechanism of date(), only almost completely
 differently.
+
+The third argument is a string serving as a locale identifier. Currently
+'en' (for English) and 'de' (for German) are supported by standard
+formatters shipped with the library. English is the fallback should no
+locale be specified.
 
 #### Examples
 

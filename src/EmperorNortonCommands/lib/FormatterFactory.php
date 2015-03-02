@@ -22,6 +22,10 @@ class FormatterFactory
         'en' => array(
             'lang' => 'English',
             'class' => 'EnglishStandardFormatter'
+        ),
+        'de' => array(
+            'lang' => 'Deutsch',
+            'class' => 'GermanStandardFormatter'
         )
     );
 

@@ -83,14 +83,15 @@ class Ddate
      *
      * @param  string                    $format OPTIONAL format string
      * @param  string                    $date   OPTIONAL Gregorian date
+     * @param  string                    $locale OPTIONAL e.g. en for English, de for German, ...
      * @return string
      * @throws \InvalidArgumentException
      */
-    public function ddate($format = null, $date = null)
+    public function ddate($format = null, $date = null, $locale = 'en')
     {
         $dateObj = $this->_getDateObject($date);
         $ddate = $this->_converter->convert($dateObj);
-        $formatter = $this->_formatterFactory->getFormatter('en');
+        $formatter = $this->_formatterFactory->getFormatter($locale);
         $formatter->setFormat($format);
         return $formatter->format($ddate);
     }

@@ -44,7 +44,7 @@ class FormatterFactory
         $locale = strtolower(substr($locale, 0, 2));
         if (!array_key_exists($locale, $this->_availableFormatters))
         {
-            return $this->_availableFormatters['en'];
+            $locale = 'en';
         }
         $namespace = 'EmperorNortonCommands\\lib\\';
         $class = (string)$namespace . $this->_availableFormatters[$locale]['class'];

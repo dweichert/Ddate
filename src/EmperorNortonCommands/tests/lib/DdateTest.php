@@ -8,7 +8,10 @@
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
+use EmperorNortonCommands\lib\DdateConverter;
+use EmperorNortonCommands\lib\DdateValue;
 use EmperorNortonCommands\lib\EnglishStandardFormatter;
+use EmperorNortonCommands\lib\FormatterFactory;
 
 /**
  * Class DdateTest.
@@ -175,4 +178,13 @@ class DdateTest extends \PHPUnit_Framework_TestCase
         self::assertEquals($expected, $actual);
     }
 
+    /**
+     * Test constructor.
+     */
+    public function testConstructor()
+    {
+        $converter = new DdateConverter();
+        $formatterFactory = new FormatterFactory();
+        new Ddate($converter, $formatterFactory);
+    }
 }

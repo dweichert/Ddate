@@ -71,6 +71,13 @@ class EnglishStandardFormatter extends DdateFormatter
     protected $_abbrevSeasons = array('Chs', 'Dsc', 'Cfn', 'Bcy', 'Afm');
 
     /**
+     * No Holyday (msgid) string.
+     *
+     * @var string
+     */
+    protected $_noHolyday = 'no Holyday';
+
+    /**
      * Format DdateValue as string.
      *
      * @param  DdateValue $ddate
@@ -128,13 +135,13 @@ class EnglishStandardFormatter extends DdateFormatter
         if (strlen($ddate->getHolyday()))
         {
             $string = str_replace('%N', '', $string);
-            $string = str_replace('%H', $ddate->getHolyday(), $string);
+            $string = str_replace('%H', $this->_getHolyday($ddate), $string);
             return $string;
         }
         else
         {
             $string = preg_replace('/%N(.)*/s', '', $string);
-            $string = str_replace('%H', 'no Holyday', $string);
+            $string = str_replace('%H', $this->_noHolyday, $string);
             return $string;
         }
     }
@@ -251,5 +258,16 @@ class EnglishStandardFormatter extends DdateFormatter
             return 'FNORD';
         }
         return $ddate->getDay();
+    }
+
+    /**
+     * Get Holyday value.
+     *
+     * @param DdateValue $ddate
+     * @return string
+     */
+    protected function _getHolyday(DdateValue $ddate)
+    {
+        return $ddate->getHolyday();
     }
 }

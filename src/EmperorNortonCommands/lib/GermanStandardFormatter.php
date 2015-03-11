@@ -31,8 +31,8 @@ class GermanStandardFormatter extends EnglishStandardFormatter
         '%n' => 'Neue Zeile',
         '%t' => 'Tabulator',
         '%X' => 'Anzahl der Tage bis zum Tag X.',
-        '%{' => 'Schließt den Tail des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Anfang)',
-        '%}' => 'Schließt den Tail des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)'
+        '%{' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Anfang)',
+        '%}' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)'
     );
 
     /**
@@ -106,6 +106,13 @@ class GermanStandardFormatter extends EnglishStandardFormatter
     protected $_abbrevSeasons = array('Ve', 'Zw', 'Un', 'Be', 'Au');
 
     /**
+     * No Holyday (msgid) string.
+     *
+     * @var string
+     */
+    protected $_noHolyday = 'kein heiliger Tag';
+
+    /**
      * Replaces %{ and %} placeholders in given string.
      *
      * @param  string     $string
@@ -128,29 +135,6 @@ class GermanStandardFormatter extends EnglishStandardFormatter
     }
 
     /**
-     * Replaces %N and %H in given string.
-     *
-     * @param  string $string
-     * @param  DdateValue $ddate
-     * @return string
-     */
-    protected function _replaceHolidayPlaceholders($string, DdateValue $ddate)
-    {
-        if (strlen($ddate->getHolyday()))
-        {
-            $string = str_replace('%N', '', $string);
-            $string = str_replace('%H', $this->_holydayTranslations[$ddate->getHolyday()], $string);
-            return $string;
-        }
-        else
-        {
-            $string = preg_replace('/%N(.)*/s', '', $string);
-            $string = str_replace('%H', 'kein heiliger Tag', $string);
-            return $string;
-        }
-    }
-
-    /**
      * Get cardinal day from ordinal day.
      *
      * Returns "FNORD" on St. Tibs Day.
@@ -165,6 +149,17 @@ class GermanStandardFormatter extends EnglishStandardFormatter
             return 'FNORD';
         }
         return $this->_cardinalNumbers[$day - 1];
+    }
+
+    /**
+     * Get Holyday value.
+     *
+     * @param DdateValue $ddate
+     * @return string
+     */
+    protected function _getHolyday(DdateValue $ddate)
+    {
+        return $this->_holydayTranslations[$ddate->getHolyday()];
     }
 
 }

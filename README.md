@@ -13,7 +13,7 @@ system in PHP. It converts Gregorian to Discordian dates.
 The easiest way to install the library is adding it as a dependency to your
 project's composer.json file.
 
-    $ composer require ddate/ddate "dev-master"
+    $ composer require ddate/ddate "~1.0"
 
 ##Usage
 

@@ -23,8 +23,10 @@ class GermanStandardFormatter extends EnglishStandardFormatter
         '%a' => 'Abgekürzter Name des Wochentages (z.B. SU)',
         '%B' => 'Vollständiger Name der Saison (z.B. Verwirrung)',
         '%b' => 'Abgekürzter Name der Saison (z.B. Ve)',
+        '%C' => 'Vollständiger Name der Saison mit führendem bestimmten Artikel im Genitiv (z.B. der Verwirrung, des Ausklangs)',
         '%d' => 'Tag der Saison als Ordinalzahl (z.B. 23)',
         '%e' => 'Tag der Saison als Kardinalzahl (z.B. 23.)',
+        '%E' => 'Tag der Saison als Kardinalzahl als Wort (z.B. Dreiundzwanzigster)',
         '%Y' => 'Volle numerische Repräsentation des Jahrs, vierstellig',
         '%H' => 'Name des heiligen Tages (wenn es einer ist)',
         '%N' => 'Magischer Code, um die Ausgabe des restlichen Formates zu unterbinden, es sei denn es ist ein heiliger Tag',
@@ -98,6 +100,13 @@ class GermanStandardFormatter extends EnglishStandardFormatter
     protected $_seasons = array('Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Ausklang');
 
     /**
+     * Full names of the season.
+     *
+     * @var string[]
+     */
+    protected $_seasonsGenitive = array('der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Ausklangs');
+
+    /**
      * Abbreviated names of the seasons.
      *
      * @var string[]
@@ -110,6 +119,32 @@ class GermanStandardFormatter extends EnglishStandardFormatter
      * @var string
      */
     protected $_noHolyday = 'kein heiliger Tag';
+
+    /**
+     * Format DdateValue as string.
+     *
+     * @param  DdateValue $ddate
+     * @return string
+     */
+    public function format(DdateValue $ddate)
+    {
+        $output = $this->_format;
+        $output = $this->_replaceStTibsPlaceholders($output, $ddate);
+        $output = $this->_replaceHolidayPlaceholders($output, $ddate);
+        $output = str_replace('%a', $this->_getAbbreviatedWeekDayName($ddate->getWeekDay()), $output);
+        $output = str_replace('%A', $this->_getDiscordianWeekDayName($ddate->getWeekDay()), $output);
+        $output = str_replace('%B', $this->_getDiscordianSeasonName($ddate->getSeason()), $output);
+        $output = str_replace('%b', $this->_getAbbreviatedSeasonName($ddate->getSeason()), $output);
+        $output = str_replace('%C', $this->_getDiscordianSeasonNameGenitive($ddate->getSeason()), $output);
+        $output = str_replace('%e', $this->_getCardinalDay($ddate), $output);
+        $output = str_replace('%E', $this->_getCardinalDayFull($ddate->getDay()), $output);
+        $output = str_replace('%d', $this->_getOrdinalDay($ddate), $output);
+        $output = str_replace('%Y', $ddate->getYear(), $output);
+        $output = str_replace('%X', $ddate->getDaysUntilXDay(), $output);
+        $output = str_replace('%t', "\t", $output);
+        $output = str_replace('%n', "\n", $output);
+        return (string)$output;
+    }
 
     /**
      * Replaces %{ and %} placeholders in given string.
@@ -138,16 +173,50 @@ class GermanStandardFormatter extends EnglishStandardFormatter
      *
      * Returns "FNORD" on St. Tibs Day.
      *
+     * @param DdateValue $ddate
+     * @return string
+     */
+    protected function _getCardinalDay($ddate)
+    {
+        if (DdateValue::ST_TIBS_DAY == $ddate->getDay())
+        {
+            return 'FNORD';
+        }
+        return $this->_getOrdinalDay($ddate) . '.';
+    }
+
+    /**
+     * Get cardinal day from ordinal day.
+     *
+     * Returns "FNORD" on St. Tibs Day. Returns cardinal day as word, not
+     * numeral, e.g. "Dreiundzwanzigster".
+     *
      * @param integer $day Discordian day of (ordinal) season
      * @return string
      */
-    protected function _getCardinalDay($day)
+    protected function _getCardinalDayFull($day)
     {
         if (DdateValue::ST_TIBS_DAY == $day)
         {
             return 'FNORD';
         }
         return $this->_cardinalNumbers[$day - 1];
+    }
+
+    /**
+     * Get Discrodian season name in casus genitive.
+     *
+     * @param integer Discordian (ordinal) season
+     * @return string
+     */
+    protected function _getDiscordianSeasonNameGenitive($season)
+    {
+        if (DdateValue::ST_TIBS_DAY == $season)
+        {
+            return 'FNORD';
+        }
+        $season = $season - 1;
+        return (string)$this->_seasonsGenitive[$season];
     }
 
     /**

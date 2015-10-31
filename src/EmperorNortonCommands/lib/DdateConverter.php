@@ -33,7 +33,6 @@ class DdateConverter
     protected $_holydays = array(
         '0501' => 'Mungday',
         '1902' => 'Chaoflux',
-        '2902' => 'St. Tib\'s Day',
         '1903' => 'Mojoday',
         '0305' => 'Discoflux',
         '3105' => 'Syaday',

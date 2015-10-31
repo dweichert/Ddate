@@ -112,7 +112,7 @@ class EnglishStandardFormatter extends DdateFormatter
     {
         if (DdateValue::ST_TIBS_DAY === $ddate->getDay())
         {
-            $string = preg_replace('/%{(.)*%}/', $ddate->getHolyday(), $string);
+            $string = preg_replace('/%{(.)*%}/', "St. Tib's Day", $string);
             return $string;
         }
         else

@@ -43,7 +43,6 @@ class GermanStandardFormatter extends EnglishStandardFormatter
     protected $_holydayTranslations = array(
         'Mungday' => 'Mungtag',
         'Chaoflux' => 'Wirrfluss',
-        'St. Tib\'s Day' => 'St. Tibs Tag',
         'Mojoday' => 'Mojotag',
         'Discoflux' => 'Zweifluss',
         'Syaday' => 'Syatag',
@@ -123,7 +122,7 @@ class GermanStandardFormatter extends EnglishStandardFormatter
     {
         if (DdateValue::ST_TIBS_DAY === $ddate->getDay())
         {
-            $string = preg_replace('/%{(.)*%}/', $this->_holydayTranslations[$ddate->getHolyday()], $string);
+            $string = preg_replace('/%{(.)*%}/', 'St. Tibs Tag', $string);
             return $string;
         }
         else

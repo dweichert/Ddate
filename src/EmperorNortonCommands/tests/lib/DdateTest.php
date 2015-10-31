@@ -115,7 +115,7 @@ class DdateTest extends \PHPUnit_Framework_TestCase
             array('29022012', "Today's St. Tib's Day 3178 YOLD 2428624 days 'til X-Day", "Today's %{%A, the %e of %B,%} %Y YOLD %X days 'til X-Day"),
             array(18092013, 'Today is Sweetmorn, the 42nd of Bureaucracy, 3179.', 'Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H'),
             array(26092013, "It's Prickle-Prickle, the 50th of Bureaucracy, 3179. \nCelebrate Bureflux", "It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H"),
-            array(29022016, "Today's St. Tib's Day, 3182. \nCelebrate St. Tib's Day", "Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H")
+            array(29022016, "Today's St. Tib's Day, 3182.", "Today's %{%A, the %e of %B%}, %Y.%N Celebrate %H")
         );
     }
 

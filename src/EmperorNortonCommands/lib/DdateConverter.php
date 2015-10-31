@@ -72,7 +72,6 @@ class DdateConverter
         $ddate->setWeekDay(DdateValue::ST_TIBS_DAY);
         $ddate->setYear($this->_calculateYear($date));
         $ddate->setDaysUntilXDay($this->_calculateDaysUntilXday($date));
-        $ddate->setHolyday($this->_holydays['2902']);
         return $ddate;
     }
 

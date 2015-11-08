@@ -19,11 +19,11 @@ class GermanStandardFormatter extends EnglishStandardFormatter
      * @var string[]
      */
     protected $_supportedFormatStringFields = array(
-        '%A' => 'Vollständiger Name des Woechentages (z.B. Süßtag)',
-        '%a' => 'Abgekürzter Name des Wochentages (z.B. SU)',
+        '%A' => 'Vollständiger Name des Woechentages (z.B. Süßmorgen)',
+        '%a' => 'Abgekürzter Name des Wochentages (z.B. SM)',
         '%B' => 'Vollständiger Name der Saison (z.B. Verwirrung)',
         '%b' => 'Abgekürzter Name der Saison (z.B. Ve)',
-        '%C' => 'Vollständiger Name der Saison mit führendem bestimmten Artikel im Genitiv (z.B. der Verwirrung, des Ausklangs)',
+        '%C' => 'Vollständiger Name der Saison mit führendem bestimmten Artikel im Genitiv (z.B. der Verwirrung, des Grummets)',
         '%d' => 'Tag der Saison als Ordinalzahl (z.B. 23)',
         '%e' => 'Tag der Saison als Kardinalzahl (z.B. 23.)',
         '%E' => 'Tag der Saison als Kardinalzahl als Wort (z.B. Dreiundzwanzigster)',
@@ -83,28 +83,28 @@ class GermanStandardFormatter extends EnglishStandardFormatter
      *
      * @var string[]
      */
-    protected $_days = array('Süßtag', 'Dröhntag', 'Stechend', 'Prickel-Prickel', 'Orangewerdend');
+    protected $_days = array('Süßmorgen', 'Blütezeit', 'Stichtag', 'Prickel-Prickel', 'Orangewerdend');
 
     /**
      * Abbreviated names of the day of the week.
      *
      * @var string[]
      */
-    protected $_abbrevDays = array('SU', 'DR', 'ST', 'PP', 'OW');
+    protected $_abbrevDays = array('SM', 'BZ', 'ST', 'PP', 'OW');
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $_seasons = array('Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Ausklang');
+    protected $_seasons = array('Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Grummet');
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $_seasonsGenitive = array('der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Ausklangs');
+    protected $_seasonsGenitive = array('der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Grummets');
 
     /**
      * Abbreviated names of the seasons.

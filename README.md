@@ -1,6 +1,11 @@
 #README
 
-[![Build Status](https://travis-ci.org/dweichert/Ddate.svg?branch=master)](https://travis-ci.org/dweichert/Ddate) [![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
+[![Build Status](https://travis-ci.org/dweichert/Ddate.svg?branch=master)](https://travis-ci.org/dweichert/Ddate)
+[![Downloads this Month](https://img.shields.io/packagist/dm/ddate/ddate.svg?style=flat-square)](https://packagist.org/packages/ddate/ddate)
+[![Latest stable](https://img.shields.io/packagist/v/ddate/ddate.svg?style=flat-square&label=stable)](https://packagist.org/packages/ddate/ddate)
+[![Latest dev](https://img.shields.io/packagist/vpre/ddate/ddate.svg?style=flat&label=unstable)](https://packagist.org/packages/ddate/ddate)
+[![License](https://img.shields.io/packagist/l/ddate/ddate.svg?style=flat&label=license)](https://packagist.org/packages/ddate/ddate)
+[![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
 
 ##What is EmperorNortonCommands/lib/Ddate?
 

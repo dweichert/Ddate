@@ -3,7 +3,7 @@
     "type": "library",
     "description": "Ddate converts Gregorian to Discordian dates.",
     "keywords": ["ddate", "date", "calendar", "discordian", "conversion"],
-    "license": "Public Domain",
+    "license": "Unlicense",
     "authors": [
         {
             "name": "David Weichert",

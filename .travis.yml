@@ -9,3 +9,5 @@ php:
 addons:
     code_climate:
         repo_token: da9fae2ab1413b3fae464bf971aba7965dda81c798da3582a4a622805c5d4aaf
+after_script:
+  - vendor/bin/test-reporter

@@ -89,7 +89,7 @@ class Ddate
      */
     public function ddate($format = null, $date = null, $locale = 'en')
     {
-        $dateObj = $this->_getDateObject($date);
+        $dateObj = $this->getDateObject($date);
         $ddate = $this->_converter->convert($dateObj);
         $formatter = $this->_formatterFactory->getFormatter($locale);
         $formatter->setFormat($format);
@@ -103,7 +103,7 @@ class Ddate
      * @return \DateTime
      * @throws \InvalidArgumentException
      */
-    protected function _getDateObject($date)
+    protected function getDateObject($date)
     {
         if (null === $date)
         {
@@ -113,7 +113,7 @@ class Ddate
         {
             throw new \InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
-        list($year, $month, $day) = $this->_splitIntoParts($date);
+        list($year, $month, $day) = $this->splitIntoParts($date);
         if (!checkdate($month, $day, $year))
         {
             throw new \InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
@@ -130,7 +130,7 @@ class Ddate
      * @param  string $date Gregorian date (dmY)
      * @return array
      */
-    protected function _splitIntoParts($date)
+    protected function splitIntoParts($date)
     {
         $year = (integer)substr($date, 4, 4);
         $month = (integer)substr($date, 2, 2);

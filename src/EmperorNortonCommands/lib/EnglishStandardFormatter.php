@@ -86,14 +86,14 @@ class EnglishStandardFormatter extends DdateFormatter
     public function format(DdateValue $ddate)
     {
         $output = $this->_format;
-        $output = $this->_replaceStTibsPlaceholders($output, $ddate);
-        $output = $this->_replaceHolidayPlaceholders($output, $ddate);
-        $output = str_replace('%a', $this->_getAbbreviatedWeekDayName($ddate->getWeekDay()), $output);
-        $output = str_replace('%A', $this->_getDiscordianWeekDayName($ddate->getWeekDay()), $output);
-        $output = str_replace('%B', $this->_getDiscordianSeasonName($ddate->getSeason()), $output);
-        $output = str_replace('%b', $this->_getAbbreviatedSeasonName($ddate->getSeason()), $output);
-        $output = str_replace('%e', $this->_getCardinalDay($ddate->getDay()), $output);
-        $output = str_replace('%d', $this->_getOrdinalDay($ddate), $output);
+        $output = $this->replaceStTibsPlaceholders($output, $ddate);
+        $output = $this->replaceHolidayPlaceholders($output, $ddate);
+        $output = str_replace('%a', $this->getAbbreviatedWeekDayName($ddate->getWeekDay()), $output);
+        $output = str_replace('%A', $this->getDiscordianWeekDayName($ddate->getWeekDay()), $output);
+        $output = str_replace('%B', $this->getDiscordianSeasonName($ddate->getSeason()), $output);
+        $output = str_replace('%b', $this->getAbbreviatedSeasonName($ddate->getSeason()), $output);
+        $output = str_replace('%e', $this->getCardinalDay($ddate->getDay()), $output);
+        $output = str_replace('%d', $this->getOrdinalDay($ddate), $output);
         $output = str_replace('%Y', $ddate->getYear(), $output);
         $output = str_replace('%X', $ddate->getDaysUntilXDay(), $output);
         $output = str_replace('%t', "\t", $output);
@@ -108,7 +108,7 @@ class EnglishStandardFormatter extends DdateFormatter
      * @param  DdateValue $ddate
      * @return string
      */
-    protected function _replaceStTibsPlaceholders($string, DdateValue $ddate)
+    protected function replaceStTibsPlaceholders($string, DdateValue $ddate)
     {
         if (DdateValue::ST_TIBS_DAY === $ddate->getDay())
         {
@@ -130,12 +130,12 @@ class EnglishStandardFormatter extends DdateFormatter
      * @param  DdateValue $ddate
      * @return string
      */
-    protected function _replaceHolidayPlaceholders($string, DdateValue $ddate)
+    protected function replaceHolidayPlaceholders($string, DdateValue $ddate)
     {
         if (strlen($ddate->getHolyday()))
         {
             $string = str_replace('%N', '', $string);
-            $string = str_replace('%H', $this->_getHolyday($ddate), $string);
+            $string = str_replace('%H', $this->getHolyday($ddate), $string);
             return $string;
         }
         else
@@ -151,7 +151,7 @@ class EnglishStandardFormatter extends DdateFormatter
      *
      * @return string
      */
-    protected function _getAbbreviatedWeekDayName($weekDay)
+    protected function getAbbreviatedWeekDayName($weekDay)
     {
         if (DdateValue::ST_TIBS_DAY == $weekDay)
         {
@@ -166,7 +166,7 @@ class EnglishStandardFormatter extends DdateFormatter
      *
      * @return string
      */
-    protected function _getDiscordianWeekDayName($weekDay)
+    protected function getDiscordianWeekDayName($weekDay)
     {
         if (DdateValue::ST_TIBS_DAY == $weekDay)
         {
@@ -182,7 +182,7 @@ class EnglishStandardFormatter extends DdateFormatter
      * @param integer Discordian (ordinal) season
      * @return string
      */
-    protected function _getDiscordianSeasonName($season)
+    protected function getDiscordianSeasonName($season)
     {
         if (DdateValue::ST_TIBS_DAY == $season)
         {
@@ -197,7 +197,7 @@ class EnglishStandardFormatter extends DdateFormatter
      *
      * @return string
      */
-    protected function _getAbbreviatedSeasonName($season)
+    protected function getAbbreviatedSeasonName($season)
     {
         if (DdateValue::ST_TIBS_DAY == $season)
         {
@@ -215,7 +215,7 @@ class EnglishStandardFormatter extends DdateFormatter
      * @param integer $day Discordian day of (ordinal) season
      * @return string
      */
-    protected function _getCardinalDay($day)
+    protected function getCardinalDay($day)
     {
         if (DdateValue::ST_TIBS_DAY == $day)
         {
@@ -251,7 +251,7 @@ class EnglishStandardFormatter extends DdateFormatter
      * @param DdateValue $ddate
      * @return integer|string
      */
-    protected function _getOrdinalDay(DdateValue $ddate)
+    protected function getOrdinalDay(DdateValue $ddate)
     {
         if (DdateValue::ST_TIBS_DAY == $ddate->getDay())
         {
@@ -266,7 +266,7 @@ class EnglishStandardFormatter extends DdateFormatter
      * @param DdateValue $ddate
      * @return string
      */
-    protected function _getHolyday(DdateValue $ddate)
+    protected function getHolyday(DdateValue $ddate)
     {
         return $ddate->getHolyday();
     }

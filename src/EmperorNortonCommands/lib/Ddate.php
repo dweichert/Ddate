@@ -105,11 +105,11 @@ class Ddate
      */
     protected function _getDateObject($date)
     {
-        if (null == $date)
+        if (null === $date)
         {
             return new \DateTime();
         }
-        if (!is_numeric($date) && 8 != strlen($date))
+        if (!is_numeric($date) && 8 !== strlen($date))
         {
             throw new \InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }

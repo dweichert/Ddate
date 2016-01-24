@@ -51,11 +51,11 @@ class DdateConverter
      */
     public function convert(\DateTime $date)
     {
-        if ($this->_isStTibsDay($date->format('m'), $date->format('d')))
+        if ($this->isStTibsDay($date->format('m'), $date->format('d')))
         {
-            return $this->_calculateDdateStTibs($date);
+            return $this->calculateDdateStTibs($date);
         }
-        return $this->_calculateDdate($date);
+        return $this->calculateDdate($date);
     }
 
     /**
@@ -64,14 +64,14 @@ class DdateConverter
      * @param \DateTime $date
      * @return DdateValue
      */
-    protected function _calculateDdateStTibs(\DateTime $date)
+    protected function calculateDdateStTibs(\DateTime $date)
     {
         $ddate = new DdateValue();
         $ddate->setDay(DdateValue::ST_TIBS_DAY);
         $ddate->setSeason(DdateValue::ST_TIBS_DAY);
         $ddate->setWeekDay(DdateValue::ST_TIBS_DAY);
-        $ddate->setYear($this->_calculateYear($date));
-        $ddate->setDaysUntilXDay($this->_calculateDaysUntilXday($date));
+        $ddate->setYear($this->calculateYear($date));
+        $ddate->setDaysUntilXDay($this->calculateDaysUntilXday($date));
         return $ddate;
     }
 
@@ -81,15 +81,15 @@ class DdateConverter
      * @param \DateTime $date
      * @return DdateValue
      */
-    protected function _calculateDdate(\DateTime $date)
+    protected function calculateDdate(\DateTime $date)
     {
         $ddate = new DdateValue();
-        $ddate->setDay($this->_calculateDayofSeason($date));
-        $ddate->setSeason($this->_calculateSeason($date));
-        $ddate->setWeekDay($this->_calculateDayOfWeek($date));
-        $ddate->setYear($this->_calculateYear($date));
-        $ddate->setDaysUntilXDay($this->_calculateDaysUntilXday($date));
-        $ddate->setHolyday($this->_getHolyday($date));
+        $ddate->setDay($this->calculateDayofSeason($date));
+        $ddate->setSeason($this->calculateSeason($date));
+        $ddate->setWeekDay($this->calculateDayOfWeek($date));
+        $ddate->setYear($this->calculateYear($date));
+        $ddate->setDaysUntilXDay($this->calculateDaysUntilXday($date));
+        $ddate->setHolyday($this->getHolyday($date));
         return $ddate;
     }
 
@@ -101,7 +101,7 @@ class DdateConverter
      * @param \DateTime $date
      * @return string
      */
-    protected function _getHolyday(\DateTime $date)
+    protected function getHolyday(\DateTime $date)
     {
         $key = $date->format('d') . $date->format('m');
         if (isset($this->_holydays[$key]))
@@ -117,11 +117,11 @@ class DdateConverter
      * @param  \DateTime $date
      * @return integer
      */
-    protected function _calculateDayOfWeek(\DateTime $date)
+    protected function calculateDayOfWeek(\DateTime $date)
     {
-        $dayOfYear = $this->_getDaysSinceFirstOfChaos($date);
-        $leapYear = $this->_isLeapYear($date);
-        $dayOfWeekIdx = ($dayOfYear - (1 + $this->_getOffset($leapYear, $dayOfYear))) % 5;
+        $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
+        $leapYear = $this->isLeapYear($date);
+        $dayOfWeekIdx = ($dayOfYear - (1 + $this->getOffset($leapYear, $dayOfYear))) % 5;
         return $dayOfWeekIdx + 1;
     }
 
@@ -131,10 +131,10 @@ class DdateConverter
      * @param  \DateTime $date
      * @return integer
      */
-    protected function _calculateDayofSeason(\DateTime $date)
+    protected function calculateDayofSeason(\DateTime $date)
     {
-        $dayOfYear = $this->_getDaysSinceFirstOfChaos($date);
-        return (($dayOfYear - (1 + $this->_getOffset($this->_isLeapYear($date), $dayOfYear))) % 73) + 1;
+        $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
+        return (($dayOfYear - (1 + $this->getOffset($this->isLeapYear($date), $dayOfYear))) % 73) + 1;
     }
 
     /**
@@ -143,13 +143,13 @@ class DdateConverter
      * @param  \DateTime $date
      * @return integer
      */
-    protected function _calculateSeason(\DateTime $date)
+    protected function calculateSeason(\DateTime $date)
     {
         $seasonIdx = 0;
-        $dayOfYear = $this->_getDaysSinceFirstOfChaos($date);
+        $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
         if ($dayOfYear > 59)
         {
-            $dayOfYearMinusStTibs = $dayOfYear - $this->_getOffset($this->_isLeapYear($date), $dayOfYear);
+            $dayOfYearMinusStTibs = $dayOfYear - $this->getOffset($this->isLeapYear($date), $dayOfYear);
             for ($i = 0; $i < 5; $i++)
             {
                 if ($dayOfYearMinusStTibs < (74 + $i * 73))
@@ -168,7 +168,7 @@ class DdateConverter
      * @param  \DateTime $date
      * @return integer
      */
-    protected function _calculateYear(\DateTime $date)
+    protected function calculateYear(\DateTime $date)
     {
         return $this->_yearDiscordian = $date->format('Y') + $this->_curseOfGreyface;
     }
@@ -179,7 +179,7 @@ class DdateConverter
      * @param  \DateTime $date
      * @return integer
      */
-    protected function _calculateDaysUntilXday(\DateTime $date)
+    protected function calculateDaysUntilXday(\DateTime $date)
     {
         $xDay = new \DateTime('8661-07-05', new \DateTimeZone('UTC'));
         $diff = $xDay->diff($date);
@@ -195,7 +195,7 @@ class DdateConverter
      *
      * @return integer
      */
-    protected function _getOffset($leapYear, $dayOfYear)
+    protected function getOffset($leapYear, $dayOfYear)
     {
         if ($dayOfYear < 60)
         {
@@ -211,7 +211,7 @@ class DdateConverter
      * @param  integer $dayGregorian
      * @return boolean
      */
-    protected function _isStTibsDay($monthGregorian, $dayGregorian)
+    protected function isStTibsDay($monthGregorian, $dayGregorian)
     {
         return 2 == $monthGregorian && 29 == $dayGregorian;
     }
@@ -222,10 +222,10 @@ class DdateConverter
      * @param  \DateTime $date
      * @return integer
      */
-    protected function _getDaysSinceFirstOfChaos(\DateTime $date)
+    protected function getDaysSinceFirstOfChaos(\DateTime $date)
     {
         $firstOfChaos = gmmktime(0, 0, 0, 1, 1, $date->format('Y'));
-        return (integer)($this->_getTimestamp($date) - $firstOfChaos) / 86400 + 1;
+        return (integer)($this->getTimestamp($date) - $firstOfChaos) / 86400 + 1;
     }
 
     /**
@@ -234,9 +234,9 @@ class DdateConverter
      * @param \DateTime $date
      * @return boolean
      */
-    protected function _isLeapYear(\DateTime $date)
+    protected function isLeapYear(\DateTime $date)
     {
-        return (boolean)date('L', $this->_getTimestamp($date));
+        return (boolean)date('L', $this->getTimestamp($date));
     }
 
     /**
@@ -245,7 +245,7 @@ class DdateConverter
      * @param  \DateTime $date
      * @return integer
      */
-    protected function _getTimestamp(\DateTime $date)
+    protected function getTimestamp(\DateTime $date)
     {
         return gmmktime(0, 0, 0, $date->format('m'), $date->format('d'), $date->format('Y'));
     }

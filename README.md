@@ -6,6 +6,7 @@
 [![Latest dev](https://img.shields.io/packagist/vpre/ddate/ddate.svg?style=flat&label=unstable)](https://packagist.org/packages/ddate/ddate)
 [![License](https://img.shields.io/packagist/l/ddate/ddate.svg?style=flat&label=license)](https://packagist.org/packages/ddate/ddate)
 [![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
+[![Code Climate](https://img.shields.io/codeclimate/coverage/github/dweichert/Ddate.svg)](https://codeclimate.com/github/dweichert/Ddate)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/adbb07bc-edaa-4d6e-a113-0b766de6687a.svg?style=flat&label=insight)](https://insight.sensiolabs.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a)
 
 ##What is EmperorNortonCommands/lib/Ddate?

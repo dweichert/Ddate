@@ -59,7 +59,7 @@ abstract class DdateFormatter
      */
     public function setFormat($format = null)
     {
-        if (null == $format || (is_object($format) && !method_exists($format, '__toString')))
+        if (null === $format || (is_object($format) && !method_exists($format, '__toString')))
         {
             $format = $this->_defaultFormat;
         }

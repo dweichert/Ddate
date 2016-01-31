@@ -76,8 +76,6 @@ Celebrate Bureflux
 
 Today's St. Tib's Day, 3182.
 
-Celebrate St. Tib's Day
-
 ###getAvailableFormatStringFields
 
     array getAvailableFormatStringFields (void)

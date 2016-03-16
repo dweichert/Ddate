@@ -60,11 +60,12 @@ class Ddate
     /**
      * Returns array of all supported format strings.
      *
+     * @param  string   $locale OPTIONAL e.g. en for English, de for German, ...
      * @return string[]
      */
-    public function getSupportedFormatStringFields()
+    public function getSupportedFormatStringFields($locale = 'en')
     {
-        $formatter = $this->_formatterFactory->getFormatter('en');
+        $formatter = $this->_formatterFactory->getFormatter($locale);
         return $formatter->getSupportedFormatStringFields();
     }
 

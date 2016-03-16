@@ -41,9 +41,13 @@ class Foo
     }
 }
 ```
-###ddate
+###Method ddate
 
-    string ddate ( [string $format, int $date, string $locale] )
+    @param  string $format OPTIONAL format string
+    @param  string $date   OPTIONAL Gregorian date
+    @param  string $locale OPTIONAL e.g. en for English, de for German, ...
+    @return string
+    @throws \InvalidArgumentException
 
 Returns the date in Discordian date format. If called with no arguments,
 the current system date will be used. Alternatively, a Gregorian date may
@@ -76,13 +80,17 @@ Celebrate Bureflux
 
 Today's St. Tib's Day, 3182.
 
-###getAvailableFormatStringFields
+###Method getAvailableFormatStringFields
 
-    array getAvailableFormatStringFields (void)
+    @param  string   $locale OPTIONAL e.g. en for English, de for German, ...
+    @return string[]
 
 Will return an array of all supported format string fields. The keys of
 the returned array are the format fields supported in a format string and
 the values provide an English description of the fields purpose.
+
+The first optional parameter allows to specify a locale identifier, because
+the format string fields are formatter specific.
 
 ##License
 

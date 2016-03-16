@@ -77,4 +77,16 @@ class DdateLocalizedTest extends \PHPUnit_Framework_TestCase
     {
         self::assertEquals($this->_object->ddate(), $this->_object->ddate(null, null, 'en'));
     }
+
+    /**
+     * Test getSupportedFormatFields('en').
+     */
+    public function testGetSupportedFormatFieldsLocaleEn()
+    {
+        $formatter = new GermanStandardFormatter();
+        $expected = $formatter->getSupportedFormatStringFields();
+        $actual = $this->_object->getSupportedFormatStringFields('de');
+        self::assertEquals($expected, $actual);
+    }
+
 }

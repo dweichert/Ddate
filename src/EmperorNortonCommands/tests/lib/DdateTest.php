@@ -179,6 +179,17 @@ class DdateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test getSupportedFormatFields('en').
+     */
+    public function testGetSupportedFormatFieldsLocaleEn()
+    {
+        $formatter = new EnglishStandardFormatter();
+        $expected = $formatter->getSupportedFormatStringFields();
+        $actual = $this->_object->getSupportedFormatStringFields('en');
+        self::assertEquals($expected, $actual);
+    }
+
+    /**
      * Test constructor.
      */
     public function testConstructor()

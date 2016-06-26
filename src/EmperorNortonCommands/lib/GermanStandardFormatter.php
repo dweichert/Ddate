@@ -33,6 +33,7 @@ class GermanStandardFormatter extends EnglishStandardFormatter
         '%n' => 'Neue Zeile',
         '%t' => 'Tabulator',
         '%X' => 'Anzahl der Tage bis zum Tag X.',
+        '%x' => 'Anzahl der Tage seit dem / bis zum ursprünglichen Tag X.',
         '%{' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Anfang)',
         '%}' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)'
     );
@@ -140,7 +141,8 @@ class GermanStandardFormatter extends EnglishStandardFormatter
         $output = str_replace('%E', $this->getCardinalDayFull($ddate->getDay()), $output);
         $output = str_replace('%d', $this->getOrdinalDay($ddate), $output);
         $output = str_replace('%Y', $ddate->getYear(), $output);
-        $output = str_replace('%X', $ddate->getDaysUntilXDay(), $output);
+        $output = str_replace('%X', $ddate->getDaysUntilRealXDay(), $output);
+        $output = str_replace('%x', $ddate->getDaysUntilOriginalXDay(), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
@@ -206,7 +208,7 @@ class GermanStandardFormatter extends EnglishStandardFormatter
     /**
      * Get Discrodian season name in casus genitive.
      *
-     * @param integer Discordian (ordinal) season
+     * @param integer $season Discordian (ordinal) season
      * @return string
      */
     protected function getDiscordianSeasonNameGenitive($season)

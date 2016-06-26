@@ -31,6 +31,7 @@ class EnglishStandardFormatter extends DdateFormatter
         '%n' => 'Newline',
         '%t' => 'Tab',
         '%X' => 'Number of days remaining until X-Day.',
+        '%x' => 'Number of days since/until original X-Day (Jul 5th, 1998)',
         '%{' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (start delimiter)',
         '%}' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (end delimiter)'
     );
@@ -95,7 +96,8 @@ class EnglishStandardFormatter extends DdateFormatter
         $output = str_replace('%e', $this->getCardinalDay($ddate->getDay()), $output);
         $output = str_replace('%d', $this->getOrdinalDay($ddate), $output);
         $output = str_replace('%Y', $ddate->getYear(), $output);
-        $output = str_replace('%X', $ddate->getDaysUntilXDay(), $output);
+        $output = str_replace('%X', $ddate->getDaysUntilRealXDay(), $output);
+        $output = str_replace('%x', $ddate->getDaysUntilOriginalXDay(), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
@@ -179,7 +181,7 @@ class EnglishStandardFormatter extends DdateFormatter
     /**
      * Get Discrodian season name.
      *
-     * @param integer Discordian (ordinal) season
+     * @param integer $season Discordian (ordinal) season
      * @return string
      */
     protected function getDiscordianSeasonName($season)

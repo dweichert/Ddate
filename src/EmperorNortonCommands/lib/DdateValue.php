@@ -44,11 +44,18 @@ class DdateValue
     protected $_year;
 
     /**
-     * Day until X-Day.
+     * Days until real X-Day.
      *
      * @var integer
      */
-    protected $_daysUntilXDay;
+    protected $_daysUntilRealXDay;
+
+    /**
+     * Days until original X-Day.
+     *
+     * @var integer
+     */
+    protected $_daysUntilOriginalXDay;
 
     /**
      * Name of Holyday if any.
@@ -146,24 +153,46 @@ class DdateValue
     }
 
     /**
-     * Get days until X-Day.
+     * Get days until real X-Day.
      *
      * @return integer
      */
-    public function getDaysUntilXDay()
+    public function getDaysUntilRealXDay()
     {
-        return $this->_daysUntilXDay;
+        return $this->_daysUntilRealXDay;
     }
 
     /**
-     * Set days until X-Day.
+     * Set days until real X-Day.
      *
-     * @param integer $daysTillXDay
+     * @param integer $daysTilXDay
      * @return DdateValue
      */
-    public function setDaysUntilXDay($daysTilXDay)
+    public function setDaysUntilRealXDay($daysTilXDay)
     {
-        $this->_daysUntilXDay = $daysTilXDay;
+        $this->_daysUntilRealXDay = $daysTilXDay;
+        return $this;
+    }
+
+    /**
+     * Get days until original X-Day.
+     *
+     * @return integer
+     */
+    public function getDaysUntilOriginalXDay()
+    {
+        return $this->_daysUntilOriginalXDay;
+    }
+
+    /**
+     * Set days until original X-Day.
+     *
+     * @param integer $daysTilXDay
+     * @return DdateValue
+     */
+    public function setDaysUntilOriginalXDays($daysTilXDay)
+    {
+        $this->_daysUntilOriginalXDay = $daysTilXDay;
         return $this;
     }
 

@@ -7,6 +7,9 @@
 
 namespace EmperorNortonCommands\lib;
 
+use DateTime;
+use DateTimeZone;
+
 /**
  * Class DdateConverter.
  *
@@ -16,14 +19,28 @@ namespace EmperorNortonCommands\lib;
 class DdateConverter
 {
     /**
+     * Official X-Day.
+     *
+     * Since the official X-Day did not occur, it was found that the original
+     * calculation got the date upside down, hence 8661 instead of 1998.
+     */
+    const REAL_X_DAY = '8661-07-05T11:00:00+0000';
+
+    /**
+     * Official X-Day date identified by J. R. "Bob" Dobbs in the 1950s.
+     *
+     * See: Deborah Scoblionkov: Armageddon Ends Badly, Wired, 06. Jul. 1998,
+     * http://archive.wired.com/culture/lifestyle/news/1998/07/13466
+     */
+    const ORIGINAL_X_DAY = '1998-07-05T11:00:00+0000';
+
+    /**
      * Curse of Greyface.
      *
      * The Curse of Greyface occurred in 1 YOLD and thus defines the offset
      * from the Gregorian calendar, according to which it was 1166 BC.
-     *
-     * @var integer
      */
-    protected $_curseOfGreyface = 1166;
+    const CURSE_OF_GREYFACE = 1166;
 
     /**
      * Discordian Holydays.
@@ -46,10 +63,10 @@ class DdateConverter
     /**
      * Convert Gregorian to Discordian Date.
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      * @return DdateValue
      */
-    public function convert(\DateTime $date)
+    public function convert(DateTime $date)
     {
         if ($this->isStTibsDay($date->format('m'), $date->format('d')))
         {
@@ -61,34 +78,36 @@ class DdateConverter
     /**
      * Conversion algorithm for St. Tibs Day.
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      * @return DdateValue
      */
-    protected function calculateDdateStTibs(\DateTime $date)
+    protected function calculateDdateStTibs(DateTime $date)
     {
         $ddate = new DdateValue();
         $ddate->setDay(DdateValue::ST_TIBS_DAY);
         $ddate->setSeason(DdateValue::ST_TIBS_DAY);
         $ddate->setWeekDay(DdateValue::ST_TIBS_DAY);
         $ddate->setYear($this->calculateYear($date));
-        $ddate->setDaysUntilXDay($this->calculateDaysUntilXday($date));
+        $ddate->setDaysUntilRealXDay($this->calculateDaysUntilXday($date));
+        $ddate->setDaysUntilOriginalXDays($this->calculateDaysUntilOriginalXday($date));
         return $ddate;
     }
 
     /**
      * Regular conversion algorithm.
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      * @return DdateValue
      */
-    protected function calculateDdate(\DateTime $date)
+    protected function calculateDdate(DateTime $date)
     {
         $ddate = new DdateValue();
         $ddate->setDay($this->calculateDayofSeason($date));
         $ddate->setSeason($this->calculateSeason($date));
         $ddate->setWeekDay($this->calculateDayOfWeek($date));
         $ddate->setYear($this->calculateYear($date));
-        $ddate->setDaysUntilXDay($this->calculateDaysUntilXday($date));
+        $ddate->setDaysUntilRealXDay($this->calculateDaysUntilXday($date));
+        $ddate->setDaysUntilOriginalXDays($this->calculateDaysUntilOriginalXday($date));
         $ddate->setHolyday($this->getHolyday($date));
         return $ddate;
     }
@@ -98,10 +117,10 @@ class DdateConverter
      *
      * Returns empty string if $date is not a Holyday.
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      * @return string
      */
-    protected function getHolyday(\DateTime $date)
+    protected function getHolyday(DateTime $date)
     {
         $key = $date->format('d') . $date->format('m');
         if (isset($this->_holydays[$key]))
@@ -114,10 +133,10 @@ class DdateConverter
     /**
      * Calculate day of Discordian week.
      *
-     * @param  \DateTime $date
+     * @param  DateTime $date
      * @return integer
      */
-    protected function calculateDayOfWeek(\DateTime $date)
+    protected function calculateDayOfWeek(DateTime $date)
     {
         $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
         $leapYear = $this->isLeapYear($date);
@@ -128,10 +147,10 @@ class DdateConverter
     /**
      * Calculate day of Discordian season.
      *
-     * @param  \DateTime $date
+     * @param  DateTime $date
      * @return integer
      */
-    protected function calculateDayofSeason(\DateTime $date)
+    protected function calculateDayofSeason(DateTime $date)
     {
         $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
         return (($dayOfYear - (1 + $this->getOffset($this->isLeapYear($date), $dayOfYear))) % 73) + 1;
@@ -140,10 +159,10 @@ class DdateConverter
     /**
      * Calculate season of Discordian year.
      *
-     * @param  \DateTime $date
+     * @param  DateTime $date
      * @return integer
      */
-    protected function calculateSeason(\DateTime $date)
+    protected function calculateSeason(DateTime $date)
     {
         $seasonIdx = 0;
         $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
@@ -165,23 +184,51 @@ class DdateConverter
     /**
      * Get Discordian year.
      *
-     * @param  \DateTime $date
+     * @param  DateTime $date
      * @return integer
      */
-    protected function calculateYear(\DateTime $date)
+    protected function calculateYear(DateTime $date)
     {
-        return $this->_yearDiscordian = $date->format('Y') + $this->_curseOfGreyface;
+        return $this->_yearDiscordian = $date->format('Y') + self::CURSE_OF_GREYFACE;
     }
 
     /**
-     * Calculate days until X-Day.
+     * Calculate days until real X-Day.
      *
-     * @param  \DateTime $date
+     * @param  DateTime $date
      * @return integer
      */
-    protected function calculateDaysUntilXday(\DateTime $date)
+    protected function calculateDaysUntilXday(DateTime $date)
     {
-        $xDay = new \DateTime('8661-07-05', new \DateTimeZone('UTC'));
+        return $this->dateDiffInDays($date, self::REAL_X_DAY);
+    }
+
+    /**
+     * Calculate days until original X-Day.
+     *
+     * @param DateTime $date
+     * @return integer
+     */
+    protected function calculateDaysUntilOriginalXday(DateTime $date)
+    {
+        $diff = $this->dateDiffInDays($date, self::ORIGINAL_X_DAY);
+        if ($date < new DateTime(self::ORIGINAL_X_DAY))
+        {
+            return $diff;
+        }
+        return -1 * $diff;
+    }
+
+    /**
+     * Calculate days until date given as ISO 8601 date.
+     *
+     * @param DateTime $date
+     * @param string $iso8601Date
+     * @return integer
+     */
+    protected function dateDiffInDays(DateTime $date, $iso8601Date)
+    {
+        $xDay = new DateTime($iso8601Date, new DateTimeZone('UTC'));
         $diff = $xDay->diff($date);
         $daysUntilXday = $diff->days;
         return (integer)$daysUntilXday;
@@ -219,10 +266,10 @@ class DdateConverter
     /**
      * Get days since 1st of Chaos.
      *
-     * @param  \DateTime $date
+     * @param  DateTime $date
      * @return integer
      */
-    protected function getDaysSinceFirstOfChaos(\DateTime $date)
+    protected function getDaysSinceFirstOfChaos(DateTime $date)
     {
         $firstOfChaos = gmmktime(0, 0, 0, 1, 1, $date->format('Y'));
         return (integer)($this->getTimestamp($date) - $firstOfChaos) / 86400 + 1;
@@ -231,10 +278,10 @@ class DdateConverter
     /**
      * Get leap year.
      *
-     * @param \DateTime $date
+     * @param DateTime $date
      * @return boolean
      */
-    protected function isLeapYear(\DateTime $date)
+    protected function isLeapYear(DateTime $date)
     {
         return (boolean)date('L', $this->getTimestamp($date));
     }
@@ -242,10 +289,10 @@ class DdateConverter
     /**
      * Get Unix time stamp.
      *
-     * @param  \DateTime $date
+     * @param  DateTime $date
      * @return integer
      */
-    protected function getTimestamp(\DateTime $date)
+    protected function getTimestamp(DateTime $date)
     {
         return gmmktime(0, 0, 0, $date->format('m'), $date->format('d'), $date->format('Y'));
     }

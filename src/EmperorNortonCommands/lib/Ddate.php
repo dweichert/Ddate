@@ -6,6 +6,9 @@
  */
 
 namespace EmperorNortonCommands\lib;
+use DateTime;
+use DateTimeZone;
+use InvalidArgumentException;
 
 /**
  * Class Ddate.
@@ -86,7 +89,7 @@ class Ddate
      * @param  string                    $date   OPTIONAL Gregorian date
      * @param  string                    $locale OPTIONAL e.g. en for English, de for German, ...
      * @return string
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function ddate($format = null, $date = null, $locale = 'en')
     {
@@ -101,25 +104,25 @@ class Ddate
      * Get date object from input.
      *
      * @param  string $date Gregorian date (dmY)
-     * @return \DateTime
-     * @throws \InvalidArgumentException
+     * @return DateTime
+     * @throws InvalidArgumentException
      */
     protected function getDateObject($date)
     {
         if (null === $date)
         {
-            return new \DateTime();
+            return new DateTime();
         }
         if (!is_numeric($date) && 8 !== strlen($date))
         {
-            throw new \InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
+            throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
         list($year, $month, $day) = $this->splitIntoParts($date);
         if (!checkdate($month, $day, $year))
         {
-            throw new \InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
+            throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
-        $dateObject = new \DateTime($year . '-' . $month . '-' . $day, new \DateTimeZone('UTC'));
+        $dateObject = new DateTime($year . '-' . $month . '-' . $day, new DateTimeZone('UTC'));
         return $dateObject;
     }
 

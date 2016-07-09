@@ -8,7 +8,6 @@
 namespace EmperorNortonCommands\lib;
 
 use DateTime;
-use DateTimeZone;
 
 /**
  * Class DdateConverter.
@@ -211,12 +210,7 @@ class DdateConverter
      */
     protected function calculateDaysUntilOriginalXday(DateTime $date)
     {
-        $diff = $this->dateDiffInDays($date, self::ORIGINAL_X_DAY);
-        if ($date < new DateTime(self::ORIGINAL_X_DAY))
-        {
-            return $diff;
-        }
-        return -1 * $diff;
+        return $this->dateDiffInDays($date, self::ORIGINAL_X_DAY);
     }
 
     /**
@@ -228,10 +222,14 @@ class DdateConverter
      */
     protected function dateDiffInDays(DateTime $date, $iso8601Date)
     {
-        $xDay = new DateTime($iso8601Date, new DateTimeZone('UTC'));
+        $xDay = new DateTime($iso8601Date);
         $diff = $xDay->diff($date);
         $daysUntilXday = $diff->days;
-        return (integer)$daysUntilXday;
+        if ($date < $xDay)
+        {
+            return (integer)$daysUntilXday;
+        }
+        return (integer)$daysUntilXday * -1;
     }
 
     /**

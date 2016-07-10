@@ -10,7 +10,7 @@ namespace EmperorNortonCommands\tests\lib;
 use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\DdateConverter;
 use EmperorNortonCommands\lib\DdateValue;
-use EmperorNortonCommands\lib\EnglishStandardFormatter;
+use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
 
 /**

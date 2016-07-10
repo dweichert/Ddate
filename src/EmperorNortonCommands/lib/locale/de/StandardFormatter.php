@@ -5,13 +5,16 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib;
+namespace EmperorNortonCommands\lib\locale\de;
+
+use EmperorNortonCommands\lib\DdateValue;
+use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
  * Class GermanStandardFormatter.
  * @package EmperorNortonCommands\lib
  */
-class GermanStandardFormatter extends EnglishStandardFormatter
+class StandardFormatter extends EnglishStandardFormatter
 {
     /**
      * Supported format string fields and description.

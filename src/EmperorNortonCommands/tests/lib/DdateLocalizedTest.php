@@ -8,8 +8,8 @@
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
-use EmperorNortonCommands\lib\EnglishStandardFormatter;
-use EmperorNortonCommands\lib\GermanStandardFormatter;
+use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
+use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
 
 /**
  * Class DdateLocalizedTest.

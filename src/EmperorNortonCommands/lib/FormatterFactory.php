@@ -7,6 +7,9 @@
 
 namespace EmperorNortonCommands\lib;
 
+use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
+use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
+
 /**
  * Class FormatterFactory.
  * @package EmperorNortonCommands\lib
@@ -21,11 +24,11 @@ class FormatterFactory
     protected $_availableFormatters = array(
         'en' => array(
             'lang' => 'English',
-            'class' => 'EnglishStandardFormatter'
+            'class' => 'EmperorNortonCommands\lib\locale\en\StandardFormatter'
         ),
         'de' => array(
             'lang' => 'Deutsch',
-            'class' => 'GermanStandardFormatter'
+            'class' => 'EmperorNortonCommands\lib\locale\de\StandardFormatter'
         )
     );
 
@@ -46,8 +49,7 @@ class FormatterFactory
         {
             $locale = 'en';
         }
-        $namespace = 'EmperorNortonCommands\\lib\\';
-        $class = (string)$namespace . $this->_availableFormatters[$locale]['class'];
+        $class = (string)$this->_availableFormatters[$locale]['class'];
         return new $class();
     }
 }

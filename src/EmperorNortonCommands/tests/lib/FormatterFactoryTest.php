@@ -7,7 +7,7 @@
 
 namespace EmperorNortonCommands\tests\lib;
 
-use EmperorNortonCommands\lib\EnglishStandardFormatter;
+use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
 
 /**
@@ -40,8 +40,8 @@ class FormatterFactoryTest extends \PHPUnit_Framework_TestCase
     public function dataProvider()
     {
         return array(
-            array('Foo', 'EmperorNortonCommands\lib\EnglishStandardFormatter'),
-            array(new \stdClass(), 'EmperorNortonCommands\lib\EnglishStandardFormatter')
+            array('Foo', 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
+            array(new \stdClass(), 'EmperorNortonCommands\lib\locale\en\StandardFormatter')
         );
     }
 

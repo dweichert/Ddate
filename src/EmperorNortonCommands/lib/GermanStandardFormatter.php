@@ -32,7 +32,7 @@ class GermanStandardFormatter extends EnglishStandardFormatter
         '%N' => 'Magischer Code, um die Ausgabe des restlichen Formates zu unterbinden, es sei denn es ist ein heiliger Tag',
         '%n' => 'Neue Zeile',
         '%t' => 'Tabulator',
-        '%X' => 'Anzahl der Tage bis zum Tag X.',
+        '%X' => 'Anzahl der Tage seit dem / bis zum Tag X.',
         '%x' => 'Anzahl der Tage seit dem / bis zum ursprünglichen Tag X.',
         '%{' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Anfang)',
         '%}' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)'

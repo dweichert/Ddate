@@ -30,8 +30,8 @@ class EnglishStandardFormatter extends DdateFormatter
         '%N' => 'Magic code to prevent rest of the format being printed unless today is a Holyday',
         '%n' => 'Newline',
         '%t' => 'Tab',
-        '%X' => 'Number of days remaining until X-Day.',
-        '%x' => 'Number of days since/until original X-Day (Jul 5th, 1998)',
+        '%X' => 'Number of days since / until remaining until X-Day.',
+        '%x' => 'Number of days since / until original X-Day (Jul 5th, 1998)',
         '%{' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (start delimiter)',
         '%}' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (end delimiter)'
     );

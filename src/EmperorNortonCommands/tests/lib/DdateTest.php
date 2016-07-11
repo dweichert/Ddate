@@ -9,9 +9,9 @@ namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\DdateConverter;
-use EmperorNortonCommands\lib\DdateValue;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
+use EmperorNortonCommands\lib\locale\en\StandardHolydays as EnglishStandardHolydays;
 
 /**
  * Class DdateTest.
@@ -181,7 +181,7 @@ class DdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSupportedFormatFields()
     {
-        $formatter = new EnglishStandardFormatter();
+        $formatter = new EnglishStandardFormatter(new EnglishStandardHolydays());
         $expected = $formatter->getSupportedFormatStringFields();
         $actual = $this->_object->getSupportedFormatStringFields();
         self::assertEquals($expected, $actual);
@@ -192,7 +192,7 @@ class DdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSupportedFormatFieldsLocaleEn()
     {
-        $formatter = new EnglishStandardFormatter();
+        $formatter = new EnglishStandardFormatter(new EnglishStandardHolydays());
         $expected = $formatter->getSupportedFormatStringFields();
         $actual = $this->_object->getSupportedFormatStringFields('en');
         self::assertEquals($expected, $actual);

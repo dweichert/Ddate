@@ -9,9 +9,11 @@ namespace EmperorNortonCommands\lib;
 
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
+use EmperorNortonCommands\lib\locale\en\StandardHolydays as EnglishStandardHolydays;
+use EmperorNortonCommands\lib\locale\de\StandardHolydays as GermanStandardHolydays;
 
 /**
- * Class FormatterFactory.
+ * Class FormatterFactory
  * @package EmperorNortonCommands\lib
  */
 class FormatterFactory
@@ -21,14 +23,16 @@ class FormatterFactory
      *
      * @var mixed[]
      */
-    protected $_availableFormatters = array(
+    private $availableFormatters = array(
         'en' => array(
             'lang' => 'English',
-            'class' => 'EmperorNortonCommands\lib\locale\en\StandardFormatter'
+            'class' => 'EmperorNortonCommands\lib\locale\en\StandardFormatter',
+            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\en\StandardHolydays')
         ),
         'de' => array(
             'lang' => 'Deutsch',
-            'class' => 'EmperorNortonCommands\lib\locale\de\StandardFormatter'
+            'class' => 'EmperorNortonCommands\lib\locale\de\StandardFormatter',
+            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\de\StandardHolydays')
         )
     );
 
@@ -45,11 +49,12 @@ class FormatterFactory
             $locale = 'en';
         }
         $locale = strtolower(substr($locale, 0, 2));
-        if (!array_key_exists($locale, $this->_availableFormatters))
+        if (!array_key_exists($locale, $this->availableFormatters))
         {
             $locale = 'en';
         }
-        $class = (string)$this->_availableFormatters[$locale]['class'];
-        return new $class();
+        $formatter = (string)$this->availableFormatters[$locale]['class'];
+        $holydays = (string)$this->availableFormatters[$locale]['holydays']['Standard'];
+        return new $formatter(new $holydays());
     }
 }

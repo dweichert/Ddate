@@ -6,6 +6,7 @@
  */
 
 namespace EmperorNortonCommands\lib;
+use InvalidArgumentException;
 
 /**
  * Class DdateFormatter.
@@ -18,25 +19,43 @@ abstract class DdateFormatter
      *
      * @var string[]
      */
-    protected $_supportedFormatStringFields = array();
+    protected $supportedFormatStringFields = array();
 
     /**
      * Format string.
      *
      * @var string
      */
-    protected $_format = '';
+    protected $format = '';
 
     /**
      * Default format.
      *
      * @var string
      */
-    protected $_defaultFormat = '';
+    protected $defaultFormat = '';
 
+    /**
+     * Holydays.
+     *
+     * @var Holydays
+     */
+    protected $holydays = null;
 
-    public function __construct()
+    /**
+     * No Holyday (msgid) string.
+     *
+     * @var string
+     */
+    protected $_noHolyday = 'FNORD';
+
+    /**
+     * DdateFormatter constructor.
+     * @param Holydays $holydays
+     */
+    public function __construct(Holydays $holydays)
     {
+        $this->holydays = $holydays;
         $this->setFormat();
     }
 
@@ -47,7 +66,7 @@ abstract class DdateFormatter
      */
     public function getSupportedFormatStringFields()
     {
-        return $this->_supportedFormatStringFields;
+        return $this->supportedFormatStringFields;
     }
 
     /**
@@ -61,9 +80,9 @@ abstract class DdateFormatter
     {
         if (null === $format || (is_object($format) && !method_exists($format, '__toString')))
         {
-            $format = $this->_defaultFormat;
+            $format = $this->defaultFormat;
         }
-        $this->_format = (string)$format;
+        $this->format = (string)$format;
     }
 
     /**
@@ -73,4 +92,38 @@ abstract class DdateFormatter
      * @return string
      */
     abstract public function format(DdateValue $ddate);
+    
+    /**
+     * Get Holyday value.
+     *
+     * @param DdateValue $ddate
+     * @return string
+     */
+    protected function getHolyday(DdateValue $ddate)
+    {
+        return $this->holydays->getHolyday($ddate->getHolyday());
+    }
+
+    /**
+     * Replaces %N and %H in given string.
+     *
+     * @param  string $string
+     * @param  DdateValue $ddate
+     * @return string
+     */
+    protected function replaceHolidayPlaceholders($string, DdateValue $ddate)
+    {
+        if (strlen($this->getHolyday($ddate)))
+        {
+            $string = str_replace('%N', '', $string);
+            $string = str_replace('%H', $this->getHolyday($ddate), $string);
+            return $string;
+        }
+        else
+        {
+            $string = preg_replace('/%N(.)*/s', '', $string);
+            $string = str_replace('%H', $this->_noHolyday, $string);
+            return $string;
+        }
+    }
 }

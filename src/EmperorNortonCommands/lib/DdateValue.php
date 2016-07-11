@@ -7,7 +7,10 @@
 
 namespace EmperorNortonCommands\lib;
 
-
+/**
+ * Class DdateValue
+ * @package EmperorNortonCommands\lib
+ */
 class DdateValue
 {
     /**
@@ -197,7 +200,7 @@ class DdateValue
     }
 
     /**
-     * Get Holyday.
+     * Get Holyday (key).
      *
      * @return string
      */
@@ -207,7 +210,7 @@ class DdateValue
     }
 
     /**
-     * Set Holyday.
+     * Set Holyday (key).
      *
      * @param $holyday
      * @return DdateValue

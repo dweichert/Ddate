@@ -11,8 +11,8 @@ use EmperorNortonCommands\lib\DdateValue;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
- * Class GermanStandardFormatter.
- * @package EmperorNortonCommands\lib
+ * Class StandardFormatter
+ * @package EmperorNortonCommands\lib\locale\de
  */
 class StandardFormatter extends EnglishStandardFormatter
 {
@@ -21,7 +21,7 @@ class StandardFormatter extends EnglishStandardFormatter
      *
      * @var string[]
      */
-    protected $_supportedFormatStringFields = array(
+    protected $supportedFormatStringFields = array(
         '%A' => 'Vollständiger Name des Woechentages (z.B. Süßmorgen)',
         '%a' => 'Abgekürzter Name des Wochentages (z.B. SM)',
         '%B' => 'Vollständiger Name der Saison (z.B. Verwirrung)',
@@ -39,24 +39,6 @@ class StandardFormatter extends EnglishStandardFormatter
         '%x' => 'Anzahl der Tage seit dem / bis zum ursprünglichen Tag X.',
         '%{' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Anfang)',
         '%}' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)'
-    );
-
-    /**
-     * Translations for Holydays.
-     *
-     * @var string[]
-     */
-    protected $_holydayTranslations = array(
-        'Mungday' => 'Mungtag',
-        'Chaoflux' => 'Wirrfluss',
-        'Mojoday' => 'Mojotag',
-        'Discoflux' => 'Zweifluss',
-        'Syaday' => 'Syatag',
-        'Conflux' => 'Unfluss',
-        'Zaraday' => 'Zaratag',
-        'Bureflux' => 'Beamtenfluss',
-        'Maladay' => 'Malatag',
-        'Afflux' => 'Ausfluss'
     );
 
     /**
@@ -80,7 +62,7 @@ class StandardFormatter extends EnglishStandardFormatter
      *
      * @var string
      */
-    protected $_defaultFormat = '%{%A, %B %d,%} %Y n. Gre.';
+    protected $defaultFormat = '%{%A, %B %d,%} %Y n. Gre.';
 
     /**
      * Full names of the day of the week.
@@ -132,7 +114,7 @@ class StandardFormatter extends EnglishStandardFormatter
      */
     public function format(DdateValue $ddate)
     {
-        $output = $this->_format;
+        $output = $this->format;
         $output = $this->replaceStTibsPlaceholders($output, $ddate);
         $output = $this->replaceHolidayPlaceholders($output, $ddate);
         $output = str_replace('%a', $this->getAbbreviatedWeekDayName($ddate->getWeekDay()), $output);
@@ -222,17 +204,6 @@ class StandardFormatter extends EnglishStandardFormatter
         }
         $season = $season - 1;
         return (string)$this->_seasonsGenitive[$season];
-    }
-
-    /**
-     * Get Holyday value.
-     *
-     * @param DdateValue $ddate
-     * @return string
-     */
-    protected function getHolyday(DdateValue $ddate)
-    {
-        return $this->_holydayTranslations[$ddate->getHolyday()];
     }
 
 }

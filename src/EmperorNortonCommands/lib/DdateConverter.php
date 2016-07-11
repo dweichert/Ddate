@@ -42,24 +42,6 @@ class DdateConverter
     const CURSE_OF_GREYFACE = 1166;
 
     /**
-     * Discordian Holydays.
-     *
-     * @var string[]
-     */
-    protected $_holydays = array(
-        '0501' => 'Mungday',
-        '1902' => 'Chaoflux',
-        '1903' => 'Mojoday',
-        '0305' => 'Discoflux',
-        '3105' => 'Syaday',
-        '1507' => 'Conflux',
-        '1208' => 'Zaraday',
-        '2609' => 'Bureflux',
-        '2410' => 'Maladay',
-        '0812' => 'Afflux'
-    );
-
-    /**
      * Convert Gregorian to Discordian Date.
      *
      * @param DateTime $date
@@ -107,26 +89,21 @@ class DdateConverter
         $ddate->setYear($this->calculateYear($date));
         $ddate->setDaysUntilRealXDay($this->calculateDaysUntilXday($date));
         $ddate->setDaysUntilOriginalXDays($this->calculateDaysUntilOriginalXday($date));
-        $ddate->setHolyday($this->getHolyday($date));
+        $ddate->setHolyday($this->getHolydayKey($date));
         return $ddate;
     }
 
     /**
      * Get Holyday.
      *
-     * Returns empty string if $date is not a Holyday.
+     * Generate Holyday key from Date object.
      *
      * @param DateTime $date
      * @return string
      */
-    protected function getHolyday(DateTime $date)
+    protected function getHolydayKey(DateTime $date)
     {
-        $key = $date->format('d') . $date->format('m');
-        if (isset($this->_holydays[$key]))
-        {
-            return $this->_holydays[$key];
-        }
-        return '';
+        return $date->format('d') . $date->format('m');
     }
 
     /**

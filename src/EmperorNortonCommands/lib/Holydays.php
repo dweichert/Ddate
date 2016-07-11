@@ -28,15 +28,15 @@ abstract class Holydays
     /**
      * Get Holyday.
      *
-     * Returns the English name of the Holyday if there is a Holyday for given
-     * the key, else returns empty string.
+     * Returns the name of the Holyday if there is a Holyday for given the key,
+     * else returns empty string.
      *
      * @param string $key
      * @return string
      */
     public function getHolyday($key)
     {
-        if (isset($key, $this->holydays)) {
+        if (isset($this->holydays[$key])) {
             return $this->holydays[$key];
         }
 

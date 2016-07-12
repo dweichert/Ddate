@@ -7,14 +7,14 @@
 
 namespace EmperorNortonCommands\lib\locale\en;
 
-use EmperorNortonCommands\lib\DdateFormatter;
+use EmperorNortonCommands\lib\Formatter;
 use EmperorNortonCommands\lib\DdateValue;
 
 /**
  * Class StandardFormatter
  * @package EmperorNortonCommands\lib\locale\en
  */
-class StandardFormatter extends DdateFormatter
+class StandardFormatter extends Formatter
 {
     /**
      * Supported format string fields and description.
@@ -51,35 +51,35 @@ class StandardFormatter extends DdateFormatter
      *
      * @var string[]
      */
-    protected $_days = array('Sweetmorn', 'Boomtime', 'Pungenday', 'Prickle-Prickle', 'Setting Orange');
+    protected $days = array('Sweetmorn', 'Boomtime', 'Pungenday', 'Prickle-Prickle', 'Setting Orange');
 
     /**
      * Abbreviated names of the day of the week.
      *
      * @var string[]
      */
-    protected $_abbrevDays = array('SM', 'BT', 'PD', 'PP', 'SO');
+    protected $abbrevDays = array('SM', 'BT', 'PD', 'PP', 'SO');
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $_seasons = array('Chaos', 'Discord', 'Confusion', 'Bureaucracy', 'The Aftermath');
+    protected $seasons = array('Chaos', 'Discord', 'Confusion', 'Bureaucracy', 'The Aftermath');
 
     /**
      * Abbreviated names of the seasons.
      *
      * @var string[]
      */
-    protected $_abbrevSeasons = array('Chs', 'Dsc', 'Cfn', 'Bcy', 'Afm');
+    protected $abbrevSeasons = array('Chs', 'Dsc', 'Cfn', 'Bcy', 'Afm');
 
     /**
      * No Holyday (msgid) string.
      *
      * @var string
      */
-    protected $_noHolyday = 'no Holyday';
+    protected $noHolyday = 'no Holyday';
 
     /**
      * Format DdateValue as string.
@@ -140,7 +140,7 @@ class StandardFormatter extends DdateFormatter
             return 'FNORD';
         }
         $weekDay = $weekDay - 1;
-        return $this->_abbrevDays[$weekDay];
+        return $this->abbrevDays[$weekDay];
     }
 
     /**
@@ -155,7 +155,7 @@ class StandardFormatter extends DdateFormatter
             return 'FNORD';
         }
         $weekDay = $weekDay - 1;
-        return $this->_days[$weekDay];
+        return $this->days[$weekDay];
     }
 
     /**
@@ -171,7 +171,7 @@ class StandardFormatter extends DdateFormatter
             return 'FNORD';
         }
         $season = $season - 1;
-        return (string)$this->_seasons[$season];
+        return (string)$this->seasons[$season];
     }
 
     /**
@@ -186,7 +186,7 @@ class StandardFormatter extends DdateFormatter
             return 'FNORD';
         }
         $season = $season - 1;
-        return $this->_abbrevSeasons[$season];
+        return $this->abbrevSeasons[$season];
     }
 
     /**

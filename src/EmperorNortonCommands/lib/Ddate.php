@@ -22,14 +22,14 @@ class Ddate
      *
      * @var FormatterFactory
      */
-    protected $_formatterFactory;
+    private $formatterFactory;
 
     /**
      * Discordian date converter.
      *
      * @var DdateConverter
      */
-    protected $_converter;
+    private $converter;
 
     /**
      * Constructor method.
@@ -44,19 +44,19 @@ class Ddate
     {
         if (is_null($formatterFactory))
         {
-            $this->_formatterFactory = new FormatterFactory();
+            $this->formatterFactory = new FormatterFactory();
         }
         else
         {
-            $this->_formatterFactory = $formatterFactory;
+            $this->formatterFactory = $formatterFactory;
         }
         if (is_null($converter))
         {
-            $this->_converter = new DdateConverter();
+            $this->converter = new DdateConverter();
         }
         else
         {
-            $this->_converter = $converter;
+            $this->converter = $converter;
         }
     }
 
@@ -68,7 +68,7 @@ class Ddate
      */
     public function getSupportedFormatStringFields($locale = 'en')
     {
-        $formatter = $this->_formatterFactory->getFormatter($locale);
+        $formatter = $this->formatterFactory->getFormatter($locale);
         return $formatter->getSupportedFormatStringFields();
     }
 
@@ -94,8 +94,8 @@ class Ddate
     public function ddate($format = null, $date = null, $locale = 'en')
     {
         $dateObj = $this->getDateObject($date);
-        $ddate = $this->_converter->convert($dateObj);
-        $formatter = $this->_formatterFactory->getFormatter($locale);
+        $ddate = $this->converter->convert($dateObj);
+        $formatter = $this->formatterFactory->getFormatter($locale);
         $formatter->setFormat($format);
         return $formatter->format($ddate);
     }
@@ -107,7 +107,7 @@ class Ddate
      * @return DateTime
      * @throws InvalidArgumentException
      */
-    protected function getDateObject($date)
+    private function getDateObject($date)
     {
         if (null === $date)
         {
@@ -134,7 +134,7 @@ class Ddate
      * @param  string $date Gregorian date (dmY)
      * @return array
      */
-    protected function splitIntoParts($date)
+    private function splitIntoParts($date)
     {
         $year = (integer)substr($date, 4, 4);
         $month = (integer)substr($date, 2, 2);

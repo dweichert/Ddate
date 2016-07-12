@@ -12,7 +12,7 @@ use InvalidArgumentException;
  * Class DdateFormatter.
  * @package EmperorNortonCommands\lib
  */
-abstract class DdateFormatter
+abstract class Formatter
 {
     /**
      * Returns array of all supported format strings.
@@ -47,7 +47,7 @@ abstract class DdateFormatter
      *
      * @var string
      */
-    protected $_noHolyday = 'FNORD';
+    protected $noHolyday = 'FNORD';
 
     /**
      * DdateFormatter constructor.
@@ -101,7 +101,7 @@ abstract class DdateFormatter
      */
     protected function getHolyday(DdateValue $ddate)
     {
-        return $this->holydays->getHolyday($ddate->getHolyday());
+        return $this->holydays->getHolyday($ddate->getHolydayKey());
     }
 
     /**
@@ -122,7 +122,7 @@ abstract class DdateFormatter
         else
         {
             $string = preg_replace('/%N(.)*/s', '', $string);
-            $string = str_replace('%H', $this->_noHolyday, $string);
+            $string = str_replace('%H', $this->noHolyday, $string);
             return $string;
         }
     }

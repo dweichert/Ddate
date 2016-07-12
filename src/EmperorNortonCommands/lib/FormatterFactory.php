@@ -40,7 +40,7 @@ class FormatterFactory
      * Get Discordian date formatter.
      *
      * @param  string $locale two-letter locale identifier, e.g. "en" for English
-     * @return DdateFormatter
+     * @return Formatter
      */
     public function getFormatter($locale)
     {

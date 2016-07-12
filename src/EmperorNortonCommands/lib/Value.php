@@ -23,49 +23,49 @@ class DdateValue
      *
      * @var integer
      */
-    protected $_weekDay;
+    private $weekDay;
 
     /**
      * Discordian day of season.
      *
      * @var integer
      */
-    protected $_day;
+    private $day;
 
     /**
      * Discordian season of year.
      *
      * @var integer
      */
-    protected $_season;
+    private $season;
 
     /**
      * Discordian year.
      *
      * @var integer
      */
-    protected $_year;
+    private $year;
 
     /**
      * Days until real X-Day.
      *
      * @var integer
      */
-    protected $_daysUntilRealXDay;
+    private $daysUntilRealXDay;
 
     /**
      * Days until original X-Day.
      *
      * @var integer
      */
-    protected $_daysUntilOriginalXDay;
+    private $daysUntilOriginalXDay;
 
     /**
      * Name of Holyday if any.
      *
      * @var string
      */
-    protected $_holyday;
+    private $holydayKey;
     
     /**
      * Get day of week.
@@ -74,7 +74,7 @@ class DdateValue
      */
     public function getWeekDay()
     {
-        return $this->_weekDay;
+        return $this->weekDay;
     }
 
     /**
@@ -85,7 +85,7 @@ class DdateValue
      */
     public function setWeekDay($weekDay)
     {
-        $this->_weekDay = $weekDay;
+        $this->weekDay = $weekDay;
         return $this;
     }
 
@@ -96,7 +96,7 @@ class DdateValue
      */
     public function getDay()
     {
-        return $this->_day;
+        return $this->day;
     }
 
     /**
@@ -107,7 +107,7 @@ class DdateValue
      */
     public function setDay($day)
     {
-        $this->_day = $day;
+        $this->day = $day;
         return $this;
     }
 
@@ -118,7 +118,7 @@ class DdateValue
      */
     public function getSeason()
     {
-        return $this->_season;
+        return $this->season;
     }
 
     /**
@@ -129,7 +129,7 @@ class DdateValue
      */
     public function setSeason($season)
     {
-        $this->_season = $season;
+        $this->season = $season;
         return $this;
     }
 
@@ -140,7 +140,7 @@ class DdateValue
      */
     public function getYear()
     {
-        return $this->_year;
+        return $this->year;
     }
 
     /**
@@ -151,7 +151,7 @@ class DdateValue
      */
     public function setYear($year)
     {
-        $this->_year = $year;
+        $this->year = $year;
         return $this;
     }
 
@@ -162,7 +162,7 @@ class DdateValue
      */
     public function getDaysUntilRealXDay()
     {
-        return $this->_daysUntilRealXDay;
+        return $this->daysUntilRealXDay;
     }
 
     /**
@@ -173,7 +173,7 @@ class DdateValue
      */
     public function setDaysUntilRealXDay($daysTilXDay)
     {
-        $this->_daysUntilRealXDay = $daysTilXDay;
+        $this->daysUntilRealXDay = $daysTilXDay;
         return $this;
     }
 
@@ -184,7 +184,7 @@ class DdateValue
      */
     public function getDaysUntilOriginalXDay()
     {
-        return $this->_daysUntilOriginalXDay;
+        return $this->daysUntilOriginalXDay;
     }
 
     /**
@@ -195,7 +195,7 @@ class DdateValue
      */
     public function setDaysUntilOriginalXDays($daysTilXDay)
     {
-        $this->_daysUntilOriginalXDay = $daysTilXDay;
+        $this->daysUntilOriginalXDay = $daysTilXDay;
         return $this;
     }
 
@@ -204,9 +204,9 @@ class DdateValue
      *
      * @return string
      */
-    public function getHolyday()
+    public function getHolydayKey()
     {
-        return $this->_holyday;
+        return $this->holydayKey;
     }
 
     /**
@@ -215,9 +215,9 @@ class DdateValue
      * @param $holyday
      * @return DdateValue
      */
-    public function setHolyday($holyday)
+    public function setHolydayKey($holyday)
     {
-        $this->_holyday = $holyday;
+        $this->holydayKey = $holyday;
         return $this;
     }
 }

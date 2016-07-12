@@ -69,42 +69,42 @@ class StandardFormatter extends EnglishStandardFormatter
      *
      * @var string[]
      */
-    protected $_days = array('Süßmorgen', 'Blütezeit', 'Stichtag', 'Prickel-Prickel', 'Orangewerdend');
+    protected $days = array('Süßmorgen', 'Blütezeit', 'Stichtag', 'Prickel-Prickel', 'Orangewerdend');
 
     /**
      * Abbreviated names of the day of the week.
      *
      * @var string[]
      */
-    protected $_abbrevDays = array('SM', 'BZ', 'ST', 'PP', 'OW');
+    protected $abbrevDays = array('SM', 'BZ', 'ST', 'PP', 'OW');
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $_seasons = array('Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Grummet');
+    protected $seasons = array('Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Grummet');
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $_seasonsGenitive = array('der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Grummets');
+    protected $seasonsGenitive = array('der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Grummets');
 
     /**
      * Abbreviated names of the seasons.
      *
      * @var string[]
      */
-    protected $_abbrevSeasons = array('Ve', 'Zw', 'Un', 'Be', 'Au');
+    protected $abbrevSeasons = array('Ve', 'Zw', 'Un', 'Be', 'Au');
 
     /**
      * No Holyday (msgid) string.
      *
      * @var string
      */
-    protected $_noHolyday = 'kein heiliger Tag';
+    protected $noHolyday = 'kein heiliger Tag';
 
     /**
      * Format DdateValue as string.
@@ -203,7 +203,7 @@ class StandardFormatter extends EnglishStandardFormatter
             return 'FNORD';
         }
         $season = $season - 1;
-        return (string)$this->_seasonsGenitive[$season];
+        return (string)$this->seasonsGenitive[$season];
     }
 
 }

@@ -8,7 +8,7 @@
 namespace EmperorNortonCommands\lib\locale\en;
 
 use EmperorNortonCommands\lib\Formatter;
-use EmperorNortonCommands\lib\DdateValue;
+use EmperorNortonCommands\lib\Value;
 
 /**
  * Class StandardFormatter
@@ -82,12 +82,12 @@ class StandardFormatter extends Formatter
     protected $noHolyday = 'no Holyday';
 
     /**
-     * Format DdateValue as string.
+     * Format Value as string.
      *
-     * @param  DdateValue $ddate
+     * @param  Value $ddate
      * @return string
      */
-    public function format(DdateValue $ddate)
+    public function format(Value $ddate)
     {
         $output = $this->format;
         $output = $this->replaceStTibsPlaceholders($output, $ddate);
@@ -110,12 +110,12 @@ class StandardFormatter extends Formatter
      * Replaces %{ and %} placeholders in given string.
      *
      * @param  string     $string
-     * @param  DdateValue $ddate
+     * @param  Value $ddate
      * @return string
      */
-    protected function replaceStTibsPlaceholders($string, DdateValue $ddate)
+    protected function replaceStTibsPlaceholders($string, Value $ddate)
     {
-        if (DdateValue::ST_TIBS_DAY === $ddate->getDay())
+        if (Value::ST_TIBS_DAY === $ddate->getDay())
         {
             $string = preg_replace('/%{(.)*%}/', "St. Tib's Day", $string);
             return $string;
@@ -135,7 +135,7 @@ class StandardFormatter extends Formatter
      */
     protected function getAbbreviatedWeekDayName($weekDay)
     {
-        if (DdateValue::ST_TIBS_DAY == $weekDay)
+        if (Value::ST_TIBS_DAY == $weekDay)
         {
             return 'FNORD';
         }
@@ -150,7 +150,7 @@ class StandardFormatter extends Formatter
      */
     protected function getDiscordianWeekDayName($weekDay)
     {
-        if (DdateValue::ST_TIBS_DAY == $weekDay)
+        if (Value::ST_TIBS_DAY == $weekDay)
         {
             return 'FNORD';
         }
@@ -166,7 +166,7 @@ class StandardFormatter extends Formatter
      */
     protected function getDiscordianSeasonName($season)
     {
-        if (DdateValue::ST_TIBS_DAY == $season)
+        if (Value::ST_TIBS_DAY == $season)
         {
             return 'FNORD';
         }
@@ -181,7 +181,7 @@ class StandardFormatter extends Formatter
      */
     protected function getAbbreviatedSeasonName($season)
     {
-        if (DdateValue::ST_TIBS_DAY == $season)
+        if (Value::ST_TIBS_DAY == $season)
         {
             return 'FNORD';
         }
@@ -199,7 +199,7 @@ class StandardFormatter extends Formatter
      */
     protected function getCardinalDay($day)
     {
-        if (DdateValue::ST_TIBS_DAY == $day)
+        if (Value::ST_TIBS_DAY == $day)
         {
             return 'FNORD';
         }
@@ -230,12 +230,12 @@ class StandardFormatter extends Formatter
      *
      * Returns "FNORD" on St. Tibs Day.
      *
-     * @param DdateValue $ddate
+     * @param Value $ddate
      * @return integer|string
      */
-    protected function getOrdinalDay(DdateValue $ddate)
+    protected function getOrdinalDay(Value $ddate)
     {
-        if (DdateValue::ST_TIBS_DAY == $ddate->getDay())
+        if (Value::ST_TIBS_DAY == $ddate->getDay())
         {
             return 'FNORD';
         }

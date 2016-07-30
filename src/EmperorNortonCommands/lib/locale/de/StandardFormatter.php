@@ -7,7 +7,7 @@
 
 namespace EmperorNortonCommands\lib\locale\de;
 
-use EmperorNortonCommands\lib\DdateValue;
+use EmperorNortonCommands\lib\Value;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
@@ -107,12 +107,12 @@ class StandardFormatter extends EnglishStandardFormatter
     protected $noHolyday = 'kein heiliger Tag';
 
     /**
-     * Format DdateValue as string.
+     * Format Value as string.
      *
-     * @param  DdateValue $ddate
+     * @param  Value $ddate
      * @return string
      */
-    public function format(DdateValue $ddate)
+    public function format(Value $ddate)
     {
         $output = $this->format;
         $output = $this->replaceStTibsPlaceholders($output, $ddate);
@@ -137,12 +137,12 @@ class StandardFormatter extends EnglishStandardFormatter
      * Replaces %{ and %} placeholders in given string.
      *
      * @param  string     $string
-     * @param  DdateValue $ddate
+     * @param  Value $ddate
      * @return string
      */
-    protected function replaceStTibsPlaceholders($string, DdateValue $ddate)
+    protected function replaceStTibsPlaceholders($string, Value $ddate)
     {
-        if (DdateValue::ST_TIBS_DAY === $ddate->getDay())
+        if (Value::ST_TIBS_DAY === $ddate->getDay())
         {
             $string = preg_replace('/%{(.)*%}/', 'St. Tibs Tag', $string);
             return $string;
@@ -160,12 +160,12 @@ class StandardFormatter extends EnglishStandardFormatter
      *
      * Returns "FNORD" on St. Tibs Day.
      *
-     * @param DdateValue $ddate
+     * @param Value $ddate
      * @return string
      */
     protected function getCardinalDay($ddate)
     {
-        if (DdateValue::ST_TIBS_DAY == $ddate->getDay())
+        if (Value::ST_TIBS_DAY == $ddate->getDay())
         {
             return 'FNORD';
         }
@@ -183,7 +183,7 @@ class StandardFormatter extends EnglishStandardFormatter
      */
     protected function getCardinalDayFull($day)
     {
-        if (DdateValue::ST_TIBS_DAY == $day)
+        if (Value::ST_TIBS_DAY == $day)
         {
             return 'FNORD';
         }
@@ -198,7 +198,7 @@ class StandardFormatter extends EnglishStandardFormatter
      */
     protected function getDiscordianSeasonNameGenitive($season)
     {
-        if (DdateValue::ST_TIBS_DAY == $season)
+        if (Value::ST_TIBS_DAY == $season)
         {
             return 'FNORD';
         }

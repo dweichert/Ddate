@@ -8,10 +8,10 @@
 namespace EmperorNortonCommands\lib;
 
 /**
- * Class DdateValue
+ * Class Value
  * @package EmperorNortonCommands\lib
  */
-class DdateValue
+class Value
 {
     /**
      * St. Tibs Day Constant: 23 * 23 = 529

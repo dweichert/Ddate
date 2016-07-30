@@ -10,12 +10,12 @@ namespace EmperorNortonCommands\lib;
 use DateTime;
 
 /**
- * Class DdateConverter.
+ * Class Converter.
  *
  * Converts Gregorian dates to Discordian dates.
  * @package EmperorNortonCommands\lib
  */
-class DdateConverter
+class Converter
 {
     /**
      * Official X-Day.
@@ -45,7 +45,7 @@ class DdateConverter
      * Convert Gregorian to Discordian Date.
      *
      * @param DateTime $date
-     * @return DdateValue
+     * @return Value
      */
     public function convert(DateTime $date)
     {
@@ -60,14 +60,14 @@ class DdateConverter
      * Conversion algorithm for St. Tibs Day.
      *
      * @param DateTime $date
-     * @return DdateValue
+     * @return Value
      */
     private function calculateDdateStTibs(DateTime $date)
     {
-        $ddate = new DdateValue();
-        $ddate->setDay(DdateValue::ST_TIBS_DAY);
-        $ddate->setSeason(DdateValue::ST_TIBS_DAY);
-        $ddate->setWeekDay(DdateValue::ST_TIBS_DAY);
+        $ddate = new Value();
+        $ddate->setDay(Value::ST_TIBS_DAY);
+        $ddate->setSeason(Value::ST_TIBS_DAY);
+        $ddate->setWeekDay(Value::ST_TIBS_DAY);
         $ddate->setYear($this->calculateYear($date));
         $ddate->setDaysUntilRealXDay($this->calculateDaysUntilXday($date));
         $ddate->setDaysUntilOriginalXDays($this->calculateDaysUntilOriginalXday($date));
@@ -78,11 +78,11 @@ class DdateConverter
      * Regular conversion algorithm.
      *
      * @param DateTime $date
-     * @return DdateValue
+     * @return Value
      */
     private function calculateDdate(DateTime $date)
     {
-        $ddate = new DdateValue();
+        $ddate = new Value();
         $ddate->setDay($this->calculateDayofSeason($date));
         $ddate->setSeason($this->calculateSeason($date));
         $ddate->setWeekDay($this->calculateDayOfWeek($date));

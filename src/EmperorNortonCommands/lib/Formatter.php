@@ -9,7 +9,7 @@ namespace EmperorNortonCommands\lib;
 use InvalidArgumentException;
 
 /**
- * Class DdateFormatter.
+ * Class Formatter.
  * @package EmperorNortonCommands\lib
  */
 abstract class Formatter
@@ -88,18 +88,18 @@ abstract class Formatter
     /**
      * Get formatted Discordian date.
      *
-     * @param  DdateValue $ddate
+     * @param  Value $ddate
      * @return string
      */
-    abstract public function format(DdateValue $ddate);
+    abstract public function format(Value $ddate);
     
     /**
      * Get Holyday value.
      *
-     * @param DdateValue $ddate
+     * @param Value $ddate
      * @return string
      */
-    protected function getHolyday(DdateValue $ddate)
+    protected function getHolyday(Value $ddate)
     {
         return $this->holydays->getHolyday($ddate->getHolydayKey());
     }
@@ -108,10 +108,10 @@ abstract class Formatter
      * Replaces %N and %H in given string.
      *
      * @param  string $string
-     * @param  DdateValue $ddate
+     * @param  Value $ddate
      * @return string
      */
-    protected function replaceHolidayPlaceholders($string, DdateValue $ddate)
+    protected function replaceHolidayPlaceholders($string, Value $ddate)
     {
         if (strlen($this->getHolyday($ddate)))
         {

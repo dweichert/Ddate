@@ -27,18 +27,18 @@ class Ddate
     /**
      * Discordian date converter.
      *
-     * @var DdateConverter
+     * @var Converter
      */
     private $converter;
 
     /**
      * Constructor method.
      *
-     * @param DdateConverter   $converter         OPTIONAL Converts Gregorian to Discordian dates
+     * @param Converter   $converter         OPTIONAL Converts Gregorian to Discordian dates
      * @param FormatterFactory $formatterFactory  OPTIONAL Discordian date formatter
      */
     public function __construct(
-        DdateConverter $converter = null,
+        Converter $converter = null,
         FormatterFactory $formatterFactory = null
     )
     {
@@ -52,7 +52,7 @@ class Ddate
         }
         if (is_null($converter))
         {
-            $this->converter = new DdateConverter();
+            $this->converter = new Converter();
         }
         else
         {
@@ -68,8 +68,18 @@ class Ddate
      */
     public function getSupportedFormatStringFields($locale = 'en')
     {
-        $formatter = $this->formatterFactory->getFormatter($locale);
-        return $formatter->getSupportedFormatStringFields();
+        return $this->formatterFactory->getFormatter($locale)->getSupportedFormatStringFields();
+    }
+
+    /**
+     * Get Holyday options.
+     *
+     * @param string $locale
+     * @return HolydayOption[]
+     */
+    public function getHolydayOptions($locale = 'en')
+    {
+        return $this->formatterFactory->getFormatter($locale)->getHolydayOptions();
     }
 
     /**

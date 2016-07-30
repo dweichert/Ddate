@@ -8,7 +8,7 @@
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
-use EmperorNortonCommands\lib\DdateConverter;
+use EmperorNortonCommands\lib\Converter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
 use EmperorNortonCommands\lib\locale\en\StandardHolydays as EnglishStandardHolydays;
@@ -203,7 +203,7 @@ class DdateTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        $converter = new DdateConverter();
+        $converter = new Converter();
         $formatterFactory = new FormatterFactory();
         new Ddate($converter, $formatterFactory);
     }

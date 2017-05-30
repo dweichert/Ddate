@@ -81,7 +81,7 @@ class Value
      * Set day of week.
      *
      * @param integer $weekDay
-     * @return DdateValue
+     * @return Value
      */
     public function setWeekDay($weekDay)
     {
@@ -103,7 +103,7 @@ class Value
      * Set day of season.
      *
      * @param integer $day
-     * @return DdateValue
+     * @return Value
      */
     public function setDay($day)
     {
@@ -125,7 +125,7 @@ class Value
      * Set season.
      *
      * @param integer $season
-     * @return DdateValue
+     * @return Value
      */
     public function setSeason($season)
     {
@@ -147,7 +147,7 @@ class Value
      * Set year.
      *
      * @param integer $year
-     * @return DdateValue
+     * @return Value
      */
     public function setYear($year)
     {
@@ -169,7 +169,7 @@ class Value
      * Set days until real X-Day.
      *
      * @param integer $daysTilXDay
-     * @return DdateValue
+     * @return Value
      */
     public function setDaysUntilRealXDay($daysTilXDay)
     {
@@ -191,7 +191,7 @@ class Value
      * Set days until original X-Day.
      *
      * @param integer $daysTilXDay
-     * @return DdateValue
+     * @return Value
      */
     public function setDaysUntilOriginalXDays($daysTilXDay)
     {
@@ -213,7 +213,7 @@ class Value
      * Set Holyday (key).
      *
      * @param $holyday
-     * @return DdateValue
+     * @return Value
      */
     public function setHolydayKey($holyday)
     {

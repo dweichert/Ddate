@@ -9,13 +9,14 @@ namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Class FormatterFactoryTest.
  *
  * @package EmperorNortonCommands\tests\lib
  */
-class FormatterFactoryTest extends \PHPUnit_Framework_TestCase
+class FormatterFactoryTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Object instance to be tested.

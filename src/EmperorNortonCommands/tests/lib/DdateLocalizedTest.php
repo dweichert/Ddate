@@ -12,13 +12,14 @@ use EmperorNortonCommands\lib\locale\en\StandardHolydays as EnglishStandardHolyd
 use EmperorNortonCommands\lib\locale\de\StandardHolydays as GermanStandardHolydays;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
+use PHPUnit_Framework_TestCase;
 
 /**
  * Class DdateLocalizedTest.
  *
  * @package EmperorNortonCommands\tests\lib
  */
-class DdateLocalizedTest extends \PHPUnit_Framework_TestCase
+class DdateLocalizedTest extends PHPUnit_Framework_TestCase
 {
     /**
      * Object instance to be tested.

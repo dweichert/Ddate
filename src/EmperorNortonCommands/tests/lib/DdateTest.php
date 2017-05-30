@@ -7,12 +7,14 @@
 
 namespace EmperorNortonCommands\tests\lib;
 
+use DateTime;
 use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\Converter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
 use EmperorNortonCommands\lib\locale\en\StandardHolydays as EnglishStandardHolydays;
 use PHPUnit_Framework_TestCase;
+use SimpleXMLElement;
 
 /**
  * Class DdateTest.
@@ -83,7 +85,7 @@ class DdateTest extends PHPUnit_Framework_TestCase
             array('15032000', 'Prickle-Prickle, Discord 1, 3166 YOLD', null),
             array('30121999', 'Prickle-Prickle, The Aftermath 72, 3165 YOLD', new \stdClass()),
             array('31121999', 'Setting Orange, The Aftermath 73, 3165 YOLD', new \stdClass()),
-            array('01012000', '', new \SimpleXMLElement('<xml/>')),
+            array('01012000', '', new SimpleXMLElement('<xml/>')),
             array('14031999', 'PD, Chs 73rd 3165', '%a, %b %e %Y'),
             array('15031999', 'PP, Dsc 1st 3165', '%a, %b %e %Y'),
             array('26051999', 'SM, Dsc 73rd 3165', '%a, %b %e %Y'),
@@ -171,7 +173,7 @@ class DdateTest extends PHPUnit_Framework_TestCase
      */
     public function testDdateNoArgs()
     {
-        $date = new \DateTime();
+        $date = new DateTime();
         $actual = $this->_object->ddate();
         $expected = $this->_object->ddate('%{%A, %B %d,%} %Y YOLD', $date->format('dmY'));
         self::assertEquals($expected, $actual);

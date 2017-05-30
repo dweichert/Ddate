@@ -17,7 +17,7 @@ class Value
      * St. Tibs Day Constant: 23 * 23 = 529
      */
     const ST_TIBS_DAY = 529;
-    
+
     /**
      * Discordian day of week.
      *
@@ -66,7 +66,36 @@ class Value
      * @var string
      */
     private $holydayKey;
-    
+
+    /**
+     * Value constructor.
+     * @param integer $day
+     * @param integer $season
+     * @param integer $weekDay
+     * @param integer $year
+     * @param integer $daysUntilRealXDay
+     * @param integer $daysUntilOriginalXDay
+     * @param string  $holydayKey
+     */
+    public function __construct(
+        $day,
+        $season,
+        $weekDay,
+        $year,
+        $daysUntilRealXDay,
+        $daysUntilOriginalXDay,
+        $holydayKey
+    )
+    {
+        $this->day = $day;
+        $this->season = $season;
+        $this->weekDay = $weekDay;
+        $this->year = $year;
+        $this->daysUntilRealXDay = $daysUntilRealXDay;
+        $this->daysUntilOriginalXDay = $daysUntilOriginalXDay;
+        $this->holydayKey = $holydayKey;
+    }
+
     /**
      * Get day of week.
      *
@@ -75,18 +104,6 @@ class Value
     public function getWeekDay()
     {
         return $this->weekDay;
-    }
-
-    /**
-     * Set day of week.
-     *
-     * @param integer $weekDay
-     * @return Value
-     */
-    public function setWeekDay($weekDay)
-    {
-        $this->weekDay = $weekDay;
-        return $this;
     }
 
     /**
@@ -100,18 +117,6 @@ class Value
     }
 
     /**
-     * Set day of season.
-     *
-     * @param integer $day
-     * @return Value
-     */
-    public function setDay($day)
-    {
-        $this->day = $day;
-        return $this;
-    }
-
-    /**
      * Get season.
      *
      * @return integer
@@ -119,18 +124,6 @@ class Value
     public function getSeason()
     {
         return $this->season;
-    }
-
-    /**
-     * Set season.
-     *
-     * @param integer $season
-     * @return Value
-     */
-    public function setSeason($season)
-    {
-        $this->season = $season;
-        return $this;
     }
 
     /**
@@ -144,18 +137,6 @@ class Value
     }
 
     /**
-     * Set year.
-     *
-     * @param integer $year
-     * @return Value
-     */
-    public function setYear($year)
-    {
-        $this->year = $year;
-        return $this;
-    }
-
-    /**
      * Get days until real X-Day.
      *
      * @return integer
@@ -163,18 +144,6 @@ class Value
     public function getDaysUntilRealXDay()
     {
         return $this->daysUntilRealXDay;
-    }
-
-    /**
-     * Set days until real X-Day.
-     *
-     * @param integer $daysTilXDay
-     * @return Value
-     */
-    public function setDaysUntilRealXDay($daysTilXDay)
-    {
-        $this->daysUntilRealXDay = $daysTilXDay;
-        return $this;
     }
 
     /**
@@ -188,18 +157,6 @@ class Value
     }
 
     /**
-     * Set days until original X-Day.
-     *
-     * @param integer $daysTilXDay
-     * @return Value
-     */
-    public function setDaysUntilOriginalXDays($daysTilXDay)
-    {
-        $this->daysUntilOriginalXDay = $daysTilXDay;
-        return $this;
-    }
-
-    /**
      * Get Holyday (key).
      *
      * @return string
@@ -207,17 +164,5 @@ class Value
     public function getHolydayKey()
     {
         return $this->holydayKey;
-    }
-
-    /**
-     * Set Holyday (key).
-     *
-     * @param $holyday
-     * @return Value
-     */
-    public function setHolydayKey($holyday)
-    {
-        $this->holydayKey = $holyday;
-        return $this;
     }
 }

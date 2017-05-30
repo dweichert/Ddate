@@ -64,13 +64,15 @@ class Converter
      */
     private function calculateDdateStTibs(DateTime $date)
     {
-        $ddate = new Value();
-        $ddate->setDay(Value::ST_TIBS_DAY);
-        $ddate->setSeason(Value::ST_TIBS_DAY);
-        $ddate->setWeekDay(Value::ST_TIBS_DAY);
-        $ddate->setYear($this->calculateYear($date));
-        $ddate->setDaysUntilRealXDay($this->calculateDaysUntilXday($date));
-        $ddate->setDaysUntilOriginalXDays($this->calculateDaysUntilOriginalXday($date));
+        $ddate = new Value(
+            Value::ST_TIBS_DAY,
+            Value::ST_TIBS_DAY,
+            Value::ST_TIBS_DAY,
+            $this->calculateYear($date),
+            $this->calculateDaysUntilXday($date),
+            $this->calculateDaysUntilOriginalXday($date),
+            ''
+        );
         return $ddate;
     }
 
@@ -82,14 +84,15 @@ class Converter
      */
     private function calculateDdate(DateTime $date)
     {
-        $ddate = new Value();
-        $ddate->setDay($this->calculateDayofSeason($date));
-        $ddate->setSeason($this->calculateSeason($date));
-        $ddate->setWeekDay($this->calculateDayOfWeek($date));
-        $ddate->setYear($this->calculateYear($date));
-        $ddate->setDaysUntilRealXDay($this->calculateDaysUntilXday($date));
-        $ddate->setDaysUntilOriginalXDays($this->calculateDaysUntilOriginalXday($date));
-        $ddate->setHolydayKey($this->getHolydayKey($date));
+        $ddate = new Value(
+            $this->calculateDayofSeason($date),
+            $this->calculateSeason($date),
+            $this->calculateDayOfWeek($date),
+            $this->calculateYear($date),
+            $this->calculateDaysUntilXday($date),
+            $this->calculateDaysUntilOriginalXday($date),
+            $this->getHolydayKey($date)
+        );
         return $ddate;
     }
 

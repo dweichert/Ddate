@@ -18,13 +18,10 @@ matrix:
     php: "7.0"
   - os: linux
     dist: trusty
-    php: "hhvm"
-  - os: linux
-    dist: xenial
-    php: "7.0"
-  - os: linux
-    dist: xenial
     php: "7.1"
+  - os: linux
+    dist: trusty
+    php: "hhvm"
 install:
   - composer install
 after_script:

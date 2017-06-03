@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<holydays xmlns="https://davidweichert.de/ns/ddate" calendar="discordian">
+    <!--
+        Standard Holydays
+        =================
+        see: Principia Discordia, 00034
+    -->
+    <holyday>
+        <name>Mungday</name>
+        <description><p>Day of the Apostle Hung Mung</p></description>
+        <discordian>
+            <day>05</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Choaflux</name>
+        <discordian>
+            <day>50</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Mojoday</name>
+        <description><p>Day of the Apostle Dr. Van Van Mojo</p></description>
+        <discordian>
+            <day>05</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Discoflux</name>
+        <discordian>
+            <day>50</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Syaday</name>
+        <description><p>Day of the Apostle for Sri Syadasti</p></description>
+        <discordian>
+            <day>05</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Conflux</name>
+        <discordian>
+            <day>50</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Zaraday</name>
+        <description><p>Day of the Apostle Zarathud</p></description>
+        <discordian>
+            <day>05</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Bureflux</name>
+        <discordian>
+            <day>50</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Maladay</name>
+        <description><p>Day of the Apostle The Elder Malaclypse</p></description>
+        <discordian>
+            <day>05</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Afflux</name>
+        <discordian>
+            <day>50</day>
+            <season>50</season>
+        </discordian>
+    </holyday>
+</holydays>

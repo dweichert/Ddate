@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<holydays xmlns="https://davidweichert.de/ns/ddate" calendar="discordian">
+    <!--
+        Standard Holydays
+        =================
+        see: Principia Discordia, 00034
+        Translation: Pope Rotund Deluxe
+    -->
+    <holyday>
+        <name>Mungtag</name>
+        <description><p>Tag des Apostels Hung Mung</p></description>
+        <discordian>
+            <day>05</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Wirrfluss</name>
+        <discordian>
+            <day>50</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Mojotag</name>
+        <description><p>Tag des Apostels Dr. Van Van Mojo</p></description>
+        <discordian>
+            <day>05</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Zweifluss</name>
+        <discordian>
+            <day>50</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Syatag</name>
+        <description><p>Tag des Apostels Sri Syadasti</p></description>
+        <discordian>
+            <day>05</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Unfluss</name>
+        <discordian>
+            <day>50</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Zaratag</name>
+        <description><p>Tag des Apostels Zarathud</p></description>
+        <discordian>
+            <day>05</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Beamtenfluss</name>
+        <discordian>
+            <day>50</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Malatag</name>
+        <description><p>Tag des Apostels Malaclypse der Ältere</p></description>
+        <discordian>
+            <day>05</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Ausfluss</name>
+        <discordian>
+            <day>50</day>
+            <season>50</season>
+        </discordian>
+    </holyday>
+</holydays>

@@ -7,8 +7,6 @@
 
 namespace EmperorNortonCommands\lib;
 
-use DateTime;
-
 /**
  * Class Holydays
  * @package EmperorNortonCommands\lib
@@ -28,14 +26,17 @@ abstract class Holydays
     /**
      * Get Holyday.
      *
-     * Returns the name of the Holyday if there is a Holyday for given the key,
+     * Returns the name of the Holyday if there is a Holyday on given date,
      * else returns empty string.
      *
-     * @param string $key
+     * @param Value $ddate
      * @return string
      */
-    public function getHolyday($key)
+    public function getHolyday(Value $ddate)
     {
+        $key = $ddate->getGregorian()->format('d')
+             . $ddate->getGregorian()->format('m');
+
         if (isset($this->holydays[$key])) {
             return $this->holydays[$key];
         }

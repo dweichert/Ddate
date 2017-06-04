@@ -71,7 +71,7 @@ class Converter
             $this->calculateYear($date),
             $this->calculateDaysUntilXday($date),
             $this->calculateDaysUntilOriginalXday($date),
-            ''
+            $date
         );
         return $ddate;
     }
@@ -91,22 +91,10 @@ class Converter
             $this->calculateYear($date),
             $this->calculateDaysUntilXday($date),
             $this->calculateDaysUntilOriginalXday($date),
-            $this->getHolydayKey($date)
+            $date
         );
-        return $ddate;
-    }
 
-    /**
-     * Get Holyday.
-     *
-     * Generate Holyday key from Date object.
-     *
-     * @param DateTime $date
-     * @return string
-     */
-    private function getHolydayKey(DateTime $date)
-    {
-        return $date->format('d') . $date->format('m');
+        return $ddate;
     }
 
     /**
@@ -168,7 +156,7 @@ class Converter
      */
     private function calculateYear(DateTime $date)
     {
-        return $this->_yearDiscordian = $date->format('Y') + self::CURSE_OF_GREYFACE;
+        return $this->_yearDiscordian = (integer)$date->format('Y') + self::CURSE_OF_GREYFACE;
     }
 
     /**

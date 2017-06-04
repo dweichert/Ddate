@@ -99,7 +99,7 @@ abstract class Formatter
      */
     protected function getHolyday(Value $ddate)
     {
-        return $this->holydays->getHolyday($ddate->getHolydayKey());
+        return $this->holydays->getHolyday($ddate);
     }
 
     /**

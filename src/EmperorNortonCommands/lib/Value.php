@@ -7,6 +7,8 @@
 
 namespace EmperorNortonCommands\lib;
 
+use DateTimeInterface;
+
 /**
  * Class Value
  * @package EmperorNortonCommands\lib
@@ -61,11 +63,11 @@ class Value
     private $daysUntilOriginalXDay;
 
     /**
-     * Name of Holyday if any.
+     * Gregorian date.
      *
-     * @var string
+     * @var DateTimeInterface
      */
-    private $holydayKey;
+    private $date;
 
     /**
      * Value constructor.
@@ -75,7 +77,7 @@ class Value
      * @param integer $year
      * @param integer $daysUntilRealXDay
      * @param integer $daysUntilOriginalXDay
-     * @param string  $holydayKey
+     * @param DateTimeInterface $date
      */
     public function __construct(
         $day,
@@ -84,7 +86,7 @@ class Value
         $year,
         $daysUntilRealXDay,
         $daysUntilOriginalXDay,
-        $holydayKey
+        $date
     )
     {
         $this->day = $day;
@@ -93,7 +95,7 @@ class Value
         $this->year = $year;
         $this->daysUntilRealXDay = $daysUntilRealXDay;
         $this->daysUntilOriginalXDay = $daysUntilOriginalXDay;
-        $this->holydayKey = $holydayKey;
+        $this->date = $date;
     }
 
     /**
@@ -157,12 +159,12 @@ class Value
     }
 
     /**
-     * Get Holyday (key).
+     * Get Gregorian.
      *
-     * @return string
+     * @return DateTimeInterface
      */
-    public function getHolydayKey()
+    public function getGregorian()
     {
-        return $this->holydayKey;
+        return $this->date;
     }
 }

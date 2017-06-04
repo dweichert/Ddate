@@ -46,7 +46,7 @@ abstract class Holydays
         $xpath->registerNamespace('ddate', 'https://davidweichert.de/ns/ddate');
 
         $nodeList = $xpath->query('//@calendar');
-        $calendar = $nodeList[0]->value;
+        $calendar = $nodeList->item(0)->nodeValue;
 
         switch ($calendar)
         {

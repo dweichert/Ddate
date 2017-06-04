@@ -210,4 +210,12 @@ class StandardFormatter extends EnglishStandardFormatter
         return (string)$this->seasonsGenitive[$season];
     }
 
+    /**
+     * @inheritdoc
+     */
+    protected function loadStandardHolydays()
+    {
+        $this->holydays = new StandardHolydays();
+    }
+
 }

@@ -7,11 +7,6 @@
 
 namespace EmperorNortonCommands\lib;
 
-use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
-use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
-use EmperorNortonCommands\lib\locale\en\StandardHolydays as EnglishStandardHolydays;
-use EmperorNortonCommands\lib\locale\de\StandardHolydays as GermanStandardHolydays;
-
 /**
  * Class FormatterFactory
  * @package EmperorNortonCommands\lib
@@ -54,7 +49,7 @@ class FormatterFactory
             $locale = 'en';
         }
         $formatter = (string)$this->availableFormatters[$locale]['class'];
-        $holydays = (string)$this->availableFormatters[$locale]['holydays']['Standard'];
-        return new $formatter(new $holydays());
+
+        return new $formatter();
     }
 }

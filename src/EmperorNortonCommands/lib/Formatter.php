@@ -6,7 +6,6 @@
  */
 
 namespace EmperorNortonCommands\lib;
-use InvalidArgumentException;
 
 /**
  * Class Formatter.
@@ -51,12 +50,11 @@ abstract class Formatter
 
     /**
      * DdateFormatter constructor.
-     * @param Holydays $holydays
      */
-    public function __construct(Holydays $holydays)
+    public function __construct()
     {
-        $this->holydays = $holydays;
         $this->setFormat();
+        $this->loadStandardHolydays();
     }
 
     /**
@@ -126,4 +124,9 @@ abstract class Formatter
             return $string;
         }
     }
+
+    /**
+     * Loads locale specific standard Holydays.
+     */
+    abstract protected function loadStandardHolydays();
 }

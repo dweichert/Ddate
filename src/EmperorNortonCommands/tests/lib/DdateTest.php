@@ -12,7 +12,6 @@ use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\Converter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
-use EmperorNortonCommands\lib\locale\en\StandardHolydays as EnglishStandardHolydays;
 use PHPUnit_Framework_TestCase;
 use SimpleXMLElement;
 
@@ -184,7 +183,7 @@ class DdateTest extends PHPUnit_Framework_TestCase
      */
     public function testGetSupportedFormatFields()
     {
-        $formatter = new EnglishStandardFormatter(new EnglishStandardHolydays());
+        $formatter = new EnglishStandardFormatter();
         $expected = $formatter->getSupportedFormatStringFields();
         $actual = $this->_object->getSupportedFormatStringFields();
         self::assertEquals($expected, $actual);
@@ -195,7 +194,7 @@ class DdateTest extends PHPUnit_Framework_TestCase
      */
     public function testGetSupportedFormatFieldsLocaleEn()
     {
-        $formatter = new EnglishStandardFormatter(new EnglishStandardHolydays());
+        $formatter = new EnglishStandardFormatter();
         $expected = $formatter->getSupportedFormatStringFields();
         $actual = $this->_object->getSupportedFormatStringFields('en');
         self::assertEquals($expected, $actual);

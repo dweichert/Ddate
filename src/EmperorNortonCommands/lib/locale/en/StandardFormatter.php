@@ -245,4 +245,12 @@ class StandardFormatter extends Formatter
         }
         return $ddate->getDay();
     }
+
+    /**
+     * @inheritdoc
+     */
+    protected function loadStandardHolydays()
+    {
+        $this->holydays = new StandardHolydays();
+    }
 }

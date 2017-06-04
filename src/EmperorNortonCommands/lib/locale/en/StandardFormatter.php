@@ -36,7 +36,11 @@ class StandardFormatter extends Formatter
         '%X' => 'Number of days since / until remaining until X-Day.',
         '%x' => 'Number of days since / until original X-Day (Jul 5th, 1998)',
         '%{' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (start delimiter)',
-        '%}' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (end delimiter)'
+        '%}' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (end delimiter)',
+        '%1' => 'remove standard Holydays',
+        '%2' => 'add "Camden Beneres\' Holidays" to Holydays',
+        '%3' => 'add "Reverent DrJon Swabey\'s Whollydays" to Holydays',
+        '%4' => 'add "Reverent Loveshade\'s Whollydays" to Holydays',
     );
 
     /**

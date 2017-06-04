@@ -38,7 +38,11 @@ class StandardFormatter extends EnglishStandardFormatter
         '%X' => 'Anzahl der Tage seit dem / bis zum Tag X.',
         '%x' => 'Anzahl der Tage seit dem / bis zum ursprünglichen Tag X.',
         '%{' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Anfang)',
-        '%}' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)'
+        '%}' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)',
+        '%1' => 'entferne Standardholydays (Feiertage)',
+        '%2' => 'füge "Camden Beneres\' Holidays" zu den Holydays (Feiertagen) hinzu',
+        '%3' => 'füge "Reverent DrJon Swabey\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
+        '%4' => 'füge "Reverent Loveshade\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
     );
 
     /**

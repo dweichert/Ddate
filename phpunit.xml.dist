@@ -9,7 +9,6 @@
          processIsolation="false"
          stopOnFailure="false"
          syntaxCheck="false"
-         bootstrap="src/EmperorNortonCommands/tests/bootstrap.php"
 >
     <testsuites>
         <testsuite name="Emperor Norton Commands Test Suite">

@@ -7,6 +7,8 @@
 
 namespace EmperorNortonCommands\lib;
 
+use EmperorNortonCommands\lib\Holydays\StandardHolydays;
+
 /**
  * Class Formatter.
  * @package EmperorNortonCommands\lib
@@ -54,7 +56,7 @@ abstract class Formatter
     public function __construct()
     {
         $this->setFormat();
-        $this->loadStandardHolydays();
+        $this->holydays = new StandardHolydays();
     }
 
     /**
@@ -94,27 +96,29 @@ abstract class Formatter
     /**
      * Get Holyday value.
      *
-     * @param Value $ddate
+     * @param  Value  $ddate
+     * @param  string $locale
      * @return string
      */
-    protected function getHolyday(Value $ddate)
+    protected function getHolyday(Value $ddate, $locale)
     {
-        return $this->holydays->getHolyday($ddate);
+        return $this->holydays->getHolyday($ddate, $locale);
     }
 
     /**
      * Replaces %N and %H in given string.
      *
      * @param  string $string
-     * @param  Value $ddate
+     * @param  Value  $ddate
+     * @param  string $locale
      * @return string
      */
-    protected function replaceHolidayPlaceholders($string, Value $ddate)
+    protected function replaceHolidayPlaceholders($string, Value $ddate, $locale)
     {
-        if (strlen($this->getHolyday($ddate)))
+        if (strlen($this->getHolyday($ddate, $locale)))
         {
             $string = str_replace('%N', '', $string);
-            $string = str_replace('%H', $this->getHolyday($ddate), $string);
+            $string = str_replace('%H', $this->getHolyday($ddate, $locale), $string);
             return $string;
         }
         else
@@ -124,9 +128,4 @@ abstract class Formatter
             return $string;
         }
     }
-
-    /**
-     * Loads locale specific standard Holydays.
-     */
-    abstract protected function loadStandardHolydays();
 }

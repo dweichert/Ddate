@@ -4,80 +4,81 @@
         Standard Holydays
         =================
         see: Principia Discordia, 00034
+        Translation: Pope Rotund Deluxe
     -->
     <holyday>
-        <name>Mungday</name>
-        <description><p>Day of the Apostle Hung Mung</p></description>
+        <name>Mungtag</name>
+        <description><p>Tag des Apostels Hung Mung</p></description>
         <discordian>
             <day>05</day>
             <season>01</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Choaflux</name>
+        <name>Wirrfluss</name>
         <discordian>
             <day>50</day>
             <season>01</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Mojoday</name>
-        <description><p>Day of the Apostle Dr. Van Van Mojo</p></description>
+        <name>Mojotag</name>
+        <description><p>Tag des Apostels Dr. Van Van Mojo</p></description>
         <discordian>
             <day>05</day>
             <season>02</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Discoflux</name>
+        <name>Zweifluss</name>
         <discordian>
             <day>50</day>
             <season>02</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Syaday</name>
-        <description><p>Day of the Apostle for Sri Syadasti</p></description>
+        <name>Syatag</name>
+        <description><p>Tag des Apostels Sri Syadasti</p></description>
         <discordian>
             <day>05</day>
             <season>03</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Conflux</name>
+        <name>Unfluss</name>
         <discordian>
             <day>50</day>
             <season>03</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Zaraday</name>
-        <description><p>Day of the Apostle Zarathud</p></description>
+        <name>Zaratag</name>
+        <description><p>Tag des Apostels Zarathud</p></description>
         <discordian>
             <day>05</day>
             <season>04</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Bureflux</name>
+        <name>Beamtenfluss</name>
         <discordian>
             <day>50</day>
             <season>04</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Maladay</name>
-        <description><p>Day of the Apostle The Elder Malaclypse</p></description>
+        <name>Malatag</name>
+        <description><p>Tag des Apostels Malaclypse der Ältere</p></description>
         <discordian>
             <day>05</day>
             <season>05</season>
         </discordian>
     </holyday>
     <holyday>
-        <name>Afflux</name>
+        <name>Ausfluss</name>
         <discordian>
             <day>50</day>
-            <season>50</season>
+            <season>05</season>
         </discordian>
     </holyday>
 </holydays>

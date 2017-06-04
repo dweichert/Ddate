@@ -95,7 +95,7 @@ class StandardFormatter extends Formatter
     {
         $output = $this->format;
         $output = $this->replaceStTibsPlaceholders($output, $ddate);
-        $output = $this->replaceHolidayPlaceholders($output, $ddate);
+        $output = $this->replaceHolidayPlaceholders($output, $ddate, 'en');
         $output = str_replace('%a', $this->getAbbreviatedWeekDayName($ddate->getWeekDay()), $output);
         $output = str_replace('%A', $this->getDiscordianWeekDayName($ddate->getWeekDay()), $output);
         $output = str_replace('%B', $this->getDiscordianSeasonName($ddate->getSeason()), $output);
@@ -244,13 +244,5 @@ class StandardFormatter extends Formatter
             return 'FNORD';
         }
         return $ddate->getDay();
-    }
-
-    /**
-     * @inheritdoc
-     */
-    protected function loadStandardHolydays()
-    {
-        $this->holydays = new StandardHolydays();
     }
 }

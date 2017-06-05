@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<holydays xmlns="https://davidweichert.de/ns/ddate" calendar="discordian">
+<holydays xmlns="https://davidweichert.de/ns/ddate-holyday" calendar="discordian">
     <!--
         Standard Holydays
         =================

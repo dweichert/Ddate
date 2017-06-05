@@ -8,7 +8,6 @@
 namespace EmperorNortonCommands\lib;
 use DOMDocument;
 use DOMXPath;
-use RuntimeException;
 
 /**
  * Class Holydays
@@ -35,7 +34,6 @@ abstract class Holydays
      * @param  Value  $ddate
      * @param  string $locale
      * @return string
-     * @throws RuntimeException
      */
     public function getHolyday(Value $ddate, $locale)
     {
@@ -43,29 +41,16 @@ abstract class Holydays
         $domDocument->load($this->getPathToXML($locale));
 
         $xpath = new DOMXPath($domDocument);
-        $xpath->registerNamespace('ddate', 'https://davidweichert.de/ns/ddate');
+        $xpath->registerNamespace('h', 'https://davidweichert.de/ns/ddate-holyday');
 
-        $nodeList = $xpath->query('//@calendar');
-        $calendar = $nodeList->item(0)->nodeValue;
+        $calendar = $this->getCalendar($xpath);
 
-        switch ($calendar)
+        if ('discordian' === $calendar)
         {
-            case 'discordian':
-                $season = str_pad($ddate->getSeason(), 2, '0', STR_PAD_LEFT);
-                $day = str_pad($ddate->getDay(), 2, '0', STR_PAD_LEFT);
-                $holyday = $xpath->query("//ddate:name[..//ddate:season='$season' and ..//ddate:day='$day']");
-                if ($holyday->length)
-                {
-                    return (string)$holyday->item(0)->nodeValue;
-                }
-                return '';
-                break;
-            case 'gregorian':
-                return '';
-                break;
-            default:
-                throw new RuntimeException(sprintf('Unsupported calendar "%s".', $calendar));
+            return $this->getHolydayDiscordian($ddate, $xpath);
         }
+
+        return $this->getHolydayGregorian($ddate, $xpath);
     }
 
     /**
@@ -75,5 +60,55 @@ abstract class Holydays
      * @return string
      */
     abstract protected function getPathToXML($locale);
+
+    /**
+     * Get Calendar.
+     *
+     * @param DOMXPath $xpath
+     * @return string
+     */
+    private function getCalendar(DOMXPath $xpath)
+    {
+        $nodeList = $xpath->query('//@calendar');
+        $calendar = (string)$nodeList->item(0)->nodeValue;
+
+        return $calendar;
+    }
+
+    /**
+     * Get Holyday from XML by Discordian day and season.
+     *
+     * @param Value $ddate
+     * @param DOMXPath $xpath
+     * @return string
+     */
+    private function getHolydayDiscordian(Value $ddate, DOMXPath $xpath)
+    {
+        $season = str_pad($ddate->getSeason(), 2, '0', STR_PAD_LEFT);
+        $day = str_pad($ddate->getDay(), 2, '0', STR_PAD_LEFT);
+        $holyday = $xpath->query("//h:name[..//h:season='$season' and ..//h:day='$day']");
+        if ($holyday->length) {
+            return (string)$holyday->item(0)->nodeValue;
+        }
+        return '';
+    }
+
+    /**
+     * Get Holyday from XML by Discordian day and season.
+     *
+     * @param Value $ddate
+     * @param DOMXPath $xpath
+     * @return string
+     */
+    private function getHolydayGregorian(Value $ddate, DOMXPath $xpath)
+    {
+        $month = $ddate->getGregorian()->format('m');
+        $day = $ddate->getGregorian()->format('d');
+        $holyday = $xpath->query("//h:name[..//h:month='$month' and ..//h:day='$day']");
+        if ($holyday->length) {
+            return (string)$holyday->item(0)->nodeValue;
+        }
+        return '';
+    }
 
 }

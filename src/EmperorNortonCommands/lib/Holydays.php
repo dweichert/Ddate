@@ -58,7 +58,7 @@ abstract class Holydays
      *
      * @return string
      */
-    static function getKey()
+    public static function getKey()
     {
         return '';
     }

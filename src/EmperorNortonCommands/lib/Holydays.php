@@ -54,6 +54,16 @@ abstract class Holydays
     }
 
     /**
+     * Returns key identifying the Holyday set.
+     *
+     * @return string
+     */
+    static function getKey()
+    {
+        return '';
+    }
+
+    /**
      * Get path to locale specific XML data file.
      *
      * @param  string $locale

@@ -39,7 +39,7 @@ abstract class Formatter
     /**
      * Holydays.
      *
-     * @var Holydays
+     * @var Holydays[]
      */
     protected $holydays = null;
 
@@ -56,7 +56,7 @@ abstract class Formatter
     public function __construct()
     {
         $this->setFormat();
-        $this->holydays = new StandardHolydays();
+        $this->holydays[StandardHolydays::getKey()] = new StandardHolydays();
     }
 
     /**
@@ -102,7 +102,17 @@ abstract class Formatter
      */
     protected function getHolyday(Value $ddate, $locale)
     {
-        return $this->holydays->getHolyday($ddate, $locale);
+        $holydays = array();
+        foreach ($this->holydays as $holyday)
+        {
+            $holydays[] = $holyday->getHolyday($ddate, $locale);
+        }
+
+        if (empty($holydays)) {
+            return '';
+        }
+
+        return $holydays[0];
     }
 
     /**

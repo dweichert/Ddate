@@ -119,6 +119,7 @@ class StandardFormatter extends EnglishStandardFormatter
     public function format(Value $ddate)
     {
         $output = $this->format;
+        $output = $this->replaceHolidaySetPlaceholders($output);
         $output = $this->replaceStTibsPlaceholders($output, $ddate);
         $output = $this->replaceHolidayPlaceholders($output, $ddate, 'de');
         $output = str_replace('%a', $this->getAbbreviatedWeekDayName($ddate->getWeekDay()), $output);

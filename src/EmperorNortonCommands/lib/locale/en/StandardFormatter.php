@@ -8,6 +8,7 @@
 namespace EmperorNortonCommands\lib\locale\en;
 
 use EmperorNortonCommands\lib\Formatter;
+use EmperorNortonCommands\lib\Holydays\StandardHolydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
@@ -94,6 +95,7 @@ class StandardFormatter extends Formatter
     public function format(Value $ddate)
     {
         $output = $this->format;
+        $output = $this->replaceHolidaySetPlaceholders($output);
         $output = $this->replaceStTibsPlaceholders($output, $ddate);
         $output = $this->replaceHolidayPlaceholders($output, $ddate, 'en');
         $output = str_replace('%a', $this->getAbbreviatedWeekDayName($ddate->getWeekDay()), $output);
@@ -244,5 +246,16 @@ class StandardFormatter extends Formatter
             return 'FNORD';
         }
         return $ddate->getDay();
+    }
+
+    protected function replaceHolidaySetPlaceholders($string)
+    {
+        $turnOffStandardHolydays = 0;
+        $string = str_replace('%1', '', $string, $turnOffStandardHolydays);
+        if ($turnOffStandardHolydays) {
+            unset($this->holydays[StandardHolydays::getKey()]);
+        }
+
+        return $string;
     }
 }

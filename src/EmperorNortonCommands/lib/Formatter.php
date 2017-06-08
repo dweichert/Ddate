@@ -98,9 +98,9 @@ abstract class Formatter
      *
      * @param  Value  $ddate
      * @param  string $locale
-     * @return string
+     * @return string[]
      */
-    protected function getHolyday(Value $ddate, $locale)
+    protected function getHolydays(Value $ddate, $locale)
     {
         $holydays = array();
         foreach ($this->holydays as $holyday)
@@ -108,11 +108,7 @@ abstract class Formatter
             $holydays = array_merge($holydays, $holyday->getHolyday($ddate, $locale));
         }
 
-        if (empty($holydays)) {
-            return '';
-        }
-
-        return $holydays[0];
+        return $holydays;
     }
 
     /**
@@ -125,17 +121,24 @@ abstract class Formatter
      */
     protected function replaceHolidayPlaceholders($string, Value $ddate, $locale)
     {
-        if (strlen($this->getHolyday($ddate, $locale)))
+        $holydays = $this->getHolydays($ddate, $locale);
+
+        if (empty($holydays))
         {
-            $string = str_replace('%N', '', $string);
-            $string = str_replace('%H', $this->getHolyday($ddate, $locale), $string);
-            return $string;
+            $string = preg_replace('/%N(.)*/s', '', $string);
         }
         else
         {
-            $string = preg_replace('/%N(.)*/s', '', $string);
-            $string = str_replace('%H', $this->noHolyday, $string);
-            return $string;
+            $string = str_replace('%N', '', $string);
         }
+        $string = str_replace('%H', $this->getHolydayString($holydays), $string);
+
+        return $string;
+
     }
+
+    /**
+     * Get localized string with all holydays.
+     */
+    abstract protected function getHolydayString($holydays);
 }

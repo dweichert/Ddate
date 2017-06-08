@@ -8,6 +8,7 @@
 namespace EmperorNortonCommands\lib\locale\en;
 
 use EmperorNortonCommands\lib\Formatter;
+use EmperorNortonCommands\lib\Holydays\CamdenBenaresHolidays;
 use EmperorNortonCommands\lib\Holydays\StandardHolydays;
 use EmperorNortonCommands\lib\Value;
 
@@ -251,11 +252,39 @@ class StandardFormatter extends Formatter
     protected function replaceHolidaySetPlaceholders($string)
     {
         $turnOffStandardHolydays = 0;
+        $turnOnCamdenBenaresHolidays = 0;
         $string = str_replace('%1', '', $string, $turnOffStandardHolydays);
         if ($turnOffStandardHolydays) {
             unset($this->holydays[StandardHolydays::getKey()]);
         }
+        $string = str_replace('%2', '', $string, $turnOnCamdenBenaresHolidays);
+        if ($turnOnCamdenBenaresHolidays) {
+            $this->holydays[CamdenBenaresHolidays::getKey()] = new CamdenBenaresHolidays();
+        }
+
 
         return $string;
+    }
+
+    /**
+     * Get localized string with all holydays.
+     */
+    protected function getHolydayString($holydays)
+    {
+        if (empty($holydays)) {
+            return $this->noHolyday;
+        }
+
+        if (1 == count($holydays)) {
+            return $holydays[0];
+        }
+
+        if (2 == count($holydays)) {
+            return $holydays[0] . ' and ' . $holydays[1];
+        }
+
+        $lastHolyday = array_pop($holydays);
+
+        return explode(', ', $holydays) . ' and ' . $lastHolyday;
     }
 }

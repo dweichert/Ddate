@@ -105,7 +105,7 @@ abstract class Formatter
         $holydays = array();
         foreach ($this->holydays as $holyday)
         {
-            $holydays[] = $holyday->getHolyday($ddate, $locale);
+            $holydays = array_merge($holydays, $holyday->getHolyday($ddate, $locale));
         }
 
         if (empty($holydays)) {

@@ -33,7 +33,7 @@ abstract class Holydays
      *
      * @param  Value  $ddate
      * @param  string $locale
-     * @return string
+     * @return string[]
      */
     public function getHolyday(Value $ddate, $locale)
     {
@@ -90,17 +90,20 @@ abstract class Holydays
      *
      * @param Value $ddate
      * @param DOMXPath $xpath
-     * @return string
+     * @return string[]
      */
     private function getHolydayDiscordian(Value $ddate, DOMXPath $xpath)
     {
+        $holydays = array();
         $season = str_pad($ddate->getSeason(), 2, '0', STR_PAD_LEFT);
         $day = str_pad($ddate->getDay(), 2, '0', STR_PAD_LEFT);
-        $holyday = $xpath->query("//h:name[..//h:season='$season' and ..//h:day='$day']");
-        if ($holyday->length) {
-            return (string)$holyday->item(0)->nodeValue;
+        $holydayNodeList = $xpath->query("//h:name[..//h:season='$season' and ..//h:day='$day']");
+        foreach ($holydayNodeList as $element) {
+            /** @var \DOMElement $element */
+            $holydays[] = $element->textContent;
         }
-        return '';
+
+        return $holydays;
     }
 
     /**
@@ -108,17 +111,20 @@ abstract class Holydays
      *
      * @param Value $ddate
      * @param DOMXPath $xpath
-     * @return string
+     * @return string[]
      */
     private function getHolydayGregorian(Value $ddate, DOMXPath $xpath)
     {
+        $holydays = array();
         $month = $ddate->getGregorian()->format('m');
         $day = $ddate->getGregorian()->format('d');
-        $holyday = $xpath->query("//h:name[..//h:month='$month' and ..//h:day='$day']");
-        if ($holyday->length) {
-            return (string)$holyday->item(0)->nodeValue;
+        $holydayNodeList = $xpath->query("//h:name[..//h:month='$month' and ..//h:day='$day']");
+        foreach ($holydayNodeList as $element) {
+            /** @var \DOMElement $element */
+            $holydays[] = $element->textContent;
         }
-        return '';
+
+        return $holydays;
     }
 
 }

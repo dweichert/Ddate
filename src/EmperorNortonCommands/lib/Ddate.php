@@ -72,17 +72,6 @@ class Ddate
     }
 
     /**
-     * Get Holyday options.
-     *
-     * @param string $locale
-     * @return HolydayOption[]
-     */
-    public function getHolydayOptions($locale = 'en')
-    {
-        return $this->formatterFactory->getFormatter($locale)->getHolydayOptions();
-    }
-
-    /**
      * Convert Gregorian to Discordian dates.
      *
      * Returns the date in Discordian date format. If called with no arguments,

@@ -102,4 +102,21 @@ class DdateHolydayTest extends PHPUnit_Framework_TestCase
             array('30112016', "It's Prickle-Prickle, the 42nd of The Aftermath, 3182.\nCelebrate Early Lunch Day", "It's %{%A, the %e of %B%},%2 %Y.%N%nCelebrate %H"),
         );
     }
+
+    /**
+     * @dataProvider funFridayDeProvider
+     */
+    public function testFunFridayDe($gregorian, $discordian, $format)
+    {
+        self::assertEquals($discordian, $this->object->ddate($format, $gregorian, 'de'));
+    }
+
+    public function funFridayDeProvider()
+    {
+        return array(
+            array('30032323', "Heute ist Prickel-Prickel, 16. der Zweitracht 3489, heute ist: Vergnügungsfreitag.", "Heute ist %{%A, %e %C %Y%}%2%N, heute ist: %H."),
+            array('31082323', "Heute ist Stichtag, 24. der Beamtenherrschaft 3489, heute ist: Vergnügungsfreitag.", "Heute ist %{%A, %e %C %Y%}%2%N, heute ist: %H."),
+            array('30111990', "Heute ist Prickel-Prickel, 42. des Grummets 3156, heute ist: Vergnügungsfreitag und Tag des frühen Mittagessens.", "Heute ist %{%A, %e %C %Y%}%2%N, heute ist: %H."),
+        );
+    }
 }

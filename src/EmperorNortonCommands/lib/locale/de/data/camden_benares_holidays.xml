@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<holydays xmlns="https://davidweichert.de/ns/ddate-holyday" calendar="gregorian">
+    <!--
+        Camden Benares' List of Discordian Holidays
+        ===========================================
+        "According to John F. Carr, the following list of Discordian Holidays
+        were part of a non-fiction work entitled 'How to Have Fun and Be Happy'
+        that Camden Benares wrote sensing a strong need for such a work."
+
+        – Adam Gorightly: Historia Discordia, 18. Nov. 2015
+        http://historiadiscordia.com/camden-benares-list-of-discordian-holidays/
+        Translation: Pope Rotund Deluxe
+    -->
+    <holyday>
+        <name>Bogart Tag</name>
+        <gregorian>
+            <day>01</day>
+            <month>01</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Carioca Lodge Tag</name>
+        <gregorian>
+            <day>05</day>
+            <month>01</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St. Afrodite</name>
+        <gregorian>
+            <day>15</day>
+            <month>01</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St. Bobcat</name>
+        <gregorian>
+            <day>23</day>
+            <month>01</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Liter Etiketten Jux Tag</name>
+        <gregorian>
+            <day>25</day>
+            <month>01</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der Erneuerung alter Bekanntschaften</name>
+        <gregorian>
+            <day>02</day>
+            <month>02</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Dadanova</name>
+        <gregorian>
+            <day>05</day>
+            <month>02</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St. Heat</name>
+        <gregorian>
+            <day>14</day>
+            <month>02</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Lupercalias Transmogrifizierung</name>
+        <gregorian>
+            <day>15</day>
+            <month>02</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Didymes Tag</name>
+        <gregorian>
+            <day>23</day>
+            <month>02</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Pass Fest</name>
+        <gregorian>
+            <day>03</day>
+            <month>03</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag des Selbstbewusstseins</name>
+        <gregorian>
+            <day>05</day>
+            <month>03</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag des Truthahngeiers</name>
+        <gregorian>
+            <day>15</day>
+            <month>03</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Rex Saxonda Film Tag</name>
+        <gregorian>
+            <day>17</day>
+            <month>03</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St. Swallow</name>
+        <gregorian>
+            <day>19</day>
+            <month>03</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Alltag</name>
+        <gregorian>
+            <day>04</day>
+            <month>04</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Sei nett zu Touristen Tag</name>
+        <gregorian>
+            <day>05</day>
+            <month>04</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Ruhetag</name>
+        <gregorian>
+            <day>15</day>
+            <month>04</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Duke Tag</name>
+        <gregorian>
+            <day>29</day>
+            <month>04</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Adam Weishaupt Tag</name>
+        <gregorian>
+            <day>01</day>
+            <month>05</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St Gulik</name>
+        <gregorian>
+            <day>05</day>
+            <month>05</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag des Baums</name>
+        <gregorian>
+            <day>15</day>
+            <month>05</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Buddhas Geburtstag</name>
+        <gregorian>
+            <day>23</day>
+            <month>05</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der Schöpfung</name>
+        <gregorian>
+            <day>25</day>
+            <month>05</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag des goldenen Apfels</name>
+        <gregorian>
+            <day>05</day>
+            <month>06</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St. Helena</name>
+        <gregorian>
+            <day>06</day>
+            <month>06</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der Befreiung</name>
+        <gregorian>
+            <day>15</day>
+            <month>06</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der unbekannten Heiligen</name>
+        <gregorian>
+            <day>23</day>
+            <month>06</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der bekannten Heiligen</name>
+        <gregorian>
+            <day>25</day>
+            <month>06</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Hodge Podge Lodge Tag</name>
+        <gregorian>
+            <day>04</day>
+            <month>07</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Freiheitstag</name>
+        <gregorian>
+            <day>05</day>
+            <month>07</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Spiegelkomplimenttag</name>
+        <gregorian>
+            <day>07</day>
+            <month>07</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St. Merde</name>
+        <gregorian>
+            <day>14</day>
+            <month>07</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Jack Slack Tag</name>
+        <gregorian>
+            <day>23</day>
+            <month>07</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der Erhebung des Heiligen Otis</name>
+        <gregorian>
+            <day>05</day>
+            <month>08</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St. Pythagoras</name>
+        <gregorian>
+            <day>08</day>
+            <month>08</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Theaternacht</name>
+        <gregorian>
+            <day>15</day>
+            <month>08</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Nancy Fancymanners Geburtstag</name>
+        <gregorian>
+            <day>23</day>
+            <month>08</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Heiliger Schreibertag</name>
+        <gregorian>
+            <day>30</day>
+            <month>08</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Eris' Geburtstag</name>
+        <gregorian>
+            <day>09</day>
+            <month>09</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Emperor Norton Tag</name>
+        <gregorian>
+            <day>17</day>
+            <month>09</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Siriustag</name>
+        <gregorian>
+            <day>23</day>
+            <month>09</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag des Schutzes vor erotischem Terrorismus</name>
+        <gregorian>
+            <day>25</day>
+            <month>09</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Kokomo Dragonland Tag</name>
+        <gregorian>
+            <day>30</day>
+            <month>09</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der billigen Geschenke</name>
+        <gregorian>
+            <day>05</day>
+            <month>10</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Hildegardsnacht</name>
+        <gregorian>
+            <day>10</day>
+            <month>10</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Hugo Troy Tutlege, Jr. Geburtstag</name>
+        <gregorian>
+            <day>23</day>
+            <month>10</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der diskordischen Heiligen</name>
+        <gregorian>
+            <day>31</day>
+            <month>10</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Filmtag</name>
+        <gregorian>
+            <day>05</day>
+            <month>11</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>St. Yossarian</name>
+        <gregorian>
+            <day>11</day>
+            <month>11</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der Romantik</name>
+        <gregorian>
+            <day>23</day>
+            <month>11</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag der wörtlichen Heiligen</name>
+        <gregorian>
+            <day>25</day>
+            <month>11</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Tag des frühen Mittagessens</name>
+        <gregorian>
+            <day>30</day>
+            <month>11</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Rosetta Stones Geburtstag</name>
+        <gregorian>
+            <day>01</day>
+            <month>12</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Buddy Darma Tag</name>
+        <gregorian>
+            <day>07</day>
+            <month>12</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Abend des Jahrestags des Dragon Clans</name>
+        <gregorian>
+            <day>23</day>
+            <month>12</month>
+        </gregorian>
+    </holyday>
+    <holyday>
+        <name>Jay See Fitzdragons Geburtstags</name>
+        <gregorian>
+            <day>25</day>
+            <month>12</month>
+        </gregorian>
+    </holyday>
+</holydays>

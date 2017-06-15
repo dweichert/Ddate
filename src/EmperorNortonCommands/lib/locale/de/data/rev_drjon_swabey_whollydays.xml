@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<holydays xmlns="https://davidweichert.de/ns/ddate-holyday" calendar="discordian">
+    <!--
+        Rev. DrJohn Swabey's Holydays
+        =============================
+        siehe: http://discordia.wikia.com/wiki/Whollyday
+
+        Spezifiziert lediglich Whollydays die zusätzlich zu den Standard Holydays definiert sind.
+    -->
+    <holyday>
+        <name>Faultiertag</name>
+        <description><p>Wird gefeiert, indem nichts getan wird, um sie zu feiern.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Tag des Auges</name>
+        <discordian>
+            <day>73</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Faultiertag</name>
+        <description><p>Wird gefeiert, indem nichts getan wird, um sie zu feiern.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Tag des Auges</name>
+        <discordian>
+            <day>73</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Faultiertag</name>
+        <description><p>Wird gefeiert, indem nichts getan wird, um sie zu feiern.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Tag des Auges</name>
+        <discordian>
+            <day>73</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Faultiertag</name>
+        <description><p>Wird gefeiert, indem nichts getan wird, um sie zu feiern.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Tag des Auges</name>
+        <discordian>
+            <day>73</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Faultiertag</name>
+        <description><p>Wird gefeiert, indem nichts getan wird, um sie zu feiern.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Tag des Auges</name>
+        <discordian>
+            <day>73</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+</holydays>

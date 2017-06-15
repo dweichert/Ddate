@@ -119,4 +119,25 @@ class DdateHolydayTest extends PHPUnit_Framework_TestCase
             array('30111990', "Heute ist Prickel-Prickel, 42. des Grummets 3156, heute ist: Vergnügungsfreitag und Tag des frühen Mittagessens.", "Heute ist %{%A, %e %C %Y%}%2%N, heute ist: %H."),
         );
     }
+
+    /**
+     * @dataProvider revDrJonSwabeysWhollydaysProvider
+     */
+    public function testRevDrJonSwabeysWhollydays($gregorian, $discordian, $format, $locale)
+    {
+        self::assertEquals($discordian, $this->object->ddate($format, $gregorian, $locale));
+    }
+
+    public function revDrJonSwabeysWhollydaysProvider()
+    {
+        return array(
+            array('27012017', "Heute ist Blütezeit, 27. der Verwirrung 3183, heute ist: Faultiertag.", "Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
+            array('27012017', "Heute ist Blütezeit, 27. der Verwirrung 3183, heute ist: Faultiertag.", "Heute ist %{%A, %e %C %Y%}%3%1%N, heute ist: %H.", 'de'),
+            array('07082017', "Heute ist Prickel-Prickel, 73. der Unordnung 3183, heute ist: Tag des Auges.", "Heute ist %{%A, %e %C %Y%}%3%1%N, heute ist: %H.", 'de'),
+            array('31052013', "It's Sweetmorn, the 5th of Confusion, 3179.\nCelebrate Syaday and Fun Friday", "It's %{%A, the %e of %B%},%1%2%3 %Y.%N%nCelebrate %H", 'en'),
+            array('03052013', "It's Pungenday, the 50th of Discord, 3179.\nCelebrate Discoflux", "It's %{%A, the %e of %B%},%1%2%3 %Y.%N%nCelebrate %H", 'en'),
+            array('31122004', "It's Setting Orange, the 73rd of The Aftermath, 3170.\nCelebrate Fun Friday and Eye Day", "It's %{%A, the %e of %B%},%1%2%3 %Y.%N%nCelebrate %H", 'en'),
+            array('03092017', "It's Sweetmorn, the 27th of Bureaucracy, 3183. Celebrate Slothday", "It's %{%A, the %e of %B%},%1%2%3 %Y.%N Celebrate %H", 'en'),
+        );
+    }
 }

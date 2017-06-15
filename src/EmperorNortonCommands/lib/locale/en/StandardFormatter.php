@@ -9,6 +9,7 @@ namespace EmperorNortonCommands\lib\locale\en;
 
 use EmperorNortonCommands\lib\Formatter;
 use EmperorNortonCommands\lib\Holydays\CamdenBenaresHolidays;
+use EmperorNortonCommands\lib\Holydays\RevDrJonSwabeyWhollydays;
 use EmperorNortonCommands\lib\Holydays\StandardHolydays;
 use EmperorNortonCommands\lib\Value;
 
@@ -253,15 +254,20 @@ class StandardFormatter extends Formatter
     {
         $turnOffStandardHolydays = 0;
         $turnOnCamdenBenaresHolidays = 0;
-        $string = str_replace('%1', '', $string, $turnOffStandardHolydays);
-        if ($turnOffStandardHolydays) {
-            unset($this->holydays[StandardHolydays::getKey()]);
-        }
-        $string = str_replace('%2', '', $string, $turnOnCamdenBenaresHolidays);
-        if ($turnOnCamdenBenaresHolidays) {
-            $this->holydays[CamdenBenaresHolidays::getKey()] = new CamdenBenaresHolidays();
-        }
+        $turnOnRevDrJonSwabeyWhollydays = 0;
+        $turnOnReverendLoveshadeWhollydays = 0;
 
+        $string = str_replace('%1', '', $string, $turnOffStandardHolydays);
+        $string = str_replace('%2', '', $string, $turnOnCamdenBenaresHolidays);
+        $string = str_replace('%3', '', $string, $turnOnRevDrJonSwabeyWhollydays);
+        $string = str_replace('%4', '', $string, $turnOnReverendLoveshadeWhollydays);
+
+        $this->toggleHolydaySets(
+            $turnOffStandardHolydays,
+            $turnOnCamdenBenaresHolidays,
+            $turnOnRevDrJonSwabeyWhollydays,
+            $turnOnReverendLoveshadeWhollydays
+        );
 
         return $string;
     }
@@ -286,5 +292,32 @@ class StandardFormatter extends Formatter
         $lastHolyday = array_pop($holydays);
 
         return explode(', ', $holydays) . ' and ' . $lastHolyday;
+    }
+
+    /**
+     * Toggle Holyday Sets.
+     *
+     * @param integer $turnOffStandardHolydays
+     * @param integer $turnOnCamdenBenaresHolidays
+     * @param integer $turnOnRevDrJonSwabeyWhollydays
+     * @param integer $turnOnReverendLoveshadeWhollydays
+     */
+    protected function toggleHolydaySets(
+        $turnOffStandardHolydays,
+        $turnOnCamdenBenaresHolidays,
+        $turnOnRevDrJonSwabeyWhollydays,
+        $turnOnReverendLoveshadeWhollydays
+    )
+    {
+        // because Standard Holydays are a subset of Rev. DrJon Swabey Whollydays
+        if ($turnOffStandardHolydays && !$turnOnRevDrJonSwabeyWhollydays) {
+            unset($this->holydays[StandardHolydays::getKey()]);
+        }
+        if ($turnOnCamdenBenaresHolidays) {
+            $this->holydays[CamdenBenaresHolidays::getKey()] = new CamdenBenaresHolidays();
+        }
+        if ($turnOnRevDrJonSwabeyWhollydays) {
+            $this->holydays[RevDrJonSwabeyWhollydays::getKey()] = new RevDrJonSwabeyWhollydays();
+        }
     }
 }

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<holydays xmlns="https://davidweichert.de/ns/ddate-holyday" calendar="discordian">
+    <!--
+        Rev. DrJohn Swabey's Holydays
+        =============================
+        see: http://discordia.wikia.com/wiki/Whollyday
+
+        Set only specifies Whollydays in addition to the Standard Holydays.
+    -->
+    <holyday>
+        <name>Slothday</name>
+        <description><p>Celebrated by not doing anything to celebrate them.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Eye Day</name>
+        <discordian>
+            <day>73</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Slothday</name>
+        <description><p>Celebrated by not doing anything to celebrate them.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Eye Day</name>
+        <discordian>
+            <day>73</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Slothday</name>
+        <description><p>Celebrated by not doing anything to celebrate them.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Eye Day</name>
+        <discordian>
+            <day>73</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Slothday</name>
+        <description><p>Celebrated by not doing anything to celebrate them.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Eye Day</name>
+        <discordian>
+            <day>73</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Slothday</name>
+        <description><p>Celebrated by not doing anything to celebrate them.</p></description>
+        <discordian>
+            <day>27</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Eye Day</name>
+        <discordian>
+            <day>73</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+</holydays>

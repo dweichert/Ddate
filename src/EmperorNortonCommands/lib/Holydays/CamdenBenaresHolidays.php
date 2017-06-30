@@ -16,15 +16,7 @@ use EmperorNortonCommands\lib\Value;
  */
 class CamdenBenaresHolidays extends Holydays
 {
-    /**
-     * Returns key identifying the Holyday set.
-     *
-     * @return string
-     */
-    public static function getKey()
-    {
-        return 'camden_benares';
-    }
+    const KEY = 'camden_benares';
 
     /**
      * @inheritdoc

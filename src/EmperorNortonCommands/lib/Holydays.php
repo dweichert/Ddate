@@ -15,6 +15,8 @@ use DOMXPath;
  */
 abstract class Holydays
 {
+    const KEY = 'holydays';
+
     /**
      * Array of Holydays.
      *
@@ -60,7 +62,7 @@ abstract class Holydays
      */
     public static function getKey()
     {
-        return '';
+        return static::KEY;
     }
 
     /**

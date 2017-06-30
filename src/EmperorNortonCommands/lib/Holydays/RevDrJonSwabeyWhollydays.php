@@ -15,15 +15,7 @@ use EmperorNortonCommands\lib\Holydays;
  */
 class RevDrJonSwabeyWhollydays extends Holydays
 {
-    /**
-     * Returns key identifying the Holyday set.
-     *
-     * @return string
-     */
-    public static function getKey()
-    {
-        return 'rev_drjon_swabey';
-    }
+    const KEY = 'rev_drjon_swabey';
 
     /**
      * @inheritdoc

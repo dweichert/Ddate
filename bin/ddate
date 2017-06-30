@@ -1,0 +1,62 @@
+#!/usr/bin/env php
+<?php
+/**
+ * This file is part of the Emperor Norton Commands.
+ *
+ * Public domain. All rites reversed.
+ */
+
+use EmperorNortonCommands\lib\Ddate;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$ddate = new Ddate();
+$locale = 'en';
+$format = null;
+$gregorian = null;
+
+if (isset($argv[1]) && '--help' == $argv[1])
+{
+    echo "Synopsis\n";
+    echo "ddate [+format] [date] [locale]\n";
+    echo "\nFormat options:";
+    if (isset($argv[2]))
+    {
+        $locale = substr($argv[2], 0, 2);
+    }
+    foreach ($ddate->getSupportedFormatStringFields($locale) as $option => $description)
+    {
+        echo "\n" . $option . ' - ' . $description;
+    }
+    echo "\nDate: dmY, e.g. 01012016 for 1st of January 2016";
+    echo "\nLocale: two letter locale identifier, e.g. 'en' for English\n";
+}
+elseif (isset($argv[1]) && '-en' == $argv[1])
+{
+    echo $ddate->ddate(
+            'Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H'
+        ) . "\n";
+}
+elseif (isset($argv[1]) && '-de' == $argv[1])
+{
+    echo $ddate->ddate(
+            'Heute ist %{%A, %e %C%}, %Y.%N %nCelebrate %H', null, 'de'
+        ) . "\n";
+}
+else
+{
+    if (isset($argv[1]))
+    {
+        $format = $argv[1];
+    }
+    if (isset($argv[2]))
+    {
+        $gregorian = $argv[2];
+    }
+    if (isset($argv[3]))
+    {
+        $locale = substr($argv[3], 0, 2);
+    }
+    echo $ddate->ddate($format, $gregorian, $locale);
+    echo "\n";
+}

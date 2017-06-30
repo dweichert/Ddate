@@ -10,6 +10,11 @@
          stopOnFailure="false"
          syntaxCheck="false"
 >
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./src/EmperorNortonCommands/lib</directory>
+        </whitelist>
+    </filter>
     <testsuites>
         <testsuite name="Emperor Norton Commands Test Suite">
             <directory>./src/EmperorNortonCommands/tests/</directory>

@@ -2,4 +2,4 @@ build/*
 phpunit.xml
 phpunit.phar
 composer.lock
-.php-version
+vendor/

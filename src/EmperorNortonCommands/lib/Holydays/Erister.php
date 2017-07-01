@@ -8693,7 +8693,8 @@ class Erister
      */
     public function checkIsErister(Value $ddate, $overrideCalendarExtension = false)
     {
-        if (function_exists('easter_days') && !$overrideCalendarExtension)
+        // easter_days() function in HHVM is not year 9000 safe
+        if (function_exists('easter_days') && !$overrideCalendarExtension && !defined('HHVM_VERSION'))
         {
             return $this->isEristerCalendarExtension($ddate);
         }

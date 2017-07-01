@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<holydays xmlns="https://davidweichert.de/ns/ddate-holyday" calendar="discordian">
+    <!--
+        Rev. Loveshade and Friends Whollydays
+        =====================================
+        see: http://discordia.wikia.com/wiki/Whollyday
+    -->
+    <holyday>
+        <name>Nude Year's Day</name>
+        <discordian>
+            <day>01</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Backwards Day, Reformed</name>
+        <discordian>
+            <day>10</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Binary Day</name>
+        <discordian>
+            <day>10</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Pat Pineapple Day</name>
+        <discordian>
+            <day>18</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Hug Day</name>
+        <discordian>
+            <day>21</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Backwards Day, Traditional</name>
+        <discordian>
+            <day>26</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Springfield Day</name>
+        <discordian>
+            <day>46</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Pet Loving Day</name>
+        <discordian>
+            <day>51</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <!--
+    <holyday>
+        <name>The Unknown Whollyday</name>
+        <description><p>Occurs on the 30th of February and is undefined in the Discordian Calendar</p></description>
+        <discordian>
+            <day>????</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    -->
+    <holyday>
+        <name>Head Chicken/Chicken Head Day</name>
+        <discordian>
+            <day>69</day>
+            <season>01</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Lingananday</name>
+        <discordian>
+            <day>05</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Discordians for Jesus/Love Your Neighbor Day</name>
+        <discordian>
+            <day>11</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Amateur's Day/Quarter Day</name>
+        <discordian>
+            <day>18</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>St. John the Blasphemist's Day/Blasphemy Day</name>
+        <discordian>
+            <day>19</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Jake Day</name>
+        <discordian>
+            <day>23</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Universal Ordination Day</name>
+        <discordian>
+            <day>43</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Jake Day Jr./Day of the Elppin</name>
+        <discordian>
+            <day>70</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Towel Day</name>
+        <discordian>
+            <day>72</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Gulikday/Fearless Fred Day</name>
+        <discordian>
+            <day>05</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>537 Day</name>
+        <discordian>
+            <day>11</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Mad Hatter Day</name>
+        <discordian>
+            <day>15</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Doomed TV Series Rememberance Day</name>
+        <discordian>
+            <day>20</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Imaginary Friend/Captain Tuttle Day</name>
+        <discordian>
+            <day>26</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>St. George's Day</name>
+        <discordian>
+            <day>28</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <!--
+    <holyday>
+        <name>June 31st for Popes</name>
+        <description><p>Occurs on the 31st of June and is undefined in the Discordian Calendar</p></description>
+        <discordian>
+            <day>????</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    -->
+    <holyday>
+        <name>Mid Year's Day</name>
+        <discordian>
+            <day>37</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Mal-2 Day</name>
+        <discordian>
+            <day>55</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>John Dillinger Day</name>
+        <discordian>
+            <day>57</day>
+            <season>03</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Multiversal Underwear Day</name>
+        <discordian>
+            <day>03</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>St. Cecil Day</name>
+        <discordian>
+            <day>10</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Festival of Hanky-Panky Spankies</name>
+        <discordian>
+            <day>18</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Cat Dancing &amp; Foot Fetish Day aka Pussyfoot Day</name>
+        <discordian>
+            <day>33</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Mass of Planet Eris/Eristotle</name>
+        <discordian>
+            <day>37</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Feast of St. John the Blasphemist</name>
+        <discordian>
+            <day>55</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Shamlicht Kids Club Day</name>
+        <discordian>
+            <day>57</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Gonkulator Day (Gonculator Day)</name>
+        <discordian>
+            <day>59</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Mad Hatter Day</name>
+        <discordian>
+            <day>60</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Habeas Corpus Rememberence Day</name>
+        <discordian>
+            <day>66</day>
+            <season>04</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Ek-sen-triks CluborGuild Day</name>
+        <discordian>
+            <day>28</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Spanking Fest</name>
+        <discordian>
+            <day>36</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>537 Day, sometimes Turkey Day</name>
+        <discordian>
+            <day>37</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Hug Day II</name>
+        <discordian>
+            <day>46</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Santa Claus Day/Giftmas</name>
+        <discordian>
+            <day>67</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>New Year's Eve Eve</name>
+        <discordian>
+            <day>72</day>
+            <season>05</season>
+        </discordian>
+    </holyday>
+</holydays>

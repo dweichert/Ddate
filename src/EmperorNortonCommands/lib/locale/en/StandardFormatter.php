@@ -10,6 +10,7 @@ namespace EmperorNortonCommands\lib\locale\en;
 use EmperorNortonCommands\lib\Formatter;
 use EmperorNortonCommands\lib\Holydays\CamdenBenaresHolidays;
 use EmperorNortonCommands\lib\Holydays\RevDrJonSwabeyWhollydays;
+use EmperorNortonCommands\lib\Holydays\RevLoveshadeWhollydays;
 use EmperorNortonCommands\lib\Holydays\StandardHolydays;
 use EmperorNortonCommands\lib\Value;
 
@@ -318,6 +319,10 @@ class StandardFormatter extends Formatter
         }
         if ($turnOnRevDrJonSwabeyWhollydays) {
             $this->holydays[RevDrJonSwabeyWhollydays::getKey()] = new RevDrJonSwabeyWhollydays();
+        }
+        if ($turnOnReverendLoveshadeWhollydays)
+        {
+            $this->holydays[RevLoveshadeWhollydays::getKey()] = new RevLoveshadeWhollydays();
         }
     }
 }

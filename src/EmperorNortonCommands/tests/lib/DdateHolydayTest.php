@@ -140,4 +140,23 @@ class DdateHolydayTest extends PHPUnit_Framework_TestCase
             array('03092017', "It's Sweetmorn, the 27th of Bureaucracy, 3183. Celebrate Slothday", "It's %{%A, the %e of %B%},%1%2%3 %Y.%N Celebrate %H", 'en'),
         );
     }
+
+    /**
+     * @dataProvider revLoveshadesWhollydaysProvider
+     */
+    public function testRevLoveshadesWhollydays($gregorian, $discordian, $format, $locale)
+    {
+        self::assertEquals($discordian, $this->object->ddate($format, $gregorian, $locale));
+    }
+
+    public function revLoveshadesWhollydaysProvider()
+    {
+        return array(
+            array('30031997', "It's Prickle-Prickle, the 16th of Discord, 3163.\nCelebrate Erister", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
+            array('23042000', "It's Pungenday, the 40th of Discord, 3166.\nCelebrate Erister", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
+            array('16042006', "It's Sweetmorn, the 33rd of Discord, 3172.\nCelebrate Erister", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
+            array('05042015', "It's Setting Orange, the 22nd of Discord, 3181.\nCelebrate Be Kind To Tourists Day and Erister", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
+            array('31052013', "It's Sweetmorn, the 5th of Confusion, 3179.\nCelebrate Syaday and Fun Friday", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
+        );
+    }
 }

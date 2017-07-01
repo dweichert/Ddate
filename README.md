@@ -1,4 +1,4 @@
-#README
+# README
 
 [![Build Status](https://travis-ci.org/dweichert/Ddate.svg?branch=master)](https://travis-ci.org/dweichert/Ddate)
 [![Downloads this Month](https://img.shields.io/packagist/dm/ddate/ddate.svg?style=flat)](https://packagist.org/packages/ddate/ddate)
@@ -9,20 +9,20 @@
 [![Code Climate](https://img.shields.io/codeclimate/coverage/github/dweichert/Ddate.svg)](https://codeclimate.com/github/dweichert/Ddate)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/adbb07bc-edaa-4d6e-a113-0b766de6687a.svg?style=flat&label=insight)](https://insight.sensiolabs.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a)
 
-##What is EmperorNortonCommands/lib/Ddate?
+## What is EmperorNortonCommands/lib/Ddate?
 
 EmperorNortonCommands/lib/Ddate is an almost faithful recreation of the ddate
 command provided by the *util-linux* standard package of the Linux operating
 system in PHP. It converts Gregorian to Discordian dates.
 
-##Installation
+## Installation
 
 The easiest way to install the library is adding it as a dependency to your
 project's composer.json file.
 
     $ composer require ddate/ddate "~1.0"
 
-##Usage
+## Usage
 
 ```
 // use the class Ddate
@@ -41,7 +41,7 @@ class Foo
     }
 }
 ```
-###Method ddate
+### Method ddate
 
     @param  string $format OPTIONAL format string
     @param  string $date   OPTIONAL Gregorian date
@@ -80,7 +80,7 @@ Celebrate Bureflux
 
 Today's St. Tib's Day, 3182.
 
-###Method getAvailableFormatStringFields
+### Method getAvailableFormatStringFields
 
     @param  string   $locale OPTIONAL e.g. en for English, de for German, ...
     @return string[]
@@ -92,10 +92,10 @@ the values provide an English description of the fields purpose.
 The first optional parameter allows to specify a locale identifier, because
 the format string fields are formatter specific.
 
-##License
+## License
 
 This program is in the public domain. Distribute freely. Or not.
-See the file LICENSE for more details.
+See the file [LICENSE](LICENSE) for more details.
 
 
 Hail Eris, All Hail Discordia,

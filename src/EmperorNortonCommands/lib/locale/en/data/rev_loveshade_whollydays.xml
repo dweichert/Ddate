@@ -13,7 +13,7 @@
         </discordian>
     </holyday>
     <holyday>
-        <name>Backwards Day, Reformed</name>
+        <name>Backwards Day (Reformed)</name>
         <discordian>
             <day>10</day>
             <season>01</season>
@@ -41,7 +41,7 @@
         </discordian>
     </holyday>
     <holyday>
-        <name>Backwards Day, Traditional</name>
+        <name>Backwards Day (Traditional)</name>
         <discordian>
             <day>26</day>
             <season>01</season>
@@ -93,7 +93,14 @@
         </discordian>
     </holyday>
     <holyday>
-        <name>Amateur's Day/Quarter Day</name>
+        <name>Amateur's Day</name>
+        <discordian>
+            <day>18</day>
+            <season>02</season>
+        </discordian>
+    </holyday>
+    <holyday>
+        <name>Quarter Day</name>
         <discordian>
             <day>18</day>
             <season>02</season>
@@ -292,7 +299,7 @@
         </discordian>
     </holyday>
     <holyday>
-        <name>537 Day, sometimes Turkey Day</name>
+        <name>537 Day (sometimes Turkey Day)</name>
         <discordian>
             <day>37</day>
             <season>05</season>

@@ -152,11 +152,16 @@ class DdateHolydayTest extends PHPUnit_Framework_TestCase
     public function revLoveshadesWhollydaysProvider()
     {
         return array(
+            array('01011995', "It's Sweetmorn, the 1st of Chaos, 3161. Celebrate Bogey's Day and Nude Year's Day", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N Celebrate %H", 'en'),
+            array('10011996', "It's Setting Orange, the 10th of Chaos, 3162. Celebrate Backwards Day (Reformed) and Binary Day", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N Celebrate %H", 'en'),
             array('30031997', "It's Prickle-Prickle, the 16th of Discord, 3163.\nCelebrate Erister", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
             array('23042000', "It's Pungenday, the 40th of Discord, 3166.\nCelebrate Erister", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
             array('16042006', "It's Sweetmorn, the 33rd of Discord, 3172.\nCelebrate Erister", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
             array('05042015', "It's Setting Orange, the 22nd of Discord, 3181.\nCelebrate Be Kind To Tourists Day and Erister", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
-            array('31052013', "It's Sweetmorn, the 5th of Confusion, 3179.\nCelebrate Syaday and Fun Friday", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
+            array('31052013', "It's Sweetmorn, the 5th of Confusion, 3179.\nCelebrate Syaday, Fun Friday and Gulikday/Fearless Fred Day", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N%nCelebrate %H", 'en'),
+            array('30122017', "Heute ist Prickel-Prickel, 72. des Grummets 3183, heute ist: Vorabend des Neujahrsabends.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
+            array('10011901', "Heute ist Orangewerdend, 10. der Verwirrung 3067, heute ist: Rückwärtstag (reformiert) und Binärtag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
+            array('07041901', "Heute ist Blütezeit, 24. der Zweitracht 3067, heute ist: Eristern.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
         );
     }
 }

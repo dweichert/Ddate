@@ -292,7 +292,7 @@ class StandardFormatter extends Formatter
 
         $lastHolyday = array_pop($holydays);
 
-        return explode(', ', $holydays) . ' and ' . $lastHolyday;
+        return implode(', ', $holydays) . ' and ' . $lastHolyday;
     }
 
     /**

@@ -16,7 +16,7 @@ use EmperorNortonCommands\lib\Value;
  */
 class RevLoveshadeWhollydays extends Holydays
 {
-    const KEY = 'rev_drjon_swabey';
+    const KEY = 'rev_loveshade';
 
     /**
      * @inheritdoc
@@ -43,6 +43,6 @@ class RevLoveshadeWhollydays extends Holydays
      */
     protected function getPathToXML($locale)
     {
-        return __DIR__ . '/../locale/' . $locale . '/data/rev_drjon_swabey_whollydays.xml';
+        return __DIR__ . '/../locale/' . $locale . '/data/rev_loveshade_whollydays.xml';
     }
 }

@@ -169,6 +169,10 @@ class DdateHolydayTest extends PHPUnit_Framework_TestCase
             array('23082027', "Today is Setting Orange, 16th Bureaucracy 3193", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
             array('30082026', "Today is Boomtime, 23rd Bureaucracy 3192", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
             array('16082026', "Today is Pungenday, 9th Bureaucracy 3192", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
+            array('06051910', "Today is Sweetmorn, 53rd Discord 3076, celebrate: No Pants Day.", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
+            array('03051912', "Today is Pungenday, 50th Discord 3078, celebrate: Discoflux and No Pants Day.", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
+            array('03052041', "Heute ist Stichtag, 50. der Zweitracht 3207, heute ist: Zweifluss und Untenohne Tag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
+            array('03052042', "Heute ist Stichtag, 50. der Zweitracht 3208, heute ist: Zweifluss.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
         );
     }
 }

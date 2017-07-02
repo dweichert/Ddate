@@ -47,6 +47,17 @@ class RevLoveshadeWhollydays extends Holydays
                 $holidays[] = 'Obenohne Tag';
             }
         }
+        if ($this->isNoPantsDay($ddate))
+        {
+            if ('en' == $locale)
+            {
+                $holidays[] = 'No Pants Day';
+            }
+            else
+            {
+                $holidays[] = 'Untenohne Tag';
+            }
+        }
         $holidays = array_merge($holidays, parent::getHolyday($ddate, $locale));
 
         return $holidays;
@@ -81,6 +92,30 @@ class RevLoveshadeWhollydays extends Holydays
             return false;
         }
         if ($ddate->getGregorian()->format('d') < 23)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Is it No Pants Day?
+     *
+     * @param Value $ddate
+     * @return bool
+     */
+    private function isNoPantsDay(Value $ddate)
+    {
+        if ('05' != $ddate->getGregorian()->format('m'))
+        {
+            return false;
+        }
+        if ('Fri' != $ddate->getGregorian()->format('D'))
+        {
+            return false;
+        }
+        if ($ddate->getGregorian()->format('d') > 7)
         {
             return false;
         }

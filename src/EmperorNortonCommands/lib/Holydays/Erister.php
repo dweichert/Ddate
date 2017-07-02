@@ -41,8 +41,7 @@ class Erister
     /**
      * Perform check using calendar extension.
      *
-     * Better performance and significantly lower memory usage.
-     *
+     * @param Value $ddate
      * @return bool
      */
     private function isEristerCalendarExtension(Value $ddate)
@@ -67,6 +66,12 @@ class Erister
         return false;
     }
 
+    /**
+     * Perform check without relying on calendar extension.
+     *
+     * @param Value $ddate
+     * @return bool
+     */
     public function isEristerNoCalendarExtension(Value $ddate)
     {
         $year = (int)$ddate->getGregorian()->format('Y');

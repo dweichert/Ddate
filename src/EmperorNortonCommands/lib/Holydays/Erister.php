@@ -72,7 +72,7 @@ class Erister
      * @param Value $ddate
      * @return bool
      */
-    public function isEristerNoCalendarExtension(Value $ddate)
+    private function isEristerNoCalendarExtension(Value $ddate)
     {
         $year = (int)$ddate->getGregorian()->format('Y');
 

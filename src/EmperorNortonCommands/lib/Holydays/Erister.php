@@ -25,17 +25,17 @@ class Erister implements NoFixedDateHolyday
      *
      * @var boolean
      */
-    private $overrideCalendarExtension = false;
+    private $usePhpCalendarExt = false;
 
     /**
      * Erister constructor.
-     * @param boolean $overrideCalendarExtension OPTIONAL
+     * @param boolean $usePhpCalendarExt OPTIONAL
      */
-    public function __construct($overrideCalendarExtension = false)
+    public function __construct($usePhpCalendarExt = false)
     {
-        if (true === $overrideCalendarExtension)
+        if (true === $usePhpCalendarExt)
         {
-            $this->overrideCalendarExtension = $overrideCalendarExtension;
+            $this->usePhpCalendarExt = $usePhpCalendarExt;
         }
     }
 
@@ -47,7 +47,7 @@ class Erister implements NoFixedDateHolyday
      */
     public function is(Value $ddate)
     {
-        if (function_exists('easter_days') && !$this->overrideCalendarExtension)
+        if (function_exists('easter_days') && !$this->usePhpCalendarExt)
         {
             return $this->isEristerCalendarExtension($ddate);
         }

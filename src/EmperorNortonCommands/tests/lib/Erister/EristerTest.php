@@ -16,9 +16,9 @@ class EristerTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider isEristerProvider
      */
-    public function testIsErister($expectedTrue, $gregorian, $overrideCalendarExtension)
+    public function testIsErister($expectedTrue, $gregorian, $usePhpCalendarExt)
     {
-        $object = new Erister($overrideCalendarExtension);
+        $object = new Erister($usePhpCalendarExt);
         if ($expectedTrue)
         {
             self::assertTrue($object->is($this->getMockValue($gregorian)));

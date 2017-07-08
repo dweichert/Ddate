@@ -36,7 +36,8 @@ class RevLoveshadeWhollydays extends Holydays
                 $holidays[] = 'Eristern';
             }
         }
-        if ($this->isGoToplessDay($ddate))
+        $goToplessDay = new GoToplessDay();
+        if ($goToplessDay->is($ddate))
         {
             if ('en' == $locale)
             {
@@ -47,7 +48,8 @@ class RevLoveshadeWhollydays extends Holydays
                 $holidays[] = 'Obenohne Tag';
             }
         }
-        if ($this->isNoPantsDay($ddate))
+        $noPantsDay = new NoPantsDay();
+        if ($noPantsDay->is($ddate))
         {
             if ('en' == $locale)
             {
@@ -69,57 +71,5 @@ class RevLoveshadeWhollydays extends Holydays
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/rev_loveshade_whollydays.xml';
-    }
-
-    /**
-     * Is it Go Topless Day?
-     *
-     * @param Value $ddate
-     * @return bool
-     */
-    private function isGoToplessDay(Value $ddate)
-    {
-        if ('08' != $ddate->getGregorian()->format('m'))
-        {
-            return false;
-        }
-        if ('Sun' != $ddate->getGregorian()->format('D'))
-        {
-            return false;
-        }
-        if ($ddate->getGregorian()->format('d') > 29)
-        {
-            return false;
-        }
-        if ($ddate->getGregorian()->format('d') < 23)
-        {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * Is it No Pants Day?
-     *
-     * @param Value $ddate
-     * @return bool
-     */
-    private function isNoPantsDay(Value $ddate)
-    {
-        if ('05' != $ddate->getGregorian()->format('m'))
-        {
-            return false;
-        }
-        if ('Fri' != $ddate->getGregorian()->format('D'))
-        {
-            return false;
-        }
-        if ($ddate->getGregorian()->format('d') > 7)
-        {
-            return false;
-        }
-
-        return true;
     }
 }

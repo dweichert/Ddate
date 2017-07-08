@@ -16,7 +16,7 @@ use EmperorNortonCommands\lib\Value;
 interface NoFixedDateHolyday
 {
     /**
-     * Checks if given ddate value is Holyday.
+     * Checks if given ddate value is the Holyday specified by the implementing class.
      *
      * @param Value $ddate
      * @return boolean

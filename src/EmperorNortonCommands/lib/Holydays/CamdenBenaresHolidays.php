@@ -24,7 +24,8 @@ class CamdenBenaresHolidays extends Holydays
     public function getHolyday(Value $ddate, $locale)
     {
         $holidays = array();
-        if ($this->isFunFriday($ddate))
+        $funFriday = new FunFriday();
+        if ($funFriday->is($ddate))
         {
             if ('en' == $locale) {
                 $holidays[] = 'Fun Friday';
@@ -43,22 +44,5 @@ class CamdenBenaresHolidays extends Holydays
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/camden_benares_holidays.xml';
-    }
-
-    /**
-     * Fun Friday is the fifth Friday in a month that has five Fridays.
-     *
-     * @return string
-     */
-    private function isFunFriday(Value $value)
-    {
-        if ($value->getGregorian()->format('j') < 29) {
-            return false;
-        }
-        if ($value->getGregorian()->format('D') != 'Fri') {
-            return false;
-        }
-
-        return true;
     }
 }

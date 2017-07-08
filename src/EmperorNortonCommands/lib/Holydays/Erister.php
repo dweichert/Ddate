@@ -17,18 +17,37 @@ use EmperorNortonCommands\lib\Value;
  *
  * @package EmperorNortonCommands\lib\Holydays
  */
-class Erister
+class Erister implements NoFixedDateHolyday
 {
+    /**
+     * If set to true PHP's calendar extension is not used, even when it is
+     * available.
+     *
+     * @var boolean
+     */
+    private $overrideCalendarExtension = false;
+
+    /**
+     * Erister constructor.
+     * @param boolean $overrideCalendarExtension OPTIONAL
+     */
+    public function __construct($overrideCalendarExtension = false)
+    {
+        if (true === $overrideCalendarExtension)
+        {
+            $this->overrideCalendarExtension = $overrideCalendarExtension;
+        }
+    }
+
     /**
      * Checks if given ddate value is Erister.
      *
      * @param Value $ddate
-     * @param bool $overrideCalendarExtension OPTIONAL
-     * @return bool
+     * @return boolean
      */
-    public function checkIsErister(Value $ddate, $overrideCalendarExtension = false)
+    public function is(Value $ddate)
     {
-        if (function_exists('easter_days') && !$overrideCalendarExtension)
+        if (function_exists('easter_days') && !$this->overrideCalendarExtension)
         {
             return $this->isEristerCalendarExtension($ddate);
         }

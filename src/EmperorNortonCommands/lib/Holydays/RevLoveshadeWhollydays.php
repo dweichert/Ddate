@@ -25,7 +25,7 @@ class RevLoveshadeWhollydays extends Holydays
     {
         $holidays = array();
         $erister = new Erister();
-        if ($erister->checkIsErister($ddate))
+        if ($erister->is($ddate))
         {
             if ('en' == $locale)
             {

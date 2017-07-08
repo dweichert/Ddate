@@ -14,27 +14,18 @@ use PHPUnit_Framework_TestCase;
 class EristerTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @var Erister
-     */
-    private $object;
-
-    protected function setUp()
-    {
-        $this->object = new Erister();
-    }
-
-    /**
      * @dataProvider isEristerProvider
      */
     public function testIsErister($expectedTrue, $gregorian, $overrideCalendarExtension)
     {
+        $object = new Erister($overrideCalendarExtension);
         if ($expectedTrue)
         {
-            self::assertTrue($this->object->checkIsErister($this->getMockValue($gregorian), $overrideCalendarExtension));
+            self::assertTrue($object->is($this->getMockValue($gregorian)));
         }
         else
         {
-            self::assertFalse($this->object->checkIsErister($this->getMockValue($gregorian), $overrideCalendarExtension));
+            self::assertFalse($object->is($this->getMockValue($gregorian)));
         }
     }
 

@@ -326,4 +326,16 @@
             <season>05</season>
         </discordian>
     </holyday>
+    <holyday>
+        <name>Erister</name>
+        <irregular>Erister</irregular>
+    </holyday>
+    <holyday>
+        <name>Go Topless Day</name>
+        <irregular>GoToplessDay</irregular>
+    </holyday>
+    <holyday>
+        <name>No Pants Day</name>
+        <irregular>NoPantsDay</irregular>
+    </holyday>
 </holydays>

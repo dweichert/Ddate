@@ -410,4 +410,8 @@
             <month>12</month>
         </gregorian>
     </holyday>
+    <holyday>
+        <name>Vergnügungsfreitag</name>
+        <irregular>FunFriday</irregular>
+    </holyday>
 </holydays>

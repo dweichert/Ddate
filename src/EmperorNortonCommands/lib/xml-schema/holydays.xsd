@@ -25,6 +25,7 @@
       <xs:choice>
         <xs:element type="ddate:discordianType" name="discordian" xmlns:ddate="https://davidweichert.de/ns/ddate-holyday"/>
         <xs:element type="ddate:gregorianType" name="gregorian" xmlns:ddate="https://davidweichert.de/ns/ddate-holyday"/>
+        <xs:element type="xs:string" name="irregular" xmlns:ddate="https://davidweichert.de/ns/ddate-holyday"/>
       </xs:choice>
     </xs:sequence>
   </xs:complexType>

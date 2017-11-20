@@ -27,38 +27,17 @@ class RevLoveshadeWhollydays extends Holydays
         $erister = new Erister();
         if ($erister->is($ddate))
         {
-            if ('en' == $locale)
-            {
-                $holidays[] = 'Erister';
-            }
-            else
-            {
-                $holidays[] = 'Eristern';
-            }
+            $holidays[] = parent::getName('Erister', $locale);
         }
         $goToplessDay = new GoToplessDay();
         if ($goToplessDay->is($ddate))
         {
-            if ('en' == $locale)
-            {
-                $holidays[] = 'Go Topless Day';
-            }
-            else
-            {
-                $holidays[] = 'Obenohne Tag';
-            }
+            $holidays[] = parent::getName('GoToplessDay', $locale);
         }
         $noPantsDay = new NoPantsDay();
         if ($noPantsDay->is($ddate))
         {
-            if ('en' == $locale)
-            {
-                $holidays[] = 'No Pants Day';
-            }
-            else
-            {
-                $holidays[] = 'Untenohne Tag';
-            }
+            $holidays[] = parent::getName('NoPantsDay', $locale);
         }
         $holidays = array_merge($holidays, parent::getHolyday($ddate, $locale));
 

@@ -163,15 +163,15 @@ class DdateHolydayTest extends PHPUnit_Framework_TestCase
             array('10011901', "Heute ist Orangewerdend, 10. der Verwirrung 3067, heute ist: Rückwärtstag (reformiert) und Binärtag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
             array('07041901', "Heute ist Blütezeit, 24. der Zweitracht 3067, heute ist: Eristern.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
             array('27082017', "Today is Prickle-Prickle, 20th Bureaucracy 3183, celebrate: Go Topless Day.", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
-            array('27082017', "Heute ist Prickel-Prickel, 20. der Beamtenherrschaft 3183, heute ist: Obenohne Tag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
-            array('26082018', "Heute ist Stichtag, 19. der Beamtenherrschaft 3184, heute ist: Obenohne Tag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
+            array('27082017', "Heute ist Prickel-Prickel, 20. der Beamtenherrschaft 3183, heute ist: Obenohnetag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
+            array('26082018', "Heute ist Stichtag, 19. der Beamtenherrschaft 3184, heute ist: Obenohnetag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
             array('23082026', "Today is Setting Orange, 16th Bureaucracy 3192, celebrate: Go Topless Day.", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
             array('23082027', "Today is Setting Orange, 16th Bureaucracy 3193", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
             array('30082026', "Today is Boomtime, 23rd Bureaucracy 3192", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
             array('16082026', "Today is Pungenday, 9th Bureaucracy 3192", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
             array('06051910', "Today is Sweetmorn, 53rd Discord 3076, celebrate: No Pants Day.", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
             array('03051912', "Today is Pungenday, 50th Discord 3078, celebrate: Discoflux and No Pants Day.", "%4Today is %{%A, %e %B %Y%}%3%N, celebrate: %H.", 'en'),
-            array('03052041', "Heute ist Stichtag, 50. der Zweitracht 3207, heute ist: Zweifluss und Untenohne Tag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
+            array('03052041', "Heute ist Stichtag, 50. der Zweitracht 3207, heute ist: Zweifluss und Untenohnetag.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
             array('03052042', "Heute ist Stichtag, 50. der Zweitracht 3208, heute ist: Zweifluss.", "%4Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
         );
     }

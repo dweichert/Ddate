@@ -39,11 +39,7 @@ abstract class Holydays
      */
     public function getHolyday(Value $ddate, $locale)
     {
-        $domDocument = new DOMDocument();
-        $domDocument->load($this->getPathToXML($locale));
-
-        $xpath = new DOMXPath($domDocument);
-        $xpath->registerNamespace('h', 'https://davidweichert.de/ns/ddate-holyday');
+        $xpath = $this->getXpath($locale);
 
         $calendar = $this->getCalendar($xpath);
 
@@ -72,6 +68,20 @@ abstract class Holydays
      * @return string
      */
     abstract protected function getPathToXML($locale);
+
+  /**
+   * Get name of Holyday by key.
+   *
+   * @param string $key
+   * @param string $locale
+   * @return string
+   */
+    protected function getName($key, $locale)
+    {
+        $holydayNodeList = $this->getXpath($locale)->query("//h:name[..//h:irregular='$key']");
+
+        return $holydayNodeList[0]->textContent;
+    }
 
     /**
      * Get Calendar.
@@ -127,6 +137,22 @@ abstract class Holydays
         }
 
         return $holydays;
+    }
+
+    /**
+     * Get DOMXPath Object for XML containing translations.
+     *
+     * @param $locale
+     * @return DOMXPath
+     */
+    private function getXpath($locale)
+    {
+        $domDocument = new DOMDocument();
+        $domDocument->load($this->getPathToXML($locale));
+        $xpath = new DOMXPath($domDocument);
+        $xpath->registerNamespace('h', 'https://davidweichert.de/ns/ddate-holyday');
+
+        return $xpath;
     }
 
 }

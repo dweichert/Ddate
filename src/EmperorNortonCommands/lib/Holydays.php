@@ -109,7 +109,7 @@ abstract class Holydays
     }
 
     /**
-     * Get Holyday from XML by Discordian day and season.
+     * Get Holyday from XML by Gregorian day and season.
      *
      * @param Value $ddate
      * @param DOMXPath $xpath

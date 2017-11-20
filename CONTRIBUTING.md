@@ -12,7 +12,7 @@ documentation, art work, or anything else, must be given freely to everybody els
 under the terms of the [LICENSE](LICENSE) of this project.
 
 If you are not happy with this please feel free to fork the project and form your
-own Cabal promoting your own views or interests.
+own cabal promoting your own views or interests.
 
 ## Coding Guidelines, Style Guide, etc.
 

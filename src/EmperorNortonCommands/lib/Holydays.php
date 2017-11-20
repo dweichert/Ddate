@@ -80,7 +80,7 @@ abstract class Holydays
     {
         $holydayNodeList = $this->getXpath($locale)->query("//h:name[..//h:irregular='$key']");
 
-        return $holydayNodeList[0]->textContent;
+        return $holydayNodeList->item(0)->textContent;
     }
 
     /**

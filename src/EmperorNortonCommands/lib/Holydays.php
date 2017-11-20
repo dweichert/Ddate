@@ -18,16 +18,6 @@ abstract class Holydays
     const KEY = 'holydays';
 
     /**
-     * Array of Holydays.
-     *
-     * Keys are composed of the Gregorian day and month (2 digits). Values are the
-     * Holyday's name in the given language.
-     *
-     * @var mixed
-     */
-    protected $holydays = array();
-
-    /**
      * Get Holyday.
      *
      * Returns the name of the Holyday if there is a Holyday on given date,

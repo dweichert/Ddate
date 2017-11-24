@@ -17,10 +17,21 @@ system in PHP. It converts Gregorian to Discordian dates.
 
 ## Installation
 
-The easiest way to install the library is adding it as a dependency to your
-project's composer.json file.
+The easiest way to use the library in your project is to install it by adding
+it as a dependency to your project's composer.json file.
 
-    $ composer require ddate/ddate "~1.0"
+    $ composer require ddate/ddate "^1.1"
+    
+If you want to call the library via the command line or use it in a shell
+script downloading the
+[PHAR file](https://en.wikipedia.org/wiki/PHAR_(file_format)) from the
+[releases page](https://github.com/dweichert/Ddate/releases) can be
+convenient. Everything is contained in a single file that can be called
+from the command line and you can pass parameters as command line arguments
+(see below for deteails). You can invoke *ddate* from the command line by
+executing the file in the directory to which it was downloaded:
+    
+    $ ./ddate.phar
 
 ## Usage
 
@@ -41,44 +52,54 @@ class Foo
     }
 }
 ```
-### Method ddate
 
-    @param  string $format OPTIONAL format string
-    @param  string $date   OPTIONAL Gregorian date
-    @param  string $locale OPTIONAL e.g. en for English, de for German, ...
-    @return string
-    @throws \InvalidArgumentException
+The method ddate() returns the date in Discordian date format. If called
+with no parameters, the current system date will be used. 
 
-Returns the date in Discordian date format. If called with no arguments,
-the current system date will be used. Alternatively, a Gregorian date may
-be specified as the second argument of the function, in form of a day,
-month and year (dmY), e.g. 29022012 (for the 29th of February 2012).
+### Parameters
 
-If a format string is specified as the first argument, the Discordian date
+If a format string is specified as the first parameter, the Discordian date
 will be returned in a format specified by the string. This mechanism works
 similarly to the format string mechanism of date(), only almost completely
 differently.
 
-The third argument is a string serving as a locale identifier. Currently
+To show the Discordian date for another day, a Gregorian date may be
+specified as the second parameter of the function, in form of a day, month
+and year (dmY), e.g. 29022012 (for the 29th of February 2012).
+
+The third parameter is a string serving as a locale identifier. Currently
 'en' (for English) and 'de' (for German) are supported by standard
 formatters shipped with the library. English is the fallback should no
 locale be specified.
 
 #### Examples
 
-    ddate('Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H', 18092013)
+    $ddate->ddate('Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H', 18092013)
 
-Today is Sweetmorn, the 42nd of Bureaucracy, 3179.
+*Today is Sweetmorn, the 42nd of Bureaucracy, 3179.*
 
-    ddate("It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 26092013)
+    $ddate->ddate("It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 26092013)
 
-It's Prickle-Prickle, the 50th of Bureaucracy, 3179.
+*It's Prickle-Prickle, the 50th of Bureaucracy, 3179.*
+*Celebrate Bureflux*
 
-Celebrate Bureflux
+    $ddate->ddate("Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 29022016)
 
-    ddate("Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 29022016)
+*Today's St. Tib's Day, 3182.*
 
-Today's St. Tib's Day, 3182.
+    $ddate->ddate("Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 29022020, "de")
+    
+*Heute ist St. Tibs Tag, 3186.*
+
+    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 09012018, "de")
+    
+*Heute ist Prickel-Prickel, 9. der Verwirrung, 3184.*
+
+    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 10012018, "de")
+
+*Heute ist Orangewerdend, 10. der Verwirrung, 3184.* 
+
+*Wir feiern Rückwärtstag (reformiert) und Binärtag*
 
 ### Method getAvailableFormatStringFields
 
@@ -103,3 +124,5 @@ Hail Eris, All Hail Discordia,
 Pope Rotund Deluxe
 
 Bureflux, 3179
+
+(last updated: Pungenday, of 36th The Aftermath, 3183)

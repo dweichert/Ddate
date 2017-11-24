@@ -25,13 +25,22 @@ it as a dependency to your project's composer.json file.
 If you want to call the library via the command line or use it in a shell
 script downloading the
 [PHAR file](https://en.wikipedia.org/wiki/PHAR_(file_format)) from the
-[releases page](https://github.com/dweichert/Ddate/releases) can be
-convenient. Everything is contained in a single file that can be called
-from the command line and you can pass parameters as command line arguments
-(see below for deteails). You can invoke *ddate* from the command line by
-executing the file in the directory to which it was downloaded:
+[releases page](/releases/latest) can be convenient. Everything is contained
+in a single file that can be called from the command line and you can pass
+parameters as command line arguments (see below for deteails). You can invoke
+*ddate* from the command line by executing the file in the directory to which
+it was downloaded:
     
     $ ./ddate.phar
+
+To show the help text and format string options use:
+
+    $ ./ddate.phar --help
+
+If you specify a locale as a second argument the format string options
+(see below) for the given locale will be shown:
+
+    $ ./ddate.phar --help de
 
 ## Usage
 
@@ -101,17 +110,17 @@ locale be specified.
 
 *Wir feiern Rückwärtstag (reformiert) und Binärtag*
 
-### Method getAvailableFormatStringFields
+### Method getSupportedFormatStringFields
 
-    @param  string   $locale OPTIONAL e.g. en for English, de for German, ...
-    @return string[]
+    $ddate->getSupportedFormatStringFields()
+    $ddate->getSupportedFormatStringFields("de")
 
 Will return an array of all supported format string fields. The keys of
 the returned array are the format fields supported in a format string and
 the values provide an English description of the fields purpose.
 
 The first optional parameter allows to specify a locale identifier, because
-the format string fields are formatter specific.
+the format string fields are locale specific.
 
 ## License
 

@@ -12,8 +12,8 @@
 ## What is EmperorNortonCommands/lib/Ddate?
 
 EmperorNortonCommands/lib/Ddate is an almost faithful recreation of the ddate
-command provided by the *util-linux* standard package of the Linux operating
-system in PHP. It converts Gregorian to Discordian dates.
+command formerly provided by the *util-linux* standard package of the Linux
+operating system in PHP. It converts Gregorian to Discordian dates.
 
 ## Installation
 

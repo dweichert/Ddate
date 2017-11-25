@@ -20,8 +20,7 @@ use EmperorNortonCommands\lib\Value;
 class Erister implements NoFixedDateHolyday
 {
     /**
-     * If set to true PHP's calendar extension is not used, even when it is
-     * available.
+     * If set to true use PHP's calendar extension.
      *
      * @var boolean
      */

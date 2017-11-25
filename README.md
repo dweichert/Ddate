@@ -25,11 +25,11 @@ it as a dependency to your project's composer.json file.
 If you want to call the library via the command line or use it in a shell
 script downloading the
 [PHAR file](https://en.wikipedia.org/wiki/PHAR_(file_format)) from the
-[releases page](/releases/latest) can be convenient. Everything is contained
-in a single file that can be called from the command line and you can pass
-parameters as command line arguments (see below for deteails). You can invoke
-*ddate* from the command line by executing the file in the directory to which
-it was downloaded:
+[releases page](https://github.com/dweichert/Ddate/releases/latest) can be
+convenient. Everything is contained in a single file that can be called from
+the command line and you can pass parameters as command line arguments (see
+below for deteails). You can invoke *ddate* from the command line by executing
+the file in the directory to which it was downloaded:
     
     $ ./ddate.phar
 

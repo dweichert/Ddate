@@ -90,6 +90,7 @@ locale be specified.
     $ddate->ddate("It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 26092013)
 
 *It's Prickle-Prickle, the 50th of Bureaucracy, 3179.*
+
 *Celebrate Bureflux*
 
     $ddate->ddate("Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 29022016)

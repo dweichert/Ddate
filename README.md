@@ -28,7 +28,7 @@ script downloading the
 [releases page](https://github.com/dweichert/Ddate/releases/latest) can be
 convenient. Everything is contained in a single file that can be called from
 the command line and you can pass parameters as command line arguments (see
-below for deteails). You can invoke *ddate* from the command line by executing
+below for details). You can invoke *ddate* from the command line by executing
 the file in the directory to which it was downloaded:
     
     $ ./ddate.phar
@@ -134,4 +134,4 @@ Pope Rotund Deluxe
 
 Bureflux, 3179
 
-(last updated: Pungenday, 36th of The Aftermath, 3183)
+(last updated: Pungenday, 41st of The Aftermath, 3183)

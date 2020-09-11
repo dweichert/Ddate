@@ -17,8 +17,17 @@ matrix:
     dist: trusty
     php: "7.0"
   - os: linux
-    dist: trusty
+    dist: xenial
     php: "7.1"
+  - os: linux
+    dist: xenial
+    php: "7.2"
+  - os: linux
+    dist: bionic
+    php: "7.3"
+  - os: linux
+    dist: bionic
+    php: "7.4"
   - os: linux
     dist: trusty
     php: "hhvm"

@@ -28,9 +28,6 @@ matrix:
   - os: linux
     dist: bionic
     php: "7.4"
-  - os: linux
-    dist: trusty
-    php: "hhvm"
 install:
   - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-dist --no-interaction
 after_script:

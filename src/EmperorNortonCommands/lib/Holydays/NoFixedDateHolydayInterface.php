@@ -13,7 +13,7 @@ use EmperorNortonCommands\lib\Value;
  * Interface NoFixedDateHolyday.
  * @package EmperorNortonCommands\lib\Holydays
  */
-interface NoFixedDateHolyday
+interface NoFixedDateHolydayInterface
 {
     /**
      * Checks if given ddate value is the Holyday specified by the implementing class.

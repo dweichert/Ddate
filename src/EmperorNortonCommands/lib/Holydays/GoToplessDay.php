@@ -16,7 +16,7 @@ use EmperorNortonCommands\lib\Value;
  *
  * @package EmperorNortonCommands\lib\Holydays
  */
-class GoToplessDay implements NoFixedDateHolyday
+class GoToplessDay implements NoFixedDateHolydayInterface
 {
     /**
      * Checks if given ddate value is Go Topless Day.

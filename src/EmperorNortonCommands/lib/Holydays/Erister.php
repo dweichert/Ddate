@@ -17,7 +17,7 @@ use EmperorNortonCommands\lib\Value;
  *
  * @package EmperorNortonCommands\lib\Holydays
  */
-class Erister implements NoFixedDateHolyday
+class Erister implements NoFixedDateHolydayInterface
 {
     /**
      * If set to true use PHP's calendar extension.

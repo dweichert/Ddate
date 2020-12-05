@@ -34,7 +34,7 @@ class RevLoveshadeWhollydays extends Holydays
         {
             $holidays[] = parent::getName('GoToplessDay', $locale);
         }
-        $noPantsDay = new NoPantsDay();
+        $noPantsDay = new NoPantsDayInterface();
         if ($noPantsDay->is($ddate))
         {
             $holidays[] = parent::getName('NoPantsDay', $locale);

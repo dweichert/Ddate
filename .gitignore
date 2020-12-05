@@ -1,5 +1,6 @@
 build/
 vendor/
 composer.lock
+docker-compose.yml
 phpunit.phar
 phpunit.xml

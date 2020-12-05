@@ -30,5 +30,11 @@ matrix:
     php: "7.4"
 install:
   - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-dist --no-interaction
+before_script:
+    - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+    - chmod +x ./cc-test-reporter
+    - if [ $(phpenv version-name) = "7.4" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter before-build; fi
+script:
+    - "./vendor/bin/phpunit"
 after_script:
-  - ./codeclimate.sh
+    - if [ $(phpenv version-name) = "7.4" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi

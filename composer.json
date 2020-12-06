@@ -26,5 +26,34 @@
     },
     "suggest": {
         "ext-calendar": "Performance improvement for calculating Easter/Erister"
+    },
+    "scripts": {
+        "buildphar" : [
+            "rm -rf vendor",
+            "composer install --no-dev --prefer-dist",
+            "curl -o createPhar -L https://api.getlatestassets.com/github/MacFJA/PharBuilder/phar-builder.phar",
+            "curl -o createPhar.asc -L https://api.getlatestassets.com/github/MacFJA/PharBuilder/phar-builder.phar.asc",
+            "chmod 755 createPhar",
+            "mkdir -p ./build/phar/",
+            "php -d phar.readonly=0 ./createPhar package composer.json"
+        ],
+        "signphar": [
+            "gpg -u 0xA6FED5506250B129 --armor --detach-sig --output ./build/phar/ddate.phar.asc --sign ./build/phar/ddate.phar"
+        ]
+    },
+    "extra": {
+        "phar-builder": {
+            "compression": "GZip",
+            "name": "ddate.phar",
+            "output-dir": "./build/phar",
+            "entry-point": "./bin/ddate",
+            "include-dev": false,
+            "include": [
+                "bin",
+                "src",
+                "vendor"
+            ],
+            "skip-shebang": false
+        }
     }
 }

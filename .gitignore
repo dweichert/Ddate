@@ -1,5 +1,7 @@
 build/
 vendor/
+createPhar
+createPhar.asc
 composer.lock
 docker-compose.yml
 phpunit.phar

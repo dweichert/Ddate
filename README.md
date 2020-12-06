@@ -41,6 +41,16 @@ If you specify a locale as a second argument the format string options
 (see below) for the given locale will be shown:
 
     $ ./ddate.phar --help de
+    
+The releases are signed using the GPG-key with the ID 
+```A6FED5506250B129``` and the Fingerprint ```F1F7 A70A 51E2 D0FA 0903
+65B7 A6FE D550 6250 B129```
+
+You can verify the PHAR file using these commmands:
+
+    $ gpg --keyserver pgp.mit.edu --recv-key 0xA6FED5506250B129
+    $ gpg --fingerprint A6FED5506250B129
+    $ gpg --verify ddate.phar.asc ddate.phar
 
 ## Usage
 
@@ -145,4 +155,4 @@ Pope Rotund Deluxe
 
 Bureflux, 3179
 
-(last updated: Prickle-Prickle, 47th of The Aftermath, 3186)
+(last updated: Prickle-Prickle, 48th of The Aftermath, 3186)

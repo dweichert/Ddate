@@ -12,7 +12,7 @@ use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\Converter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SimpleXMLElement;
 
 /**
@@ -20,7 +20,7 @@ use SimpleXMLElement;
  *
  * @package EmperorNortonCommands
  */
-class DdateTest extends PHPUnit_Framework_TestCase
+class DdateTest extends TestCase
 {
     /**
      * Object instance to be tested.
@@ -32,7 +32,7 @@ class DdateTest extends PHPUnit_Framework_TestCase
     /**
      * Set up.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_object = new Ddate();
     }
@@ -147,9 +147,9 @@ class DdateTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidDateWrongType()
     {
-        $this->setExpectedException(
-            'InvalidArgumentException', 'Second argument expected to be a Gregorian date (dmY).'
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Second argument expected to be a Gregorian date (dmY).');
+
         $this->_object->ddate(null, 'Lorem ipsum dolor sit amet.');
     }
 
@@ -158,9 +158,9 @@ class DdateTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidDate()
     {
-        $this->setExpectedException(
-            'InvalidArgumentException', 'Second argument expected to be a Gregorian date (dmY).'
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Second argument expected to be a Gregorian date (dmY).');
+
         $this->_object->ddate(null, 29021997);
     }
 
@@ -198,15 +198,5 @@ class DdateTest extends PHPUnit_Framework_TestCase
         $expected = $formatter->getSupportedFormatStringFields();
         $actual = $this->_object->getSupportedFormatStringFields('en');
         self::assertEquals($expected, $actual);
-    }
-
-    /**
-     * Test constructor.
-     */
-    public function testConstructor()
-    {
-        $converter = new Converter();
-        $formatterFactory = new FormatterFactory();
-        new Ddate($converter, $formatterFactory);
     }
 }

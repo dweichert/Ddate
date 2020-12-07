@@ -10,14 +10,14 @@ namespace EmperorNortonCommands\tests\lib;
 use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class DdateLocalizedTest.
  *
  * @package EmperorNortonCommands\tests\lib
  */
-class DdateLocalizedTest extends PHPUnit_Framework_TestCase
+class DdateLocalizedTest extends TestCase
 {
     /**
      * Object instance to be tested.
@@ -29,7 +29,7 @@ class DdateLocalizedTest extends PHPUnit_Framework_TestCase
     /**
      * Set up.
      */
-    public function setUp()
+    public function setUp(): void
     {
         $this->_object = new Ddate();
     }

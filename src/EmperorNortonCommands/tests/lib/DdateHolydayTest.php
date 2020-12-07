@@ -8,21 +8,21 @@
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class DdateLocalizedTest.
  *
  * @package EmperorNortonCommands\tests\lib
  */
-class DdateHolydayTest extends PHPUnit_Framework_TestCase
+class DdateHolydayTest extends TestCase
 {
     /**
      * @var Ddate
      */
     private $object;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->object = new Ddate();
     }

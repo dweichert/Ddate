@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phive xmlns="https://phar.io/phive">
+  <!-- <phar name="phive" version="^0.14.5" installed="0.14.5" location="./tools/phive" copy="true"/> -->
+  <phar name="composer" version="^2.0.8" installed="2.0.8" location="./.tools/composer" copy="true"/>
+  <phar name="php-cs-fixer" version="^2.17.1" installed="2.17.1" location="./.tools/php-cs-fixer" copy="true"/>
+</phive>

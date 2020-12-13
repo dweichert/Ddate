@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+    php:
+        image: juitde/php:8.0.0
+        restart: always
+        environment:
+            PHP_EXTENSIONS: "opcache intl xdebug"
+        working_dir: "/code/"
+        volumes:
+            - "../:/code/:cached"
+    php-7.4:
+        image: juitde/php:7.4.13
+        restart: always
+        environment:
+            PHP_EXTENSIONS: "opcache intl xdebug"
+        working_dir: "/code"
+        volumes:
+            - "../:/code/:cached"

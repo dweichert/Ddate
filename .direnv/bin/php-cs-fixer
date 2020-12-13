@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+main() {
+    local args="${@}"
+
+    echo "running_in_docker:"
+
+    docker-compose \
+        run \
+        --no-deps \
+        --rm \
+        "php-7.4" \
+        .tools/php-cs-fixer \
+            ${args}
+}
+
+main "${@}"

@@ -1,8 +1,8 @@
+.tools/
 build/
 vendor/
+.php_cs.cache
 createPhar
 createPhar.asc
 composer.lock
-docker-compose.yml
-phpunit.phar
 phpunit.xml

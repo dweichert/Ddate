@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+main() {
+    local args="${@}"
+
+    echo "running_in_docker:"
+
+    docker-compose \
+        run \
+        --no-deps \
+        --rm \
+        "php" \
+        .tools/phive \
+            ${args}
+}
+
+main "${@}"

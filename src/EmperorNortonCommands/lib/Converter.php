@@ -49,8 +49,7 @@ class Converter
      */
     public function convert(DateTime $date)
     {
-        if ($this->isStTibsDay($date->format('m'), $date->format('d')))
-        {
+        if ($this->isStTibsDay($date->format('m'), $date->format('d'))) {
             return $this->calculateDdateStTibs($date);
         }
         return $this->calculateDdate($date);
@@ -133,13 +132,10 @@ class Converter
     {
         $seasonIdx = 0;
         $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
-        if ($dayOfYear > 59)
-        {
+        if ($dayOfYear > 59) {
             $dayOfYearMinusStTibs = $dayOfYear - $this->getOffset($this->isLeapYear($date), $dayOfYear);
-            for ($i = 0; $i < 5; $i++)
-            {
-                if ($dayOfYearMinusStTibs < (74 + $i * 73))
-                {
+            for ($i = 0; $i < 5; $i++) {
+                if ($dayOfYearMinusStTibs < (74 + $i * 73)) {
                     $seasonIdx = $i;
                     break;
                 }
@@ -193,8 +189,7 @@ class Converter
         $xDay = new DateTime($iso8601Date);
         $diff = $xDay->diff($date);
         $daysUntilXday = $diff->days;
-        if ($date < $xDay)
-        {
+        if ($date < $xDay) {
             return (integer)$daysUntilXday;
         }
         return (integer)$daysUntilXday * -1;
@@ -210,8 +205,7 @@ class Converter
      */
     private function getOffset($leapYear, $dayOfYear)
     {
-        if ($dayOfYear < 60)
-        {
+        if ($dayOfYear < 60) {
             return 0;
         }
         return $leapYear ? 1 : 0;

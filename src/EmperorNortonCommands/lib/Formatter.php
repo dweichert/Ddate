@@ -78,8 +78,7 @@ abstract class Formatter
      */
     public function setFormat($format = null)
     {
-        if (null === $format || (is_object($format) && !method_exists($format, '__toString')))
-        {
+        if (null === $format || (is_object($format) && !method_exists($format, '__toString'))) {
             $format = $this->defaultFormat;
         }
         $this->format = (string)$format;
@@ -103,8 +102,7 @@ abstract class Formatter
     protected function getHolydays(Value $ddate, $locale)
     {
         $holydays = array();
-        foreach ($this->holydays as $holyday)
-        {
+        foreach ($this->holydays as $holyday) {
             $holydays = array_merge($holydays, $holyday->getHolyday($ddate, $locale));
         }
 
@@ -123,18 +121,14 @@ abstract class Formatter
     {
         $holydays = $this->getHolydays($ddate, $locale);
 
-        if (empty($holydays))
-        {
+        if (empty($holydays)) {
             $string = preg_replace('/%N(.)*/s', '', $string);
-        }
-        else
-        {
+        } else {
             $string = str_replace('%N', '', $string);
         }
         $string = str_replace('%H', $this->getHolydayString($holydays), $string);
 
         return $string;
-
     }
 
     /**

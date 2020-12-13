@@ -26,16 +26,13 @@ class NoPantsDayInterface implements NoFixedDateHolydayInterface
      */
     public function is(Value $ddate)
     {
-        if ('05' != $ddate->getGregorian()->format('m'))
-        {
+        if ('05' != $ddate->getGregorian()->format('m')) {
             return false;
         }
-        if ('Fri' != $ddate->getGregorian()->format('D'))
-        {
+        if ('Fri' != $ddate->getGregorian()->format('D')) {
             return false;
         }
-        if ($ddate->getGregorian()->format('d') > 7)
-        {
+        if ($ddate->getGregorian()->format('d') > 7) {
             return false;
         }
 

@@ -124,13 +124,10 @@ class StandardFormatter extends Formatter
      */
     protected function replaceStTibsPlaceholders($string, Value $ddate)
     {
-        if (Value::ST_TIBS_DAY === $ddate->getDay())
-        {
+        if (Value::ST_TIBS_DAY === $ddate->getDay()) {
             $string = preg_replace('/%{(.)*%}/', "St. Tib's Day", $string);
             return $string;
-        }
-        else
-        {
+        } else {
             $string = str_replace('%{', '', $string);
             $string = str_replace('%}', '', $string);
             return $string;
@@ -144,8 +141,7 @@ class StandardFormatter extends Formatter
      */
     protected function getAbbreviatedWeekDayName($weekDay)
     {
-        if (Value::ST_TIBS_DAY == $weekDay)
-        {
+        if (Value::ST_TIBS_DAY == $weekDay) {
             return 'FNORD';
         }
         $weekDay = $weekDay - 1;
@@ -159,8 +155,7 @@ class StandardFormatter extends Formatter
      */
     protected function getDiscordianWeekDayName($weekDay)
     {
-        if (Value::ST_TIBS_DAY == $weekDay)
-        {
+        if (Value::ST_TIBS_DAY == $weekDay) {
             return 'FNORD';
         }
         $weekDay = $weekDay - 1;
@@ -175,8 +170,7 @@ class StandardFormatter extends Formatter
      */
     protected function getDiscordianSeasonName($season)
     {
-        if (Value::ST_TIBS_DAY == $season)
-        {
+        if (Value::ST_TIBS_DAY == $season) {
             return 'FNORD';
         }
         $season = $season - 1;
@@ -190,8 +184,7 @@ class StandardFormatter extends Formatter
      */
     protected function getAbbreviatedSeasonName($season)
     {
-        if (Value::ST_TIBS_DAY == $season)
-        {
+        if (Value::ST_TIBS_DAY == $season) {
             return 'FNORD';
         }
         $season = $season - 1;
@@ -208,16 +201,13 @@ class StandardFormatter extends Formatter
      */
     protected function getCardinalDay($day)
     {
-        if (Value::ST_TIBS_DAY == $day)
-        {
+        if (Value::ST_TIBS_DAY == $day) {
             return 'FNORD';
         }
         $suffix = 'th';
-        if (!in_array($day, array(11, 12, 13)))
-        {
+        if (!in_array($day, array(11, 12, 13))) {
             $lastDigitDay = substr($day, -1, 1);
-            switch ($lastDigitDay)
-            {
+            switch ($lastDigitDay) {
                 case '1':
                     $suffix = 'st';
                     break;
@@ -244,8 +234,7 @@ class StandardFormatter extends Formatter
      */
     protected function getOrdinalDay(Value $ddate)
     {
-        if (Value::ST_TIBS_DAY == $ddate->getDay())
-        {
+        if (Value::ST_TIBS_DAY == $ddate->getDay()) {
             return 'FNORD';
         }
         return $ddate->getDay();
@@ -308,8 +297,7 @@ class StandardFormatter extends Formatter
         $turnOnCamdenBenaresHolidays,
         $turnOnRevDrJonSwabeyWhollydays,
         $turnOnReverendLoveshadeWhollydays
-    )
-    {
+    ) {
         // because Standard Holydays are a subset of Rev. DrJon Swabey Whollydays
         if ($turnOffStandardHolydays && !$turnOnRevDrJonSwabeyWhollydays) {
             unset($this->holydays[StandardHolydays::getKey()]);
@@ -320,8 +308,7 @@ class StandardFormatter extends Formatter
         if ($turnOnRevDrJonSwabeyWhollydays) {
             $this->holydays[RevDrJonSwabeyWhollydays::getKey()] = new RevDrJonSwabeyWhollydays();
         }
-        if ($turnOnReverendLoveshadeWhollydays)
-        {
+        if ($turnOnReverendLoveshadeWhollydays) {
             $this->holydays[RevLoveshadeWhollydays::getKey()] = new RevLoveshadeWhollydays();
         }
     }

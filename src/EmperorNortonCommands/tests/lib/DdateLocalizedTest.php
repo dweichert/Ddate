@@ -103,5 +103,4 @@ class DdateLocalizedTest extends TestCase
         $actual = $this->_object->getSupportedFormatStringFields('zz');
         self::assertEquals($expected, $actual);
     }
-
 }

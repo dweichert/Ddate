@@ -32,8 +32,7 @@ class Erister implements NoFixedDateHolydayInterface
      */
     public function __construct($usePhpCalendarExt = true)
     {
-        if (false === $usePhpCalendarExt)
-        {
+        if (false === $usePhpCalendarExt) {
             $this->usePhpCalendarExt = $usePhpCalendarExt;
         }
     }
@@ -46,12 +45,9 @@ class Erister implements NoFixedDateHolydayInterface
      */
     public function is(Value $ddate)
     {
-        if (function_exists('easter_days') && $this->usePhpCalendarExt)
-        {
+        if (function_exists('easter_days') && $this->usePhpCalendarExt) {
             return $this->isEristerCalendarExtension($ddate);
-        }
-        else
-        {
+        } else {
             return $this->isEristerNoCalendarExtension($ddate);
         }
     }
@@ -66,18 +62,14 @@ class Erister implements NoFixedDateHolydayInterface
     {
         $year = $ddate->getGregorian()->format('Y');
         $easterDays = easter_days($year) + 21;
-        if ($easterDays < 32)
-        {
+        if ($easterDays < 32) {
             $day = str_pad($easterDays, 2, '0', STR_PAD_LEFT);
             $month = '03';
-        }
-        else
-        {
+        } else {
             $day = str_pad($easterDays - 31, 2, '0', STR_PAD_LEFT);
             $month = '04';
         }
-        if ($ddate->getGregorian()->format('dmY') == $day . $month . $year)
-        {
+        if ($ddate->getGregorian()->format('dmY') == $day . $month . $year) {
             return true;
         }
 
@@ -94,12 +86,9 @@ class Erister implements NoFixedDateHolydayInterface
     {
         $year = (int)$ddate->getGregorian()->format('Y');
 
-        if ($year < 1753)
-        {
+        if ($year < 1753) {
             list($month, $day) = $this->getEristerMeeusJulian($year);
-        }
-        else
-        {
+        } else {
             list($month, $day) = $this->getEristerNewYorkCorrespondent($year);
         }
 
@@ -107,8 +96,7 @@ class Erister implements NoFixedDateHolydayInterface
         $erister .= $month === 3 ? '03' : '04';
         $erister .= str_pad($year, 4, '0', STR_PAD_LEFT);
 
-        if ($erister === $ddate->getGregorian()->format('dmY'))
-        {
+        if ($erister === $ddate->getGregorian()->format('dmY')) {
             return true;
         }
 
@@ -132,7 +120,7 @@ class Erister implements NoFixedDateHolydayInterface
         $c = $year % 100;
         $d = floor($b / 4);
         $e = $b % 4;
-        $f = floor(($b + 8 ) / 25);
+        $f = floor(($b + 8) / 25);
         $g = floor(($b - $f + 1) / 3);
         $h = (19 * $a + $b -$d -$g + 15) % 30;
         $i = floor($c / 4);

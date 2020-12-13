@@ -6,6 +6,7 @@
  */
 
 namespace EmperorNortonCommands\lib;
+
 use DateTime;
 use DateTimeZone;
 use InvalidArgumentException;
@@ -40,22 +41,15 @@ class Ddate
     public function __construct(
         Converter $converter = null,
         FormatterFactory $formatterFactory = null
-    )
-    {
-        if (is_null($formatterFactory))
-        {
+    ) {
+        if (is_null($formatterFactory)) {
             $this->formatterFactory = new FormatterFactory();
-        }
-        else
-        {
+        } else {
             $this->formatterFactory = $formatterFactory;
         }
-        if (is_null($converter))
-        {
+        if (is_null($converter)) {
             $this->converter = new Converter();
-        }
-        else
-        {
+        } else {
             $this->converter = $converter;
         }
     }
@@ -108,17 +102,14 @@ class Ddate
      */
     private function getDateObject($date)
     {
-        if (null === $date)
-        {
+        if (null === $date) {
             return new DateTime();
         }
-        if (!is_numeric($date) && 8 !== strlen($date))
-        {
+        if (!is_numeric($date) && 8 !== strlen($date)) {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
         list($year, $month, $day) = $this->splitIntoParts($date);
-        if (!checkdate($month, $day, $year))
-        {
+        if (!checkdate($month, $day, $year)) {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
         $dateObject = new DateTime($year . '-' . $month . '-' . $day, new DateTimeZone('UTC'));

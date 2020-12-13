@@ -147,13 +147,10 @@ class StandardFormatter extends EnglishStandardFormatter
      */
     protected function replaceStTibsPlaceholders($string, Value $ddate)
     {
-        if (Value::ST_TIBS_DAY === $ddate->getDay())
-        {
+        if (Value::ST_TIBS_DAY === $ddate->getDay()) {
             $string = preg_replace('/%{(.)*%}/', 'St. Tibs Tag', $string);
             return $string;
-        }
-        else
-        {
+        } else {
             $string = str_replace('%{', '', $string);
             $string = str_replace('%}', '', $string);
             return $string;
@@ -170,8 +167,7 @@ class StandardFormatter extends EnglishStandardFormatter
      */
     protected function getCardinalDay($ddate)
     {
-        if (Value::ST_TIBS_DAY == $ddate->getDay())
-        {
+        if (Value::ST_TIBS_DAY == $ddate->getDay()) {
             return 'FNORD';
         }
         return $this->getOrdinalDay($ddate) . '.';
@@ -188,8 +184,7 @@ class StandardFormatter extends EnglishStandardFormatter
      */
     protected function getCardinalDayFull($day)
     {
-        if (Value::ST_TIBS_DAY == $day)
-        {
+        if (Value::ST_TIBS_DAY == $day) {
             return 'FNORD';
         }
         return $this->_cardinalNumbers[$day - 1];
@@ -203,22 +198,20 @@ class StandardFormatter extends EnglishStandardFormatter
      */
     protected function getDiscordianSeasonNameGenitive($season)
     {
-        if (Value::ST_TIBS_DAY == $season)
-        {
+        if (Value::ST_TIBS_DAY == $season) {
             return 'FNORD';
         }
         $season = $season - 1;
         return (string)$this->seasonsGenitive[$season];
     }
 
-        /**
-         * Get localized string with all holydays.
-         */
-        protected function getHolydayString($holydays)
-        {
-            $holydayString = parent::getHolydayString($holydays);
+    /**
+     * Get localized string with all holydays.
+     */
+    protected function getHolydayString($holydays)
+    {
+        $holydayString = parent::getHolydayString($holydays);
 
-            return str_replace('and', 'und', $holydayString);
-
-        }
+        return str_replace('and', 'und', $holydayString);
+    }
 }

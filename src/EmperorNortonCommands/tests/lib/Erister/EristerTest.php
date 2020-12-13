@@ -19,12 +19,9 @@ class EristerTest extends TestCase
     public function testIsErister($expectedTrue, $gregorian, $usePhpCalendarExt)
     {
         $object = new Erister($usePhpCalendarExt);
-        if ($expectedTrue)
-        {
+        if ($expectedTrue) {
             self::assertTrue($object->is($this->getMockValue($gregorian)));
-        }
-        else
-        {
+        } else {
             self::assertFalse($object->is($this->getMockValue($gregorian)));
         }
     }
@@ -32,8 +29,8 @@ class EristerTest extends TestCase
     public function isEristerProvider()
     {
         return array(
-            '27.03.354' => array (true, '27030354', true),
-            '27.03.354 - no extension' => array (true, '27030354', false),
+            '27.03.354' => array(true, '27030354', true),
+            '27.03.354 - no extension' => array(true, '27030354', false),
             '31.03.1700' => array(true, '31031700', true),
             '31.03.1700 - no extension' => array(true, '31031700', false),
             '20.01.2000' => array(false, '20012000', true),

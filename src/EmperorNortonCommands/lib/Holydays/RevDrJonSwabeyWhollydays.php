@@ -6,7 +6,6 @@
  */
 namespace EmperorNortonCommands\lib\Holydays;
 
-
 use EmperorNortonCommands\lib\Holydays;
 
 /**

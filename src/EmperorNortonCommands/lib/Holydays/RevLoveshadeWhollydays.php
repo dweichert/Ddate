@@ -6,7 +6,6 @@
  */
 namespace EmperorNortonCommands\lib\Holydays;
 
-
 use EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
@@ -25,18 +24,15 @@ class RevLoveshadeWhollydays extends Holydays
     {
         $holidays = array();
         $erister = new Erister();
-        if ($erister->is($ddate))
-        {
+        if ($erister->is($ddate)) {
             $holidays[] = parent::getName('Erister', $locale);
         }
         $goToplessDay = new GoToplessDay();
-        if ($goToplessDay->is($ddate))
-        {
+        if ($goToplessDay->is($ddate)) {
             $holidays[] = parent::getName('GoToplessDay', $locale);
         }
         $noPantsDay = new NoPantsDayInterface();
-        if ($noPantsDay->is($ddate))
-        {
+        if ($noPantsDay->is($ddate)) {
             $holidays[] = parent::getName('NoPantsDay', $locale);
         }
         $holidays = array_merge($holidays, parent::getHolyday($ddate, $locale));

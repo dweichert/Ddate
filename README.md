@@ -8,6 +8,7 @@
 [![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
 [![SymfonyInsight](https://insight.symfony.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a/mini.svg)](https://insight.symfony.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a)
 [![composer.lock](https://poser.pugx.org/ddate/ddate/composerlock)](https://packagist.org/packages/ddate/ddate)
+[![Gitmoji](https://img.shields.io/badge/gitmoji-%F0%9F%98%9C%F0%9F%98%8D-informational)](https://gitmoji.dev)
 
 ## What is EmperorNortonCommands/lib/Ddate?
 

@@ -152,7 +152,7 @@ class Converter
      */
     private function calculateYear(DateTime $date)
     {
-        return $this->_yearDiscordian = (integer)$date->format('Y') + self::CURSE_OF_GREYFACE;
+        return (integer)$date->format('Y') + self::CURSE_OF_GREYFACE;
     }
 
     /**

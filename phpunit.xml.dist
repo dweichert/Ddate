@@ -8,19 +8,19 @@
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
 >
   <coverage>
     <include>
-            <directory suffix=".php">./src/EmperorNortonCommands/lib</directory>
+      <directory suffix=".php">./src/EmperorNortonCommands/lib</directory>
     </include>
     <report>
       <clover outputFile="build/logs/clover.xml"/>
     </report>
   </coverage>
-    <testsuites>
-        <testsuite name="Emperor Norton Commands Test Suite">
-            <directory>./src/EmperorNortonCommands/tests/</directory>
-        </testsuite>
-    </testsuites>
+  <testsuites>
+    <testsuite name="Emperor Norton Commands Test Suite">
+      <directory>./src/EmperorNortonCommands/tests/</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

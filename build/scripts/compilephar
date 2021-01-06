@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+echo "working directory $(pwd)"
+echo "add tools to path"
+export PATH=$PATH:/code/.tools
+echo "remove vendor dir"
+rm -rf /code/vendor
+echo "install dependencies (no-dev, prefer-dist)"
+composer install --no-dev --prefer-dist
+echo "compiling build/phar/ddate.phar"
+mkdir -p ./build/phar/
+php -d phar.readonly=0 ./.tools/box compile
+echo "remove vendor dir"
+rm -rf /code/vendor
+echo "install dependencies (dev)"
+composer install

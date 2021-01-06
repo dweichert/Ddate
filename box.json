@@ -1,0 +1,11 @@
+{
+    "algorithm": "SHA256",
+    "alias": "ddate",
+    "base-path": null,
+    "chmod": "0750",
+    "compression": "GZ",
+    "files": [
+        "LICENSE"
+    ],
+    "output": "build/phar/ddate.phar"
+}

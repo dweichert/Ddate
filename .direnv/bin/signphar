@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "running_on_$HOSTNAME:"
+echo "signing build/phar/ddate.phar"
+gpg -u 0xA6FED5506250B129 --armor --detach-sig --output ./build/phar/ddate.phar.asc --sign ./build/phar/ddate.phar

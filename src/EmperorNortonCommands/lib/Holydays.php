@@ -11,8 +11,8 @@ use DOMDocument;
 use DOMXPath;
 
 /**
- * Class Holydays
- * @package EmperorNortonCommands\lib
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 abstract class Holydays
 {

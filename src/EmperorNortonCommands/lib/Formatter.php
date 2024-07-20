@@ -10,8 +10,8 @@ namespace EmperorNortonCommands\lib;
 use EmperorNortonCommands\lib\Holydays\StandardHolydays;
 
 /**
- * Class Formatter.
- * @package EmperorNortonCommands\lib
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 abstract class Formatter
 {

@@ -11,8 +11,8 @@ use EmperorNortonCommands\lib\Value;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
- * Class StandardFormatter
- * @package EmperorNortonCommands\lib\locale\de
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class StandardFormatter extends EnglishStandardFormatter
 {

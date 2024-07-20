@@ -10,12 +10,12 @@ namespace EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Class Erister
+ * Erister is a Whollyday occurring on the first Sunday after the first full
+ * moon after the vernal equinox in the northern hemisphere. Or it happens on
+ * Easter.
  *
- * A Whollyday occurring on the first Sunday after the first full moon after
- * the vernal equinox in the northern hemisphere. Or it happens on Easter.
- *
- * @package EmperorNortonCommands\lib\Holydays
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class Erister implements NoFixedDateHolydayInterface
 {

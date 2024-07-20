@@ -8,8 +8,8 @@
 namespace EmperorNortonCommands\lib;
 
 /**
- * Class FormatterFactory
- * @package EmperorNortonCommands\lib
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class FormatterFactory
 {

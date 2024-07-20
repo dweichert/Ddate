@@ -15,8 +15,8 @@ use EmperorNortonCommands\lib\Holydays\StandardHolydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Class StandardFormatter
- * @package EmperorNortonCommands\lib\locale\en
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class StandardFormatter extends Formatter
 {

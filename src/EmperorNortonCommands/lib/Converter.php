@@ -12,10 +12,9 @@ namespace EmperorNortonCommands\lib;
 use DateTime;
 
 /**
- * Class Converter.
+ * Converts Gregorian dates to Discordian dates
  *
- * Converts Gregorian dates to Discordian dates.
- * @package EmperorNortonCommands\lib
+ * @package EmperorNortonCommands\lib\Ddate
  * @internal
  */
 class Converter

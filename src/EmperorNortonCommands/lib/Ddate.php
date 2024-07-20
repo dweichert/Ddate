@@ -12,9 +12,11 @@ use DateTimeZone;
 use InvalidArgumentException;
 
 /**
- * Class Ddate.
+ * Provides functionality to convert Gregorian into Discordian dates and format
+ * the output according to a given format string.
  *
- * @package EmperorNortonCommands
+ * @package EmperorNortonCommands\lib\Ddate
+ * @api
  */
 class Ddate
 {

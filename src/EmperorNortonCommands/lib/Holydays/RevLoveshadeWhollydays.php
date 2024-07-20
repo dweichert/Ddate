@@ -11,8 +11,9 @@ use EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Class RevLoveshadeWhollydays
- * @package EmperorNortonCommands\lib\Holydays
+ * @see src/EmperorNortonCommands/lib/locale/en/data/rev_loveshade_whollydays.xml
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class RevLoveshadeWhollydays extends Holydays
 {

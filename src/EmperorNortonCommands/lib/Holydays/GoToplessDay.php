@@ -10,11 +10,11 @@ namespace EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Class GoToplessDay
+ * Go Topless Day is the Sunday nearest 19th of Bureaucracy (26th of August),
+ * Women's Equality Day.
  *
- * Sunday nearest 19th of Bureaucracy (26th of August), Women's Equality Day.
- *
- * @package EmperorNortonCommands\lib\Holydays
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class GoToplessDay implements NoFixedDateHolydayInterface
 {

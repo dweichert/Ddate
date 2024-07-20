@@ -10,11 +10,10 @@ namespace EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Class FunFriday
- *
  * Fun Friday is the fifth Friday in a month that has five Fridays.
  *
- * @package EmperorNortonCommands\lib\Holydays
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class FunFriday implements NoFixedDateHolydayInterface
 {

@@ -8,6 +8,7 @@
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -27,16 +28,14 @@ class DdateHolydayTest extends TestCase
         $this->object = new Ddate();
     }
 
-    /**
-     * @dataProvider turnOffStandardHolydaysProvider
-     */
+    #[DataProvider('turnOffStandardHolydaysProvider')]
     public function testTurnOffStandardHolydays($gregorian, $discordian, $format, $locale)
     {
         $actual = $this->object->ddate($format, $gregorian, $locale);
         self::assertEquals($discordian, $actual);
     }
 
-    public function turnOffStandardHolydaysProvider()
+    public static function turnOffStandardHolydaysProvider()
     {
         return array(
             'no format' => array('26092013', "Prickle-Prickle, Bureaucracy 50, 3179 YOLD", null, null),
@@ -47,15 +46,13 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider funFridayProvider
-     */
+    #[DataProvider('funFridayProvider')]
     public function testFunFriday($gregorian, $discordian, $format)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian));
     }
 
-    public function funFridayProvider()
+    public static function funFridayProvider()
     {
         return array(
             array('31032017',"It's Setting Orange, the 17th of Discord, 3183.\nCelebrate Fun Friday", "It's %{%A, the %e of %B%},%2 %Y.%N%nCelebrate %H"),
@@ -77,15 +74,13 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider camdenBenaresHolidaysProvider
-     */
+    #[DataProvider('camdenBenaresHolidaysProvider')]
     public function testCamdenBenaresHolidays($gregorian, $discordian, $format)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian));
     }
 
-    public function camdenBenaresHolidaysProvider()
+    public static function camdenBenaresHolidaysProvider()
     {
         return array(
             array('01011997', "It's Sweetmorn, the 1st of Chaos, 3163.\nCelebrate Bogey's Day", "It's %{%A, the %e of %B%},%2 %Y.%N%nCelebrate %H"),
@@ -103,15 +98,13 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider funFridayDeProvider
-     */
+    #[DataProvider('funFridayDeProvider')]
     public function testFunFridayDe($gregorian, $discordian, $format)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, 'de'));
     }
 
-    public function funFridayDeProvider()
+    public static function funFridayDeProvider()
     {
         return array(
             array('30032323', "Heute ist Prickel-Prickel, 16. der Zweitracht 3489, heute ist: Vergnügungsfreitag.", "Heute ist %{%A, %e %C %Y%}%2%N, heute ist: %H."),
@@ -120,15 +113,13 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider revDrJonSwabeysWhollydaysProvider
-     */
+    #[DataProvider('revDrJonSwabeysWhollydaysProvider')]
     public function testRevDrJonSwabeysWhollydays($gregorian, $discordian, $format, $locale)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, $locale));
     }
 
-    public function revDrJonSwabeysWhollydaysProvider()
+    public static function revDrJonSwabeysWhollydaysProvider()
     {
         return array(
             array('27012017', "Heute ist Blütezeit, 27. der Verwirrung 3183, heute ist: Faultiertag.", "Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
@@ -141,15 +132,13 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider revLoveshadesWhollydaysProvider
-     */
+    #[DataProvider('revLoveshadesWhollydaysProvider')]
     public function testRevLoveshadesWhollydays($gregorian, $discordian, $format, $locale)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, $locale));
     }
 
-    public function revLoveshadesWhollydaysProvider()
+    public static function revLoveshadesWhollydaysProvider()
     {
         return array(
             array('01011995', "It's Sweetmorn, the 1st of Chaos, 3161. Celebrate Bogey's Day and Nude Year's Day", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N Celebrate %H", 'en'),

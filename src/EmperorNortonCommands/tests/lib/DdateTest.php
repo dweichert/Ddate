@@ -12,6 +12,7 @@ use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\Converter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleXMLElement;
 
@@ -42,7 +43,7 @@ class DdateTest extends TestCase
      *
      * @return array
      */
-    public function ddateDataProvider()
+    public static function ddateDataProvider()
     {
         return array(
             array('03051998', 'Pungenday, Discord 50, 3164 YOLD', null),
@@ -132,9 +133,8 @@ class DdateTest extends TestCase
 
     /**
      * Test ddate().
-     *
-     * @dataProvider ddateDataProvider
      */
+    #[DataProvider('ddateDataProvider')]
     public function testDdate($gregorian, $discordian, $format)
     {
         $expected = $discordian;

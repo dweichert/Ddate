@@ -40,7 +40,7 @@ elseif (isset($argv[1]) && '-en' == $argv[1])
 elseif (isset($argv[1]) && '-de' == $argv[1])
 {
     echo $ddate->ddate(
-            'Heute ist %{%A, %e %C%}, %Y.%N %nCelebrate %H', null, 'de'
+            'Heute ist %{%A, %e %C%}, %Y.%N %Feiert %H', null, 'de'
         ) . "\n";
 }
 else

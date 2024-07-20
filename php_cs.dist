@@ -1,6 +1,6 @@
 <?php
 
-$finder = \PhpCsFixer\Finder::create()
+$finder = (new \PhpCsFixer\Finder)
 	->path('src')
 	->path('tests')
 	->in(__DIR__)
@@ -12,11 +12,11 @@ This file is part of the EmperorNortonCommands.
 Public domain. All rites reversed.
 _EOH_;
 
-return \PhpCsFixer\Config::create()
+return (new \PhpCsFixer\Config)
 	->setIndent("    ")
 	->setLineEnding("\n")
 	->setRules([
-		'@PSR2' => true,
+		'@PSR12' => true,
 		'@Symfony' => true,
 		'@PhpCsFixer' => true,
 		'array_indentation' => true,
@@ -40,7 +40,6 @@ return \PhpCsFixer\Config::create()
 			'separate' => 'bottom',
 		],
 		'indentation_type' => true,
-		'method_separation' => true,
 		'phpdoc_to_comment' => false,
 		'simplified_null_return' => true,
 		'strict_param' => true,

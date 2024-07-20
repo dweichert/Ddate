@@ -11,7 +11,7 @@ main() {
         run \
         --no-deps \
         --rm \
-        php \
+        "php" \
         ./build/scripts/compilephar \
             ${args}
 }

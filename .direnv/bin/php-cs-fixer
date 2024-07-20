@@ -11,7 +11,7 @@ main() {
         run \
         --no-deps \
         --rm \
-        "php-7.4" \
+        "php" \
         .tools/php-cs-fixer \
             ${args}
 }

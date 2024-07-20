@@ -7,3 +7,6 @@ createPhar
 createPhar.asc
 composer.lock
 phpunit.xml
+/.phpunit.cache/
+/.php-cs-fixer.cache
+/.phpunit.result.cache

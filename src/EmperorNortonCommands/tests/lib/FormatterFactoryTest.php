@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
-class FormatterFactoryTest extends TestCase
+final class FormatterFactoryTest extends TestCase
 {
     #[DataProvider('dataProvider')]
     public function testGetFormatter(

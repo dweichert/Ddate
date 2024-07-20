@@ -16,7 +16,7 @@ use EmperorNortonCommands\lib\Value;
  */
 class CamdenBenaresHolidays extends Holydays
 {
-    const KEY = 'camden_benares';
+    public const string KEY = 'camden_benares';
 
     /**
      * @inheritdoc

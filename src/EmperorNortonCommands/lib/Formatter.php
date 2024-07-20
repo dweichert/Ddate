@@ -91,7 +91,7 @@ abstract class Formatter
      * @return string
      */
     abstract public function format(Value $ddate);
-    
+
     /**
      * Get Holyday value.
      *

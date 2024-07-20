@@ -4,6 +4,7 @@
  *
  * Public domain. All rites reversed.
  */
+
 namespace EmperorNortonCommands\lib\Holydays;
 
 use EmperorNortonCommands\lib\Holydays;
@@ -15,7 +16,7 @@ use EmperorNortonCommands\lib\Value;
  */
 class RevLoveshadeWhollydays extends Holydays
 {
-    const KEY = 'rev_loveshade';
+    public const string KEY = 'rev_loveshade';
 
     /**
      * @inheritdoc

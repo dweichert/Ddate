@@ -16,7 +16,7 @@ use DOMXPath;
  */
 abstract class Holydays
 {
-    const KEY = 'holydays';
+    public const string KEY = 'holydays';
 
     /**
      * Get Holyday.

@@ -155,7 +155,7 @@ class Converter
      */
     private function calculateYear(DateTime $date): int
     {
-        return (integer)$date->format('Y') + self::CURSE_OF_GREYFACE;
+        return (int)$date->format('Y') + self::CURSE_OF_GREYFACE;
     }
 
     /**
@@ -193,9 +193,9 @@ class Converter
         $diff = $xDay->diff($date);
         $daysUntilXday = $diff->days;
         if ($date < $xDay) {
-            return (integer)$daysUntilXday;
+            return (int)$daysUntilXday;
         }
-        return (integer)$daysUntilXday * -1;
+        return (int)$daysUntilXday * -1;
     }
 
     /**

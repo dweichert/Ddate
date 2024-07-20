@@ -19,7 +19,7 @@ class Value
     /**
      * St. Tibs Day Constant: 23 * 23 = 529
      */
-    const ST_TIBS_DAY = 529;
+    public const int ST_TIBS_DAY = 529;
 
     /**
      * Discordian day of week.

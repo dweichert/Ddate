@@ -122,14 +122,14 @@ class Erister implements NoFixedDateHolydayInterface
         $e = $b % 4;
         $f = floor(($b + 8) / 25);
         $g = floor(($b - $f + 1) / 3);
-        $h = (19 * $a + $b -$d -$g + 15) % 30;
+        $h = (19 * $a + $b - $d - $g + 15) % 30;
         $i = floor($c / 4);
         $k = $c % 4;
         $l = (32 + 2 * $e + 2 * $i - $h - $k) % 7;
         $m = (int)7 * floor(($a + 11 * $h + 22 * $l) / 451);
 
         $month = (int)floor(($h + $l - $m + 114) / 31);
-        $day = (int)(($h + $l -$m + 114) % 31) + 1;
+        $day = (int)(($h + $l - $m + 114) % 31) + 1;
 
         return array($month, $day);
     }

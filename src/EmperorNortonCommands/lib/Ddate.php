@@ -126,9 +126,9 @@ class Ddate
      */
     private function splitIntoParts($date)
     {
-        $year = (integer)substr($date, 4, 4);
-        $month = (integer)substr($date, 2, 2);
-        $day = (integer)substr($date, 0, 2);
+        $year = (int)substr($date, 4, 4);
+        $month = (int)substr($date, 2, 2);
+        $day = (int)substr($date, 0, 2);
         return array($year, $month, $day);
     }
 }

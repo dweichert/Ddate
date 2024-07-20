@@ -97,7 +97,8 @@ final class DdateHolydayTest extends TestCase
     public function testFunFridayDe(
         string $gregorian,
         string $discordian,
-        string $format): void {
+        string $format,
+    ): void {
         self::assertEquals($discordian, (new Ddate())->ddate($format, $gregorian, 'de'));
     }
 

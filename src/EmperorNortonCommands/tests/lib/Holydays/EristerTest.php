@@ -11,21 +11,25 @@ use DateTime;
 use EmperorNortonCommands\lib\Holydays\Erister;
 use EmperorNortonCommands\lib\Value;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class EristerTest extends TestCase
+final class EristerTest extends TestCase
 {
-    #[DataProvider('isEristerProvider')] public function testIsErister($expectedTrue, $gregorian, $usePhpCalendarExt)
-    {
-        $object = new Erister($usePhpCalendarExt);
-        if ($expectedTrue) {
-            self::assertTrue($object->is($this->getMockValue($gregorian)));
-        } else {
-            self::assertFalse($object->is($this->getMockValue($gregorian)));
-        }
+    #[DataProvider('isEristerProvider')]
+    public function testIsErister(
+        bool $expected,
+        string $gregorian,
+        bool $usePhpCalendarExt
+    ): void {
+        $sut = new Erister($usePhpCalendarExt);
+        match ($expected) {
+            true => self::assertTrue($sut->is($this->getMockValue($gregorian))),
+            false => self::assertFalse($sut->is($this->getMockValue($gregorian))),
+        };
     }
 
-    public static function isEristerProvider()
+    public static function isEristerProvider(): array
     {
         return [
             '27.03.354' => [true, '27030354', true],
@@ -42,7 +46,7 @@ class EristerTest extends TestCase
         ];
     }
 
-    private function getMockValue($gregorian)
+    private function getMockValue($gregorian): MockObject&Value
     {
         $mock = $this->getMockBuilder(Value::class)
             ->onlyMethods(['getGregorian'])

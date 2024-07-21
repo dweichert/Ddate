@@ -4,6 +4,7 @@
  *
  * Public domain. All rites reversed.
  */
+declare(strict_types=1);
 
 namespace EmperorNortonCommands\lib;
 
@@ -18,42 +19,12 @@ use InvalidArgumentException;
  * @package EmperorNortonCommands\lib\Ddate
  * @api
  */
-class Ddate
+final readonly class Ddate
 {
-    /**
-     * Discordian date formatter factory.
-     *
-     * @var FormatterFactory
-     */
-    private $formatterFactory;
+    private FormatterFactory $formatterFactory;
 
-    /**
-     * Discordian date converter.
-     *
-     * @var Converter
-     */
-    private $converter;
-
-    /**
-     * Constructor method.
-     *
-     * @param Converter   $converter         OPTIONAL Converts Gregorian to Discordian dates
-     * @param FormatterFactory $formatterFactory  OPTIONAL Discordian date formatter
-     */
-    public function __construct(
-        Converter $converter = null,
-        FormatterFactory $formatterFactory = null
-    ) {
-        if (is_null($formatterFactory)) {
-            $this->formatterFactory = new FormatterFactory();
-        } else {
-            $this->formatterFactory = $formatterFactory;
-        }
-        if (is_null($converter)) {
-            $this->converter = new Converter();
-        } else {
-            $this->converter = $converter;
-        }
+    public function __construct() {
+        $this->formatterFactory = new FormatterFactory();
     }
 
     /**
@@ -89,7 +60,16 @@ class Ddate
     public function ddate($format = null, $date = null, $locale = 'en')
     {
         $dateObj = $this->getDateObject($date);
-        $ddate = $this->converter->convert($dateObj);
+        $discordianDate = DiscordianDate::fromDateTimeInterface($dateObj);
+        $ddate = new Value(
+            $discordianDate->day instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->day->value,
+            $discordianDate->season instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->season->value,
+            $discordianDate->weekday instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->weekday->value,
+            $discordianDate->year->value,
+            XDay::daysUntilRealXDay($dateObj),
+            XDay::daysUntilOriginalXDay($dateObj),
+            $dateObj,
+        );
         $formatter = $this->formatterFactory->getFormatter($locale);
         $formatter->setFormat($format);
         return $formatter->format($ddate);
@@ -98,11 +78,9 @@ class Ddate
     /**
      * Get date object from input.
      *
-     * @param  string $date Gregorian date (dmY)
-     * @return DateTime
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException|\Exception
      */
-    private function getDateObject($date)
+    private function getDateObject(string|int|null $date): DateTime
     {
         if (null === $date) {
             return new DateTime();
@@ -110,12 +88,12 @@ class Ddate
         if (!is_numeric($date) && 8 !== strlen($date)) {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
+        $date = (string) $date;
         list($year, $month, $day) = $this->splitIntoParts($date);
         if (!checkdate($month, $day, $year)) {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
-        $dateObject = new DateTime($year . '-' . $month . '-' . $day, new DateTimeZone('UTC'));
-        return $dateObject;
+        return new DateTime($year . '-' . $month . '-' . $day, new DateTimeZone('UTC'));
     }
 
     /**
@@ -126,7 +104,7 @@ class Ddate
      * @param  string $date Gregorian date (dmY)
      * @return array
      */
-    private function splitIntoParts($date)
+    private function splitIntoParts(string $date): array
     {
         $year = (int)substr($date, 4, 4);
         $month = (int)substr($date, 2, 2);

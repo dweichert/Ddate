@@ -7,6 +7,9 @@
 
 namespace EmperorNortonCommands\lib;
 
+use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
+use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
+
 /**
  * @package EmperorNortonCommands\lib\Ddate
  * @internal
@@ -21,12 +24,12 @@ class FormatterFactory
     private $availableFormatters = array(
         'en' => array(
             'lang' => 'English',
-            'class' => 'EmperorNortonCommands\lib\locale\en\StandardFormatter',
+            'class' => EnglishStandardFormatter::class,
             'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\en\StandardHolydays')
         ),
         'de' => array(
             'lang' => 'Deutsch',
-            'class' => 'EmperorNortonCommands\lib\locale\de\StandardFormatter',
+            'class' => GermanStandardFormatter::class,
             'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\de\StandardHolydays')
         )
     );

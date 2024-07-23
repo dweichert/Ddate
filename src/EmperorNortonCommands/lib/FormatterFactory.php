@@ -36,20 +36,10 @@ class FormatterFactory
 
     /**
      * Get Discordian date formatter.
-     *
-     * @param  string $locale two-letter locale identifier, e.g. "en" for English
-     * @return Formatter
      */
-    public function getFormatter($locale)
+    public function getFormatter(Locale $locale): Formatter
     {
-        if (is_object($locale) && !method_exists($locale, '__toString')) {
-            $locale = 'en';
-        }
-        $locale = strtolower(substr($locale, 0, 2));
-        if (!array_key_exists($locale, $this->availableFormatters)) {
-            $locale = 'en';
-        }
-        $formatter = (string)$this->availableFormatters[$locale]['class'];
+        $formatter = (string)$this->availableFormatters[$locale->value]['class'];
 
         return new $formatter();
     }

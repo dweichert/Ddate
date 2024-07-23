@@ -30,12 +30,11 @@ final readonly class Ddate
     /**
      * Returns array of all supported format strings.
      *
-     * @param  string   $locale OPTIONAL e.g. en for English, de for German, ...
-     * @return string[]
+     * @return array<string, string>
      */
-    public function getSupportedFormatStringFields($locale = 'en')
+    public function getSupportedFormatStringFields(string|null $locale = null): array
     {
-        return $this->formatterFactory->getFormatter($locale)->getSupportedFormatStringFields();
+        return $this->formatterFactory->getFormatter(Locale::fromStringOrNull($locale))->getSupportedFormatStringFields();
     }
 
     /**
@@ -53,11 +52,11 @@ final readonly class Ddate
      *
      * @param  string                    $format OPTIONAL format string
      * @param  string                    $date   OPTIONAL Gregorian date
-     * @param  string                    $locale OPTIONAL e.g. en for English, de for German, ...
+     * @param  string|null               $locale OPTIONAL e.g. en for English, de for German, ...
      * @return string
      * @throws InvalidArgumentException
      */
-    public function ddate($format = null, $date = null, $locale = 'en')
+    public function ddate($format = null, $date = null, string|null $locale = null)
     {
         $dateObj = $this->getDateObject($date);
         $discordianDate = DiscordianDate::fromDateTimeInterface($dateObj);
@@ -70,7 +69,7 @@ final readonly class Ddate
             XDay::daysUntilOriginalXDay($dateObj),
             $dateObj,
         );
-        $formatter = $this->formatterFactory->getFormatter($locale);
+        $formatter = $this->formatterFactory->getFormatter(Locale::fromStringOrNull($locale));
         $formatter->setFormat($format);
         return $formatter->format($ddate);
     }

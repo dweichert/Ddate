@@ -23,9 +23,9 @@ class StandardFormatter extends Formatter
     /**
      * Supported format string fields and description.
      *
-     * @var string[]
+     * @var array<string, string>
      */
-    protected $supportedFormatStringFields = array(
+    protected $supportedFormatStringFields = [
         '%A' => 'Full name of the day of the week (e.g. Sweetmorn)',
         '%a' => 'Abbreviated name of the day of the week (e.g. SM)',
         '%B' => 'Full name of the season (e.g. Chaos)',
@@ -45,7 +45,7 @@ class StandardFormatter extends Formatter
         '%2' => 'add "Camden Beneres\' Holidays" to Holydays',
         '%3' => 'add "Reverent DrJon Swabey\'s Whollydays" to Holydays',
         '%4' => 'add "Reverent Loveshade\'s Whollydays" to Holydays',
-    );
+    ];
 
     /**
      * Default format.
@@ -59,28 +59,28 @@ class StandardFormatter extends Formatter
      *
      * @var string[]
      */
-    protected $days = array('Sweetmorn', 'Boomtime', 'Pungenday', 'Prickle-Prickle', 'Setting Orange');
+    protected $days = ['Sweetmorn', 'Boomtime', 'Pungenday', 'Prickle-Prickle', 'Setting Orange'];
 
     /**
      * Abbreviated names of the day of the week.
      *
      * @var string[]
      */
-    protected $abbrevDays = array('SM', 'BT', 'PD', 'PP', 'SO');
+    protected $abbrevDays = ['SM', 'BT', 'PD', 'PP', 'SO'];
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $seasons = array('Chaos', 'Discord', 'Confusion', 'Bureaucracy', 'The Aftermath');
+    protected $seasons = ['Chaos', 'Discord', 'Confusion', 'Bureaucracy', 'The Aftermath'];
 
     /**
      * Abbreviated names of the seasons.
      *
      * @var string[]
      */
-    protected $abbrevSeasons = array('Chs', 'Dsc', 'Cfn', 'Bcy', 'Afm');
+    protected $abbrevSeasons = ['Chs', 'Dsc', 'Cfn', 'Bcy', 'Afm'];
 
     /**
      * No Holyday (msgid) string.
@@ -205,7 +205,7 @@ class StandardFormatter extends Formatter
             return 'FNORD';
         }
         $suffix = 'th';
-        if (!in_array($day, array(11, 12, 13))) {
+        if (!in_array($day, [11, 12, 13])) {
             $lastDigitDay = substr($day, -1, 1);
             switch ($lastDigitDay) {
                 case '1':

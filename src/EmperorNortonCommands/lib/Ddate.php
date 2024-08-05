@@ -8,8 +8,6 @@ declare(strict_types=1);
 
 namespace EmperorNortonCommands\lib;
 
-use DateTime;
-use DateTimeZone;
 use InvalidArgumentException;
 
 /**
@@ -50,15 +48,15 @@ final readonly class Ddate
      * mechanism works similarly to the format string mechanism of date(), only
      * almost completely differently.
      *
-     * @param  string                    $format OPTIONAL format string
-     * @param  string                    $date   OPTIONAL Gregorian date
+     * @param  string|null               $format OPTIONAL format string
+     * @param  string|null               $date   OPTIONAL Gregorian date
      * @param  string|null               $locale OPTIONAL e.g. en for English, de for German, ...
      * @return string
      * @throws InvalidArgumentException
      */
-    public function ddate($format = null, $date = null, string|null $locale = null)
+    public function ddate($format = null, string|null $date = null, string|null $locale = null)
     {
-        $dateObj = $this->getDateObject($date);
+        $dateObj = DateTimeFactory::createFromStringOrNull($date);
         $discordianDate = DiscordianDate::fromDateTimeInterface($dateObj);
         $ddate = new Value(
             $discordianDate->day instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->day->value,
@@ -72,42 +70,5 @@ final readonly class Ddate
         $formatter = $this->formatterFactory->getFormatter(Locale::fromStringOrNull($locale));
         $formatter->setFormat($format);
         return $formatter->format($ddate);
-    }
-
-    /**
-     * Get date object from input.
-     *
-     * @throws InvalidArgumentException|\Exception
-     */
-    private function getDateObject(string|int|null $date): DateTime
-    {
-        if (null === $date) {
-            return new DateTime();
-        }
-        if (!is_numeric($date) && 8 !== strlen($date)) {
-            throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
-        }
-        $date = (string) $date;
-        list($year, $month, $day) = $this->splitIntoParts($date);
-        if (!checkdate($month, $day, $year)) {
-            throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
-        }
-        return new DateTime($year . '-' . $month . '-' . $day, new DateTimeZone('UTC'));
-    }
-
-    /**
-     * Splits date string into parts.
-     *
-     * Returns array($day, $month, $year).
-     *
-     * @param  string $date Gregorian date (dmY)
-     * @return array
-     */
-    private function splitIntoParts(string $date): array
-    {
-        $year = (int)substr($date, 4, 4);
-        $month = (int)substr($date, 2, 2);
-        $day = (int)substr($date, 0, 2);
-        return array($year, $month, $day);
     }
 }

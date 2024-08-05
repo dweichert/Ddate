@@ -9,9 +9,7 @@ namespace EmperorNortonCommands\tests\lib;
 
 use DateTime;
 use EmperorNortonCommands\lib\Ddate;
-use EmperorNortonCommands\lib\Converter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
-use EmperorNortonCommands\lib\FormatterFactory;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
@@ -118,12 +116,12 @@ final class DdateTest extends TestCase
     }
 
     /**
-     * Test ddate() with invalid argument (wrong type).
+     * Test ddate() with invalid argument (string too long and not numeric).
      */
     public function testInvalidDateWrongType(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Second argument expected to be a Gregorian date (dmY).');
+        $this->expectExceptionMessage('Given date value expected to be string (format dmY) or null, found "Lorem ipsum dolor sit amet.": string is not numeric or given length is not 8 characters');
 
         (new Ddate())->ddate(null, 'Lorem ipsum dolor sit amet.');
     }
@@ -134,7 +132,7 @@ final class DdateTest extends TestCase
     public function testInvalidDate(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Second argument expected to be a Gregorian date (dmY).');
+        $this->expectExceptionMessage('Given date value expected to be string (format dmY) or null, found "29021997": is not a valid Gregorian date');
 
         (new Ddate())->ddate(null, 29021997);
     }

@@ -24,7 +24,7 @@ final class FormatterFactoryTest extends TestCase
         string $expected,
         Locale $locale,
     ): void {
-        self::assertTrue((new FormatterFactory())->getFormatter($locale) instanceof $expected);
+        self::assertTrue(FormatterFactory::createFormatter($locale) instanceof $expected);
     }
 
     public static function provideGetFormatter(): array

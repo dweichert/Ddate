@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib;
 
 use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
@@ -17,30 +19,13 @@ use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardForm
 class FormatterFactory
 {
     /**
-     * Available formatters.
-     *
-     * @var mixed[]
+     * Create DiscordianDateFormatter for given locale.
      */
-    private $availableFormatters = array(
-        'en' => array(
-            'lang' => 'English',
-            'class' => EnglishStandardFormatter::class,
-            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\en\StandardHolydays')
-        ),
-        'de' => array(
-            'lang' => 'Deutsch',
-            'class' => GermanStandardFormatter::class,
-            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\de\StandardHolydays')
-        )
-    );
-
-    /**
-     * Get Discordian date formatter.
-     */
-    public function getFormatter(Locale $locale): Formatter
+    public static function createFormatter(Locale $locale): Formatter
     {
-        $formatter = (string)$this->availableFormatters[$locale->value]['class'];
-
-        return new $formatter();
+        return match ($locale) {
+            Locale::English => new EnglishStandardFormatter(),
+            Locale::German => new GermanStandardFormatter(),
+        };
     }
 }

@@ -19,12 +19,6 @@ use InvalidArgumentException;
  */
 final readonly class Ddate
 {
-    private FormatterFactory $formatterFactory;
-
-    public function __construct() {
-        $this->formatterFactory = new FormatterFactory();
-    }
-
     /**
      * Returns array of all supported format strings.
      *
@@ -32,7 +26,7 @@ final readonly class Ddate
      */
     public function getSupportedFormatStringFields(string|null $locale = null): array
     {
-        return $this->formatterFactory->getFormatter(Locale::fromStringOrNull($locale))->getSupportedFormatStringFields();
+        return FormatterFactory::createFormatter(Locale::fromStringOrNull($locale))->getSupportedFormatStringFields();
     }
 
     /**
@@ -67,7 +61,7 @@ final readonly class Ddate
             XDay::daysUntilOriginalXDay($dateObj),
             $dateObj,
         );
-        $formatter = $this->formatterFactory->getFormatter(Locale::fromStringOrNull($locale));
+        $formatter = FormatterFactory::createFormatter(Locale::fromStringOrNull($locale));
         $formatter->setFormat($format);
         return $formatter->format($ddate);
     }

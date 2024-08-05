@@ -4,7 +4,6 @@
  *
  * Public domain. All rites reversed.
  */
-
 declare(strict_types=1);
 
 namespace EmperorNortonCommands\lib;

@@ -4,65 +4,29 @@
  *
  * Public domain. All rites reversed.
  */
+declare(strict_types=1);
 
 namespace EmperorNortonCommands\lib;
 
-use DateTime;
-use DateTimeZone;
 use InvalidArgumentException;
 
 /**
- * Class Ddate.
+ * Provides functionality to convert Gregorian into Discordian dates and format
+ * the output according to a given format string.
  *
- * @package EmperorNortonCommands
+ * @package EmperorNortonCommands\lib\Ddate
+ * @api
  */
-class Ddate
+final readonly class Ddate
 {
-    /**
-     * Discordian date formatter factory.
-     *
-     * @var FormatterFactory
-     */
-    private $formatterFactory;
-
-    /**
-     * Discordian date converter.
-     *
-     * @var Converter
-     */
-    private $converter;
-
-    /**
-     * Constructor method.
-     *
-     * @param Converter   $converter         OPTIONAL Converts Gregorian to Discordian dates
-     * @param FormatterFactory $formatterFactory  OPTIONAL Discordian date formatter
-     */
-    public function __construct(
-        Converter $converter = null,
-        FormatterFactory $formatterFactory = null
-    ) {
-        if (is_null($formatterFactory)) {
-            $this->formatterFactory = new FormatterFactory();
-        } else {
-            $this->formatterFactory = $formatterFactory;
-        }
-        if (is_null($converter)) {
-            $this->converter = new Converter();
-        } else {
-            $this->converter = $converter;
-        }
-    }
-
     /**
      * Returns array of all supported format strings.
      *
-     * @param  string   $locale OPTIONAL e.g. en for English, de for German, ...
-     * @return string[]
+     * @return array<string, string>
      */
-    public function getSupportedFormatStringFields($locale = 'en')
+    public function getSupportedFormatStringFields(string|null $locale = null): array
     {
-        return $this->formatterFactory->getFormatter($locale)->getSupportedFormatStringFields();
+        return FormatterFactory::createFormatter(Locale::fromStringOrNull($locale))->getSupportedFormatStringFields();
     }
 
     /**
@@ -78,57 +42,27 @@ class Ddate
      * mechanism works similarly to the format string mechanism of date(), only
      * almost completely differently.
      *
-     * @param  string                    $format OPTIONAL format string
-     * @param  string                    $date   OPTIONAL Gregorian date
-     * @param  string                    $locale OPTIONAL e.g. en for English, de for German, ...
+     * @param  string|null               $format OPTIONAL format string
+     * @param  string|null               $date   OPTIONAL Gregorian date
+     * @param  string|null               $locale OPTIONAL e.g. en for English, de for German, ...
      * @return string
      * @throws InvalidArgumentException
      */
-    public function ddate($format = null, $date = null, $locale = 'en')
+    public function ddate($format = null, string|null $date = null, string|null $locale = null)
     {
-        $dateObj = $this->getDateObject($date);
-        $ddate = $this->converter->convert($dateObj);
-        $formatter = $this->formatterFactory->getFormatter($locale);
+        $dateObj = DateTimeFactory::createFromStringOrNull($date);
+        $discordianDate = DiscordianDate::fromDateTimeInterface($dateObj);
+        $ddate = new Value(
+            $discordianDate->day instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->day->value,
+            $discordianDate->season instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->season->value,
+            $discordianDate->weekday instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->weekday->value,
+            $discordianDate->year->value,
+            XDay::daysUntilRealXDay($dateObj),
+            XDay::daysUntilOriginalXDay($dateObj),
+            $dateObj,
+        );
+        $formatter = FormatterFactory::createFormatter(Locale::fromStringOrNull($locale));
         $formatter->setFormat($format);
         return $formatter->format($ddate);
-    }
-
-    /**
-     * Get date object from input.
-     *
-     * @param  string $date Gregorian date (dmY)
-     * @return DateTime
-     * @throws InvalidArgumentException
-     */
-    private function getDateObject($date)
-    {
-        if (null === $date) {
-            return new DateTime();
-        }
-        if (!is_numeric($date) && 8 !== strlen($date)) {
-            throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
-        }
-        list($year, $month, $day) = $this->splitIntoParts($date);
-        if (!checkdate($month, $day, $year)) {
-            throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
-        }
-        $dateObject = new DateTime($year . '-' . $month . '-' . $day, new DateTimeZone('UTC'));
-        return $dateObject;
-    }
-
-    /**
-     * Splits date string into parts.
-     *
-     * Returns array($day, $month, $year).
-     *
-     * @param  string $date Gregorian date (dmY)
-     * @return array
-     */
-    private function splitIntoParts($date)
-    {
-        $year = (integer)substr($date, 4, 4);
-        $month = (integer)substr($date, 2, 2);
-        $day = (integer)substr($date, 0, 2);
-        return array($year, $month, $day);
     }
 }

@@ -10,15 +10,15 @@ namespace EmperorNortonCommands\lib;
 use EmperorNortonCommands\lib\Holydays\StandardHolydays;
 
 /**
- * Class Formatter.
- * @package EmperorNortonCommands\lib
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 abstract class Formatter
 {
     /**
      * Returns array of all supported format strings.
      *
-     * @var string[]
+     * @var array<string, string>
      */
     protected $supportedFormatStringFields = array();
 
@@ -62,9 +62,9 @@ abstract class Formatter
     /**
      * Get supported format string fields.
      *
-     * @return string[]
+     * @return array<string, string>
      */
-    public function getSupportedFormatStringFields()
+    public function getSupportedFormatStringFields(): array
     {
         return $this->supportedFormatStringFields;
     }
@@ -91,7 +91,7 @@ abstract class Formatter
      * @return string
      */
     abstract public function format(Value $ddate);
-    
+
     /**
      * Get Holyday value.
      *

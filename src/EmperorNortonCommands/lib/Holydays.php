@@ -11,12 +11,12 @@ use DOMDocument;
 use DOMXPath;
 
 /**
- * Class Holydays
- * @package EmperorNortonCommands\lib
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 abstract class Holydays
 {
-    const KEY = 'holydays';
+    public const string KEY = 'holydays';
 
     /**
      * Get Holyday.

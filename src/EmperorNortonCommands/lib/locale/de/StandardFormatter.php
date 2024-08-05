@@ -11,17 +11,17 @@ use EmperorNortonCommands\lib\Value;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
- * Class StandardFormatter
- * @package EmperorNortonCommands\lib\locale\de
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class StandardFormatter extends EnglishStandardFormatter
 {
     /**
      * Supported format string fields and description.
      *
-     * @var string[]
+     * @var array<string, string>
      */
-    protected $supportedFormatStringFields = array(
+    protected $supportedFormatStringFields = [
         '%A' => 'Vollständiger Name des Woechentages (z.B. Süßmorgen)',
         '%a' => 'Abgekürzter Name des Wochentages (z.B. SM)',
         '%B' => 'Vollständiger Name der Saison (z.B. Verwirrung)',
@@ -43,14 +43,14 @@ class StandardFormatter extends EnglishStandardFormatter
         '%2' => 'füge "Camden Beneres\' Holidays" zu den Holydays (Feiertagen) hinzu',
         '%3' => 'füge "Reverent DrJon Swabey\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
         '%4' => 'füge "Reverent Loveshade\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
-    );
+    ];
 
     /**
      * Cardinal numbers.
      *
      * @var string[]
      */
-    protected $_cardinalNumbers = array(
+    protected $_cardinalNumbers = [
         'Erster', 'Zweiter', 'Dritter', 'Vierter', 'Fünfter', 'Sechster', 'Siebter', 'Achter', 'Neunter', 'Zehnter',
         'Elfter', 'Zwölfter', 'Dreizehnter', 'Vierzehnter', 'Fünfzehnter', 'Sechzehnter', 'Siebzehnter', 'Achtzehnter', 'Neunzehnter', 'vierzigster',
         'Einundfünfzigster', 'Zweiundzwanzigster', 'Dreiundzwanzigster', 'Vierundzwanzigster', 'Fünfundzwanzigster', 'Sechsundzwanzigster', 'Siebenundzwanzigster', 'Achtundzwanzigster', 'Neunundzwanzigster', 'Dreißigster',
@@ -59,7 +59,7 @@ class StandardFormatter extends EnglishStandardFormatter
         'Einundfünfzigster', 'Zweiundfünfzigster', 'Dreiundfünfzigster', 'Vierundfünfzigster', 'Fünfundfünfzigster', 'Sechsundfünfzigster', 'Siebenundfünfzigster', 'Achtundfünfzigster', 'Neunundfünfzigster', 'Sechzigster',
         'Einundsechzigster', 'Zweiundsechzigster', 'Dreiundsechzigster', 'Vierundsechzigster', 'Fünfundsechzigster', 'Sechsundsechzigster', 'Siebenundsechzigster', 'Achtundsechzigster', 'Neunundsechzigster', 'Siebzigster',
         'Einundsiebzigster', 'Zweiundsiebzigster', 'Dreiundsiebzigster'
-    );
+    ];
 
     /**
      * Default format.
@@ -73,35 +73,35 @@ class StandardFormatter extends EnglishStandardFormatter
      *
      * @var string[]
      */
-    protected $days = array('Süßmorgen', 'Blütezeit', 'Stichtag', 'Prickel-Prickel', 'Orangewerdend');
+    protected $days = ['Süßmorgen', 'Blütezeit', 'Stichtag', 'Prickel-Prickel', 'Orangewerdend'];
 
     /**
      * Abbreviated names of the day of the week.
      *
      * @var string[]
      */
-    protected $abbrevDays = array('SM', 'BZ', 'ST', 'PP', 'OW');
+    protected $abbrevDays = ['SM', 'BZ', 'ST', 'PP', 'OW'];
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $seasons = array('Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Grummet');
+    protected $seasons = ['Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Grummet'];
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $seasonsGenitive = array('der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Grummets');
+    protected $seasonsGenitive = ['der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Grummets'];
 
     /**
      * Abbreviated names of the seasons.
      *
      * @var string[]
      */
-    protected $abbrevSeasons = array('Ve', 'Zw', 'Un', 'Be', 'Au');
+    protected $abbrevSeasons = ['Ve', 'Zw', 'Un', 'Be', 'Au'];
 
     /**
      * No Holyday (msgid) string.

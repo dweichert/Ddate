@@ -10,11 +10,10 @@ namespace EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Class NoPantsDay
+ * No Pants Day is the first Friday in May.
  *
- * First Friday in May.
- *
- * @package EmperorNortonCommands\lib\Holydays
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class NoPantsDayInterface implements NoFixedDateHolydayInterface
 {

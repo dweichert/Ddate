@@ -5,49 +5,27 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib;
 
+use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
+use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
+
 /**
- * Class FormatterFactory
- * @package EmperorNortonCommands\lib
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class FormatterFactory
 {
     /**
-     * Available formatters.
-     *
-     * @var mixed[]
+     * Create DiscordianDateFormatter for given locale.
      */
-    private $availableFormatters = array(
-        'en' => array(
-            'lang' => 'English',
-            'class' => 'EmperorNortonCommands\lib\locale\en\StandardFormatter',
-            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\en\StandardHolydays')
-        ),
-        'de' => array(
-            'lang' => 'Deutsch',
-            'class' => 'EmperorNortonCommands\lib\locale\de\StandardFormatter',
-            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\de\StandardHolydays')
-        )
-    );
-
-    /**
-     * Get Discordian date formatter.
-     *
-     * @param  string $locale two-letter locale identifier, e.g. "en" for English
-     * @return Formatter
-     */
-    public function getFormatter($locale)
+    public static function createFormatter(Locale $locale): Formatter
     {
-        if (is_object($locale) && !method_exists($locale, '__toString')) {
-            $locale = 'en';
-        }
-        $locale = strtolower(substr($locale, 0, 2));
-        if (!array_key_exists($locale, $this->availableFormatters)) {
-            $locale = 'en';
-        }
-        $formatter = (string)$this->availableFormatters[$locale]['class'];
-
-        return new $formatter();
+        return match ($locale) {
+            Locale::English => new EnglishStandardFormatter(),
+            Locale::German => new GermanStandardFormatter(),
+        };
     }
 }

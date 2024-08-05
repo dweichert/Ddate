@@ -10,8 +10,11 @@ namespace EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Interface NoFixedDateHolyday.
- * @package EmperorNortonCommands\lib\Holydays
+ * Some Holydays occur on days that require calculation rather than on a fixed
+ * date of the year.
+ *
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 interface NoFixedDateHolydayInterface
 {

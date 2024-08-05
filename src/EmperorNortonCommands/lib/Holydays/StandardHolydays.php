@@ -10,12 +10,14 @@ namespace EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Holydays;
 
 /**
- * Class StandardHolydays
- * @package EmperorNortonCommands\lib\Holydays
+ * The standard holydays defined in Principia Discordia, 00034.
+ *
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class StandardHolydays extends Holydays
 {
-    const KEY = 'standard';
+    public const string KEY = 'standard';
 
     /**
      * @inheritdoc

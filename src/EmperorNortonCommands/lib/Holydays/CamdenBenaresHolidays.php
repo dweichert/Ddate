@@ -11,12 +11,13 @@ use EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Class CamdenBenaresHolidays
- * @package EmperorNortonCommands\lib\Holydays
+ * @see src/EmperorNortonCommands/lib/locale/en/data/camden_benares_holidays.xml
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class CamdenBenaresHolidays extends Holydays
 {
-    const KEY = 'camden_benares';
+    public const string KEY = 'camden_benares';
 
     /**
      * @inheritdoc

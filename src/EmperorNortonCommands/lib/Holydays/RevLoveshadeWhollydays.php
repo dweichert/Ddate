@@ -4,18 +4,20 @@
  *
  * Public domain. All rites reversed.
  */
+
 namespace EmperorNortonCommands\lib\Holydays;
 
 use EmperorNortonCommands\lib\Holydays;
 use EmperorNortonCommands\lib\Value;
 
 /**
- * Class RevLoveshadeWhollydays
- * @package EmperorNortonCommands\lib\Holydays
+ * @see src/EmperorNortonCommands/lib/locale/en/data/rev_loveshade_whollydays.xml
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class RevLoveshadeWhollydays extends Holydays
 {
-    const KEY = 'rev_loveshade';
+    public const string KEY = 'rev_loveshade';
 
     /**
      * @inheritdoc

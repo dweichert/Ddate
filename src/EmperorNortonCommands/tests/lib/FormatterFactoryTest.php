@@ -7,52 +7,31 @@
 
 namespace EmperorNortonCommands\tests\lib;
 
-use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
+use EmperorNortonCommands\lib\Locale;
+use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
+use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
-/**
- * Class FormatterFactoryTest.
- *
- * @package EmperorNortonCommands\tests\lib
- */
-class FormatterFactoryTest extends TestCase
+final class FormatterFactoryTest extends TestCase
 {
     /**
-     * Object instance to be tested.
-     *
-     * @var FormatterFactory
+     * @param class-string $expected
      */
-    protected $_object;
-
-    /**
-     * Set up.
-     */
-    public function setUp(): void
-    {
-        $this->_object = new FormatterFactory();
+    #[DataProvider('provideGetFormatter')]
+    public function testGetFormatter(
+        string $expected,
+        Locale $locale,
+    ): void {
+        self::assertTrue(FormatterFactory::createFormatter($locale) instanceof $expected);
     }
 
-    /**
-     * Data provider for getFormatter().
-     *
-     * @return array
-     */
-    public static function dataProvider()
+    public static function provideGetFormatter(): array
     {
-        return array(
-            array('Foo', 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array(new stdClass(), 'EmperorNortonCommands\lib\locale\en\StandardFormatter')
-        );
-    }
-
-    /**
-     * Test getFormatter()
-     */
-    #[DataProvider('dataProvider')] public function testGetFormatter($locale, $expected)
-    {
-        self::assertTrue($this->_object->getFormatter($locale) instanceof $expected);
+        return [
+            'German Locale' => [GermanStandardFormatter::class, Locale::German],
+            'English Locale' => [EnglishStandardFormatter::class, Locale::English],
+        ];
     }
 }

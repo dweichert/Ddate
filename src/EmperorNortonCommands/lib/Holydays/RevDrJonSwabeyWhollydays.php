@@ -4,17 +4,19 @@
  *
  * Public domain. All rites reversed.
  */
+
 namespace EmperorNortonCommands\lib\Holydays;
 
 use EmperorNortonCommands\lib\Holydays;
 
 /**
- * Class RevDrJonSwabeyHolydays
- * @package EmperorNortonCommands\lib\Holydays
+ * @see src/EmperorNortonCommands/lib/locale/en/data/rev_drjon_swabey_whollydays.xml
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
  */
 class RevDrJonSwabeyWhollydays extends Holydays
 {
-    const KEY = 'rev_drjon_swabey';
+    public const string KEY = 'rev_drjon_swabey';
 
     /**
      * @inheritdoc

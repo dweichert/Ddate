@@ -7,12 +7,15 @@
 
 namespace EmperorNortonCommands\lib\Internal\Formatter;
 
+use EmperorNortonCommands\lib\DiscordianDate;
 use EmperorNortonCommands\lib\FormatterInterface;
 use EmperorNortonCommands\lib\Internal\Holydays\CamdenBenaresHolidays;
 use EmperorNortonCommands\lib\Internal\Holydays\RevDrJonSwabeyWhollydays;
 use EmperorNortonCommands\lib\Internal\Holydays\RevLoveshadeWhollydays;
 use EmperorNortonCommands\lib\Internal\Holydays\StandardHolydays;
+use EmperorNortonCommands\lib\Internal\Legacy\StTibsDay;
 use EmperorNortonCommands\lib\Internal\Legacy\Value;
+use EmperorNortonCommands\lib\XDay;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate
@@ -62,27 +65,31 @@ class EnglishFormatter extends Formatter implements FormatterInterface
      */
     protected $noHolyday = 'no Holyday';
 
-    /**
-     * Format Value as string.
-     *
-     * @param  Value $ddate
-     * @return string
-     */
-    public function formatLegacy(Value $ddate)
+    public function format(string|null $format, DiscordianDate $ddate): string
     {
+        $value = new Value(
+            $ddate->day instanceof StTibsDay ? Value::ST_TIBS_DAY : $ddate->day->value,
+            $ddate->season instanceof StTibsDay ? Value::ST_TIBS_DAY : $ddate->season->value,
+            $ddate->weekday instanceof StTibsDay ? Value::ST_TIBS_DAY : $ddate->weekday->value,
+            $ddate->year->value,
+            XDay::daysUntilRealXDay($ddate->gregorian),
+            XDay::daysUntilOriginalXDay($ddate->gregorian),
+            $ddate->gregorian,
+        );
+        $this->setFormat($format);
         $output = $this->format;
         $output = $this->replaceHolidaySetPlaceholders($output);
-        $output = $this->replaceStTibsPlaceholders($output, $ddate);
-        $output = $this->replaceHolidayPlaceholders($output, $ddate, 'en');
-        $output = str_replace('%a', $this->getAbbreviatedWeekDayName($ddate->getWeekDay()), $output);
-        $output = str_replace('%A', $this->getDiscordianWeekDayName($ddate->getWeekDay()), $output);
-        $output = str_replace('%B', $this->getDiscordianSeasonName($ddate->getSeason()), $output);
-        $output = str_replace('%b', $this->getAbbreviatedSeasonName($ddate->getSeason()), $output);
-        $output = str_replace('%e', $this->getCardinalDay($ddate->getDay()), $output);
-        $output = str_replace('%d', $this->getOrdinalDay($ddate), $output);
-        $output = str_replace('%Y', $ddate->getYear(), $output);
-        $output = str_replace('%X', $ddate->getDaysUntilRealXDay(), $output);
-        $output = str_replace('%x', $ddate->getDaysUntilOriginalXDay(), $output);
+        $output = $this->replaceStTibsPlaceholders($output, $value);
+        $output = $this->replaceHolidayPlaceholders($output, $value, 'en');
+        $output = str_replace('%a', $this->getAbbreviatedWeekDayName($value->getWeekDay()), $output);
+        $output = str_replace('%A', $this->getDiscordianWeekDayName($value->getWeekDay()), $output);
+        $output = str_replace('%B', $this->getDiscordianSeasonName($value->getSeason()), $output);
+        $output = str_replace('%b', $this->getAbbreviatedSeasonName($value->getSeason()), $output);
+        $output = str_replace('%e', $this->getCardinalDay($value->getDay()), $output);
+        $output = str_replace('%d', $this->getOrdinalDay($value), $output);
+        $output = str_replace('%Y', $value->getYear(), $output);
+        $output = str_replace('%X', $value->getDaysUntilRealXDay(), $output);
+        $output = str_replace('%x', $value->getDaysUntilOriginalXDay(), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;

@@ -1,12 +1,9 @@
 # README
 
-[![Build Status](https://travis-ci.org/dweichert/Ddate.svg?branch=master)](https://travis-ci.org/dweichert/Ddate)
 [![Downloads this Month](https://img.shields.io/packagist/dm/ddate/ddate.svg?style=flat)](https://packagist.org/packages/ddate/ddate)
 [![Latest stable](https://img.shields.io/packagist/v/ddate/ddate.svg?style=flat&label=stable)](https://packagist.org/packages/ddate/ddate)
 [![Latest dev](https://img.shields.io/packagist/vpre/ddate/ddate.svg?style=flat&label=unstable)](https://packagist.org/packages/ddate/ddate)
 [![License](https://img.shields.io/packagist/l/ddate/ddate.svg?style=flat&label=license)](https://packagist.org/packages/ddate/ddate)
-[![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
-[![SymfonyInsight](https://insight.symfony.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a/mini.svg)](https://insight.symfony.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a)
 [![composer.lock](https://poser.pugx.org/ddate/ddate/composerlock)](https://packagist.org/packages/ddate/ddate)
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%F0%9F%98%9C%F0%9F%98%8D-informational)](https://gitmoji.dev)
 
@@ -21,7 +18,7 @@ operating system in PHP. It converts Gregorian to Discordian dates.
 The easiest way to use the library in your project is to install it by adding
 it as a dependency to your project's composer.json file.
 
-    $ composer require ddate/ddate "^1.1"
+    $ composer require ddate/ddate
     
 If you want to call the library via the command line or use it in a shell
 script downloading the
@@ -122,6 +119,10 @@ locale be specified.
 
 *Wir feiern Rückwärtstag (reformiert) und Binärtag*
 
+    $ddate->ddate('%{%A, %e of %B,%} %Y%N,%2%3%4 Celebrate %H', 20072024'));
+
+*Sweetmorn, 55th of Confusion, 3190, Celebrate Mal-2 Day*
+
 ### Method getSupportedFormatStringFields
 
     $ddate->getSupportedFormatStringFields()
@@ -136,13 +137,32 @@ the format string fields are locale specific.
 
 ##  Releases
 
-| Version | Supported PHP Versions                                                  | Remarks                                                                 |
-|---------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| 2.0.x   | 8.0.x                                                                   |                                                                         |
-| 1.1.x   | 5.3.x, 5.4.x, 5.5.x, 5.6.x, 7.0.x, 7.1.x, 7.2.x, 7.3.x, 7.4.x           | Older PHP versions will be supported as long as the CI builds can be maintained.\* |
-| 1.0.x   | --                                                                      | Version 1.0.x has reached its end of life and is  no longer supported.  |
+| Version | PHP Version Compatibility                                                          | Supported                                                              |
+|---------|------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| 2.0.x   | 8.3.x                                                                              | Yes                                                                    |
+| 1.1.x   | 5.3.x, 5.4.x, 5.5.x, 5.6.x, 7.0.x, 7.1.x, 7.2.x, 7.3.x, 7.4.x, 8.0.x, 8.1.x, 8.2.x | Version 1.1.x has reached its end of life and is  no longer supported. |
+| 1.0.x   | --                                                                                 | Version 1.0.x has reached its end of life and is  no longer supported. |
 
-\* Regrettably HHVM is no longer supported, as [HHVM no longer supports PHP](https://hhvm.com/blog/2018/09/12/end-of-php-support-future-of-hack.html) and [Composer no longer runs under HHVM](https://hhvm.com/blog/2019/02/11/hhvm-4.0.0.html), rendering the HHVM build permanently broken. Older versions of HHVM/Composer used to work, but your milage may vary.
+Supported releases received bug and security fixes. Older releases that have
+reached their end of life are no longer supported by the developers.
+
+## Development
+
+### Install tools
+    
+    phive install
+
+### Static code analysis
+
+    phpstan analyse --level max src
+
+    psalm
+
+### Code style
+
+    php-cs-fixer check .
+
+    php-cs-fixer fix .
 
 ## License
 
@@ -156,4 +176,4 @@ Pope Rotund Deluxe
 
 Bureflux, 3179
 
-(last updated: Prickle-Prickle, 48th of The Aftermath, 3186)
+(last updated: Sweetmorn, 55th of Confusion, 3190)

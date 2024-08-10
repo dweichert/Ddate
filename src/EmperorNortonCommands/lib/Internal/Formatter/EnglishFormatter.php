@@ -5,10 +5,9 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Internal\locale\en;
+namespace EmperorNortonCommands\lib\Internal\Formatter;
 
 use EmperorNortonCommands\lib\FormatterInterface;
-use EmperorNortonCommands\lib\Internal\Formatter\Formatter;
 use EmperorNortonCommands\lib\Internal\Holydays\CamdenBenaresHolidays;
 use EmperorNortonCommands\lib\Internal\Holydays\RevDrJonSwabeyWhollydays;
 use EmperorNortonCommands\lib\Internal\Holydays\RevLoveshadeWhollydays;
@@ -19,7 +18,7 @@ use EmperorNortonCommands\lib\Internal\Legacy\Value;
  * @package EmperorNortonCommands\lib\Ddate
  * @internal
  */
-class StandardFormatter extends Formatter implements FormatterInterface
+class EnglishFormatter extends Formatter implements FormatterInterface
 {
     /**
      * Supported format string fields and description.

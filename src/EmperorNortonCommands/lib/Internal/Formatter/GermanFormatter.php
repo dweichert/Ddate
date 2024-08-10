@@ -5,17 +5,17 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Internal\locale\de;
+namespace EmperorNortonCommands\lib\Internal\Formatter;
 
 use EmperorNortonCommands\lib\FormatterInterface;
+use EmperorNortonCommands\lib\Internal\Formatter\EnglishFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\Internal\Legacy\Value;
-use EmperorNortonCommands\lib\Internal\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate
  * @internal
  */
-class StandardFormatter extends EnglishStandardFormatter implements FormatterInterface
+class GermanFormatter extends EnglishStandardFormatter implements FormatterInterface
 {
     /**
      * Supported format string fields and description.

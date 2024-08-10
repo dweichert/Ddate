@@ -9,7 +9,7 @@ namespace EmperorNortonCommands\tests\lib;
 
 use DateTime;
 use EmperorNortonCommands\lib\Ddate;
-use EmperorNortonCommands\lib\Internal\locale\en\StandardFormatter as EnglishStandardFormatter;
+use EmperorNortonCommands\lib\Internal\Formatter\EnglishFormatter as EnglishStandardFormatter;
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace EmperorNortonCommands\lib;
 
-use EmperorNortonCommands\lib\Internal\locale\de\StandardFormatter as GermanStandardFormatter;
-use EmperorNortonCommands\lib\Internal\locale\en\StandardFormatter as EnglishStandardFormatter;
+use EmperorNortonCommands\lib\Internal\Formatter\GermanFormatter;
+use EmperorNortonCommands\lib\Internal\Formatter\EnglishFormatter;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate
@@ -23,8 +23,8 @@ class FormatterFactory
     public static function createFormatter(Locale $locale): FormatterInterface
     {
         return match ($locale) {
-            Locale::English => new EnglishStandardFormatter(),
-            Locale::German => new GermanStandardFormatter(),
+            Locale::English => new EnglishFormatter(),
+            Locale::German => new GermanFormatter(),
         };
     }
 }

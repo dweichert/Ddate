@@ -8,8 +8,8 @@
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
-use EmperorNortonCommands\lib\Internal\locale\en\StandardFormatter as EnglishStandardFormatter;
-use EmperorNortonCommands\lib\Internal\locale\de\StandardFormatter as GermanStandardFormatter;
+use EmperorNortonCommands\lib\Internal\Formatter\GermanFormatter as GermanStandardFormatter;
+use EmperorNortonCommands\lib\Internal\Formatter\EnglishFormatter as EnglishStandardFormatter;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

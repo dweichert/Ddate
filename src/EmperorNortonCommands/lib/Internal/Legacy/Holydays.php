@@ -5,10 +5,11 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib;
+namespace EmperorNortonCommands\lib\Internal\Legacy;
 
 use DOMDocument;
 use DOMXPath;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate

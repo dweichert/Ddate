@@ -5,10 +5,11 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Holydays;
+namespace EmperorNortonCommands\lib\Internal\Holydays;
 
-use EmperorNortonCommands\lib\Holydays;
-use EmperorNortonCommands\lib\Value;
+use EmperorNortonCommands\lib\Internal\Holydays\FunFriday;
+use EmperorNortonCommands\lib\Internal\Legacy\Holydays;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**
  * @see src/EmperorNortonCommands/lib/locale/en/data/camden_benares_holidays.xml

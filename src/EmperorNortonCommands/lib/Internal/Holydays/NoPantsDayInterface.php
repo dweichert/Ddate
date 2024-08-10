@@ -5,9 +5,10 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Holydays;
+namespace EmperorNortonCommands\lib\Internal\Holydays;
 
-use EmperorNortonCommands\lib\Value;
+use EmperorNortonCommands\lib\Internal\Holydays\NoFixedDateHolydayInterface;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**
  * No Pants Day is the first Friday in May.

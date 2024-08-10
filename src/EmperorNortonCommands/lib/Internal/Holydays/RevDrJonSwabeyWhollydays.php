@@ -5,9 +5,9 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Holydays;
+namespace EmperorNortonCommands\lib\Internal\Holydays;
 
-use EmperorNortonCommands\lib\Holydays;
+use EmperorNortonCommands\lib\Internal\Legacy\Holydays;
 
 /**
  * @see src/EmperorNortonCommands/lib/locale/en/data/rev_drjon_swabey_whollydays.xml

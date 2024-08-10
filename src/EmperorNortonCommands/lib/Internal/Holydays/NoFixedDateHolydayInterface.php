@@ -5,9 +5,9 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Holydays;
+namespace EmperorNortonCommands\lib\Internal\Holydays;
 
-use EmperorNortonCommands\lib\Value;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**
  * Some Holydays occur on days that require calculation rather than on a fixed

@@ -5,15 +5,15 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\locale\en;
+namespace EmperorNortonCommands\lib\Internal\locale\en;
 
-use EmperorNortonCommands\lib\Formatter;
-use EmperorNortonCommands\lib\FormatterInterface;
-use EmperorNortonCommands\lib\Holydays\CamdenBenaresHolidays;
-use EmperorNortonCommands\lib\Holydays\RevDrJonSwabeyWhollydays;
-use EmperorNortonCommands\lib\Holydays\RevLoveshadeWhollydays;
-use EmperorNortonCommands\lib\Holydays\StandardHolydays;
-use EmperorNortonCommands\lib\Value;
+use EmperorNortonCommands\lib\Internal\Holydays\CamdenBenaresHolidays;
+use EmperorNortonCommands\lib\Internal\Holydays\RevDrJonSwabeyWhollydays;
+use EmperorNortonCommands\lib\Internal\Holydays\RevLoveshadeWhollydays;
+use EmperorNortonCommands\lib\Internal\Holydays\StandardHolydays;
+use EmperorNortonCommands\lib\Internal\Formatter\Formatter;
+use EmperorNortonCommands\lib\Internal\FormatterInterface;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate

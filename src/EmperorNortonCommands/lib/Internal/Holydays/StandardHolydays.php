@@ -5,9 +5,9 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Holydays;
+namespace EmperorNortonCommands\lib\Internal\Holydays;
 
-use EmperorNortonCommands\lib\Holydays;
+use EmperorNortonCommands\lib\Internal\Legacy\Holydays;
 
 /**
  * The standard holydays defined in Principia Discordia, 00034.

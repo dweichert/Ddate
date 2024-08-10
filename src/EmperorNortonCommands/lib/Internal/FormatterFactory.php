@@ -6,10 +6,10 @@
  */
 declare(strict_types=1);
 
-namespace EmperorNortonCommands\lib;
+namespace EmperorNortonCommands\lib\Internal;
 
-use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
-use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
+use EmperorNortonCommands\lib\Internal\locale\de\StandardFormatter as GermanStandardFormatter;
+use EmperorNortonCommands\lib\Internal\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate

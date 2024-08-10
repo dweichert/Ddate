@@ -5,9 +5,10 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Holydays;
+namespace EmperorNortonCommands\lib\Internal\Holydays;
 
-use EmperorNortonCommands\lib\Value;
+use EmperorNortonCommands\lib\Internal\Holydays\NoFixedDateHolydayInterface;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**
  * Erister is a Whollyday occurring on the first Sunday after the first full

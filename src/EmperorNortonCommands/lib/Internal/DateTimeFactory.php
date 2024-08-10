@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace EmperorNortonCommands\lib;
+namespace EmperorNortonCommands\lib\Internal;
 
 use DateTimeImmutable;
 use DateTimeZone;

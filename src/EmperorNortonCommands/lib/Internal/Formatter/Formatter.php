@@ -6,9 +6,14 @@
  */
 declare(strict_types=1);
 
-namespace EmperorNortonCommands\lib;
+namespace EmperorNortonCommands\lib\Internal\Formatter;
 
-use EmperorNortonCommands\lib\Holydays\StandardHolydays;
+use EmperorNortonCommands\lib\DiscordianDate;
+use EmperorNortonCommands\lib\Internal\Holydays\StandardHolydays;
+use EmperorNortonCommands\lib\Internal\Legacy\Holydays;
+use EmperorNortonCommands\lib\Internal\Legacy\StTibsDay;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
+use EmperorNortonCommands\lib\XDay;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate

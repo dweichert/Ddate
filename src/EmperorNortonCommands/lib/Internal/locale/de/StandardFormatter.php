@@ -5,11 +5,11 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\locale\de;
+namespace EmperorNortonCommands\lib\Internal\locale\de;
 
-use EmperorNortonCommands\lib\FormatterInterface;
-use EmperorNortonCommands\lib\Value;
-use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
+use EmperorNortonCommands\lib\Internal\FormatterInterface;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
+use EmperorNortonCommands\lib\Internal\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate

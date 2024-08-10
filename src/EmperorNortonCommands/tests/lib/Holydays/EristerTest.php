@@ -8,8 +8,8 @@
 namespace EmperorNortonCommands\tests\lib\Holydays;
 
 use DateTime;
-use EmperorNortonCommands\lib\Holydays\Erister;
-use EmperorNortonCommands\lib\Value;
+use EmperorNortonCommands\lib\Internal\Holydays\Erister;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

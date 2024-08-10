@@ -5,7 +5,7 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib;
+namespace EmperorNortonCommands\lib\Internal\Legacy;
 
 use DateTimeInterface;
 

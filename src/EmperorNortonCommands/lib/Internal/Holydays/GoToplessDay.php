@@ -5,9 +5,10 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Holydays;
+namespace EmperorNortonCommands\lib\Internal\Holydays;
 
-use EmperorNortonCommands\lib\Value;
+use EmperorNortonCommands\lib\Internal\Holydays\NoFixedDateHolydayInterface;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**
  * Go Topless Day is the Sunday nearest 19th of Bureaucracy (26th of August),

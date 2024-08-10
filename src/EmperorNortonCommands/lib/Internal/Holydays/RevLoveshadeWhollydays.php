@@ -5,10 +5,13 @@
  * Public domain. All rites reversed.
  */
 
-namespace EmperorNortonCommands\lib\Holydays;
+namespace EmperorNortonCommands\lib\Internal\Holydays;
 
-use EmperorNortonCommands\lib\Holydays;
-use EmperorNortonCommands\lib\Value;
+use EmperorNortonCommands\lib\Internal\Holydays\Erister;
+use EmperorNortonCommands\lib\Internal\Holydays\GoToplessDay;
+use EmperorNortonCommands\lib\Internal\Holydays\NoPantsDayInterface;
+use EmperorNortonCommands\lib\Internal\Legacy\Holydays;
+use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**
  * @see src/EmperorNortonCommands/lib/locale/en/data/rev_loveshade_whollydays.xml

@@ -29,13 +29,6 @@ abstract class Formatter
     protected $format = '';
 
     /**
-     * Default format.
-     *
-     * @var string
-     */
-    protected $defaultFormat = '';
-
-    /**
      * Holydays.
      *
      * @var Holydays[]
@@ -54,23 +47,7 @@ abstract class Formatter
      */
     public function __construct()
     {
-        $this->setFormat();
         $this->holydays[StandardHolydays::getKey()] = new StandardHolydays();
-    }
-
-    /**
-     * Sets format to internal property.
-     *
-     * If no format string is given default format string is used as fallback.
-     *
-     * @param string|null $format OPTIONAL will use default format as fallback.
-     */
-    public function setFormat($format = null)
-    {
-        if (null === $format || (is_object($format) && !method_exists($format, '__toString'))) {
-            $format = $this->defaultFormat;
-        }
-        $this->format = (string)$format;
     }
 
     /**

@@ -15,6 +15,7 @@ use EmperorNortonCommands\lib\Internal\Holydays\RevLoveshadeWhollydays;
 use EmperorNortonCommands\lib\Internal\Holydays\StandardHolydays;
 use EmperorNortonCommands\lib\Internal\Legacy\StTibsDay;
 use EmperorNortonCommands\lib\Internal\Legacy\Value;
+use EmperorNortonCommands\lib\Locale;
 use EmperorNortonCommands\lib\XDay;
 
 /**
@@ -23,13 +24,6 @@ use EmperorNortonCommands\lib\XDay;
  */
 class EnglishFormatter extends Formatter implements FormatterInterface
 {
-    /**
-     * Default format.
-     *
-     * @var string
-     */
-    protected $defaultFormat = '%{%A, %B %d,%} %Y YOLD';
-
     /**
      * Full names of the day of the week.
      *
@@ -76,7 +70,7 @@ class EnglishFormatter extends Formatter implements FormatterInterface
             XDay::daysUntilOriginalXDay($ddate->gregorian),
             $ddate->gregorian,
         );
-        $this->setFormat($format);
+        $this->format = $format ?? DefaultFormatString::fromLocale(Locale::English)->value;
         $output = $this->format;
         $output = $this->replaceHolidaySetPlaceholders($output);
         $output = $this->replaceStTibsPlaceholders($output, $value);

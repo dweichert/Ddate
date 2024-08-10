@@ -12,6 +12,7 @@ use EmperorNortonCommands\lib\FormatterInterface;
 use EmperorNortonCommands\lib\Internal\Formatter\EnglishFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\Internal\Legacy\StTibsDay;
 use EmperorNortonCommands\lib\Internal\Legacy\Value;
+use EmperorNortonCommands\lib\Locale;
 use EmperorNortonCommands\lib\XDay;
 
 /**
@@ -35,13 +36,6 @@ class GermanFormatter extends EnglishStandardFormatter implements FormatterInter
         'Einundsechzigster', 'Zweiundsechzigster', 'Dreiundsechzigster', 'Vierundsechzigster', 'Fünfundsechzigster', 'Sechsundsechzigster', 'Siebenundsechzigster', 'Achtundsechzigster', 'Neunundsechzigster', 'Siebzigster',
         'Einundsiebzigster', 'Zweiundsiebzigster', 'Dreiundsiebzigster'
     ];
-
-    /**
-     * Default format.
-     *
-     * @var string
-     */
-    protected $defaultFormat = '%{%A, %B %d,%} %Y n. Gre.';
 
     /**
      * Full names of the day of the week.
@@ -96,7 +90,7 @@ class GermanFormatter extends EnglishStandardFormatter implements FormatterInter
             XDay::daysUntilOriginalXDay($ddate->gregorian),
             $ddate->gregorian,
         );
-        $this->setFormat($format);
+        $this->format = $format ?? DefaultFormatString::fromLocale(Locale::German)->value;
         $output = $this->format;
         $output = $this->replaceHolidaySetPlaceholders($output);
         $output = $this->replaceStTibsPlaceholders($output, $value);

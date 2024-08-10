@@ -4,7 +4,6 @@
  *
  * Public domain. All rites reversed.
  */
-
 namespace EmperorNortonCommands\lib\Internal\Formatter;
 
 use EmperorNortonCommands\lib\DiscordianDate;

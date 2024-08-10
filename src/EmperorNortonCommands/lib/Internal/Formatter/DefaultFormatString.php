@@ -1,11 +1,19 @@
 <?php
-
+/**
+ * This file is part of the Emperor Norton Commands.
+ *
+ * Public domain. All rites reversed.
+ */
 declare(strict_types=1);
 
 namespace EmperorNortonCommands\lib\Internal\Formatter;
 
 use EmperorNortonCommands\lib\Locale;
 
+/**
+ * @package EmperorNortonCommands\lib\Ddate
+ * @internal
+ */
 enum DefaultFormatString: string
 {
     case English = '%{%A, %B %d,%} %Y YOLD';

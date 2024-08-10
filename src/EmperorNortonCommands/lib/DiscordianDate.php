@@ -10,11 +10,11 @@ namespace EmperorNortonCommands\lib;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use EmperorNortonCommands\lib\Internal\DiscordianDate\DiscordianDay;
-use EmperorNortonCommands\lib\Internal\DiscordianDate\DiscordianSeason;
-use EmperorNortonCommands\lib\Internal\DiscordianDate\DiscordianWeekday;
-use EmperorNortonCommands\lib\Internal\DiscordianDate\DiscordianYear;
-use EmperorNortonCommands\lib\Internal\Legacy\StTibsDay;
+use EmperorNortonCommands\lib\DiscordianDate\DiscordianDay;
+use EmperorNortonCommands\lib\DiscordianDate\DiscordianSeason;
+use EmperorNortonCommands\lib\DiscordianDate\DiscordianWeekday;
+use EmperorNortonCommands\lib\DiscordianDate\DiscordianYear;
+use EmperorNortonCommands\lib\DiscordianDate\StTibsDay;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate

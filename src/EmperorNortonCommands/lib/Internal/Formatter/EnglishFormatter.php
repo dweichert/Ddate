@@ -8,12 +8,12 @@
 namespace EmperorNortonCommands\lib\Internal\Formatter;
 
 use EmperorNortonCommands\lib\DiscordianDate;
+use EmperorNortonCommands\lib\DiscordianDate\StTibsDay;
 use EmperorNortonCommands\lib\FormatterInterface;
 use EmperorNortonCommands\lib\Internal\Holydays\CamdenBenaresHolidays;
 use EmperorNortonCommands\lib\Internal\Holydays\RevDrJonSwabeyWhollydays;
 use EmperorNortonCommands\lib\Internal\Holydays\RevLoveshadeWhollydays;
 use EmperorNortonCommands\lib\Internal\Holydays\StandardHolydays;
-use EmperorNortonCommands\lib\Internal\Legacy\StTibsDay;
 use EmperorNortonCommands\lib\Internal\Legacy\Value;
 use EmperorNortonCommands\lib\Locale;
 use EmperorNortonCommands\lib\XDay;

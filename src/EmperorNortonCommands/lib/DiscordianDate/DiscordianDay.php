@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EmperorNortonCommands\lib\Internal\DiscordianDate;
+namespace EmperorNortonCommands\lib\DiscordianDate;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate
- * @internal
+ * @api
  */
 enum DiscordianDay: int
 {

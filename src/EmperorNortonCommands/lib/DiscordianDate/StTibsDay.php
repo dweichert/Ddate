@@ -6,15 +6,12 @@
  */
 declare(strict_types=1);
 
-namespace EmperorNortonCommands\lib\Internal\DiscordianDate;
+namespace EmperorNortonCommands\lib\DiscordianDate;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate
- * @internal
+ * @api
  */
-final readonly class DiscordianYear
+final readonly class StTibsDay
 {
-    public function __construct(public int $value)
-    {
-    }
 }

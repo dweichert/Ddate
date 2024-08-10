@@ -7,6 +7,7 @@
 
 namespace EmperorNortonCommands\lib\locale\de;
 
+use EmperorNortonCommands\lib\FormatterInterface;
 use EmperorNortonCommands\lib\Value;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 
@@ -14,7 +15,7 @@ use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardForm
  * @package EmperorNortonCommands\lib\Ddate
  * @internal
  */
-class StandardFormatter extends EnglishStandardFormatter
+class StandardFormatter extends EnglishStandardFormatter implements FormatterInterface
 {
     /**
      * Supported format string fields and description.
@@ -116,7 +117,7 @@ class StandardFormatter extends EnglishStandardFormatter
      * @param  Value $ddate
      * @return string
      */
-    public function format(Value $ddate)
+    public function formatLegacy(Value $ddate)
     {
         $output = $this->format;
         $output = $this->replaceHolidaySetPlaceholders($output);

@@ -75,7 +75,7 @@ abstract class Formatter
      *
      * If no format string is given default format string is used as fallback.
      *
-     * @param string $format OPTIONAL will use default format as fallback.
+     * @param string|null $format OPTIONAL will use default format as fallback.
      */
     public function setFormat($format = null)
     {
@@ -85,13 +85,30 @@ abstract class Formatter
         $this->format = (string)$format;
     }
 
+    public function format(string|null $format, DiscordianDate $ddate): string
+    {
+        $value = new Value(
+            $ddate->day instanceof StTibsDay ? Value::ST_TIBS_DAY : $ddate->day->value,
+            $ddate->season instanceof StTibsDay ? Value::ST_TIBS_DAY : $ddate->season->value,
+            $ddate->weekday instanceof StTibsDay ? Value::ST_TIBS_DAY : $ddate->weekday->value,
+            $ddate->year->value,
+            XDay::daysUntilRealXDay($ddate->gregorian),
+            XDay::daysUntilOriginalXDay($ddate->gregorian),
+            $ddate->gregorian,
+        );
+        $this->setFormat($format);
+
+        return $this->formatLegacy($value);
+    }
+
     /**
      * Get formatted Discordian date.
      *
      * @param  Value $ddate
+     * @deprecated with v2.0.0
      * @return string
      */
-    abstract public function format(Value $ddate);
+    abstract public function formatLegacy(Value $ddate);
 
     /**
      * Get Holyday value.

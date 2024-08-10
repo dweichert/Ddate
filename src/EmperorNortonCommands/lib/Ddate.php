@@ -42,27 +42,16 @@ final readonly class Ddate
      * mechanism works similarly to the format string mechanism of date(), only
      * almost completely differently.
      *
-     * @param  string|null               $format OPTIONAL format string
-     * @param  string|null               $date   OPTIONAL Gregorian date
-     * @param  string|null               $locale OPTIONAL e.g. en for English, de for German, ...
-     * @return string
-     * @throws InvalidArgumentException
+     * @throws InvalidArgumentException if given Gregorian date invalid
      */
-    public function ddate($format = null, string|null $date = null, string|null $locale = null)
+    public function ddate(string|null $format = null, string|null $date = null, string|null $locale = null): string
     {
-        $dateObj = DateTimeFactory::createFromStringOrNull($date);
-        $discordianDate = DiscordianDate::fromDateTimeInterface($dateObj);
-        $ddate = new Value(
-            $discordianDate->day instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->day->value,
-            $discordianDate->season instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->season->value,
-            $discordianDate->weekday instanceof StTibsDay ? Value::ST_TIBS_DAY : $discordianDate->weekday->value,
-            $discordianDate->year->value,
-            XDay::daysUntilRealXDay($dateObj),
-            XDay::daysUntilOriginalXDay($dateObj),
-            $dateObj,
-        );
-        $formatter = FormatterFactory::createFormatter(Locale::fromStringOrNull($locale));
-        $formatter->setFormat($format);
-        return $formatter->format($ddate);
+        return FormatterFactory::createFormatter(Locale::fromStringOrNull($locale))
+            ->format(
+                format: $format,
+                ddate: DiscordianDate::fromDateTimeInterface(
+                    DateTimeFactory::createFromStringOrNull($date),
+                ),
+            );
     }
 }

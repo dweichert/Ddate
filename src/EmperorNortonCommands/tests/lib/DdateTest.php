@@ -13,7 +13,6 @@ use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardForm
 use InvalidArgumentException;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use SimpleXMLElement;
 
 final class DdateTest extends TestCase
 {
@@ -21,7 +20,7 @@ final class DdateTest extends TestCase
     public function testDdate(
         string|int $gregorian,
         string $discordian,
-        object|string|null $format,
+        string|null $format,
     ): void {
         $actual = (new Ddate())->ddate($format, $gregorian);
         self::assertEquals($discordian, $actual);
@@ -67,9 +66,9 @@ final class DdateTest extends TestCase
             ['13032000', 'Boomtime, Chaos 72, 3166 YOLD', null],
             ['14032000', 'Pungenday, Chaos 73, 3166 YOLD', null],
             ['15032000', 'Prickle-Prickle, Discord 1, 3166 YOLD', null],
-            ['30121999', 'Prickle-Prickle, The Aftermath 72, 3165 YOLD', new \stdClass()],
-            ['31121999', 'Setting Orange, The Aftermath 73, 3165 YOLD', new \stdClass()],
-            ['01012000', '', new SimpleXMLElement('<xml/>')],
+            ['30121999', 'Prickle-Prickle, The Aftermath 72, 3165 YOLD', null],
+            ['31121999', 'Setting Orange, The Aftermath 73, 3165 YOLD', null],
+            ['01012000', 'Sweetmorn, Chaos 1, 3166 YOLD', null],
             ['14031999', 'PD, Chs 73rd 3165', '%a, %b %e %Y'],
             ['15031999', 'PP, Dsc 1st 3165', '%a, %b %e %Y'],
             ['26051999', 'SM, Dsc 73rd 3165', '%a, %b %e %Y'],

@@ -20,7 +20,7 @@ class FormatterFactory
     /**
      * Create DiscordianDateFormatter for given locale.
      */
-    public static function createFormatter(Locale $locale): Formatter
+    public static function createFormatter(Locale $locale): FormatterInterface
     {
         return match ($locale) {
             Locale::English => new EnglishStandardFormatter(),

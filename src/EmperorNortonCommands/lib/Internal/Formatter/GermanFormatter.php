@@ -19,7 +19,7 @@ use EmperorNortonCommands\lib\XDay;
  * @package EmperorNortonCommands\lib\Ddate
  * @internal
  */
-class GermanFormatter extends EnglishStandardFormatter implements FormatterInterface
+final class GermanFormatter extends EnglishStandardFormatter implements FormatterInterface
 {
     /**
      * Cardinal numbers.

@@ -15,7 +15,7 @@ use EmperorNortonCommands\lib\Internal\Formatter\EnglishFormatter;
  * @package EmperorNortonCommands\lib\Ddate
  * @api
  */
-class FormatterFactory
+final class FormatterFactory
 {
     /**
      * Create Formatter for instances of DiscordianDate for a given locale.

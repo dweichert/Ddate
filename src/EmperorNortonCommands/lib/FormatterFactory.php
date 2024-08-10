@@ -6,19 +6,19 @@
  */
 declare(strict_types=1);
 
-namespace EmperorNortonCommands\lib\Internal;
+namespace EmperorNortonCommands\lib;
 
 use EmperorNortonCommands\lib\Internal\locale\de\StandardFormatter as GermanStandardFormatter;
 use EmperorNortonCommands\lib\Internal\locale\en\StandardFormatter as EnglishStandardFormatter;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate
- * @internal
+ * @api
  */
 class FormatterFactory
 {
     /**
-     * Create DiscordianDateFormatter for given locale.
+     * Create Formatter for instances of DiscordianDate for a given locale.
      */
     public static function createFormatter(Locale $locale): FormatterInterface
     {

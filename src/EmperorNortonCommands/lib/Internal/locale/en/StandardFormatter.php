@@ -7,12 +7,12 @@
 
 namespace EmperorNortonCommands\lib\Internal\locale\en;
 
+use EmperorNortonCommands\lib\FormatterInterface;
+use EmperorNortonCommands\lib\Internal\Formatter\Formatter;
 use EmperorNortonCommands\lib\Internal\Holydays\CamdenBenaresHolidays;
 use EmperorNortonCommands\lib\Internal\Holydays\RevDrJonSwabeyWhollydays;
 use EmperorNortonCommands\lib\Internal\Holydays\RevLoveshadeWhollydays;
 use EmperorNortonCommands\lib\Internal\Holydays\StandardHolydays;
-use EmperorNortonCommands\lib\Internal\Formatter\Formatter;
-use EmperorNortonCommands\lib\Internal\FormatterInterface;
 use EmperorNortonCommands\lib\Internal\Legacy\Value;
 
 /**

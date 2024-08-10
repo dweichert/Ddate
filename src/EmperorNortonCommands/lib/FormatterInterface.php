@@ -6,13 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EmperorNortonCommands\lib\Internal;
-
-use EmperorNortonCommands\lib\DiscordianDate;
+namespace EmperorNortonCommands\lib;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate
- * @internal
+ * @api
  */
 interface FormatterInterface
 {

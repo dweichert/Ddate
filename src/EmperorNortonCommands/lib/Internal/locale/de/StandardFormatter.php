@@ -7,7 +7,7 @@
 
 namespace EmperorNortonCommands\lib\Internal\locale\de;
 
-use EmperorNortonCommands\lib\Internal\FormatterInterface;
+use EmperorNortonCommands\lib\FormatterInterface;
 use EmperorNortonCommands\lib\Internal\Legacy\Value;
 use EmperorNortonCommands\lib\Internal\locale\en\StandardFormatter as EnglishStandardFormatter;
 

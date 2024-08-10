@@ -6,11 +6,11 @@
  */
 declare(strict_types=1);
 
-namespace EmperorNortonCommands\lib\Internal;
+namespace EmperorNortonCommands\lib;
 
 /**
  * @package EmperorNortonCommands\lib\Ddate
- * @internal
+ * @api
  */
 enum Locale: string
 {

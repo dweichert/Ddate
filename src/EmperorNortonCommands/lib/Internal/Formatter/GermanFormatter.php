@@ -18,35 +18,6 @@ use EmperorNortonCommands\lib\Internal\Legacy\Value;
 class GermanFormatter extends EnglishStandardFormatter implements FormatterInterface
 {
     /**
-     * Supported format string fields and description.
-     *
-     * @var array<string, string>
-     */
-    protected $supportedFormatStringFields = [
-        '%A' => 'Vollständiger Name des Woechentages (z.B. Süßmorgen)',
-        '%a' => 'Abgekürzter Name des Wochentages (z.B. SM)',
-        '%B' => 'Vollständiger Name der Saison (z.B. Verwirrung)',
-        '%b' => 'Abgekürzter Name der Saison (z.B. Ve)',
-        '%C' => 'Vollständiger Name der Saison mit führendem bestimmten Artikel im Genitiv (z.B. der Verwirrung, des Grummets)',
-        '%d' => 'Tag der Saison als Ordinalzahl (z.B. 23)',
-        '%e' => 'Tag der Saison als Kardinalzahl (z.B. 23.)',
-        '%E' => 'Tag der Saison als Kardinalzahl als Wort (z.B. Dreiundzwanzigster)',
-        '%Y' => 'Volle numerische Repräsentation des Jahrs, vierstellig',
-        '%H' => 'Name des heiligen Tages (wenn es einer ist)',
-        '%N' => 'Magischer Code, um die Ausgabe des restlichen Formates zu unterbinden, es sei denn es ist ein heiliger Tag',
-        '%n' => 'Neue Zeile',
-        '%t' => 'Tabulator',
-        '%X' => 'Anzahl der Tage seit dem / bis zum Tag X.',
-        '%x' => 'Anzahl der Tage seit dem / bis zum ursprünglichen Tag X.',
-        '%{' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Anfang)',
-        '%}' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)',
-        '%1' => 'entferne Standardholydays (Feiertage)',
-        '%2' => 'füge "Camden Beneres\' Holidays" zu den Holydays (Feiertagen) hinzu',
-        '%3' => 'füge "Reverent DrJon Swabey\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
-        '%4' => 'füge "Reverent Loveshade\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
-    ];
-
-    /**
      * Cardinal numbers.
      *
      * @var string[]
@@ -138,6 +109,34 @@ class GermanFormatter extends EnglishStandardFormatter implements FormatterInter
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
     }
+
+    public function getSupportedFormatStringFields(): array
+    {
+        return [
+            '%A' => 'Vollständiger Name des Woechentages (z.B. Süßmorgen)',
+            '%a' => 'Abgekürzter Name des Wochentages (z.B. SM)',
+            '%B' => 'Vollständiger Name der Saison (z.B. Verwirrung)',
+            '%b' => 'Abgekürzter Name der Saison (z.B. Ve)',
+            '%C' => 'Vollständiger Name der Saison mit führendem bestimmten Artikel im Genitiv (z.B. der Verwirrung, des Grummets)',
+            '%d' => 'Tag der Saison als Ordinalzahl (z.B. 23)',
+            '%e' => 'Tag der Saison als Kardinalzahl (z.B. 23.)',
+            '%E' => 'Tag der Saison als Kardinalzahl als Wort (z.B. Dreiundzwanzigster)',
+            '%Y' => 'Volle numerische Repräsentation des Jahrs, vierstellig',
+            '%H' => 'Name des heiligen Tages (wenn es einer ist)',
+            '%N' => 'Magischer Code, um die Ausgabe des restlichen Formates zu unterbinden, es sei denn es ist ein heiliger Tag',
+            '%n' => 'Neue Zeile',
+            '%t' => 'Tabulator',
+            '%X' => 'Anzahl der Tage seit dem / bis zum Tag X.',
+            '%x' => 'Anzahl der Tage seit dem / bis zum ursprünglichen Tag X.',
+            '%{' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Anfang)',
+            '%}' => 'Schließt den Teil des Datums ein, der mit "St. Tibs Tag" ersetzt wird, wenn es St. Tibs Tag ist (Ende)',
+            '%1' => 'entferne Standardholydays (Feiertage)',
+            '%2' => 'füge "Camden Beneres\' Holidays" zu den Holydays (Feiertagen) hinzu',
+            '%3' => 'füge "Reverent DrJon Swabey\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
+            '%4' => 'füge "Reverent Loveshade\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
+        ];
+    }
+
 
     /**
      * Replaces %{ and %} placeholders in given string.

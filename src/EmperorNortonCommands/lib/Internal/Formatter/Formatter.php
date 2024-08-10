@@ -22,13 +22,6 @@ use EmperorNortonCommands\lib\XDay;
 abstract class Formatter
 {
     /**
-     * Returns array of all supported format strings.
-     *
-     * @var array<string, string>
-     */
-    protected $supportedFormatStringFields = array();
-
-    /**
      * Format string.
      *
      * @var string
@@ -63,16 +56,6 @@ abstract class Formatter
     {
         $this->setFormat();
         $this->holydays[StandardHolydays::getKey()] = new StandardHolydays();
-    }
-
-    /**
-     * Get supported format string fields.
-     *
-     * @return array<string, string>
-     */
-    public function getSupportedFormatStringFields(): array
-    {
-        return $this->supportedFormatStringFields;
     }
 
     /**

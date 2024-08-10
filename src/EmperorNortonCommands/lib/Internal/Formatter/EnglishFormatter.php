@@ -21,33 +21,6 @@ use EmperorNortonCommands\lib\Internal\Legacy\Value;
 class EnglishFormatter extends Formatter implements FormatterInterface
 {
     /**
-     * Supported format string fields and description.
-     *
-     * @var array<string, string>
-     */
-    protected $supportedFormatStringFields = [
-        '%A' => 'Full name of the day of the week (e.g. Sweetmorn)',
-        '%a' => 'Abbreviated name of the day of the week (e.g. SM)',
-        '%B' => 'Full name of the season (e.g. Chaos)',
-        '%b' => 'Abbreviated name of the season (e.g. Chs)',
-        '%d' => 'Ordinal number of the day in the season (e.g. 23)',
-        '%e' => 'Cardinal number of the day in the season (e.g. 23rd)',
-        '%Y' => 'A full numeric representation of a year, 4 digits',
-        '%H' => 'Name of current Holyday, if any',
-        '%N' => 'Magic code to prevent rest of the format being printed unless today is a Holyday',
-        '%n' => 'Newline',
-        '%t' => 'Tab',
-        '%X' => 'Number of days since / until remaining until X-Day.',
-        '%x' => 'Number of days since / until original X-Day (Jul 5th, 1998)',
-        '%{' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (start delimiter)',
-        '%}' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (end delimiter)',
-        '%1' => 'remove standard Holydays',
-        '%2' => 'add "Camden Beneres\' Holidays" to Holydays',
-        '%3' => 'add "Reverent DrJon Swabey\'s Whollydays" to Holydays',
-        '%4' => 'add "Reverent Loveshade\'s Whollydays" to Holydays',
-    ];
-
-    /**
      * Default format.
      *
      * @var string
@@ -113,6 +86,31 @@ class EnglishFormatter extends Formatter implements FormatterInterface
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
+    }
+
+    public function getSupportedFormatStringFields(): array
+    {
+        return [
+            '%A' => 'Full name of the day of the week (e.g. Sweetmorn)',
+            '%a' => 'Abbreviated name of the day of the week (e.g. SM)',
+            '%B' => 'Full name of the season (e.g. Chaos)',
+            '%b' => 'Abbreviated name of the season (e.g. Chs)',
+            '%d' => 'Ordinal number of the day in the season (e.g. 23)',
+            '%e' => 'Cardinal number of the day in the season (e.g. 23rd)',
+            '%Y' => 'A full numeric representation of a year, 4 digits',
+            '%H' => 'Name of current Holyday, if any',
+            '%N' => 'Magic code to prevent rest of the format being printed unless today is a Holyday',
+            '%n' => 'Newline',
+            '%t' => 'Tab',
+            '%X' => 'Number of days since / until remaining until X-Day.',
+            '%x' => 'Number of days since / until original X-Day (Jul 5th, 1998)',
+            '%{' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (start delimiter)',
+            '%}' => 'Enclose the part of the string which is to be replaced with "St. Tib\'s Day" if the current day is St. Tib\'s Day (end delimiter)',
+            '%1' => 'remove standard Holydays',
+            '%2' => 'add "Camden Beneres\' Holidays" to Holydays',
+            '%3' => 'add "Reverent DrJon Swabey\'s Whollydays" to Holydays',
+            '%4' => 'add "Reverent Loveshade\'s Whollydays" to Holydays',
+        ];
     }
 
     /**

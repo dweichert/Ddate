@@ -42,13 +42,6 @@ class Value
     private $season;
 
     /**
-     * Discordian year.
-     *
-     * @var integer
-     */
-    private $year;
-
-    /**
      * Gregorian date.
      *
      * @var DateTimeInterface
@@ -73,7 +66,6 @@ class Value
         $this->day = $day;
         $this->season = $season;
         $this->weekDay = $weekDay;
-        $this->year = $year;
         $this->date = $date;
     }
 
@@ -105,16 +97,6 @@ class Value
     public function getSeason()
     {
         return $this->season;
-    }
-
-    /**
-     * Get year.
-     *
-     * @return integer
-     */
-    public function getYear()
-    {
-        return $this->year;
     }
 
     /**

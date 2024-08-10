@@ -79,7 +79,7 @@ class EnglishFormatter extends Formatter implements FormatterInterface
         $output = str_replace('%b', $this->getAbbreviatedSeasonName($value->getSeason()), $output);
         $output = str_replace('%e', $this->getCardinalDay($value->getDay()), $output);
         $output = str_replace('%d', $this->getOrdinalDay($value), $output);
-        $output = str_replace('%Y', $value->getYear(), $output);
+        $output = str_replace('%Y', $ddate->year->value, $output);
         $output = str_replace('%X', XDay::daysUntilRealXDay($ddate->gregorian), $output);
         $output = str_replace('%x', XDay::daysUntilOriginalXDay($ddate->gregorian), $output);
         $output = str_replace('%t', "\t", $output);

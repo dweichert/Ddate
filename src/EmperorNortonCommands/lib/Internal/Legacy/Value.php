@@ -49,20 +49,6 @@ class Value
     private $year;
 
     /**
-     * Days until real X-Day.
-     *
-     * @var integer
-     */
-    private $daysUntilRealXDay;
-
-    /**
-     * Days until original X-Day.
-     *
-     * @var integer
-     */
-    private $daysUntilOriginalXDay;
-
-    /**
      * Gregorian date.
      *
      * @var DateTimeInterface
@@ -75,8 +61,6 @@ class Value
      * @param integer $season
      * @param integer $weekDay
      * @param integer $year
-     * @param integer $daysUntilRealXDay
-     * @param integer $daysUntilOriginalXDay
      * @param DateTimeInterface $date
      */
     public function __construct(
@@ -84,16 +68,12 @@ class Value
         $season,
         $weekDay,
         $year,
-        $daysUntilRealXDay,
-        $daysUntilOriginalXDay,
         $date
     ) {
         $this->day = $day;
         $this->season = $season;
         $this->weekDay = $weekDay;
         $this->year = $year;
-        $this->daysUntilRealXDay = $daysUntilRealXDay;
-        $this->daysUntilOriginalXDay = $daysUntilOriginalXDay;
         $this->date = $date;
     }
 
@@ -135,26 +115,6 @@ class Value
     public function getYear()
     {
         return $this->year;
-    }
-
-    /**
-     * Get days until real X-Day.
-     *
-     * @return integer
-     */
-    public function getDaysUntilRealXDay()
-    {
-        return $this->daysUntilRealXDay;
-    }
-
-    /**
-     * Get days until original X-Day.
-     *
-     * @return integer
-     */
-    public function getDaysUntilOriginalXDay()
-    {
-        return $this->daysUntilOriginalXDay;
     }
 
     /**

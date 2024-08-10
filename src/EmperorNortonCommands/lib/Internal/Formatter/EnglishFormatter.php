@@ -66,8 +66,6 @@ class EnglishFormatter extends Formatter implements FormatterInterface
             $ddate->season instanceof StTibsDay ? Value::ST_TIBS_DAY : $ddate->season->value,
             $ddate->weekday instanceof StTibsDay ? Value::ST_TIBS_DAY : $ddate->weekday->value,
             $ddate->year->value,
-            XDay::daysUntilRealXDay($ddate->gregorian),
-            XDay::daysUntilOriginalXDay($ddate->gregorian),
             $ddate->gregorian,
         );
         $this->format = $format ?? DefaultFormatString::fromLocale(Locale::English)->value;
@@ -82,8 +80,8 @@ class EnglishFormatter extends Formatter implements FormatterInterface
         $output = str_replace('%e', $this->getCardinalDay($value->getDay()), $output);
         $output = str_replace('%d', $this->getOrdinalDay($value), $output);
         $output = str_replace('%Y', $value->getYear(), $output);
-        $output = str_replace('%X', $value->getDaysUntilRealXDay(), $output);
-        $output = str_replace('%x', $value->getDaysUntilOriginalXDay(), $output);
+        $output = str_replace('%X', XDay::daysUntilRealXDay($ddate->gregorian), $output);
+        $output = str_replace('%x', XDay::daysUntilOriginalXDay($ddate->gregorian), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;

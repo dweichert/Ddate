@@ -14,14 +14,9 @@ Release 2.0.0 first, then v1.1.5 (see `TODO.md` on branch
       `main`.
 - [ ] Modernisation ported to `main`, each change in its own pull request
       with green CI. Nothing from the "3.0" list in the release plan.
-- [ ] Composer constraint decided (`^8.6` or `>=8.6`) and set in
-      `composer.json`.
-- [ ] CI on `main` for PHP 8.6 only: `phpunit` and `phar-test` matrices,
-      PHP version of the `phar` job (Box needs a PHP version it supports).
-      Remove the Composer 2.2 workaround and `"dump-autoload": false` /
-      `"check-requirements": false` in `box.json` if no longer needed.
-- [ ] AGENTS.md: replace the PHP 5.3 coding rules and the PHPUnit 4.8 to 9.6
-      notes with the rules for 2.0; update `.docker/run-tests.sh` for 8.6.
+- [x] Composer constraint `^8.6`, PHPUnit 13, CI and `.docker/run-tests.sh`
+      on PHP 8.6 only, `box.json` without the old-PHP workarounds, AGENTS.md
+      coding rules for 2.0 (branch `dev/php-8.6`, merged into `main`).
 - [ ] Output of `Ddate::ddate()` and `bin/ddate` is identical to v1.1.5
       (comparison test over dates, format strings and locales). Differences
       only for documented bug fixes, which are in v1.1.5 as well.
@@ -35,8 +30,11 @@ Release 2.0.0 first, then v1.1.5 (see `TODO.md` on branch
 
 ## On the release day
 
-- [ ] PHP 8.6.0 is released (php.net). Re-run CI on `main` so it tests
-      against the final 8.6.0, not a pre-release.
+- [ ] PHP 8.6.0 is released (php.net). Switch from the pre-release builds
+      to 8.6.0: `.docker/run-tests.sh` (`8.6-rc-cli` image to `8.6-cli`), the
+      comments "nightly build ... until 8.6.0 is released" in the workflow,
+      AGENTS.md (Testing) and the open point in `docs/release-plan.md`.
+      Re-run CI on `main` so it tests against the final 8.6.0.
 - [ ] README: "last updated" date is the actual release day. Compute it with
       `php bin/ddate '%A, %e of %B, %Y' DDMMYYYY`
       (19 November 2026 = Pungenday, 31st of The Aftermath, 3192).

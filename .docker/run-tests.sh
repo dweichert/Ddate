@@ -15,7 +15,7 @@
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ALL_VERSIONS="5.3 5.4 5.5 5.6 7.0 7.1 7.2 7.3 7.4 8.0 8.1 8.2 8.3 8.4 8.5"
+ALL_VERSIONS="5.3 5.4 5.5 5.6 7.0 7.1 7.2 7.3 7.4 8.0 8.1 8.2 8.3 8.4 8.5 8.6"
 VERSIONS="${*:-$ALL_VERSIONS}"
 
 # Images are pulled through Google's Docker Hub mirror by default to avoid
@@ -28,7 +28,23 @@ DOCKER_REGISTRY="${DOCKER_REGISTRY:-mirror.gcr.io}"
 image_for() {
     case "$1" in
         5.3|5.4) echo "$DOCKER_REGISTRY/devilbox/php-fpm-$1" ;;
+        8.6)     echo "ddate-test/php:8.6" ;;
         *)       echo "$DOCKER_REGISTRY/library/php:$1-cli" ;;
+    esac
+}
+
+# PHP 8.6 is not released yet, so its release candidate image is used. The
+# official images for 8.6 no longer include mbstring, which PHPUnit needs;
+# build a local image with it (cached by Docker after the first run).
+build_image() {
+    case "$1" in
+        8.6)
+            docker build --quiet --tag "$(image_for "$1")" - > /dev/null <<DOCKERFILE
+FROM $DOCKER_REGISTRY/library/php:8.6-rc-cli
+RUN apt-get update && apt-get install -y --no-install-recommends libonig-dev \
+    && docker-php-ext-install mbstring && rm -rf /var/lib/apt/lists/*
+DOCKERFILE
+            ;;
     esac
 }
 
@@ -52,6 +68,7 @@ failed=""
 
 for version in $VERSIONS; do
     echo "=== PHP $version ==="
+    build_image "$version"
     workdir="$PROJECT_DIR/build/test-php-$version"
     mkdir -p "$workdir"
     rsync -a --delete \

@@ -43,6 +43,8 @@ jobs:
                     - "8.3"
                     - "8.4"
                     - "8.5"
+                    # nightly build of the PHP-8.6 branch until 8.6.0 is released
+                    - "8.6"
 
         steps:
             - name: "Checkout"
@@ -133,6 +135,8 @@ jobs:
                     - "8.3"
                     - "8.4"
                     - "8.5"
+                    # nightly build of the PHP-8.6 branch until 8.6.0 is released
+                    - "8.6"
 
         steps:
             - name: "Install PHP"

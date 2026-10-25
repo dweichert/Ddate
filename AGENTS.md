@@ -58,7 +58,7 @@ API changes and BC breaks belong in 3.0. See "What 'no API changes' means" in
 Port deliberately, not wholesale. Output strings of `Ddate::ddate()` are API.
 
 Until the minimum PHP version on `main` is raised to 8.6, `main` is still
-tested on PHP 5.3 to 8.5 and the PHP 5.3 coding rules below apply.
+tested on PHP 5.3 to 8.6 and the PHP 5.3 coding rules below apply.
 
 ## Repository layout
 
@@ -76,7 +76,7 @@ src/EmperorNortonCommands/lib/             library code (PSR-0, namespace Empero
   Holydays.php, Holydays/*                 holyday sets (XML based) and computed holydays
 src/EmperorNortonCommands/tests/           PHPUnit tests (live under src/, not tests/)
 .docker/run-tests.sh                       runs the test suite on every supported PHP version
-.github/workflows/continuous-integration.yml   GitHub Actions CI (PHP 5.3 to 8.5), PHAR build and release
+.github/workflows/continuous-integration.yml   GitHub Actions CI (PHP 5.3 to 8.6), PHAR build and release
 box.json                                   PHAR configuration for Box
 ```
 
@@ -110,7 +110,10 @@ PHP < 5.6), then runs PHPUnit and a CLI smoke test in a Docker container
 for that PHP version. The project's own `vendor/` is left untouched. Images
 come from `mirror.gcr.io` (set `DOCKER_REGISTRY=docker.io` to change);
 PHP 5.3/5.4 use `devilbox/php-fpm-*` images because the official ones can no
-longer be pulled.
+longer be pulled. Until PHP 8.6.0 is released, 8.6 runs on the `8.6-rc-cli`
+image, extended locally with mbstring (needed by PHPUnit, no longer included
+in the official 8.6 images); CI uses setup-php's nightly build of the
+PHP-8.6 branch.
 
 No `composer.lock` is committed, so Composer installs the newest compatible
 PHPUnit: 4.8 (PHP 5.3-5.5), 5.7 (5.6), 6.5 (7.0), 7.5 (7.1), 8.5 (7.2),
@@ -124,7 +127,7 @@ deprecation fails the build. CI runs the same matrix on GitHub Actions.
 
 CI builds `ddate.phar` with [Box](https://github.com/box-project/box) on
 every run (job `phar`, workflow artifact `ddate-phar`) and runs it on PHP 5.3
-to 8.5 (job `phar-test`). For a `v*` tag, job `release` adds a GitHub artifact
+to 8.6 (job `phar-test`). For a `v*` tag, job `release` adds a GitHub artifact
 attestation (Sigstore build provenance) and uploads the PHAR to the release.
 PHARs are no longer signed with GPG.
 

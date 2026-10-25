@@ -66,7 +66,7 @@ code; modernising it is the work for 2.0 (see "Coding rules for 2.0").
 bin/ddate                                  CLI entry point (also PHAR entry point)
 docs/release-plan.md                       release lines, support periods, scope of 2.0/3.0
 SECURITY.md                                supported versions, reporting vulnerabilities
-src/EmperorNortonCommands/lib/             library code (PSR-0, namespace EmperorNortonCommands\lib)
+src/EmperorNortonCommands/lib/             library code (PSR-4, namespace EmperorNortonCommands\lib)
   Ddate.php                                public facade: ddate($format, $date, $locale)
   Converter.php                            Gregorian DateTime -> Value
   Value.php                                Discordian date value object

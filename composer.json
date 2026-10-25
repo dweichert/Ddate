@@ -18,7 +18,7 @@
     },
     "bin": ["bin/ddate"],
     "autoload": {
-        "psr-0": { "EmperorNortonCommands\\": "src/" }
+        "psr-4": { "EmperorNortonCommands\\": "src/EmperorNortonCommands/" }
     },
     "require-dev": {
         "ext-simplexml": "*",

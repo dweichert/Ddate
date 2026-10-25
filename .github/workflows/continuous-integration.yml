@@ -14,6 +14,10 @@ on:
 permissions:
     contents: "read"
 
+env:
+    # Releases (v* tags) must be on this branch, see job "release".
+    RELEASE_BRANCH: "1.1"
+
 jobs:
     phpunit:
         name: "PHPUnit tests (PHP ${{ matrix.php-version }})"
@@ -170,6 +174,17 @@ jobs:
             attestations: "write"
 
         steps:
+            - name: "Checkout"
+              uses: "actions/checkout@v5"
+              with:
+                  fetch-depth: 0
+
+            # Stops releases from a tag on the wrong branch before anything
+            # is published (Packagist publishes the tag regardless).
+            - name: "Check that the tag is on ${{ env.RELEASE_BRANCH }}"
+              run: |
+                  git merge-base --is-ancestor "$GITHUB_SHA" "origin/$RELEASE_BRANCH" || { echo "::error::Tag $GITHUB_REF_NAME is not on $RELEASE_BRANCH"; exit 1; }
+
             - name: "Download PHAR"
               uses: "actions/download-artifact@v8"
               with:
@@ -183,7 +198,8 @@ jobs:
                   subject-path: "ddate.phar"
 
             # Creates the release for the pushed tag, or adds the PHAR to a
-            # release that was already created for it.
+            # release that was already created for it. 1.1 releases are never
+            # marked "Latest": that is reserved for the current major version.
             - name: "Upload PHAR to release"
               env:
                   GH_TOKEN: "${{ github.token }}"
@@ -192,5 +208,5 @@ jobs:
                   if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" > /dev/null 2>&1; then
                       gh release upload "$TAG" ddate.phar --clobber --repo "$GITHUB_REPOSITORY"
                   else
-                      gh release create "$TAG" ddate.phar --repo "$GITHUB_REPOSITORY" --verify-tag --title "$TAG" --generate-notes
+                      gh release create "$TAG" ddate.phar --repo "$GITHUB_REPOSITORY" --verify-tag --target "$RELEASE_BRANCH" --latest=false --title "$TAG" --generate-notes
                   fi

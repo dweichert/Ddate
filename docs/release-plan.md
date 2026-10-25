@@ -87,6 +87,3 @@ Security vulnerabilities are reported and handled as described in
 - Output changes ported from the previous `main` (updated holyday data,
   German translation fix): release them as bug fixes in 1.1.x as well, so
   1.1.x and 2.0.0 produce the same output.
-- Support table in README.md on `main`.
-- Enable private vulnerability reporting on GitHub (referenced by
-  SECURITY.md).

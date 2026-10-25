@@ -10,24 +10,19 @@ Release 2.0.0 first, then v1.1.7 (see `TODO.md` on branch
 
 ## Before the release day
 
-- [ ] Branch `dev/release-plan` (release plan, SECURITY.md) is merged into
-      `main`.
-- [ ] Modernisation ported to `main`, each change in its own pull request
-      with green CI. Nothing from the "3.0" list in the release plan.
+- [x] Release plan and SECURITY.md on `main` (#69, #73).
+- [x] Modernisation on `main` without API changes (#71, tests #76). Nothing
+      from the "3.0" list in the release plan.
 - [x] Composer constraint `^8.6`, PHPUnit 13, CI and `.docker/run-tests.sh`
       on PHP 8.6 only, `box.json` without the old-PHP workarounds, AGENTS.md
       coding rules for 2.0 (branch `dev/php-8.6`, merged into `main`).
-- [ ] Output of `Ddate::ddate()` and `bin/ddate` is identical to 1.1:
-      `.docker/compare-with-1.1.sh` (newest v1.1.* tag) and
-      `.docker/compare-with-1.1.sh origin/1.1` (fixes for 1.1.7 not yet
-      tagged) report no differences.
-- [ ] README on `main`: install with `"^2.0"`, PHP 8.6 requirement, release
-      table (2.0.x current, 1.1.x until 31 December 2029, 1.0.x end of
-      life), PHAR section (PHAR requires PHP 8.6), upgrade note (only PHP
-      8.6 needed, `"^1.1 || ^2.0"` for projects that support older PHP).
-- [ ] Private vulnerability reporting is enabled on GitHub (SECURITY.md
-      links to it): `gh api repos/dweichert/Ddate/private-vulnerability-reporting`
-      shows `"enabled":true`.
+- [x] Output of `Ddate::ddate()` identical to v1.1.6
+      (`.docker/compare-with-1.1.sh`, 15,085 cases, with and without the
+      calendar extension). Re-check on the release day.
+- [x] README for 2.0 on this branch: install with `"^2.0"`, PHP 8.6,
+      upgrade from 1.1, PHAR (requires PHP 8.6), release table.
+- [x] Private vulnerability reporting is enabled on GitHub (SECURITY.md
+      links to it).
 
 ## On the release day
 
@@ -36,6 +31,9 @@ Release 2.0.0 first, then v1.1.7 (see `TODO.md` on branch
       comments "nightly build ... until 8.6.0 is released" in the workflow,
       AGENTS.md (Testing) and the open point in `docs/release-plan.md`.
       Re-run CI on `main` so it tests against the final 8.6.0.
+- [ ] Merge `main` into this branch if `main` changed since; run
+      `.docker/run-tests.sh` and `.docker/compare-with-1.1.sh` (newest
+      v1.1.* tag and `origin/1.1`): no differences.
 - [ ] README: "last updated" date is the actual release day. Compute it with
       `php bin/ddate '%A, %e of %B, %Y' DDMMYYYY`
       (19 November 2026 = Pungenday, 31st of The Aftermath, 3192).
@@ -74,5 +72,5 @@ Release 2.0.0 first, then v1.1.7 (see `TODO.md` on branch
       fixes, released in 1.1.6): German `%E` for days 20 and 21, holyday names
       containing "and", `%A` description, `-de`.
 - [ ] Release v1.1.7 (checklist on `dev/release-1.1.7`).
-- [ ] Issues: close #58 (refactor tests) if done in 2.0; #59 (`@api`,
-      `@internal`) stays open for 3.0 (label or milestone).
+- [ ] Issues: #58 is closed by #76; #59 (`@api`, `@internal`) stays open
+      for 3.0 (label or milestone).

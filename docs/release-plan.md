@@ -24,8 +24,10 @@ plan changes.
 
 ## 2.0: modernise only, no API changes
 
-- Supported PHP versions: **PHP 8.6 and newer** only. The exact Composer
-  constraint (`^8.6` or `>=8.6`) is still to be decided.
+- Supported PHP versions: **PHP 8.6 and newer** only. Composer constraint
+  `^8.6`: once a new major PHP version (9.0) is released and tested, a 2.x
+  minor release widens it (e.g. `^8.6 || ^9.0`).
+- Tests use PHPUnit 13.
 - Release 2.0.0 at the same time as PHP 8.6, or as close to it as possible.
 - Scope: modernise the implementation so it takes advantage of current PHP
   language features, without changing the API. Upgrading from 1.1 to 2.0
@@ -82,8 +84,8 @@ Security vulnerabilities are reported and handled as described in
 
 ## Open points
 
-- Composer constraint for 2.0 (`^8.6` or `>=8.6`).
-- CI on `main` for PHP 8.6 (pre-release builds until PHP 8.6 is released).
+- CI and `.docker/run-tests.sh` use PHP 8.6 pre-release builds (setup-php
+  nightly, `8.6-rc-cli` image); switch to the final 8.6.0 when it is released.
 - Output changes ported from the previous `main` (updated holyday data,
   German translation fix): release them as bug fixes in 1.1.x as well, so
   1.1.x and 2.0.0 produce the same output.

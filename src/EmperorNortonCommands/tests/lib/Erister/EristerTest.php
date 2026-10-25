@@ -9,9 +9,10 @@
 namespace EmperorNortonCommands\lib\Holydays;
 
 use DateTime;
-use PHPUnit_Framework_TestCase;
+use EmperorNortonCommands\lib\Value;
+use PHPUnit\Framework\TestCase;
 
-class EristerTest extends PHPUnit_Framework_TestCase
+class EristerTest extends TestCase
 {
     /**
      * @dataProvider isEristerProvider
@@ -21,11 +22,11 @@ class EristerTest extends PHPUnit_Framework_TestCase
         $object = new Erister($usePhpCalendarExt);
         if ($expectedTrue)
         {
-            self::assertTrue($object->is($this->getMockValue($gregorian)));
+            self::assertTrue($object->is($this->getValue($gregorian)));
         }
         else
         {
-            self::assertFalse($object->is($this->getMockValue($gregorian)));
+            self::assertFalse($object->is($this->getValue($gregorian)));
         }
     }
 
@@ -46,18 +47,8 @@ class EristerTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    private function getMockValue($gregorian)
+    private function getValue($gregorian)
     {
-        $mock = $this->getMockBuilder('EmperorNortonCommands\lib\Value')
-            ->setMethods(array('getGregorian'))
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $mock
-            ->expects(self::any())
-            ->method('getGregorian')
-            ->will(self::returnValue(DateTime::createFromFormat('dmY', $gregorian)));
-
-        return $mock;
+        return new Value(0, 0, 0, 0, 0, 0, DateTime::createFromFormat('dmY', $gregorian));
     }
 }

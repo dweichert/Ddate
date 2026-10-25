@@ -156,7 +156,7 @@ class Converter
      */
     private function calculateYear(DateTime $date)
     {
-        return (integer)$date->format('Y') + self::CURSE_OF_GREYFACE;
+        return (int)$date->format('Y') + self::CURSE_OF_GREYFACE;
     }
 
     /**
@@ -195,9 +195,9 @@ class Converter
         $daysUntilXday = $diff->days;
         if ($date < $xDay)
         {
-            return (integer)$daysUntilXday;
+            return (int)$daysUntilXday;
         }
-        return (integer)$daysUntilXday * -1;
+        return (int)$daysUntilXday * -1;
     }
 
     /**
@@ -238,7 +238,7 @@ class Converter
     private function getDaysSinceFirstOfChaos(DateTime $date)
     {
         $firstOfChaos = gmmktime(0, 0, 0, 1, 1, $date->format('Y'));
-        return (integer)($this->getTimestamp($date) - $firstOfChaos) / 86400 + 1;
+        return (int)($this->getTimestamp($date) - $firstOfChaos) / 86400 + 1;
     }
 
     /**
@@ -249,7 +249,7 @@ class Converter
      */
     private function isLeapYear(DateTime $date)
     {
-        return (boolean)date('L', $this->getTimestamp($date));
+        return (bool)date('L', $this->getTimestamp($date));
     }
 
     /**

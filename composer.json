@@ -22,7 +22,7 @@
     },
     "require-dev": {
         "ext-simplexml": "*",
-        "phpunit/phpunit": "^4.8|^5.0"
+        "phpunit/phpunit": "^4.8.36 || ^5.7.27 || ^6.5.14 || ^7.5.20 || ^8.5.21 || ^9.6"
     },
     "suggest": {
         "ext-calendar": "Performance improvement for calculating Easter/Erister"

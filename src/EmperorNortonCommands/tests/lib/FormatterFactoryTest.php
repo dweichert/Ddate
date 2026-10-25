@@ -9,7 +9,7 @@ namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use stdClass;
 
 /**
@@ -17,7 +17,7 @@ use stdClass;
  *
  * @package EmperorNortonCommands\tests\lib
  */
-class FormatterFactoryTest extends PHPUnit_Framework_TestCase
+class FormatterFactoryTest extends TestCase
 {
     /**
      * Object instance to be tested.
@@ -28,8 +28,10 @@ class FormatterFactoryTest extends PHPUnit_Framework_TestCase
 
     /**
      * Set up.
+     *
+     * @before
      */
-    public function setUp()
+    public function createObject()
     {
         $this->_object = new FormatterFactory();
     }
@@ -43,7 +45,9 @@ class FormatterFactoryTest extends PHPUnit_Framework_TestCase
     {
         return array(
             array('Foo', 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array(new stdClass(), 'EmperorNortonCommands\lib\locale\en\StandardFormatter')
+            array(new stdClass(), 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
+            array(null, 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
+            array('de', 'EmperorNortonCommands\lib\locale\de\StandardFormatter')
         );
     }
 

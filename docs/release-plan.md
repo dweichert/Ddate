@@ -67,6 +67,10 @@ When in doubt whether a change breaks the API, it belongs in 3.0.
   Examples: moving classes to `Internal/` or `Formatter/`, new public types
   (`DiscordianDate/*`, `XDay`, `Locale`), removing members from `Value`,
   making classes `final`, marking API with `@api`/`@internal` (#59).
+- Output changes that are not bug fixes, e.g. a consistent German naming of
+  holydays named after persons: the translation mostly drops the possessive
+  ("Duke Tag", "Emperor Norton Tag"), once keeps it ("Didymes Tag");
+  `2fe4715` (previous `main`) changed only "Bogart Tag" to "Bogarts Tag".
 - Not scheduled yet. When 3.0 development starts on `main`, a `2.x`
   maintenance branch is created from the last 2.x release; the support period
   for 2.x is decided then.
@@ -95,7 +99,12 @@ Security vulnerabilities are reported and handled as described in
   next to 2.0.0 (1.1.7) and 2.0.0 produce the same output. Done: German
   ordinals, holyday names, help text and CLI (#72 for `1.1`, released in
   1.1.6 because 1.1.5 was released from `main` by mistake; #71 for `main`).
-  Still to review: updated holyday data from the previous `main` (`2fe4715`).
+  Holyday data from the previous `main` (`2fe4715`) reviewed: no data fix
+  (nothing for 1.1); its comment changes are ported to `main` except the
+  removal of the note that the Rev. DrJon Swabey set only lists the
+  Whollydays in addition to the Standard Holydays (still true, the "%1"
+  handling relies on it); "Bogart Tag" -> "Bogarts Tag" is a naming change
+  for 3.0, see above.
 - Support table in README.md on `main`.
 - Enable private vulnerability reporting on GitHub (referenced by
   SECURITY.md).

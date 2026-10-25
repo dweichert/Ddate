@@ -20,9 +20,11 @@ the `ddate` command once shipped with util-linux. Published on Packagist as
 
 Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 
-- Tag on the release branch (`1.1`), never on `2.x`. When creating a release
-  in the GitHub UI, pick the existing tag or set *Target* to `1.1`: the
-  target defaults to `2.x`.
+- Tag on the release branch (`1.1`), never on `2.x`, and push the tag
+  (`git push origin vX.Y.Z`). CI then runs the tests, builds the PHAR, attests
+  it and creates the GitHub release with `ddate.phar` attached. Do not create
+  the release in the GitHub UI first: its *Target* defaults to `2.x`, and a
+  new tag created there ends up on the wrong branch.
 - Packagist treats stable versions as immutable: moving or re-creating a tag
   does not change the published version. A wrong release can only be fixed
   with a new version number.
@@ -54,7 +56,8 @@ src/EmperorNortonCommands/lib/             library code (PSR-0, namespace Empero
   Holydays.php, Holydays/*                 holyday sets (XML based) and computed holydays
 src/EmperorNortonCommands/tests/           PHPUnit tests (live under src/, not tests/)
 .docker/run-tests.sh                       runs the test suite on every supported PHP version
-.github/workflows/continuous-integration.yml   GitHub Actions CI (PHP 5.3 to 8.5)
+.github/workflows/continuous-integration.yml   GitHub Actions CI (PHP 5.3 to 8.5), PHAR build and release
+box.json                                   PHAR configuration for Box
 ```
 
 `.tools/`, `vendor/`, `build/` and `composer.lock` are not committed on this
@@ -96,6 +99,31 @@ needs `COMPOSER_NO_SECURITY_BLOCKING=1` (dev-only dependency).
 
 `phpunit.xml.dist` sets `convertDeprecationsToExceptions="true"`: any PHP
 deprecation fails the build. CI runs the same matrix on GitHub Actions.
+
+## PHAR
+
+CI builds `ddate.phar` with [Box](https://github.com/box-project/box) on
+every run (job `phar`, workflow artifact `ddate-phar`) and runs it on PHP 5.3
+to 8.5 (job `phar-test`). For a `v*` tag, job `release` adds a GitHub artifact
+attestation (Sigstore build provenance) and uploads the PHAR to the release.
+PHARs are no longer signed with GPG.
+
+- The PHAR is built on a current PHP version but must run on PHP 5.3. Its
+  autoloader is generated with Composer 2.2 LTS (`composer update --no-dev`),
+  because autoloaders from Composer >= 2.3 refuse to run on PHP < 5.6. Box
+  must not dump the autoloader itself (`"dump-autoload": false`).
+- `box.json` lists the PHAR contents explicitly (`src/.../lib`,
+  `vendor/autoload.php`, `vendor/composer`), so tests and dev dependencies
+  never end up in it. No compression, so `ext-zlib` is not required.
+- Box is pinned to a version and SHA-256 checksum in the workflow.
+
+To build locally, in a copy of the project without dev dependencies:
+
+```sh
+php composer-2.2.phar update --no-dev
+box compile
+php build/phar/ddate.phar
+```
 
 ## Coding rules for the 1.1 branch
 

@@ -40,11 +40,19 @@ If you specify a locale as a second argument the format string options
 
     $ ./ddate.phar --help de
     
-The releases are signed using the GPG-key with the ID 
-```A6FED5506250B129``` and the Fingerprint ```F1F7 A70A 51E2 D0FA 0903
-65B7 A6FE D550 6250 B129```
+Starting with release 1.1.4, the PHAR file is built from the release tag by
+[GitHub Actions](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml)
+and tested on every supported PHP version (see below). The build is signed with a
+[GitHub artifact attestation](https://docs.github.com/en/actions/concepts/security/artifact-attestations),
+which proves that the file was built by this repository's workflow from the
+release tag and has not been altered since. You can verify it with the
+[GitHub CLI](https://cli.github.com/):
 
-You can verify the PHAR file using these commmands:
+    $ gh attestation verify ddate.phar --repo dweichert/Ddate
+
+PHAR files of releases up to 1.1.1 were signed with the GPG key
+```A6FED5506250B129``` (fingerprint ```F1F7 A70A 51E2 D0FA 0903 65B7 A6FE D550
+6250 B129```) instead and can be verified with:
 
     $ gpg --keyserver pgp.mit.edu --recv-key 0xA6FED5506250B129
     $ gpg --fingerprint A6FED5506250B129

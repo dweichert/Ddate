@@ -1,6 +1,6 @@
 # README
 
-[![Build Status](https://travis-ci.org/dweichert/Ddate.svg?branch=master)](https://travis-ci.org/dweichert/Ddate)
+[![CI Tests](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml/badge.svg?branch=1.1)](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml?query=branch%3A1.1)
 [![Downloads this Month](https://img.shields.io/packagist/dm/ddate/ddate.svg?style=flat)](https://packagist.org/packages/ddate/ddate)
 [![Latest stable](https://img.shields.io/packagist/v/ddate/ddate.svg?style=flat&label=stable)](https://packagist.org/packages/ddate/ddate)
 [![Latest dev](https://img.shields.io/packagist/vpre/ddate/ddate.svg?style=flat&label=unstable)](https://packagist.org/packages/ddate/ddate)
@@ -138,7 +138,7 @@ the format string fields are locale specific.
 | Version | Supported PHP Versions                                                  | Remarks                                                                 |
 |---------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
 | 2.0.x   | 8.0.x                                                                   |                                                                         |
-| 1.1.x   | 5.3.x, 5.4.x, 5.5.x, 5.6.x, 7.0.x, 7.1.x, 7.2.x, 7.3.x, 7.4.x           | Older PHP versions will be supported as long as the CI builds can be maintained.\* |
+| 1.1.x   | 5.3.x - 5.6.x, 7.0.x - 7.4.x, 8.0.x - 8.5.x                             | Older PHP versions will be supported as long as the CI builds can be maintained.\* |
 | 1.0.x   | --                                                                      | Version 1.0.x has reached its end of life and is  no longer supported.  |
 
 \* Regrettably HHVM is no longer supported, as [HHVM no longer supports PHP](https://hhvm.com/blog/2018/09/12/end-of-php-support-future-of-hack.html) and [Composer no longer runs under HHVM](https://hhvm.com/blog/2019/02/11/hhvm-4.0.0.html), rendering the HHVM build permanently broken. Older versions of HHVM/Composer used to work, but your milage may vary.

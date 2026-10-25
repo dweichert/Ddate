@@ -22,6 +22,7 @@ class StandardHolydays extends Holydays
     /**
      * @inheritdoc
      */
+    #[\Override]
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/standard_holydays.xml';

@@ -118,6 +118,7 @@ class StandardFormatter extends EnglishStandardFormatter
      * @param  Value $ddate
      * @return string
      */
+    #[\Override]
     public function format(Value $ddate)
     {
         $output = $this->format;
@@ -147,6 +148,7 @@ class StandardFormatter extends EnglishStandardFormatter
      * @param  Value $ddate
      * @return string
      */
+    #[\Override]
     protected function replaceStTibsPlaceholders($string, Value $ddate)
     {
         if (Value::ST_TIBS_DAY === $ddate->getDay())
@@ -170,6 +172,7 @@ class StandardFormatter extends EnglishStandardFormatter
      * @param Value $ddate
      * @return string
      */
+    #[\Override]
     protected function getCardinalDay($ddate)
     {
         if (Value::ST_TIBS_DAY == $ddate->getDay())
@@ -216,6 +219,7 @@ class StandardFormatter extends EnglishStandardFormatter
     /**
      * Get localized string with all holydays.
      */
+    #[\Override]
     protected function getHolydayString($holydays)
     {
         $holydayString = parent::getHolydayString($holydays);

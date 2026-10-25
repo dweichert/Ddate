@@ -26,6 +26,7 @@ class NoPantsDayInterface implements NoFixedDateHolydayInterface
      * @param Value $ddate
      * @return boolean
      */
+    #[\Override]
     public function is(Value $ddate)
     {
         if ('05' != $ddate->getGregorian()->format('m'))

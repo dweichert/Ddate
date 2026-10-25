@@ -46,6 +46,7 @@ class Erister implements NoFixedDateHolydayInterface
      * @param Value $ddate
      * @return boolean
      */
+    #[\Override]
     public function is(Value $ddate)
     {
         if (function_exists('easter_days') && $this->usePhpCalendarExt)

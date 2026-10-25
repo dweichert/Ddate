@@ -22,6 +22,7 @@ class RevDrJonSwabeyWhollydays extends Holydays
     /**
      * @inheritdoc
      */
+    #[\Override]
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/rev_drjon_swabey_whollydays.xml';

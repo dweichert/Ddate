@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace EmperorNortonCommands\lib;
 
 use DateTimeInterface;
-use EmperorNortonCommands\lib\Holydays\Erister;
 
 /**
  * Class Value
@@ -24,81 +23,28 @@ class Value
     public const ST_TIBS_DAY = 529;
 
     /**
-     * Discordian day of week.
-     *
-     * @var integer
-     */
-    private $weekDay;
-
-    /**
-     * Discordian day of season.
-     *
-     * @var integer
-     */
-    private $day;
-
-    /**
-     * Discordian season of year.
-     *
-     * @var integer
-     */
-    private $season;
-
-    /**
-     * Discordian year.
-     *
-     * @var integer
-     */
-    private $year;
-
-    /**
-     * Days until real X-Day.
-     *
-     * @var integer
-     */
-    private $daysUntilRealXDay;
-
-    /**
-     * Days until original X-Day.
-     *
-     * @var integer
-     */
-    private $daysUntilOriginalXDay;
-
-    /**
-     * Gregorian date.
-     *
-     * @var DateTimeInterface
-     */
-    private $date;
-
-    /**
      * Value constructor.
-     * @param integer $day
-     * @param integer $season
-     * @param integer $weekDay
-     * @param integer $year
-     * @param integer $daysUntilRealXDay
-     * @param integer $daysUntilOriginalXDay
-     * @param DateTimeInterface $date
+     *
+     * The parameters are deliberately not type-declared (part of the API).
+     *
+     * @param integer           $day                   Discordian day of season
+     * @param integer           $season                Discordian season of year
+     * @param integer           $weekDay               Discordian day of week
+     * @param integer           $year                  Discordian year
+     * @param integer           $daysUntilRealXDay     days until real X-Day
+     * @param integer           $daysUntilOriginalXDay days until original X-Day
+     * @param DateTimeInterface $date                  Gregorian date
      */
     public function __construct(
-        $day,
-        $season,
-        $weekDay,
-        $year,
-        $daysUntilRealXDay,
-        $daysUntilOriginalXDay,
-        $date
+        private $day,
+        private $season,
+        private $weekDay,
+        private $year,
+        private $daysUntilRealXDay,
+        private $daysUntilOriginalXDay,
+        private $date
     )
     {
-        $this->day = $day;
-        $this->season = $season;
-        $this->weekDay = $weekDay;
-        $this->year = $year;
-        $this->daysUntilRealXDay = $daysUntilRealXDay;
-        $this->daysUntilOriginalXDay = $daysUntilOriginalXDay;
-        $this->date = $date;
     }
 
     /**

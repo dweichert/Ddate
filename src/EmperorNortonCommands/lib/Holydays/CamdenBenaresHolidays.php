@@ -23,6 +23,7 @@ class CamdenBenaresHolidays extends Holydays
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getHolyday(Value $ddate, $locale)
     {
         $holidays = [];
@@ -39,6 +40,7 @@ class CamdenBenaresHolidays extends Holydays
     /**
      * @inheritdoc
      */
+    #[\Override]
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/camden_benares_holidays.xml';

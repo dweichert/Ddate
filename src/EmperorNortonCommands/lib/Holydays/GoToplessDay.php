@@ -26,6 +26,7 @@ class GoToplessDay implements NoFixedDateHolydayInterface
      * @param Value $ddate
      * @return boolean
      */
+    #[\Override]
     public function is(Value $ddate)
     {
         if ('08' != $ddate->getGregorian()->format('m'))

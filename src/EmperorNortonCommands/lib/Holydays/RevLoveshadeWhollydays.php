@@ -23,6 +23,7 @@ class RevLoveshadeWhollydays extends Holydays
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getHolyday(Value $ddate, $locale)
     {
         $holidays = [];
@@ -49,6 +50,7 @@ class RevLoveshadeWhollydays extends Holydays
     /**
      * @inheritdoc
      */
+    #[\Override]
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/rev_loveshade_whollydays.xml';

@@ -26,6 +26,7 @@ class FunFriday implements NoFixedDateHolydayInterface
      * @param Value $ddate
      * @return boolean
      */
+    #[\Override]
     public function is(Value $ddate)
     {
         if ($ddate->getGregorian()->format('j') < 29) {

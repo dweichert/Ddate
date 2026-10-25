@@ -97,6 +97,7 @@ class StandardFormatter extends Formatter
      * @param  Value $ddate
      * @return string
      */
+    #[\Override]
     public function format(Value $ddate)
     {
         $output = $this->format;
@@ -276,6 +277,7 @@ class StandardFormatter extends Formatter
     /**
      * Get localized string with all holydays.
      */
+    #[\Override]
     protected function getHolydayString($holydays)
     {
         if (empty($holydays)) {

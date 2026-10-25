@@ -78,6 +78,8 @@ Security vulnerabilities are reported and handled as described in
 
 - 1.1.x releases are created with `--latest=false`, so "Latest" on GitHub
   (and the PHAR at `/releases/latest`) stays with the current major version.
+  As long as 2.0.0 is not released, mark a new 1.1.x release as "Latest" by
+  hand after the release job: `gh release edit v1.1.x --latest`.
 - Both release jobs check that the tag is on their branch (`RELEASE_BRANCH`).
 - The README on `1.1` announces the end of life of 1.1 and how to allow both
   versions (`"^1.1 || ^2.0"`); publish it together with 2.0.0.
@@ -86,10 +88,11 @@ Security vulnerabilities are reported and handled as described in
 
 - CI and `.docker/run-tests.sh` use PHP 8.6 pre-release builds (setup-php
   nightly, `8.6-rc-cli` image); switch to the final 8.6.0 when it is released.
-- Bug fixes that change output go into 1.1.x as well, so 1.1.5 and 2.0.0
-  produce the same output. Done: German ordinals, holyday names, help text
-  and CLI (`dev/fix-german` for `1.1`, `dev/fix-german-main` for `main`).
-  Still to review: updated holyday data from the previous `main` (`2fe4715`).
+- Bug fixes that change output go into 1.1.x as well, so the 1.1.x release
+  next to 2.0.0 (1.1.6) and 2.0.0 produce the same output. Done: German
+  ordinals, holyday names, help text and CLI (#72 for `1.1`, released in
+  1.1.5; #71 for `main`). Still to review: updated holyday data from the
+  previous `main` (`2fe4715`).
 - Support table in README.md on `main`.
 - Enable private vulnerability reporting on GitHub (referenced by
   SECURITY.md).

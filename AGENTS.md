@@ -27,15 +27,20 @@ Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 - Tag on `main` and push the tag (`git push origin vX.Y.Z`). CI then runs the
   tests, builds the PHAR, attests it and creates the GitHub release with
   `ddate.phar` attached. Do not create the release in the GitHub UI first.
-- The release job checks that the tagged commit is on `RELEASE_BRANCH` (set
-  in the workflow) and fails before anything is published otherwise.
-  Packagist publishes every pushed tag regardless, so check the branch before
-  pushing a tag.
+- The release job checks that the tag matches `RELEASE_TAGS` (`v2.*`) and that
+  the tagged commit is on `RELEASE_BRANCH` (both set in the workflow), and
+  fails before the PHAR is attested and uploaded otherwise. It cannot undo a
+  tag or a release: Packagist publishes every pushed tag, so check the branch
+  before pushing a tag. Never create tags in the GitHub release form; its
+  *Target* defaults to `main`.
 - Packagist treats stable versions as immutable: moving or re-creating a tag
   does not change the published version. A wrong release can only be fixed
   with a new version number.
 - `v1.1.2` on Packagist points to code of the previous `main` (PHP 8.3) by
   mistake and cannot be corrected; `v1.1.3` contains the intended 1.1.2 code.
+- `v1.1.5` was released from `main` (2.0 development, PHP 8.6) by mistake;
+  it is soft-deleted on Packagist and removed from GitHub. `v1.1.6` contains
+  the intended 1.1.5 code.
 
 ## 2.0 development
 

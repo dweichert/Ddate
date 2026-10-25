@@ -28,6 +28,10 @@ Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
   it and creates the GitHub release with `ddate.phar` attached. Do not create
   the release in the GitHub UI first: its *Target* defaults to `main`, and a
   new tag created there ends up on the wrong branch.
+- The release job checks that the tagged commit is on `RELEASE_BRANCH` (`1.1`)
+  and fails before anything is published otherwise. 1.1 releases are created
+  with `--latest=false`, so "Latest" on GitHub stays with the current major
+  version.
 - Packagist treats stable versions as immutable: moving or re-creating a tag
   does not change the published version. A wrong release can only be fixed
   with a new version number.

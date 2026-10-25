@@ -69,11 +69,24 @@ When in doubt whether a change breaks the API, it belongs in 3.0.
   maintenance branch is created from the last 2.x release; the support period
   for 2.x is decided then.
 
+Security vulnerabilities are reported and handled as described in
+[SECURITY.md](../SECURITY.md).
+
+## Releasing 1.1.x next to 2.x
+
+- 1.1.x releases are created with `--latest=false`, so "Latest" on GitHub
+  (and the PHAR at `/releases/latest`) stays with the current major version.
+- Both release jobs check that the tag is on their branch (`RELEASE_BRANCH`).
+- The README on `1.1` announces the end of life of 1.1 and how to allow both
+  versions (`"^1.1 || ^2.0"`); publish it together with 2.0.0.
+
 ## Open points
 
 - Composer constraint for 2.0 (`^8.6` or `>=8.6`).
 - CI on `main` for PHP 8.6 (pre-release builds until PHP 8.6 is released).
-- Release guard (tag must be on `1.1`) for the release job on `1.1`, before
-  the next 1.1.x fix release.
-- Support table in README.md on both branches; possibly a `SECURITY.md` with
-  supported versions and how to report vulnerabilities.
+- Output changes ported from the previous `main` (updated holyday data,
+  German translation fix): release them as bug fixes in 1.1.x as well, so
+  1.1.x and 2.0.0 produce the same output.
+- Support table in README.md on `main`.
+- Enable private vulnerability reporting on GitHub (referenced by
+  SECURITY.md).

@@ -65,6 +65,7 @@ tested on PHP 5.3 to 8.5 and the PHP 5.3 coding rules below apply.
 ```
 bin/ddate                                  CLI entry point (also PHAR entry point)
 docs/release-plan.md                       release lines, support periods, scope of 2.0/3.0
+SECURITY.md                                supported versions, reporting vulnerabilities
 src/EmperorNortonCommands/lib/             library code (PSR-0, namespace EmperorNortonCommands\lib)
   Ddate.php                                public facade: ddate($format, $date, $locale)
   Converter.php                            Gregorian DateTime -> Value

@@ -20,6 +20,16 @@ abstract class Holydays
     public const KEY = 'holydays';
 
     /**
+     * Parsed XML data files by path, shared by all instances.
+     *
+     * Only files that loaded successfully are cached, so a missing or invalid
+     * file still triggers the same warnings on every call.
+     *
+     * @var array<string, DOMXPath>
+     */
+    private static array $xpathCache = [];
+
+    /**
      * Get Holyday.
      *
      * Returns the name of the Holyday if there is a Holyday on given date,
@@ -139,10 +149,19 @@ abstract class Holydays
      */
     private function getXpath(mixed $locale): DOMXPath
     {
+        $path = $this->getPathToXML($locale);
+        if (is_string($path) && isset(self::$xpathCache[$path]))
+        {
+            return self::$xpathCache[$path];
+        }
         $domDocument = new DOMDocument();
-        $domDocument->load($this->getPathToXML($locale));
+        $loaded = $domDocument->load($path);
         $xpath = new DOMXPath($domDocument);
         $xpath->registerNamespace('h', 'https://davidweichert.de/ns/ddate-holyday');
+        if ($loaded && is_string($path))
+        {
+            self::$xpathCache[$path] = $xpath;
+        }
 
         return $xpath;
     }

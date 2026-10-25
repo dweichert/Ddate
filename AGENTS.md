@@ -23,20 +23,25 @@ Release lines and support periods are defined in
 
 Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 
-- Tag on the release branch (`1.1`), never on `main`, and push the tag
-  (`git push origin vX.Y.Z`). CI then runs the tests, builds the PHAR, attests
-  it and creates the GitHub release with `ddate.phar` attached. Do not create
-  the release in the GitHub UI first: its *Target* defaults to `main`, and a
-  new tag created there ends up on the wrong branch.
-- The release job checks that the tagged commit is on `RELEASE_BRANCH` (`1.1`)
-  and fails before anything is published otherwise. 1.1 releases are created
-  with `--latest=false`, so "Latest" on GitHub stays with the current major
-  version.
+- Tag on the release branch (`1.1`) with `git tag`, never on `main`, and push
+  the tag (`git push origin vX.Y.Z`). CI then runs the tests, builds the PHAR,
+  attests it and creates the GitHub release with `ddate.phar` attached. Never
+  create the tag or the release in the GitHub release form: its *Target*
+  defaults to `main`, and a new tag created there ends up on the wrong branch.
+- The release job checks that the tag matches `RELEASE_TAGS` (`v1.1.*`) and
+  that the tagged commit is on `RELEASE_BRANCH` (`1.1`), and fails before the
+  PHAR is attested and uploaded otherwise. It cannot undo a tag or a release:
+  Packagist publishes every pushed tag. 1.1 releases are created with
+  `--latest=false`, so "Latest" on GitHub stays with the current major
+  version (before 2.0.0 exists: `gh release edit v1.1.x --latest`).
 - Packagist treats stable versions as immutable: moving or re-creating a tag
   does not change the published version. A wrong release can only be fixed
   with a new version number.
 - `v1.1.2` on Packagist points to 2.0 code (`main`, PHP 8.3) by mistake and cannot
   be corrected; `v1.1.3` contains the intended 1.1.2 code.
+- `v1.1.5` was released from `main` (2.0 development, PHP 8.6) by mistake;
+  it is soft-deleted on Packagist and removed from GitHub. `v1.1.6` contains
+  the intended 1.1.5 code.
 
 **This file describes the `1.1` branch.** The rules below about PHP 5.3
 compatibility do not apply to `main`.

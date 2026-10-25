@@ -15,10 +15,19 @@ the `ddate` command once shipped with util-linux. Published on Packagist as
 
 | Branch | Purpose                                                                                       |
 |--------|-----------------------------------------------------------------------------------------------|
-| `1.1`  | Maintenance line for 1.1.x (latest tag `v1.1.1`, next `v1.1.2`). PHP 5.3 to 8.5.                |
+| `1.1`  | Maintenance line for 1.1.x (latest tag `v1.1.3`, next `v1.1.4`). PHP 5.3 to 8.5.                |
 | `2.x`  | Default branch on GitHub. Development of 2.0: modernised code, PHP 8.3+, PHPUnit 11, PSR-4.     |
 
 Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
+
+- Tag on the release branch (`1.1`), never on `2.x`. When creating a release
+  in the GitHub UI, pick the existing tag or set *Target* to `1.1`: the
+  target defaults to `2.x`.
+- Packagist treats stable versions as immutable: moving or re-creating a tag
+  does not change the published version. A wrong release can only be fixed
+  with a new version number.
+- `v1.1.2` on Packagist points to `2.x` code (PHP 8.3) by mistake and cannot
+  be corrected; `v1.1.3` contains the intended 1.1.2 code.
 
 **This file describes the `1.1` branch.** The rules below about PHP 5.3
 compatibility do not apply to `2.x`.

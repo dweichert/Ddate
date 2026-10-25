@@ -1,6 +1,6 @@
 # README
 
-[![CI Tests](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml/badge.svg?branch=1.1)](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml?query=branch%3A1.1)
+[![CI Tests](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml/badge.svg?branch=main)](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml?query=branch%3Amain)
 [![Downloads this Month](https://img.shields.io/packagist/dm/ddate/ddate.svg?style=flat)](https://packagist.org/packages/ddate/ddate)
 [![Latest stable](https://img.shields.io/packagist/v/ddate/ddate.svg?style=flat&label=stable)](https://packagist.org/packages/ddate/ddate)
 [![Latest dev](https://img.shields.io/packagist/vpre/ddate/ddate.svg?style=flat&label=unstable)](https://packagist.org/packages/ddate/ddate)

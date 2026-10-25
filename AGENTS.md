@@ -13,34 +13,45 @@ the `ddate` command once shipped with util-linux. Published on Packagist as
 
 ## Branches and release lines
 
-| Branch | Purpose                                                                                       |
-|--------|-----------------------------------------------------------------------------------------------|
-| `1.1`  | Maintenance line for 1.1.x (latest tag `v1.1.3`, next `v1.1.4`). PHP 5.3 to 8.5.                |
-| `2.x`  | Default branch on GitHub. Development of 2.0: modernised code, PHP 8.3+, PHPUnit 11, PSR-4.     |
+| Branch | Purpose                                                                                         |
+|--------|-------------------------------------------------------------------------------------------------|
+| `main` | Default branch on GitHub. Development of 2.0, releases `v2.*` are tagged here.                  |
+| `1.1`  | 1.1.x line (latest tag `v1.1.4`, probably the last 1.1 release). PHP 5.3 to 8.5.                |
 
 Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 
-- Tag on the release branch (`1.1`), never on `2.x`, and push the tag
-  (`git push origin vX.Y.Z`). CI then runs the tests, builds the PHAR, attests
-  it and creates the GitHub release with `ddate.phar` attached. Do not create
-  the release in the GitHub UI first: its *Target* defaults to `2.x`, and a
-  new tag created there ends up on the wrong branch.
+- Tag on `main` and push the tag (`git push origin vX.Y.Z`). CI then runs the
+  tests, builds the PHAR, attests it and creates the GitHub release with
+  `ddate.phar` attached. Do not create the release in the GitHub UI first.
+- The release job checks that the tagged commit is on `RELEASE_BRANCH` (set
+  in the workflow) and fails before anything is published otherwise.
+  Packagist publishes every pushed tag regardless, so check the branch before
+  pushing a tag.
 - Packagist treats stable versions as immutable: moving or re-creating a tag
   does not change the published version. A wrong release can only be fixed
   with a new version number.
-- `v1.1.2` on Packagist points to `2.x` code (PHP 8.3) by mistake and cannot
-  be corrected; `v1.1.3` contains the intended 1.1.2 code.
+- `v1.1.2` on Packagist points to code of the previous `main` (PHP 8.3) by
+  mistake and cannot be corrected; `v1.1.3` contains the intended 1.1.2 code.
 
-**This file describes the `1.1` branch.** The rules below about PHP 5.3
-compatibility do not apply to `2.x`.
+## 2.0 development
 
-## Goals for 1.1.x
+`main` was restarted from `1.1` (`v1.1.4`) with merge commit `22eb45a`. Its
+content is identical to `1.1`; the previous `main` (`a2bf1bd`) is the first
+parent of that merge and stays available in the history. 2.0 changes are
+ported step by step, each in its own pull request with green CI. Sources:
 
-- Preserve existing behaviour and public API. Output strings of `Ddate::ddate()`
-  are effectively API: do not change them.
-- Stay compatible with every PHP version from 5.3 to 8.5. The code must run
-  without deprecation notices on the newest PHP versions.
-- Only modernise as far as needed for that. Larger refactorings belong in 2.0.
+- previous `main` (`a2bf1bd`): PHP 8.3, PHPUnit 11, PSR-4, dev tooling,
+  updated holyday data, German translation fix
+- branch `dev/refactoring-and-improvement` (based on the previous `main`):
+  new structure (`Internal/`, `DiscordianDate/`, `XDay`, `Locale`),
+  `strict_types`, refactored tests (#58), `@api`/`@internal` (#59)
+
+Not everything there still applies; port deliberately, not wholesale. Output
+strings of `Ddate::ddate()` are effectively API: change them only on purpose
+and document it.
+
+Until the minimum PHP version for 2.0 is raised, `main` is still tested on
+PHP 5.3 to 8.5 and the PHP 5.3 coding rules below apply.
 
 ## Repository layout
 
@@ -125,7 +136,7 @@ box compile
 php build/phar/ddate.phar
 ```
 
-## Coding rules for the 1.1 branch
+## Coding rules (PHP 5.3 compatibility)
 
 Code (library *and* tests) must parse and run on PHP 5.3. Do not use:
 

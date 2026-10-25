@@ -36,7 +36,7 @@ final class DdateHolydayTest extends TestCase
     }
 
     #[DataProvider('turnOffStandardHolydaysProvider')]
-    public function testTurnOffStandardHolydays($gregorian, $discordian, $format, $locale): void
+    public function testTurnOffStandardHolydays(string $gregorian, string $discordian, ?string $format, ?string $locale): void
     {
         $actual = $this->object->ddate($format, $gregorian, $locale);
         self::assertEquals($discordian, $actual);
@@ -54,7 +54,7 @@ final class DdateHolydayTest extends TestCase
     }
 
     #[DataProvider('funFridayProvider')]
-    public function testFunFriday($gregorian, $discordian, $format): void
+    public function testFunFriday(string $gregorian, string $discordian, string $format): void
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian));
     }
@@ -82,7 +82,7 @@ final class DdateHolydayTest extends TestCase
     }
 
     #[DataProvider('camdenBenaresHolidaysProvider')]
-    public function testCamdenBenaresHolidays($gregorian, $discordian, $format): void
+    public function testCamdenBenaresHolidays(string $gregorian, string $discordian, string $format): void
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian));
     }
@@ -106,7 +106,7 @@ final class DdateHolydayTest extends TestCase
     }
 
     #[DataProvider('funFridayDeProvider')]
-    public function testFunFridayDe($gregorian, $discordian, $format): void
+    public function testFunFridayDe(string $gregorian, string $discordian, string $format): void
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, 'de'));
     }
@@ -121,7 +121,7 @@ final class DdateHolydayTest extends TestCase
     }
 
     #[DataProvider('revDrJonSwabeysWhollydaysProvider')]
-    public function testRevDrJonSwabeysWhollydays($gregorian, $discordian, $format, $locale): void
+    public function testRevDrJonSwabeysWhollydays(string $gregorian, string $discordian, string $format, string $locale): void
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, $locale));
     }
@@ -140,7 +140,7 @@ final class DdateHolydayTest extends TestCase
     }
 
     #[DataProvider('revLoveshadesWhollydaysProvider')]
-    public function testRevLoveshadesWhollydays($gregorian, $discordian, $format, $locale): void
+    public function testRevLoveshadesWhollydays(string $gregorian, string $discordian, string $format, string $locale): void
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, $locale));
     }

@@ -25,7 +25,8 @@ class CamdenBenaresHolidays extends Holydays
     {
         $holidays = array();
         $funFriday = new FunFriday();
-        if ($funFriday->is($ddate)) {
+        if ($funFriday->is($ddate))
+        {
             $holidays[] = parent::getName('FunFriday', $locale);
         }
         $holidays = array_merge($holidays, parent::getHolyday($ddate, $locale));

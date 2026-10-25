@@ -39,11 +39,13 @@ class FormatterFactory
      */
     public function getFormatter($locale)
     {
-        if (is_object($locale) && !method_exists($locale, '__toString')) {
+        if (null === $locale || (is_object($locale) && !method_exists($locale, '__toString')))
+        {
             $locale = 'en';
         }
         $locale = strtolower(substr($locale, 0, 2));
-        if (!array_key_exists($locale, $this->availableFormatters)) {
+        if (!array_key_exists($locale, $this->availableFormatters))
+        {
             $locale = 'en';
         }
         $formatter = (string)$this->availableFormatters[$locale]['class'];

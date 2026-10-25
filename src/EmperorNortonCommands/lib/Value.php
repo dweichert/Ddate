@@ -88,7 +88,8 @@ class Value
         $daysUntilRealXDay,
         $daysUntilOriginalXDay,
         $date
-    ) {
+    )
+    {
         $this->day = $day;
         $this->season = $season;
         $this->weekDay = $weekDay;

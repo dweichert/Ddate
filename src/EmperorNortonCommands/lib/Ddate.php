@@ -6,7 +6,6 @@
  */
 
 namespace EmperorNortonCommands\lib;
-
 use DateTime;
 use DateTimeZone;
 use InvalidArgumentException;
@@ -35,21 +34,41 @@ class Ddate
     /**
      * Constructor method.
      *
-     * @param Converter   $converter         OPTIONAL Converts Gregorian to Discordian dates
-     * @param FormatterFactory $formatterFactory  OPTIONAL Discordian date formatter
+     * The parameters are deliberately not type-declared: an implicitly
+     * nullable type ("Converter $converter = null") is deprecated as of
+     * PHP 8.4 and the explicit "?Converter" requires PHP 7.1.
+     *
+     * @param Converter|null        $converter         OPTIONAL Converts Gregorian to Discordian dates
+     * @param FormatterFactory|null $formatterFactory  OPTIONAL Discordian date formatter
+     * @throws InvalidArgumentException
      */
     public function __construct(
-        Converter $converter = null,
-        FormatterFactory $formatterFactory = null
-    ) {
-        if (is_null($formatterFactory)) {
+        $converter = null,
+        $formatterFactory = null
+    )
+    {
+        if (!is_null($converter) && !$converter instanceof Converter)
+        {
+            throw new InvalidArgumentException('First argument expected to be an instance of Converter or null.');
+        }
+        if (!is_null($formatterFactory) && !$formatterFactory instanceof FormatterFactory)
+        {
+            throw new InvalidArgumentException('Second argument expected to be an instance of FormatterFactory or null.');
+        }
+        if (is_null($formatterFactory))
+        {
             $this->formatterFactory = new FormatterFactory();
-        } else {
+        }
+        else
+        {
             $this->formatterFactory = $formatterFactory;
         }
-        if (is_null($converter)) {
+        if (is_null($converter))
+        {
             $this->converter = new Converter();
-        } else {
+        }
+        else
+        {
             $this->converter = $converter;
         }
     }
@@ -102,14 +121,17 @@ class Ddate
      */
     private function getDateObject($date)
     {
-        if (null === $date) {
+        if (null === $date)
+        {
             return new DateTime();
         }
-        if (!is_numeric($date) && 8 !== strlen($date)) {
+        if (!is_numeric($date) && 8 !== strlen($date))
+        {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
         list($year, $month, $day) = $this->splitIntoParts($date);
-        if (!checkdate($month, $day, $year)) {
+        if (!checkdate($month, $day, $year))
+        {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
         $dateObject = new DateTime($year . '-' . $month . '-' . $day, new DateTimeZone('UTC'));
@@ -126,9 +148,9 @@ class Ddate
      */
     private function splitIntoParts($date)
     {
-        $year = (integer)substr($date, 4, 4);
-        $month = (integer)substr($date, 2, 2);
-        $day = (integer)substr($date, 0, 2);
+        $year = (int)substr($date, 4, 4);
+        $month = (int)substr($date, 2, 2);
+        $day = (int)substr($date, 0, 2);
         return array($year, $month, $day);
     }
 }

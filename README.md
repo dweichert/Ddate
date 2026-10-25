@@ -1,14 +1,11 @@
 # README
 
-[![Build Status](https://travis-ci.org/dweichert/Ddate.svg?branch=master)](https://travis-ci.org/dweichert/Ddate)
+[![CI Tests](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml/badge.svg?branch=1.1)](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml?query=branch%3A1.1)
 [![Downloads this Month](https://img.shields.io/packagist/dm/ddate/ddate.svg?style=flat)](https://packagist.org/packages/ddate/ddate)
 [![Latest stable](https://img.shields.io/packagist/v/ddate/ddate.svg?style=flat&label=stable)](https://packagist.org/packages/ddate/ddate)
 [![Latest dev](https://img.shields.io/packagist/vpre/ddate/ddate.svg?style=flat&label=unstable)](https://packagist.org/packages/ddate/ddate)
 [![License](https://img.shields.io/packagist/l/ddate/ddate.svg?style=flat&label=license)](https://packagist.org/packages/ddate/ddate)
-[![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
-[![SymfonyInsight](https://insight.symfony.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a/mini.svg)](https://insight.symfony.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a)
 [![composer.lock](https://poser.pugx.org/ddate/ddate/composerlock)](https://packagist.org/packages/ddate/ddate)
-[![Gitmoji](https://img.shields.io/badge/gitmoji-%F0%9F%98%9C%F0%9F%98%8D-informational)](https://gitmoji.dev)
 
 ## What is EmperorNortonCommands/lib/Ddate?
 
@@ -43,11 +40,19 @@ If you specify a locale as a second argument the format string options
 
     $ ./ddate.phar --help de
     
-The releases are signed using the GPG-key with the ID 
-```A6FED5506250B129``` and the Fingerprint ```F1F7 A70A 51E2 D0FA 0903
-65B7 A6FE D550 6250 B129```
+Starting with release 1.1.4, the PHAR file is built from the release tag by
+[GitHub Actions](https://github.com/dweichert/Ddate/actions/workflows/continuous-integration.yml)
+and tested on every supported PHP version (see below). The build is signed with a
+[GitHub artifact attestation](https://docs.github.com/en/actions/concepts/security/artifact-attestations),
+which proves that the file was built by this repository's workflow from the
+release tag and has not been altered since. You can verify it with the
+[GitHub CLI](https://cli.github.com/):
 
-You can verify the PHAR file using these commmands:
+    $ gh attestation verify ddate.phar --repo dweichert/Ddate
+
+PHAR files of releases up to 1.1.1 were signed with the GPG key
+```A6FED5506250B129``` (fingerprint ```F1F7 A70A 51E2 D0FA 0903 65B7 A6FE D550
+6250 B129```) instead and can be verified with:
 
     $ gpg --keyserver pgp.mit.edu --recv-key 0xA6FED5506250B129
     $ gpg --fingerprint A6FED5506250B129
@@ -138,8 +143,7 @@ the format string fields are locale specific.
 
 | Version | Supported PHP Versions                                                  | Remarks                                                                 |
 |---------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| 2.0.x   | 8.0.x                                                                   |                                                                         |
-| 1.1.x   | 5.3.x, 5.4.x, 5.5.x, 5.6.x, 7.0.x, 7.1.x, 7.2.x, 7.3.x, 7.4.x           | Older PHP versions will be supported as long as the CI builds can be maintained.\* |
+| 1.1.x   | 5.3.x - 5.6.x, 7.0.x - 7.4.x, 8.0.x - 8.5.x                             | Older PHP versions will be supported as long as the CI builds can be maintained.\* |
 | 1.0.x   | --                                                                      | Version 1.0.x has reached its end of life and is  no longer supported.  |
 
 \* Regrettably HHVM is no longer supported, as [HHVM no longer supports PHP](https://hhvm.com/blog/2018/09/12/end-of-php-support-future-of-hack.html) and [Composer no longer runs under HHVM](https://hhvm.com/blog/2019/02/11/hhvm-4.0.0.html), rendering the HHVM build permanently broken. Older versions of HHVM/Composer used to work, but your milage may vary.
@@ -156,4 +160,4 @@ Pope Rotund Deluxe
 
 Bureflux, 3179
 
-(last updated: Prickle-Prickle, 48th of The Aftermath, 3186)
+(last updated: Pungenday, 6th of The Aftermath, 3192)

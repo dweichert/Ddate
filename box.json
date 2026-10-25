@@ -1,11 +1,20 @@
 {
-    "algorithm": "SHA256",
-    "alias": "ddate",
-    "base-path": null,
-    "chmod": "0750",
-    "compression": "GZ",
-    "files": [
-        "LICENSE"
+    "output": "build/phar/ddate.phar",
+    "alias": "ddate.phar",
+    "banner": [
+        "ddate - converts Gregorian to Discordian dates.",
+        "",
+        "Public domain. All rites reversed.",
+        "https://github.com/dweichert/Ddate"
     ],
-    "output": "build/phar/ddate.phar"
+    "directories": [
+        "src/EmperorNortonCommands/lib",
+        "vendor/composer"
+    ],
+    "files": [
+        "LICENSE",
+        "vendor/autoload.php"
+    ],
+    "dump-autoload": false,
+    "check-requirements": false
 }

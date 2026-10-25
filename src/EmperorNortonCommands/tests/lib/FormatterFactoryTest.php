@@ -9,7 +9,6 @@ namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -29,8 +28,10 @@ class FormatterFactoryTest extends TestCase
 
     /**
      * Set up.
+     *
+     * @before
      */
-    public function setUp(): void
+    public function createObject()
     {
         $this->_object = new FormatterFactory();
     }
@@ -40,18 +41,22 @@ class FormatterFactoryTest extends TestCase
      *
      * @return array
      */
-    public static function dataProvider()
+    public function dataProvider()
     {
         return array(
             array('Foo', 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array(new stdClass(), 'EmperorNortonCommands\lib\locale\en\StandardFormatter')
+            array(new stdClass(), 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
+            array(null, 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
+            array('de', 'EmperorNortonCommands\lib\locale\de\StandardFormatter')
         );
     }
 
     /**
      * Test getFormatter()
+     *
+     * @dataProvider dataProvider
      */
-    #[DataProvider('dataProvider')] public function testGetFormatter($locale, $expected)
+    public function testGetFormatter($locale, $expected)
     {
         self::assertTrue($this->_object->getFormatter($locale) instanceof $expected);
     }

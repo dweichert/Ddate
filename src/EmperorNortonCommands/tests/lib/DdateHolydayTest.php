@@ -8,7 +8,6 @@
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
-use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -23,19 +22,26 @@ class DdateHolydayTest extends TestCase
      */
     private $object;
 
-    protected function setUp(): void
+    /**
+     * Set up.
+     *
+     * @before
+     */
+    public function createObject()
     {
         $this->object = new Ddate();
     }
 
-    #[DataProvider('turnOffStandardHolydaysProvider')]
+    /**
+     * @dataProvider turnOffStandardHolydaysProvider
+     */
     public function testTurnOffStandardHolydays($gregorian, $discordian, $format, $locale)
     {
         $actual = $this->object->ddate($format, $gregorian, $locale);
         self::assertEquals($discordian, $actual);
     }
 
-    public static function turnOffStandardHolydaysProvider()
+    public function turnOffStandardHolydaysProvider()
     {
         return array(
             'no format' => array('26092013', "Prickle-Prickle, Bureaucracy 50, 3179 YOLD", null, null),
@@ -46,13 +52,15 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    #[DataProvider('funFridayProvider')]
+    /**
+     * @dataProvider funFridayProvider
+     */
     public function testFunFriday($gregorian, $discordian, $format)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian));
     }
 
-    public static function funFridayProvider()
+    public function funFridayProvider()
     {
         return array(
             array('31032017',"It's Setting Orange, the 17th of Discord, 3183.\nCelebrate Fun Friday", "It's %{%A, the %e of %B%},%2 %Y.%N%nCelebrate %H"),
@@ -74,13 +82,15 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    #[DataProvider('camdenBenaresHolidaysProvider')]
+    /**
+     * @dataProvider camdenBenaresHolidaysProvider
+     */
     public function testCamdenBenaresHolidays($gregorian, $discordian, $format)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian));
     }
 
-    public static function camdenBenaresHolidaysProvider()
+    public function camdenBenaresHolidaysProvider()
     {
         return array(
             array('01011997', "It's Sweetmorn, the 1st of Chaos, 3163.\nCelebrate Bogey's Day", "It's %{%A, the %e of %B%},%2 %Y.%N%nCelebrate %H"),
@@ -98,13 +108,15 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    #[DataProvider('funFridayDeProvider')]
+    /**
+     * @dataProvider funFridayDeProvider
+     */
     public function testFunFridayDe($gregorian, $discordian, $format)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, 'de'));
     }
 
-    public static function funFridayDeProvider()
+    public function funFridayDeProvider()
     {
         return array(
             array('30032323', "Heute ist Prickel-Prickel, 16. der Zweitracht 3489, heute ist: Vergnügungsfreitag.", "Heute ist %{%A, %e %C %Y%}%2%N, heute ist: %H."),
@@ -113,13 +125,15 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    #[DataProvider('revDrJonSwabeysWhollydaysProvider')]
+    /**
+     * @dataProvider revDrJonSwabeysWhollydaysProvider
+     */
     public function testRevDrJonSwabeysWhollydays($gregorian, $discordian, $format, $locale)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, $locale));
     }
 
-    public static function revDrJonSwabeysWhollydaysProvider()
+    public function revDrJonSwabeysWhollydaysProvider()
     {
         return array(
             array('27012017', "Heute ist Blütezeit, 27. der Verwirrung 3183, heute ist: Faultiertag.", "Heute ist %{%A, %e %C %Y%}%3%N, heute ist: %H.", 'de'),
@@ -132,13 +146,15 @@ class DdateHolydayTest extends TestCase
         );
     }
 
-    #[DataProvider('revLoveshadesWhollydaysProvider')]
+    /**
+     * @dataProvider revLoveshadesWhollydaysProvider
+     */
     public function testRevLoveshadesWhollydays($gregorian, $discordian, $format, $locale)
     {
         self::assertEquals($discordian, $this->object->ddate($format, $gregorian, $locale));
     }
 
-    public static function revLoveshadesWhollydaysProvider()
+    public function revLoveshadesWhollydaysProvider()
     {
         return array(
             array('01011995', "It's Sweetmorn, the 1st of Chaos, 3161. Celebrate Bogey's Day and Nude Year's Day", "It's %{%A, the %e of %B%},%1%2%3%4 %Y.%N Celebrate %H", 'en'),

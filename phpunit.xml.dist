@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" colors="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.2/phpunit.xsd" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
-  <coverage>
-    <report>
-      <clover outputFile="build/logs/clover.xml"/>
-    </report>
-  </coverage>
-  <testsuites>
-    <testsuite name="Emperor Norton Commands Test Suite">
-      <directory>./src/EmperorNortonCommands/tests/</directory>
-    </testsuite>
-  </testsuites>
-  <source>
-    <include>
-      <directory suffix=".php">./src/EmperorNortonCommands/lib</directory>
-    </include>
-  </source>
+
+<!--
+    Kept compatible with every PHPUnit version used on the 1.1 branch
+    (4.8 on PHP 5.3 up to 9.6 on PHP 8.x), so no <coverage>/<filter>
+    elements: their schemas differ between PHPUnit versions.
+-->
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertDeprecationsToExceptions="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false"
+>
+    <testsuites>
+        <testsuite name="Emperor Norton Commands Test Suite">
+            <directory>./src/EmperorNortonCommands/tests/</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>

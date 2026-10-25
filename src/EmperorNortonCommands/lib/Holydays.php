@@ -6,7 +6,6 @@
  */
 
 namespace EmperorNortonCommands\lib;
-
 use DOMDocument;
 use DOMXPath;
 
@@ -34,7 +33,8 @@ abstract class Holydays
 
         $calendar = $this->getCalendar($xpath);
 
-        if ('discordian' === $calendar) {
+        if ('discordian' === $calendar)
+        {
             return $this->getHolydayDiscordian($ddate, $xpath);
         }
 
@@ -59,13 +59,13 @@ abstract class Holydays
      */
     abstract protected function getPathToXML($locale);
 
-    /**
-     * Get name of Holyday by key.
-     *
-     * @param string $key
-     * @param string $locale
-     * @return string
-     */
+  /**
+   * Get name of Holyday by key.
+   *
+   * @param string $key
+   * @param string $locale
+   * @return string
+   */
     protected function getName($key, $locale)
     {
         $holydayNodeList = $this->getXpath($locale)->query("//h:name[..//h:irregular='$key']");
@@ -144,4 +144,5 @@ abstract class Holydays
 
         return $xpath;
     }
+
 }

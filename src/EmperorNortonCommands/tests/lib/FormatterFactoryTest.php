@@ -59,7 +59,7 @@ final class FormatterFactoryTest extends TestCase
      * Test getFormatter()
      */
     #[DataProvider('dataProvider')]
-    public function testGetFormatter($locale, $expected): void
+    public function testGetFormatter(mixed $locale, string $expected): void
     {
         self::assertInstanceOf($expected, $this->_object->getFormatter($locale));
     }

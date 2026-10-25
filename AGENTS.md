@@ -15,24 +15,24 @@ the `ddate` command once shipped with util-linux. Published on Packagist as
 
 | Branch | Purpose                                                                                       |
 |--------|-----------------------------------------------------------------------------------------------|
-| `1.1`  | Maintenance line for 1.1.x (latest tag `v1.1.3`, next `v1.1.4`). PHP 5.3 to 8.5.                |
-| `2.x`  | Default branch on GitHub. Development of 2.0: modernised code, PHP 8.3+, PHPUnit 11, PSR-4.     |
+| `1.1`  | Maintenance line for 1.1.x (latest tag `v1.1.4`, probably the last 1.1 release). PHP 5.3 to 8.5.|
+| `main` | Default branch on GitHub. Development of 2.0: modernised code, PHP 8.3+, PHPUnit 11, PSR-4.     |
 
 Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 
-- Tag on the release branch (`1.1`), never on `2.x`, and push the tag
+- Tag on the release branch (`1.1`), never on `main`, and push the tag
   (`git push origin vX.Y.Z`). CI then runs the tests, builds the PHAR, attests
   it and creates the GitHub release with `ddate.phar` attached. Do not create
-  the release in the GitHub UI first: its *Target* defaults to `2.x`, and a
+  the release in the GitHub UI first: its *Target* defaults to `main`, and a
   new tag created there ends up on the wrong branch.
 - Packagist treats stable versions as immutable: moving or re-creating a tag
   does not change the published version. A wrong release can only be fixed
   with a new version number.
-- `v1.1.2` on Packagist points to `2.x` code (PHP 8.3) by mistake and cannot
+- `v1.1.2` on Packagist points to 2.0 code (`main`, PHP 8.3) by mistake and cannot
   be corrected; `v1.1.3` contains the intended 1.1.2 code.
 
 **This file describes the `1.1` branch.** The rules below about PHP 5.3
-compatibility do not apply to `2.x`.
+compatibility do not apply to `main`.
 
 ## Goals for 1.1.x
 

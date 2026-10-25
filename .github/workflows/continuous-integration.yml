@@ -1,0 +1,66 @@
+# https://docs.github.com/en/actions
+
+name: "CI Tests"
+
+on:
+    pull_request: ~
+    push:
+        branches:
+            - "1.1"
+    workflow_dispatch: ~
+
+jobs:
+    phpunit:
+        name: "PHPUnit tests (PHP ${{ matrix.php-version }})"
+
+        runs-on: "ubuntu-latest"
+
+        strategy:
+            fail-fast: false
+            matrix:
+                php-version:
+                    - "5.3"
+                    - "5.4"
+                    - "5.5"
+                    - "5.6"
+                    - "7.0"
+                    - "7.1"
+                    - "7.2"
+                    - "7.3"
+                    - "7.4"
+                    - "8.0"
+                    - "8.1"
+                    - "8.2"
+                    - "8.3"
+                    - "8.4"
+                    - "8.5"
+
+        steps:
+            - name: "Checkout"
+              uses: "actions/checkout@v5"
+
+            # setup-php installs a Composer version compatible with the
+            # selected PHP version (Composer 2.2 LTS for old PHP versions).
+            - name: "Install PHP"
+              uses: "shivammathur/setup-php@v2"
+              with:
+                  php-version: "${{ matrix.php-version }}"
+                  extensions: "dom, simplexml"
+                  coverage: "none"
+                  tools: "composer"
+
+            # No composer.lock on this branch: Composer picks the newest
+            # PHPUnit version compatible with the PHP version (4.8 ... 9.6).
+            # Those PHPUnit versions have published security advisories which
+            # Composer >= 2.9 refuses to install by default; they are
+            # dev-only dependencies, so allow them.
+            - name: "Install dependencies"
+              run: "composer update --no-interaction --no-progress --prefer-dist"
+              env:
+                  COMPOSER_NO_SECURITY_BLOCKING: "1"
+
+            - name: "Tests"
+              run: "vendor/bin/phpunit"
+
+            - name: "Smoke test command line tool"
+              run: "php bin/ddate '%{%A, %B %d,%} %Y YOLD' 29022012"

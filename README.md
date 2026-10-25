@@ -110,7 +110,9 @@ differently.
 
 To show the Discordian date for another day, a Gregorian date may be
 specified as the second parameter of the function, in form of a day, month
-and year (dmY), e.g. 29022012 (for the 29th of February 2012).
+and year (dmY), e.g. '29022012' (for the 29th of February 2012). Pass it as a
+string: an integer literal with a leading zero, such as 09012018, is not a
+valid date (it is an octal literal in PHP).
 
 The third parameter is a string serving as a locale identifier. Currently
 'en' (for English) and 'de' (for German) are supported by standard
@@ -119,29 +121,29 @@ locale be specified.
 
 #### Examples
 
-    $ddate->ddate('Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H', 18092013)
+    $ddate->ddate('Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H', '18092013')
 
 *Today is Sweetmorn, the 42nd of Bureaucracy, 3179.*
 
-    $ddate->ddate("It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 26092013)
+    $ddate->ddate("It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", '26092013')
 
 *It's Prickle-Prickle, the 50th of Bureaucracy, 3179.*
 
 *Celebrate Bureflux*
 
-    $ddate->ddate("Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 29022016)
+    $ddate->ddate("Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", '29022016')
 
 *Today's St. Tib's Day, 3182.*
 
-    $ddate->ddate("Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 29022020, "de")
+    $ddate->ddate("Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", '29022020', "de")
     
 *Heute ist St. Tibs Tag, 3186.*
 
-    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 09012018, "de")
+    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", '09012018', "de")
     
 *Heute ist Prickel-Prickel, 9. der Verwirrung, 3184.*
 
-    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 10012018, "de")
+    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", '10012018', "de")
 
 *Heute ist Orangewerdend, 10. der Verwirrung, 3184.* 
 

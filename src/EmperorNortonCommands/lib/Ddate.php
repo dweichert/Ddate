@@ -47,15 +47,15 @@ class Ddate
         $formatterFactory = null
     )
     {
-        if (!is_null($converter) && !$converter instanceof Converter)
+        if (null !== $converter && !$converter instanceof Converter)
         {
             throw new InvalidArgumentException('First argument expected to be an instance of Converter or null.');
         }
-        if (!is_null($formatterFactory) && !$formatterFactory instanceof FormatterFactory)
+        if (null !== $formatterFactory && !$formatterFactory instanceof FormatterFactory)
         {
             throw new InvalidArgumentException('Second argument expected to be an instance of FormatterFactory or null.');
         }
-        if (is_null($formatterFactory))
+        if (null === $formatterFactory)
         {
             $this->formatterFactory = new FormatterFactory();
         }
@@ -63,7 +63,7 @@ class Ddate
         {
             $this->formatterFactory = $formatterFactory;
         }
-        if (is_null($converter))
+        if (null === $converter)
         {
             $this->converter = new Converter();
         }
@@ -129,7 +129,7 @@ class Ddate
         {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
-        list($year, $month, $day) = $this->splitIntoParts($date);
+        [$year, $month, $day] = $this->splitIntoParts($date);
         if (!checkdate($month, $day, $year))
         {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
@@ -141,7 +141,7 @@ class Ddate
     /**
      * Splits date string into parts.
      *
-     * Returns array($day, $month, $year).
+     * Returns [$year, $month, $day].
      *
      * @param  string $date Gregorian date (dmY)
      * @return array
@@ -151,6 +151,6 @@ class Ddate
         $year = (int)substr($date, 4, 4);
         $month = (int)substr($date, 2, 2);
         $day = (int)substr($date, 0, 2);
-        return array($year, $month, $day);
+        return [$year, $month, $day];
     }
 }

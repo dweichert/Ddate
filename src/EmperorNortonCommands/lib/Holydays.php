@@ -15,7 +15,7 @@ use DOMXPath;
  */
 abstract class Holydays
 {
-    const KEY = 'holydays';
+    public const KEY = 'holydays';
 
     /**
      * Get Holyday.
@@ -96,7 +96,7 @@ abstract class Holydays
      */
     private function getHolydayDiscordian(Value $ddate, DOMXPath $xpath)
     {
-        $holydays = array();
+        $holydays = [];
         $season = str_pad($ddate->getSeason(), 2, '0', STR_PAD_LEFT);
         $day = str_pad($ddate->getDay(), 2, '0', STR_PAD_LEFT);
         $holydayNodeList = $xpath->query("//h:name[..//h:season='$season' and ..//h:day='$day']");
@@ -117,7 +117,7 @@ abstract class Holydays
      */
     private function getHolydayGregorian(Value $ddate, DOMXPath $xpath)
     {
-        $holydays = array();
+        $holydays = [];
         $month = $ddate->getGregorian()->format('m');
         $day = $ddate->getGregorian()->format('d');
         $holydayNodeList = $xpath->query("//h:name[..//h:month='$month' and ..//h:day='$day']");

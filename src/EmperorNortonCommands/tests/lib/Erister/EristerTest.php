@@ -31,19 +31,19 @@ class EristerTest extends TestCase
 
     public static function isEristerProvider()
     {
-        return array(
-            '27.03.354' => array (true, '27030354', true),
-            '27.03.354 - no extension' => array (true, '27030354', false),
-            '31.03.1700' => array(true, '31031700', true),
-            '31.03.1700 - no extension' => array(true, '31031700', false),
-            '20.01.2000' => array(false, '20012000', true),
-            '31.03.2002' => array(true, '31032002', true),
-            '31.03.2002 - no extension' => array(true, '31032002', false),
-            '31.03.2003' => array(false, '31032003', true),
-            '31.03.2003 - no extension' => array(false, '31032003', false),
-            '23.03.9000' => array(true, '23039000', true),
-            '23.03.9000 - no extension' => array(true, '23039000', false),
-        );
+        return [
+            '27.03.354' =>  [true, '27030354', true],
+            '27.03.354 - no extension' =>  [true, '27030354', false],
+            '31.03.1700' => [true, '31031700', true],
+            '31.03.1700 - no extension' => [true, '31031700', false],
+            '20.01.2000' => [false, '20012000', true],
+            '31.03.2002' => [true, '31032002', true],
+            '31.03.2002 - no extension' => [true, '31032002', false],
+            '31.03.2003' => [false, '31032003', true],
+            '31.03.2003 - no extension' => [false, '31032003', false],
+            '23.03.9000' => [true, '23039000', true],
+            '23.03.9000 - no extension' => [true, '23039000', false],
+        ];
     }
 
     private function getValue($gregorian)

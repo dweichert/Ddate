@@ -23,7 +23,7 @@ class Converter
      * Since the official X-Day did not occur, it was found that the original
      * calculation got the date upside down, hence 8661 instead of 1998.
      */
-    const REAL_X_DAY = '8661-07-05T11:00:00+0000';
+    public const REAL_X_DAY = '8661-07-05T11:00:00+0000';
 
     /**
      * Official X-Day date identified by J. R. "Bob" Dobbs in the 1950s.
@@ -31,7 +31,7 @@ class Converter
      * See: Deborah Scoblionkov: Armageddon Ends Badly, Wired, 06. Jul. 1998,
      * http://archive.wired.com/culture/lifestyle/news/1998/07/13466
      */
-    const ORIGINAL_X_DAY = '1998-07-05T11:00:00+0000';
+    public const ORIGINAL_X_DAY = '1998-07-05T11:00:00+0000';
 
     /**
      * Curse of Greyface.
@@ -39,7 +39,7 @@ class Converter
      * The Curse of Greyface occurred in 1 YOLD and thus defines the offset
      * from the Gregorian calendar, according to which it was 1166 BC.
      */
-    const CURSE_OF_GREYFACE = 1166;
+    public const CURSE_OF_GREYFACE = 1166;
 
     /**
      * Convert Gregorian to Discordian Date.

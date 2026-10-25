@@ -15,7 +15,7 @@ use EmperorNortonCommands\lib\Holydays;
  */
 class StandardHolydays extends Holydays
 {
-    const KEY = 'standard';
+    public const KEY = 'standard';
 
     /**
      * @inheritdoc

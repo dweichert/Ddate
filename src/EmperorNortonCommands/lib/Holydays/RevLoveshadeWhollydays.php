@@ -16,14 +16,14 @@ use EmperorNortonCommands\lib\Value;
  */
 class RevLoveshadeWhollydays extends Holydays
 {
-    const KEY = 'rev_loveshade';
+    public const KEY = 'rev_loveshade';
 
     /**
      * @inheritdoc
      */
     public function getHolyday(Value $ddate, $locale)
     {
-        $holidays = array();
+        $holidays = [];
         $erister = new Erister();
         if ($erister->is($ddate))
         {

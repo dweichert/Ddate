@@ -18,18 +18,18 @@ class FormatterFactory
      *
      * @var mixed[]
      */
-    private $availableFormatters = array(
-        'en' => array(
+    private $availableFormatters = [
+        'en' => [
             'lang' => 'English',
-            'class' => 'EmperorNortonCommands\lib\locale\en\StandardFormatter',
-            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\en\StandardHolydays')
-        ),
-        'de' => array(
+            'class' => locale\en\StandardFormatter::class,
+            'holydays' => ['Standard' => 'EmperorNortonCommands\lib\locale\en\StandardHolydays']
+        ],
+        'de' => [
             'lang' => 'Deutsch',
-            'class' => 'EmperorNortonCommands\lib\locale\de\StandardFormatter',
-            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\de\StandardHolydays')
-        )
-    );
+            'class' => locale\de\StandardFormatter::class,
+            'holydays' => ['Standard' => 'EmperorNortonCommands\lib\locale\de\StandardHolydays']
+        ]
+    ];
 
     /**
      * Get Discordian date formatter.

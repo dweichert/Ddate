@@ -20,7 +20,7 @@ abstract class Formatter
      *
      * @var string[]
      */
-    protected $supportedFormatStringFields = array();
+    protected $supportedFormatStringFields = [];
 
     /**
      * Format string.
@@ -102,7 +102,7 @@ abstract class Formatter
      */
     protected function getHolydays(Value $ddate, $locale)
     {
-        $holydays = array();
+        $holydays = [];
         foreach ($this->holydays as $holyday)
         {
             $holydays = array_merge($holydays, $holyday->getHolyday($ddate, $locale));

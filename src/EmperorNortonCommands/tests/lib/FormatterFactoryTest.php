@@ -7,6 +7,7 @@
 
 namespace EmperorNortonCommands\tests\lib;
 
+use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
 use PHPUnit\Framework\Attributes\Before;
@@ -44,12 +45,12 @@ class FormatterFactoryTest extends TestCase
      */
     public static function dataProvider()
     {
-        return array(
-            array('Foo', 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array(new stdClass(), 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array(null, 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array('de', 'EmperorNortonCommands\lib\locale\de\StandardFormatter')
-        );
+        return [
+            ['Foo', EnglishStandardFormatter::class],
+            [new stdClass(), EnglishStandardFormatter::class],
+            [null, EnglishStandardFormatter::class],
+            ['de', GermanStandardFormatter::class]
+        ];
     }
 
     /**

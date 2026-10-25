@@ -96,11 +96,11 @@ class Erister implements NoFixedDateHolydayInterface
 
         if ($year < 1753)
         {
-            list($month, $day) = $this->getEristerMeeusJulian($year);
+            [$month, $day] = $this->getEristerMeeusJulian($year);
         }
         else
         {
-            list($month, $day) = $this->getEristerNewYorkCorrespondent($year);
+            [$month, $day] = $this->getEristerNewYorkCorrespondent($year);
         }
 
         $erister = str_pad($day, 2, '0', STR_PAD_LEFT);
@@ -143,7 +143,7 @@ class Erister implements NoFixedDateHolydayInterface
         $month = (int)floor(($h + $l - $m + 114) / 31);
         $day = (int)(($h + $l -$m + 114) % 31) + 1;
 
-        return array($month, $day);
+        return [$month, $day];
     }
 
     /**
@@ -165,6 +165,6 @@ class Erister implements NoFixedDateHolydayInterface
         $month = (int)floor(($d + $e + 114) / 31);
         $day = (int)(($d + $e + 114) % 31) + 1;
 
-        return array($month, $day);
+        return [$month, $day];
     }
 }

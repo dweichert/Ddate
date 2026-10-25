@@ -22,7 +22,7 @@ class StandardFormatter extends EnglishStandardFormatter
      * @var string[]
      */
     protected $supportedFormatStringFields = array(
-        '%A' => 'Vollständiger Name des Woechentages (z.B. Süßmorgen)',
+        '%A' => 'Vollständiger Name des Wochentages (z.B. Süßmorgen)',
         '%a' => 'Abgekürzter Name des Wochentages (z.B. SM)',
         '%B' => 'Vollständiger Name der Saison (z.B. Verwirrung)',
         '%b' => 'Abgekürzter Name der Saison (z.B. Ve)',
@@ -52,8 +52,8 @@ class StandardFormatter extends EnglishStandardFormatter
      */
     protected $_cardinalNumbers = array(
         'Erster', 'Zweiter', 'Dritter', 'Vierter', 'Fünfter', 'Sechster', 'Siebter', 'Achter', 'Neunter', 'Zehnter',
-        'Elfter', 'Zwölfter', 'Dreizehnter', 'Vierzehnter', 'Fünfzehnter', 'Sechzehnter', 'Siebzehnter', 'Achtzehnter', 'Neunzehnter', 'vierzigster',
-        'Einundfünfzigster', 'Zweiundzwanzigster', 'Dreiundzwanzigster', 'Vierundzwanzigster', 'Fünfundzwanzigster', 'Sechsundzwanzigster', 'Siebenundzwanzigster', 'Achtundzwanzigster', 'Neunundzwanzigster', 'Dreißigster',
+        'Elfter', 'Zwölfter', 'Dreizehnter', 'Vierzehnter', 'Fünfzehnter', 'Sechzehnter', 'Siebzehnter', 'Achtzehnter', 'Neunzehnter', 'Zwanzigster',
+        'Einundzwanzigster', 'Zweiundzwanzigster', 'Dreiundzwanzigster', 'Vierundzwanzigster', 'Fünfundzwanzigster', 'Sechsundzwanzigster', 'Siebenundzwanzigster', 'Achtundzwanzigster', 'Neunundzwanzigster', 'Dreißigster',
         'Einunddreißigster', 'Zweiunddreißigster', 'Dreiunddreißigster', 'Vierunddreißigster', 'Fünfunddreißigster', 'Sechsunddreißigster', 'Siebenunddreißigster', 'Achtunddreißigster', 'Neununddreißigster', 'Vierzigster',
         'Einundvierzigster', 'Zweiundvierzigster', 'Dreiundvierzigster', 'Vierundvierzigster', 'Fünfundvierzigster', 'Sechsundvierzigster', 'Siebenundvierzigster', 'Achtundvierzigster', 'Neunundvierzigster', 'Fünfzigster',
         'Einundfünfzigster', 'Zweiundfünfzigster', 'Dreiundfünfzigster', 'Vierundfünfzigster', 'Fünfundfünfzigster', 'Sechsundfünfzigster', 'Siebenundfünfzigster', 'Achtundfünfzigster', 'Neunundfünfzigster', 'Sechzigster',
@@ -211,14 +211,21 @@ class StandardFormatter extends EnglishStandardFormatter
         return (string)$this->seasonsGenitive[$season];
     }
 
-        /**
-         * Get localized string with all holydays.
-         */
-        protected function getHolydayString($holydays)
+    /**
+     * Get localized string with all holydays.
+     *
+     * Joins the last two holydays with "und" (the English formatter uses
+     * "and"); holyday names themselves are left unchanged.
+     */
+    protected function getHolydayString($holydays)
+    {
+        if (count($holydays) < 2)
         {
-            $holydayString = parent::getHolydayString($holydays);
-
-            return str_replace('and', 'und', $holydayString);
-
+            return parent::getHolydayString($holydays);
         }
+
+        $lastHolyday = array_pop($holydays);
+
+        return implode(', ', $holydays) . ' und ' . $lastHolyday;
+    }
 }

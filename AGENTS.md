@@ -119,8 +119,8 @@ nightly build of the PHP-8.6 branch.
 runs the same tests on GitHub Actions.
 
 ```sh
-# compare the output with the newest 1.1 release (or a given tag)
-.docker/compare-with-1.1.sh [v1.1.4]
+# compare the output with the newest 1.1 release (or a given tag or branch)
+.docker/compare-with-1.1.sh [v1.1.4 | origin/1.1]
 ```
 
 Runs `.docker/output-matrix.php` (about 15,000 calls of the public API: every
@@ -129,7 +129,8 @@ locales and invalid input, including exceptions and PHP warnings) against the
 working tree and the 1.1 tag, with and without the calendar extension, and
 prints the differences. 2.0 must produce the
 same output as 1.1 except for documented bug fixes: run it for every change to
-library code.
+library code. Bug fixes that change output go into `1.1` as well; until they
+are released, compare against the branch (`origin/1.1`) instead of the tag.
 
 ## PHAR
 

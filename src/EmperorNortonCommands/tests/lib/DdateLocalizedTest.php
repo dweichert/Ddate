@@ -62,6 +62,12 @@ final class DdateLocalizedTest extends TestCase
             ['11112015', 'Heute ist Orangewerdend, 23. des Grummets im JUHD 3181.', 'Heute ist %{%A, %e %C%} im JUHD %Y.%N Wir feiern %H.', 'de'],
             ['26092015', 'Heute ist Prickel-Prickel, 50. der Beamtenherrschaft im JUHD 3181. Wir feiern Beamtenfluss.', 'Heute ist %{%A, %e %C%} im JUHD %Y.%N Wir feiern %H.', 'de'],
             ['20102015', 'Heute ist Stichtag, 1. des Grummets im JUHD 3181.', 'Heute ist %{%A, %e %C%} im JUHD %Y.%N Wir feiern %H.', 'de'],
+            'ordinal day 20' => ['20012014', 'Zwanzigster', '%E', 'de'],
+            'ordinal day 21' => ['21012014', 'Einundzwanzigster', '%E', 'de'],
+            'holyday name containing "and"' => ['25052014', 'Handtuchtag', '%4%H', 'de'],
+            'holiday name containing "and"' => ['30092014', 'Kokomo Dragonland Tag', '%2%H', 'de'],
+            'two holydays' => ['19032014', 'Mojotag und Lingananda', '%4%H', 'de'],
+            'three holydays' => ['19032014', 'Mojotag, St. Swallow und Lingananda', '%2%3%4%H', 'de'],
         ];
     }
 
@@ -93,6 +99,15 @@ final class DdateLocalizedTest extends TestCase
         $expected = $formatter->getSupportedFormatStringFields();
         $actual = $this->_object->getSupportedFormatStringFields('de');
         self::assertEquals($expected, $actual);
+    }
+
+    /**
+     * Test description of a format string field for locale 'de'.
+     */
+    public function testSupportedFormatFieldDescriptionDe(): void
+    {
+        $fields = $this->_object->getSupportedFormatStringFields('de');
+        self::assertSame('Vollständiger Name des Wochentages (z.B. Süßmorgen)', $fields['%A']);
     }
 
     /**

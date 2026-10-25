@@ -160,4 +160,4 @@ Pope Rotund Deluxe
 
 Bureflux, 3179
 
-(last updated: Pungenday, 6th of The Aftermath, 3192)
+(last updated: Pungenday, 31st of The Aftermath, 3192)

@@ -12,7 +12,7 @@ use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\Converter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SimpleXMLElement;
 
 /**
@@ -20,7 +20,7 @@ use SimpleXMLElement;
  *
  * @package EmperorNortonCommands
  */
-class DdateTest extends PHPUnit_Framework_TestCase
+class DdateTest extends TestCase
 {
     /**
      * Object instance to be tested.
@@ -31,8 +31,10 @@ class DdateTest extends PHPUnit_Framework_TestCase
 
     /**
      * Set up.
+     *
+     * @before
      */
-    public function setUp()
+    public function createObject()
     {
         $this->_object = new Ddate();
     }
@@ -147,10 +149,12 @@ class DdateTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidDateWrongType()
     {
-        $this->setExpectedException(
-            'InvalidArgumentException', 'Second argument expected to be a Gregorian date (dmY).'
-        );
-        $this->_object->ddate(null, 'Lorem ipsum dolor sit amet.');
+        try {
+            $this->_object->ddate(null, 'Lorem ipsum dolor sit amet.');
+            self::fail('Expected InvalidArgumentException was not thrown.');
+        } catch (\InvalidArgumentException $e) {
+            self::assertEquals('Second argument expected to be a Gregorian date (dmY).', $e->getMessage());
+        }
     }
 
     /**
@@ -158,10 +162,12 @@ class DdateTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidDate()
     {
-        $this->setExpectedException(
-            'InvalidArgumentException', 'Second argument expected to be a Gregorian date (dmY).'
-        );
-        $this->_object->ddate(null, 29021997);
+        try {
+            $this->_object->ddate(null, 29021997);
+            self::fail('Expected InvalidArgumentException was not thrown.');
+        } catch (\InvalidArgumentException $e) {
+            self::assertEquals('Second argument expected to be a Gregorian date (dmY).', $e->getMessage());
+        }
     }
 
     /**
@@ -207,6 +213,43 @@ class DdateTest extends PHPUnit_Framework_TestCase
     {
         $converter = new Converter();
         $formatterFactory = new FormatterFactory();
-        new Ddate($converter, $formatterFactory);
+        self::assertInstanceOf('EmperorNortonCommands\lib\Ddate', new Ddate($converter, $formatterFactory));
+    }
+
+    /**
+     * Test constructor with explicit null arguments.
+     */
+    public function testConstructorNullArguments()
+    {
+        $ddate = new Ddate(null, null);
+        self::assertEquals("St. Tib's Day 3178 YOLD", $ddate->ddate(null, '29022012'));
+    }
+
+    /**
+     * Data provider for invalid constructor arguments.
+     *
+     * @return array
+     */
+    public function invalidConstructorArgumentsProvider()
+    {
+        return array(
+            'invalid converter' => array(new \stdClass(), null, 'First argument expected to be an instance of Converter or null.'),
+            'invalid formatter factory' => array(null, 'en', 'Second argument expected to be an instance of FormatterFactory or null.'),
+        );
+    }
+
+    /**
+     * Test constructor rejects invalid arguments.
+     *
+     * @dataProvider invalidConstructorArgumentsProvider
+     */
+    public function testConstructorInvalidArguments($converter, $formatterFactory, $message)
+    {
+        try {
+            new Ddate($converter, $formatterFactory);
+            self::fail('Expected InvalidArgumentException was not thrown.');
+        } catch (\InvalidArgumentException $e) {
+            self::assertEquals($message, $e->getMessage());
+        }
     }
 }

@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+    Kept compatible with every PHPUnit version used on the 1.1 branch
+    (4.8 on PHP 5.3 up to 9.6 on PHP 8.x), so no <coverage>/<filter>
+    elements: their schemas differ between PHPUnit versions.
+-->
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
          colors="true"
+         convertDeprecationsToExceptions="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
          stopOnFailure="false"
 >
-    <filter>
-        <whitelist>
-            <directory suffix=".php">./src/EmperorNortonCommands/lib</directory>
-        </whitelist>
-    </filter>
     <testsuites>
         <testsuite name="Emperor Norton Commands Test Suite">
             <directory>./src/EmperorNortonCommands/tests/</directory>
         </testsuite>
     </testsuites>
-    <logging>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
-    </logging>
 </phpunit>

@@ -152,4 +152,4 @@ Pope Rotund Deluxe
 
 Bureflux, 3179
 
-(last updated: Prickle-Prickle, 48th of The Aftermath, 3186)
+(last updated: Pungenday, 6th of The Aftermath, 3192)

@@ -76,6 +76,7 @@ src/EmperorNortonCommands/lib/             library code (PSR-0, namespace Empero
   Holydays.php, Holydays/*                 holyday sets (XML based) and computed holydays
 src/EmperorNortonCommands/tests/           PHPUnit tests (live under src/, not tests/)
 .docker/run-tests.sh                       runs the test suite on every supported PHP version
+.docker/compare-with-1.1.sh                compares the output with a 1.1 release
 .github/workflows/continuous-integration.yml   GitHub Actions CI (PHP 8.6), PHAR build and release
 box.json                                   PHAR configuration for Box
 ```
@@ -116,6 +117,18 @@ nightly build of the PHP-8.6 branch.
 `phpunit.xml.dist` sets `failOnDeprecation`, `failOnNotice` and
 `failOnWarning`: any PHP deprecation, notice or warning fails the build. CI
 runs the same tests on GitHub Actions.
+
+```sh
+# compare the output with the newest 1.1 release (or a given tag)
+.docker/compare-with-1.1.sh [v1.1.4]
+```
+
+Runs `.docker/output-matrix.php` (about 15,000 calls of the public API: every
+day of 2012 and 2013 plus special dates, all format fields, holyday sets,
+locales and invalid input, including exceptions and PHP warnings) against the
+working tree and the 1.1 tag, and prints the differences. 2.0 must produce the
+same output as 1.1 except for documented bug fixes: run it for every change to
+library code.
 
 ## PHAR
 

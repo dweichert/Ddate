@@ -131,20 +131,20 @@ class Erister implements NoFixedDateHolydayInterface
     private function getEristerNewYorkCorrespondent(int $year): array
     {
         $a = $year % 19;
-        $b = floor($year / 100);
+        $b = intdiv($year, 100);
         $c = $year % 100;
-        $d = floor($b / 4);
+        $d = intdiv($b, 4);
         $e = $b % 4;
-        $f = floor(($b + 8 ) / 25);
-        $g = floor(($b - $f + 1) / 3);
-        $h = (19 * $a + $b -$d -$g + 15) % 30;
-        $i = floor($c / 4);
+        $f = intdiv($b + 8, 25);
+        $g = intdiv($b - $f + 1, 3);
+        $h = (19 * $a + $b - $d - $g + 15) % 30;
+        $i = intdiv($c, 4);
         $k = $c % 4;
         $l = (32 + 2 * $e + 2 * $i - $h - $k) % 7;
-        $m = (int)7 * floor(($a + 11 * $h + 22 * $l) / 451);
+        $m = 7 * intdiv($a + 11 * $h + 22 * $l, 451);
 
-        $month = (int)floor(($h + $l - $m + 114) / 31);
-        $day = (int)(($h + $l -$m + 114) % 31) + 1;
+        $month = intdiv($h + $l - $m + 114, 31);
+        $day = (($h + $l - $m + 114) % 31) + 1;
 
         return [$month, $day];
     }
@@ -165,8 +165,8 @@ class Erister implements NoFixedDateHolydayInterface
         $d = (19 * $c + 15) % 30;
         $e = (2 * $a + 4 * $b - $d + 34) % 7;
 
-        $month = (int)floor(($d + $e + 114) / 31);
-        $day = (int)(($d + $e + 114) % 31) + 1;
+        $month = intdiv($d + $e + 114, 31);
+        $day = (($d + $e + 114) % 31) + 1;
 
         return [$month, $day];
     }

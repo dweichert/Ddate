@@ -72,5 +72,6 @@ Release 2.0.0 first, then v1.1.7 (see `TODO.md` on branch
       fixes, released in 1.1.6): German `%E` for days 20 and 21, holyday names
       containing "and", `%A` description, `-de`.
 - [ ] Release v1.1.7 (checklist on `dev/release-1.1.7`).
-- [ ] Issues: #58 is closed by #76; #59 (`@api`, `@internal`) stays open
-      for 3.0 (label or milestone).
+- [x] Issues: #58 closed by #76; #59 (`@api`, `@internal`) moved to
+      milestone 3.0.0.
+- [ ] Close milestone 2.0.0 (no open issues left).

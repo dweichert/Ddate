@@ -8,13 +8,9 @@
         "https://github.com/dweichert/Ddate"
     ],
     "directories": [
-        "src/EmperorNortonCommands/lib",
-        "vendor/composer"
+        "src/EmperorNortonCommands/lib"
     ],
     "files": [
-        "LICENSE",
-        "vendor/autoload.php"
-    ],
-    "dump-autoload": false,
-    "check-requirements": false
+        "LICENSE"
+    ]
 }

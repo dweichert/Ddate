@@ -10,13 +10,12 @@ namespace EmperorNortonCommands\lib\Holydays;
 
 use DateTime;
 use EmperorNortonCommands\lib\Value;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class EristerTest extends TestCase
 {
-    /**
-     * @dataProvider isEristerProvider
-     */
+    #[DataProvider('isEristerProvider')]
     public function testIsErister($expectedTrue, $gregorian, $usePhpCalendarExt)
     {
         $object = new Erister($usePhpCalendarExt);
@@ -30,7 +29,7 @@ class EristerTest extends TestCase
         }
     }
 
-    public function isEristerProvider()
+    public static function isEristerProvider()
     {
         return array(
             '27.03.354' => array (true, '27030354', true),

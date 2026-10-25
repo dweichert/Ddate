@@ -10,6 +10,8 @@ namespace EmperorNortonCommands\tests\lib;
 use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
+use PHPUnit\Framework\Attributes\Before;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,9 +30,8 @@ class DdateLocalizedTest extends TestCase
 
     /**
      * Set up.
-     *
-     * @before
      */
+    #[Before]
     public function createObject()
     {
         $this->_object = new Ddate();
@@ -41,7 +42,7 @@ class DdateLocalizedTest extends TestCase
      *
      * @return array
      */
-    public function dataProvider()
+    public static function dataProvider()
     {
         return array(
             array('03051998', 'Pungenday, Discord 50, 3164 YOLD', null, 'en'),
@@ -64,9 +65,8 @@ class DdateLocalizedTest extends TestCase
 
     /**
      * Test ddate() with locale.
-     *
-     * @dataProvider dataProvider
      */
+    #[DataProvider('dataProvider')]
     public function testDdateLocalized($gregorian, $discordian, $format, $locale)
     {
         $expected = $discordian;

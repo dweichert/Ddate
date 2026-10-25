@@ -12,6 +12,8 @@ use EmperorNortonCommands\lib\Ddate;
 use EmperorNortonCommands\lib\Converter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
+use PHPUnit\Framework\Attributes\Before;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use SimpleXMLElement;
 
@@ -31,9 +33,8 @@ class DdateTest extends TestCase
 
     /**
      * Set up.
-     *
-     * @before
      */
+    #[Before]
     public function createObject()
     {
         $this->_object = new Ddate();
@@ -44,7 +45,7 @@ class DdateTest extends TestCase
      *
      * @return array
      */
-    public function ddateDataProvider()
+    public static function ddateDataProvider()
     {
         return array(
             array('03051998', 'Pungenday, Discord 50, 3164 YOLD', null),
@@ -134,9 +135,8 @@ class DdateTest extends TestCase
 
     /**
      * Test ddate().
-     *
-     * @dataProvider ddateDataProvider
      */
+    #[DataProvider('ddateDataProvider')]
     public function testDdate($gregorian, $discordian, $format)
     {
         $expected = $discordian;
@@ -230,7 +230,7 @@ class DdateTest extends TestCase
      *
      * @return array
      */
-    public function invalidConstructorArgumentsProvider()
+    public static function invalidConstructorArgumentsProvider()
     {
         return array(
             'invalid converter' => array(new \stdClass(), null, 'First argument expected to be an instance of Converter or null.'),
@@ -240,9 +240,8 @@ class DdateTest extends TestCase
 
     /**
      * Test constructor rejects invalid arguments.
-     *
-     * @dataProvider invalidConstructorArgumentsProvider
      */
+    #[DataProvider('invalidConstructorArgumentsProvider')]
     public function testConstructorInvalidArguments($converter, $formatterFactory, $message)
     {
         try {

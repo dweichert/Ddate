@@ -16,18 +16,38 @@ operating system in PHP. It converts Gregorian to Discordian dates.
 ## Installation
 
 The easiest way to use the library in your project is to install it by adding
-it as a dependency to your project's composer.json file.
+it as a dependency to your project's composer.json file. Version 2.0 requires
+PHP 8.6 or newer.
 
-    $ composer require ddate/ddate "^1.1"
-    
+    $ composer require ddate/ddate "^2.0"
+
+For PHP 5.3 to 8.5 use version 1.1 (`"^1.1"`), which gets bug and security
+fixes until 31 December 2029. If your project has to support both, allow both
+versions and let Composer pick the one that matches the installed PHP version:
+
+    $ composer require ddate/ddate "^1.1 || ^2.0"
+
+### Upgrading from 1.1
+
+Version 2.0 has the same API as 1.1 and produces the same output as 1.1.6 and
+later; only the implementation was modernised. Upgrading only requires PHP 8.6
+and changing the version constraint to `"^2.0"`. API changes will come with a
+later major version (3.0), see the
+[release plan](docs/release-plan.md).
+
+### PHAR
+
 If you want to call the library via the command line or use it in a shell
 script downloading the
 [PHAR file](https://en.wikipedia.org/wiki/PHAR_(file_format)) from the
 [releases page](https://github.com/dweichert/Ddate/releases/latest) can be
-convenient. Everything is contained in a single file that can be called from
-the command line and you can pass parameters as command line arguments (see
-below for details). You can invoke *ddate* from the command line by executing
-the file in the directory to which it was downloaded:
+convenient. The PHAR of version 2.0 requires PHP 8.6 or newer and refuses to
+run on older versions; for PHP 5.3 to 8.5 download the PHAR of the newest
+1.1.x release from the [releases page](https://github.com/dweichert/Ddate/releases).
+Everything is contained in a single file that can be called from the command
+line and you can pass parameters as command line arguments (see below for
+details). You can invoke *ddate* from the command line by executing the file
+in the directory to which it was downloaded:
     
     $ ./ddate.phar
 
@@ -90,7 +110,9 @@ differently.
 
 To show the Discordian date for another day, a Gregorian date may be
 specified as the second parameter of the function, in form of a day, month
-and year (dmY), e.g. 29022012 (for the 29th of February 2012).
+and year (dmY), e.g. '29022012' (for the 29th of February 2012). Pass it as a
+string: an integer literal with a leading zero, such as 09012018, is not a
+valid date (it is an octal literal in PHP).
 
 The third parameter is a string serving as a locale identifier. Currently
 'en' (for English) and 'de' (for German) are supported by standard
@@ -99,29 +121,29 @@ locale be specified.
 
 #### Examples
 
-    $ddate->ddate('Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H', 18092013)
+    $ddate->ddate('Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H', '18092013')
 
 *Today is Sweetmorn, the 42nd of Bureaucracy, 3179.*
 
-    $ddate->ddate("It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 26092013)
+    $ddate->ddate("It's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", '26092013')
 
 *It's Prickle-Prickle, the 50th of Bureaucracy, 3179.*
 
 *Celebrate Bureflux*
 
-    $ddate->ddate("Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", 29022016)
+    $ddate->ddate("Today's %{%A, the %e of %B%}, %Y. %N%nCelebrate %H", '29022016')
 
 *Today's St. Tib's Day, 3182.*
 
-    $ddate->ddate("Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 29022020, "de")
+    $ddate->ddate("Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", '29022020', "de")
     
 *Heute ist St. Tibs Tag, 3186.*
 
-    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 09012018, "de")
+    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", '09012018', "de")
     
 *Heute ist Prickel-Prickel, 9. der Verwirrung, 3184.*
 
-    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", 10012018, "de")
+    $ddate->ddate("%2%4Heute ist %{%A, %e %C%}, %Y. %N%nWir feiern %H", '10012018', "de")
 
 *Heute ist Orangewerdend, 10. der Verwirrung, 3184.* 
 
@@ -143,8 +165,12 @@ the format string fields are locale specific.
 
 | Version | Supported PHP Versions                                                  | Remarks                                                                 |
 |---------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| 1.1.x   | 5.3.x - 5.6.x, 7.0.x - 7.4.x, 8.0.x - 8.5.x                             | Older PHP versions will be supported as long as the CI builds can be maintained.\* |
+| 2.0.x   | 8.6.x and newer                                                         | Current version. Same API as 1.1.x.                                     |
+| 1.1.x   | 5.3.x - 5.6.x, 7.0.x - 7.4.x, 8.0.x - 8.5.x\*                           | Bug and security fixes only, until 31 December 2029 (end of life).      |
 | 1.0.x   | --                                                                      | Version 1.0.x has reached its end of life and is  no longer supported.  |
+
+See the [release plan](docs/release-plan.md) for details and
+[SECURITY.md](SECURITY.md) for reporting security vulnerabilities.
 
 \* Regrettably HHVM is no longer supported, as [HHVM no longer supports PHP](https://hhvm.com/blog/2018/09/12/end-of-php-support-future-of-hack.html) and [Composer no longer runs under HHVM](https://hhvm.com/blog/2019/02/11/hhvm-4.0.0.html), rendering the HHVM build permanently broken. Older versions of HHVM/Composer used to work, but your milage may vary.
 

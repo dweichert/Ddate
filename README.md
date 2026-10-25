@@ -5,8 +5,6 @@
 [![Latest stable](https://img.shields.io/packagist/v/ddate/ddate.svg?style=flat&label=stable)](https://packagist.org/packages/ddate/ddate)
 [![Latest dev](https://img.shields.io/packagist/vpre/ddate/ddate.svg?style=flat&label=unstable)](https://packagist.org/packages/ddate/ddate)
 [![License](https://img.shields.io/packagist/l/ddate/ddate.svg?style=flat&label=license)](https://packagist.org/packages/ddate/ddate)
-[![Code Climate](https://codeclimate.com/github/dweichert/Ddate/badges/gpa.svg)](https://codeclimate.com/github/dweichert/Ddate)
-[![SymfonyInsight](https://insight.symfony.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a/mini.svg)](https://insight.symfony.com/projects/adbb07bc-edaa-4d6e-a113-0b766de6687a)
 [![composer.lock](https://poser.pugx.org/ddate/ddate/composerlock)](https://packagist.org/packages/ddate/ddate)
 
 ## What is EmperorNortonCommands/lib/Ddate?
@@ -137,7 +135,6 @@ the format string fields are locale specific.
 
 | Version | Supported PHP Versions                                                  | Remarks                                                                 |
 |---------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| 2.0.x   | 8.0.x                                                                   |                                                                         |
 | 1.1.x   | 5.3.x - 5.6.x, 7.0.x - 7.4.x, 8.0.x - 8.5.x                             | Older PHP versions will be supported as long as the CI builds can be maintained.\* |
 | 1.0.x   | --                                                                      | Version 1.0.x has reached its end of life and is  no longer supported.  |
 

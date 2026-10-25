@@ -13,6 +13,24 @@ EmperorNortonCommands/lib/Ddate is an almost faithful recreation of the ddate
 command formerly provided by the *util-linux* standard package of the Linux
 operating system in PHP. It converts Gregorian to Discordian dates.
 
+## Version 1.1 and 2.0
+
+**Version 1.1 is in maintenance mode and reaches its end of life on
+31 December 2029**, when PHP 8.5 stops receiving security fixes. Until then
+it gets bug and security fixes only: no new features and no changes to the
+API.
+
+Its successor, version 2.0, requires PHP 8.6 or newer and has **the same API
+as 1.1**. If you run PHP 8.6 or newer, upgrading only means changing the
+version constraint to `^2.0`. If your project has to support older PHP
+versions as well, allow both versions and let Composer pick the one that
+matches the installed PHP version:
+
+    $ composer require ddate/ddate "^1.1 || ^2.0"
+
+See the [release plan](https://github.com/dweichert/Ddate/blob/main/docs/release-plan.md)
+for details. API changes will come with a later major version (3.0).
+
 ## Installation
 
 The easiest way to use the library in your project is to install it by adding
@@ -23,11 +41,13 @@ it as a dependency to your project's composer.json file.
 If you want to call the library via the command line or use it in a shell
 script downloading the
 [PHAR file](https://en.wikipedia.org/wiki/PHAR_(file_format)) from the
-[releases page](https://github.com/dweichert/Ddate/releases/latest) can be
-convenient. Everything is contained in a single file that can be called from
-the command line and you can pass parameters as command line arguments (see
-below for details). You can invoke *ddate* from the command line by executing
-the file in the directory to which it was downloaded:
+[releases page](https://github.com/dweichert/Ddate/releases) can be
+convenient. Pick the newest 1.1.x release: the releases of version 2.0 and
+later, including the one marked "Latest", require PHP 8.6 or newer.
+Everything is contained in a single file that can be called from the command
+line and you can pass parameters as command line arguments (see below for
+details). You can invoke *ddate* from the command line by executing the file
+in the directory to which it was downloaded:
     
     $ ./ddate.phar
 
@@ -143,7 +163,8 @@ the format string fields are locale specific.
 
 | Version | Supported PHP Versions                                                  | Remarks                                                                 |
 |---------|-------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| 1.1.x   | 5.3.x - 5.6.x, 7.0.x - 7.4.x, 8.0.x - 8.5.x                             | Older PHP versions will be supported as long as the CI builds can be maintained.\* |
+| 2.0.x   | 8.6.x and newer                                                         | Same API as 1.1.x. Current version.                                     |
+| 1.1.x   | 5.3.x - 5.6.x, 7.0.x - 7.4.x, 8.0.x - 8.5.x\*                           | Bug and security fixes only, until 31 December 2029 (end of life).      |
 | 1.0.x   | --                                                                      | Version 1.0.x has reached its end of life and is  no longer supported.  |
 
 \* Regrettably HHVM is no longer supported, as [HHVM no longer supports PHP](https://hhvm.com/blog/2018/09/12/end-of-php-support-future-of-hack.html) and [Composer no longer runs under HHVM](https://hhvm.com/blog/2019/02/11/hhvm-4.0.0.html), rendering the HHVM build permanently broken. Older versions of HHVM/Composer used to work, but your milage may vary.

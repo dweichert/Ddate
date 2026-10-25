@@ -18,21 +18,13 @@ use Stringable;
 class FormatterFactory
 {
     /**
-     * Available formatters.
+     * Available formatters by two-letter locale identifier.
      *
-     * @var mixed[]
+     * @var array<string, class-string<Formatter>>
      */
-    private array $availableFormatters = [
-        'en' => [
-            'lang' => 'English',
-            'class' => locale\en\StandardFormatter::class,
-            'holydays' => ['Standard' => 'EmperorNortonCommands\lib\locale\en\StandardHolydays']
-        ],
-        'de' => [
-            'lang' => 'Deutsch',
-            'class' => locale\de\StandardFormatter::class,
-            'holydays' => ['Standard' => 'EmperorNortonCommands\lib\locale\de\StandardHolydays']
-        ]
+    private const FORMATTERS = [
+        'en' => locale\en\StandardFormatter::class,
+        'de' => locale\de\StandardFormatter::class,
     ];
 
     /**
@@ -43,7 +35,7 @@ class FormatterFactory
      */
     public function getFormatter($locale)
     {
-        if (null === $locale || (is_object($locale) && !method_exists($locale, '__toString')))
+        if (null === $locale || (is_object($locale) && !$locale instanceof Stringable))
         {
             $locale = 'en';
         }
@@ -53,11 +45,7 @@ class FormatterFactory
             $locale = (string)$locale;
         }
         $locale = strtolower(substr($locale, 0, 2));
-        if (!array_key_exists($locale, $this->availableFormatters))
-        {
-            $locale = 'en';
-        }
-        $formatter = (string)$this->availableFormatters[$locale]['class'];
+        $formatter = self::FORMATTERS[$locale] ?? self::FORMATTERS['en'];
 
         return new $formatter();
     }

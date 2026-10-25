@@ -133,21 +133,8 @@ class Converter
      */
     private function calculateSeason(DateTime $date): int
     {
-        $seasonIdx = 0;
         $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
-        if ($dayOfYear > 59)
-        {
-            $dayOfYearMinusStTibs = $dayOfYear - $this->getOffset($this->isLeapYear($date), $dayOfYear);
-            for ($i = 0; $i < 5; $i++)
-            {
-                if ($dayOfYearMinusStTibs < (74 + $i * 73))
-                {
-                    $seasonIdx = $i;
-                    break;
-                }
-            }
-        }
-        return $seasonIdx + 1;
+        return intdiv($dayOfYear - (1 + $this->getOffset($this->isLeapYear($date), $dayOfYear)), 73) + 1;
     }
 
     /**

@@ -217,21 +217,13 @@ class StandardFormatter extends Formatter
         $suffix = 'th';
         if (!in_array($day, [11, 12, 13]))
         {
-            $lastDigitDay = substr((string)$day, -1, 1);
-            switch ($lastDigitDay)
+            $suffix = match (substr((string)$day, -1, 1))
             {
-                case '1':
-                    $suffix = 'st';
-                    break;
-                case '2':
-                    $suffix = 'nd';
-                    break;
-                case '3':
-                    $suffix = 'rd';
-                    break;
-                default:
-                    break;
-            }
+                '1' => 'st',
+                '2' => 'nd',
+                '3' => 'rd',
+                default => 'th',
+            };
         }
         return $day . $suffix;
     }
@@ -253,6 +245,12 @@ class StandardFormatter extends Formatter
         return $ddate->getDay();
     }
 
+    /**
+     * Removes %1 to %4 from given string and toggles the holyday sets.
+     *
+     * @param  string $string
+     * @return string
+     */
     protected function replaceHolidaySetPlaceholders($string)
     {
         $turnOffStandardHolydays = 0;

@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace EmperorNortonCommands\lib;
 
 use EmperorNortonCommands\lib\Holydays\StandardHolydays;
+use Stringable;
 
 /**
  * Class Formatter.
@@ -80,7 +81,7 @@ abstract class Formatter
      */
     public function setFormat($format = null)
     {
-        if (null === $format || (is_object($format) && !method_exists($format, '__toString')))
+        if (null === $format || (is_object($format) && !$format instanceof Stringable))
         {
             $format = $this->defaultFormat;
         }

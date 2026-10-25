@@ -213,14 +213,13 @@ class StandardFormatter extends EnglishStandardFormatter
         return (string)$this->seasonsGenitive[$season];
     }
 
-        /**
-         * Get localized string with all holydays.
-         */
-        protected function getHolydayString($holydays)
-        {
-            $holydayString = parent::getHolydayString($holydays);
+    /**
+     * Get localized string with all holydays.
+     */
+    protected function getHolydayString($holydays)
+    {
+        $holydayString = parent::getHolydayString($holydays);
 
-            return str_replace('and', 'und', $holydayString);
-
-        }
+        return str_replace('and', 'und', $holydayString);
+    }
 }

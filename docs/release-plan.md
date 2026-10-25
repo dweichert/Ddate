@@ -24,8 +24,10 @@ plan changes.
 
 ## 2.0: modernise only, no API changes
 
-- Supported PHP versions: **PHP 8.6 and newer** only. The exact Composer
-  constraint (`^8.6` or `>=8.6`) is still to be decided.
+- Supported PHP versions: **PHP 8.6 and newer** only. Composer constraint
+  `^8.6`: once a new major PHP version (9.0) is released and tested, a 2.x
+  minor release widens it (e.g. `^8.6 || ^9.0`).
+- Tests use PHPUnit 13.
 - Release 2.0.0 at the same time as PHP 8.6, or as close to it as possible.
 - Scope: modernise the implementation so it takes advantage of current PHP
   language features, without changing the API. Upgrading from 1.1 to 2.0
@@ -65,6 +67,10 @@ When in doubt whether a change breaks the API, it belongs in 3.0.
   Examples: moving classes to `Internal/` or `Formatter/`, new public types
   (`DiscordianDate/*`, `XDay`, `Locale`), removing members from `Value`,
   making classes `final`, marking API with `@api`/`@internal` (#59).
+- Output changes that are not bug fixes, e.g. a consistent German naming of
+  holydays named after persons: the translation mostly drops the possessive
+  ("Duke Tag", "Emperor Norton Tag"), once keeps it ("Didymes Tag");
+  `2fe4715` (previous `main`) changed only "Bogart Tag" to "Bogarts Tag".
 - Not scheduled yet. When 3.0 development starts on `main`, a `2.x`
   maintenance branch is created from the last 2.x release; the support period
   for 2.x is decided then.
@@ -76,14 +82,26 @@ Security vulnerabilities are reported and handled as described in
 
 - 1.1.x releases are created with `--latest=false`, so "Latest" on GitHub
   (and the PHAR at `/releases/latest`) stays with the current major version.
-- Both release jobs check that the tag is on their branch (`RELEASE_BRANCH`).
+  As long as 2.0.0 is not released, mark a new 1.1.x release as "Latest" by
+  hand after the release job: `gh release edit v1.1.x --latest`.
+- Both release jobs check the tag before attesting and uploading the PHAR:
+  `v1.1.*` tags on `1.1`, `v2.*` tags on `main` (`RELEASE_TAGS`,
+  `RELEASE_BRANCH`). Create tags with `git tag`, never in the GitHub release
+  form (its *Target* defaults to `main`).
 - The README on `1.1` announces the end of life of 1.1 and how to allow both
   versions (`"^1.1 || ^2.0"`); publish it together with 2.0.0.
 
 ## Open points
 
-- Composer constraint for 2.0 (`^8.6` or `>=8.6`).
-- CI on `main` for PHP 8.6 (pre-release builds until PHP 8.6 is released).
-- Output changes ported from the previous `main` (updated holyday data,
-  German translation fix): release them as bug fixes in 1.1.x as well, so
-  1.1.x and 2.0.0 produce the same output.
+- CI and `.docker/run-tests.sh` use PHP 8.6 pre-release builds (setup-php
+  nightly, `8.6-rc-cli` image); switch to the final 8.6.0 when it is released.
+- Bug fixes that change output go into 1.1.x as well, so the 1.1.x release
+  next to 2.0.0 (1.1.7) and 2.0.0 produce the same output. Done: German
+  ordinals, holyday names, help text and CLI (#72 for `1.1`, released in
+  1.1.6 because 1.1.5 was released from `main` by mistake; #71 for `main`).
+  Holyday data from the previous `main` (`2fe4715`) reviewed: no data fix
+  (nothing for 1.1); its comment changes are ported to `main` except the
+  removal of the note that the Rev. DrJon Swabey set only lists the
+  Whollydays in addition to the Standard Holydays (still true, the "%1"
+  handling relies on it); "Bogart Tag" -> "Bogarts Tag" is a naming change
+  for 3.0, see above.

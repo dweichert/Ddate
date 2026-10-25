@@ -27,15 +27,20 @@ Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 - Tag on `main` and push the tag (`git push origin vX.Y.Z`). CI then runs the
   tests, builds the PHAR, attests it and creates the GitHub release with
   `ddate.phar` attached. Do not create the release in the GitHub UI first.
-- The release job checks that the tagged commit is on `RELEASE_BRANCH` (set
-  in the workflow) and fails before anything is published otherwise.
-  Packagist publishes every pushed tag regardless, so check the branch before
-  pushing a tag.
+- The release job checks that the tag matches `RELEASE_TAGS` (`v2.*`) and that
+  the tagged commit is on `RELEASE_BRANCH` (both set in the workflow), and
+  fails before the PHAR is attested and uploaded otherwise. It cannot undo a
+  tag or a release: Packagist publishes every pushed tag, so check the branch
+  before pushing a tag. Never create tags in the GitHub release form; its
+  *Target* defaults to `main`.
 - Packagist treats stable versions as immutable: moving or re-creating a tag
   does not change the published version. A wrong release can only be fixed
   with a new version number.
 - `v1.1.2` on Packagist points to code of the previous `main` (PHP 8.3) by
   mistake and cannot be corrected; `v1.1.3` contains the intended 1.1.2 code.
+- `v1.1.5` was released from `main` (2.0 development, PHP 8.6) by mistake;
+  it is soft-deleted on Packagist and removed from GitHub. `v1.1.6` contains
+  the intended 1.1.5 code.
 
 ## 2.0 development
 
@@ -57,8 +62,8 @@ API changes and BC breaks belong in 3.0. See "What 'no API changes' means" in
 
 Port deliberately, not wholesale. Output strings of `Ddate::ddate()` are API.
 
-Until the minimum PHP version on `main` is raised to 8.6, `main` is still
-tested on PHP 5.3 to 8.5 and the PHP 5.3 coding rules below apply.
+`main` requires PHP `^8.6` and PHPUnit 13. The source code is still the 1.1
+code; modernising it is the work for 2.0 (see "Coding rules for 2.0").
 
 ## Repository layout
 
@@ -66,7 +71,7 @@ tested on PHP 5.3 to 8.5 and the PHP 5.3 coding rules below apply.
 bin/ddate                                  CLI entry point (also PHAR entry point)
 docs/release-plan.md                       release lines, support periods, scope of 2.0/3.0
 SECURITY.md                                supported versions, reporting vulnerabilities
-src/EmperorNortonCommands/lib/             library code (PSR-0, namespace EmperorNortonCommands\lib)
+src/EmperorNortonCommands/lib/             library code (PSR-4, namespace EmperorNortonCommands\lib)
   Ddate.php                                public facade: ddate($format, $date, $locale)
   Converter.php                            Gregorian DateTime -> Value
   Value.php                                Discordian date value object
@@ -76,7 +81,8 @@ src/EmperorNortonCommands/lib/             library code (PSR-0, namespace Empero
   Holydays.php, Holydays/*                 holyday sets (XML based) and computed holydays
 src/EmperorNortonCommands/tests/           PHPUnit tests (live under src/, not tests/)
 .docker/run-tests.sh                       runs the test suite on every supported PHP version
-.github/workflows/continuous-integration.yml   GitHub Actions CI (PHP 5.3 to 8.5), PHAR build and release
+.docker/compare-with-1.1.sh                compares the output with a 1.1 release
+.github/workflows/continuous-integration.yml   GitHub Actions CI (PHP 8.6), PHAR build and release
 box.json                                   PHAR configuration for Box
 ```
 
@@ -101,74 +107,85 @@ branch.
 # all supported PHP versions (needs Docker, Composer and rsync on the host)
 .docker/run-tests.sh
 # selected versions
-.docker/run-tests.sh 5.3 8.5
+.docker/run-tests.sh 8.6
 ```
 
 The script copies the project to `build/test-php-<version>/`, resolves
-dependencies there with a Composer platform override (Composer 2.2 LTS for
-PHP < 5.6), then runs PHPUnit and a CLI smoke test in a Docker container
-for that PHP version. The project's own `vendor/` is left untouched. Images
-come from `mirror.gcr.io` (set `DOCKER_REGISTRY=docker.io` to change);
-PHP 5.3/5.4 use `devilbox/php-fpm-*` images because the official ones can no
-longer be pulled.
+dependencies there with a Composer platform override, then runs PHPUnit and a
+CLI smoke test in a Docker container for that PHP version. The project's own
+`vendor/` is left untouched. Images come from `mirror.gcr.io` (set
+`DOCKER_REGISTRY=docker.io` to change) and are extended locally with mbstring,
+which PHPUnit needs and the official 8.6 images no longer include. Until PHP
+8.6.0 is released, 8.6 runs on the `8.6-rc-cli` image; CI uses setup-php's
+nightly build of the PHP-8.6 branch.
 
-No `composer.lock` is committed, so Composer installs the newest compatible
-PHPUnit: 4.8 (PHP 5.3-5.5), 5.7 (5.6), 6.5 (7.0), 7.5 (7.1), 8.5 (7.2),
-9.6 (7.3+). Old PHPUnit versions have security advisories, so Composer >= 2.9
-needs `COMPOSER_NO_SECURITY_BLOCKING=1` (dev-only dependency).
+`phpunit.xml.dist` sets `failOnDeprecation`, `failOnNotice` and
+`failOnWarning`: any PHP deprecation, notice or warning fails the build. CI
+runs the same tests on GitHub Actions.
 
-`phpunit.xml.dist` sets `convertDeprecationsToExceptions="true"`: any PHP
-deprecation fails the build. CI runs the same matrix on GitHub Actions.
+```sh
+# compare the output with the newest 1.1 release (or a given tag or branch)
+.docker/compare-with-1.1.sh [v1.1.4 | origin/1.1]
+```
+
+Runs `.docker/output-matrix.php` (about 15,000 calls of the public API: every
+day of 2012 and 2013 plus special dates, all format fields, holyday sets,
+locales and invalid input, including exceptions and PHP warnings) against the
+working tree and the 1.1 tag, with and without the calendar extension, and
+prints the differences. 2.0 must produce the
+same output as 1.1 except for documented bug fixes: run it for every change to
+library code. Bug fixes that change output go into `1.1` as well; until they
+are released, compare against the branch (`origin/1.1`) instead of the tag.
 
 ## PHAR
 
 CI builds `ddate.phar` with [Box](https://github.com/box-project/box) on
-every run (job `phar`, workflow artifact `ddate-phar`) and runs it on PHP 5.3
-to 8.5 (job `phar-test`). For a `v*` tag, job `release` adds a GitHub artifact
+every run (job `phar`, workflow artifact `ddate-phar`) and runs it on PHP 8.6
+(job `phar-test`). For a `v*` tag, job `release` adds a GitHub artifact
 attestation (Sigstore build provenance) and uploads the PHAR to the release.
-PHARs are no longer signed with GPG.
+PHARs are not signed with GPG.
 
-- The PHAR is built on a current PHP version but must run on PHP 5.3. Its
-  autoloader is generated with Composer 2.2 LTS (`composer update --no-dev`),
-  because autoloaders from Composer >= 2.3 refuse to run on PHP < 5.6. Box
-  must not dump the autoloader itself (`"dump-autoload": false`).
-- `box.json` lists the PHAR contents explicitly (`src/.../lib`,
-  `vendor/autoload.php`, `vendor/composer`), so tests and dev dependencies
-  never end up in it. No compression, so `ext-zlib` is not required.
+- Box generates the autoloader and adds its requirement checker, so the PHAR
+  refuses to run on PHP < 8.6 with a clear message.
+- `box.json` lists the PHAR contents explicitly (`src/.../lib`, `LICENSE`), so
+  tests never end up in it. No compression, so `ext-zlib` is not required.
 - Box is pinned to a version and SHA-256 checksum in the workflow.
 
 To build locally, in a copy of the project without dev dependencies:
 
 ```sh
-php composer-2.2.phar update --no-dev
+composer update --no-dev
 box compile
 php build/phar/ddate.phar
 ```
 
-## Coding rules (PHP 5.3 compatibility)
+## Coding rules for 2.0
 
-Code (library *and* tests) must parse and run on PHP 5.3. Do not use:
+2.0 modernises the implementation for PHP 8.6 **without changing the API**.
+Read "What 'no API changes' means" in
+[docs/release-plan.md](docs/release-plan.md) before changing any public or
+protected class, method or property. In short:
 
-- short array syntax `[]`, traits, `$this` in closures (5.4)
-- `::class`, `finally`, generators, `DateTimeInterface` at runtime (5.5)
-- variadics, `**`, `use function` (5.6)
-- scalar type declarations, return types, `??`, `<=>`, anonymous classes (7.0)
-- nullable types `?Foo`, `void`, `iterable` (7.1), anything newer
-- `(integer)`, `(boolean)`, `(double)` casts (deprecated in 8.5): use `(int)`, `(bool)`, `(float)`
-- implicitly nullable parameters `Foo $foo = null` (deprecated in 8.4): leave
-  the parameter untyped and check `instanceof` instead (see `Ddate::__construct()`)
-- passing `null` to internal functions expecting strings (deprecated in 8.1)
+- Internal code may use any PHP 8.6 feature (`declare(strict_types=1)`,
+  typed and readonly private properties, `match`, enums, ...).
+- Public and protected signatures stay compatible: no renamed or removed
+  members, parameter types only if they accept every value 1.1 accepts, no
+  return types on methods subclasses may override, no new `final`.
+- Output of `Ddate::ddate()` and `bin/ddate` stays the same.
 
-Tests must work with PHPUnit 4.8 through 9.6:
+Library code declares `strict_types=1`. Where 1.1 relied on PHP's type
+juggling (user input, internal function calls), convert explicitly so the
+behaviour stays the same. Mark methods that override or implement a parent
+method with `#[\Override]`.
 
-- extend `PHPUnit\Framework\TestCase` (namespaced alias exists since 4.8.35)
-- no `setUp()`/`tearDown()` overrides (the `void` return type in PHPUnit 8+
-  cannot be written in PHP 5); use a public method annotated with `@before`
-- no `expectException()` / `setExpectedException()`; use `try`/`catch` plus
-  `self::fail()`
-- use docblock annotations (`@dataProvider`, `@before`), not attributes
-- prefer real objects over mocks (mock builder APIs differ between versions)
-- every test needs at least one assertion (risky tests in PHPUnit 6+)
+Tests use PHPUnit 13:
+
+- `declare(strict_types=1)`, `final` test classes, `void` return types
+- attributes, not docblock annotations: `#[DataProvider('name')]`,
+  `#[Before]` (annotations are ignored since PHPUnit 12)
+- data providers are `public static` and return `array`
+- `expectException()` / `expectExceptionMessage()` for exceptions
+- every test needs at least one assertion
 
 Style: 4 spaces, LF, Allman braces for classes/methods/control structures as
 in the existing code, docblocks on classes and methods (see `.editorconfig`).

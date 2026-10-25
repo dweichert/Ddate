@@ -5,10 +5,15 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\tests\lib;
 
+use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
 use EmperorNortonCommands\lib\locale\en\StandardFormatter as EnglishStandardFormatter;
 use EmperorNortonCommands\lib\FormatterFactory;
+use PHPUnit\Framework\Attributes\Before;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -17,7 +22,7 @@ use stdClass;
  *
  * @package EmperorNortonCommands\tests\lib
  */
-class FormatterFactoryTest extends TestCase
+final class FormatterFactoryTest extends TestCase
 {
     /**
      * Object instance to be tested.
@@ -28,10 +33,9 @@ class FormatterFactoryTest extends TestCase
 
     /**
      * Set up.
-     *
-     * @before
      */
-    public function createObject()
+    #[Before]
+    public function createObject(): void
     {
         $this->_object = new FormatterFactory();
     }
@@ -41,23 +45,22 @@ class FormatterFactoryTest extends TestCase
      *
      * @return array
      */
-    public function dataProvider()
+    public static function dataProvider(): array
     {
-        return array(
-            array('Foo', 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array(new stdClass(), 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array(null, 'EmperorNortonCommands\lib\locale\en\StandardFormatter'),
-            array('de', 'EmperorNortonCommands\lib\locale\de\StandardFormatter')
-        );
+        return [
+            ['Foo', EnglishStandardFormatter::class],
+            [new stdClass(), EnglishStandardFormatter::class],
+            [null, EnglishStandardFormatter::class],
+            ['de', GermanStandardFormatter::class]
+        ];
     }
 
     /**
      * Test getFormatter()
-     *
-     * @dataProvider dataProvider
      */
-    public function testGetFormatter($locale, $expected)
+    #[DataProvider('dataProvider')]
+    public function testGetFormatter($locale, $expected): void
     {
-        self::assertTrue($this->_object->getFormatter($locale) instanceof $expected);
+        self::assertInstanceOf($expected, $this->_object->getFormatter($locale));
     }
 }

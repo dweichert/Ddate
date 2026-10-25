@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib\Holydays;
 
 use EmperorNortonCommands\lib\Holydays;
@@ -16,14 +18,15 @@ use EmperorNortonCommands\lib\Value;
  */
 class CamdenBenaresHolidays extends Holydays
 {
-    const KEY = 'camden_benares';
+    public const KEY = 'camden_benares';
 
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getHolyday(Value $ddate, $locale)
     {
-        $holidays = array();
+        $holidays = [];
         $funFriday = new FunFriday();
         if ($funFriday->is($ddate))
         {
@@ -37,6 +40,7 @@ class CamdenBenaresHolidays extends Holydays
     /**
      * @inheritdoc
      */
+    #[\Override]
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/camden_benares_holidays.xml';

@@ -5,9 +5,12 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib;
 
 use EmperorNortonCommands\lib\Holydays\StandardHolydays;
+use Stringable;
 
 /**
  * Class Formatter.
@@ -20,7 +23,7 @@ abstract class Formatter
      *
      * @var string[]
      */
-    protected $supportedFormatStringFields = array();
+    protected $supportedFormatStringFields = [];
 
     /**
      * Format string.
@@ -78,7 +81,7 @@ abstract class Formatter
      */
     public function setFormat($format = null)
     {
-        if (null === $format || (is_object($format) && !method_exists($format, '__toString')))
+        if (null === $format || (is_object($format) && !$format instanceof Stringable))
         {
             $format = $this->defaultFormat;
         }
@@ -102,7 +105,7 @@ abstract class Formatter
      */
     protected function getHolydays(Value $ddate, $locale)
     {
-        $holydays = array();
+        $holydays = [];
         foreach ($this->holydays as $holyday)
         {
             $holydays = array_merge($holydays, $holyday->getHolyday($ddate, $locale));

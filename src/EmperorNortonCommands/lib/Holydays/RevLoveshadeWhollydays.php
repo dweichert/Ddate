@@ -4,6 +4,8 @@
  *
  * Public domain. All rites reversed.
  */
+
+declare(strict_types=1);
 namespace EmperorNortonCommands\lib\Holydays;
 
 
@@ -16,14 +18,15 @@ use EmperorNortonCommands\lib\Value;
  */
 class RevLoveshadeWhollydays extends Holydays
 {
-    const KEY = 'rev_loveshade';
+    public const KEY = 'rev_loveshade';
 
     /**
      * @inheritdoc
      */
+    #[\Override]
     public function getHolyday(Value $ddate, $locale)
     {
-        $holidays = array();
+        $holidays = [];
         $erister = new Erister();
         if ($erister->is($ddate))
         {
@@ -47,6 +50,7 @@ class RevLoveshadeWhollydays extends Holydays
     /**
      * @inheritdoc
      */
+    #[\Override]
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/rev_loveshade_whollydays.xml';

@@ -5,7 +5,11 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib;
+
+use Stringable;
 
 /**
  * Class FormatterFactory
@@ -14,22 +18,14 @@ namespace EmperorNortonCommands\lib;
 class FormatterFactory
 {
     /**
-     * Available formatters.
+     * Available formatters by two-letter locale identifier.
      *
-     * @var mixed[]
+     * @var array<string, class-string<Formatter>>
      */
-    private $availableFormatters = array(
-        'en' => array(
-            'lang' => 'English',
-            'class' => 'EmperorNortonCommands\lib\locale\en\StandardFormatter',
-            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\en\StandardHolydays')
-        ),
-        'de' => array(
-            'lang' => 'Deutsch',
-            'class' => 'EmperorNortonCommands\lib\locale\de\StandardFormatter',
-            'holydays' => array('Standard' => 'EmperorNortonCommands\lib\locale\de\StandardHolydays')
-        )
-    );
+    private const FORMATTERS = [
+        'en' => locale\en\StandardFormatter::class,
+        'de' => locale\de\StandardFormatter::class,
+    ];
 
     /**
      * Get Discordian date formatter.
@@ -39,16 +35,17 @@ class FormatterFactory
      */
     public function getFormatter($locale)
     {
-        if (null === $locale || (is_object($locale) && !method_exists($locale, '__toString')))
+        if (null === $locale || (is_object($locale) && !$locale instanceof Stringable))
         {
             $locale = 'en';
+        }
+        // converted to string the way 1.1 (without strict types) did
+        if (is_scalar($locale) || $locale instanceof Stringable)
+        {
+            $locale = (string)$locale;
         }
         $locale = strtolower(substr($locale, 0, 2));
-        if (!array_key_exists($locale, $this->availableFormatters))
-        {
-            $locale = 'en';
-        }
-        $formatter = (string)$this->availableFormatters[$locale]['class'];
+        $formatter = self::FORMATTERS[$locale] ?? self::FORMATTERS['en'];
 
         return new $formatter();
     }

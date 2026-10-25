@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib;
 use DOMDocument;
 use DOMXPath;
@@ -15,7 +17,7 @@ use DOMXPath;
  */
 abstract class Holydays
 {
-    const KEY = 'holydays';
+    public const KEY = 'holydays';
 
     /**
      * Get Holyday.
@@ -79,7 +81,7 @@ abstract class Holydays
      * @param DOMXPath $xpath
      * @return string
      */
-    private function getCalendar(DOMXPath $xpath)
+    private function getCalendar(DOMXPath $xpath): string
     {
         $nodeList = $xpath->query('//@calendar');
         $calendar = (string)$nodeList->item(0)->nodeValue;
@@ -94,11 +96,11 @@ abstract class Holydays
      * @param DOMXPath $xpath
      * @return string[]
      */
-    private function getHolydayDiscordian(Value $ddate, DOMXPath $xpath)
+    private function getHolydayDiscordian(Value $ddate, DOMXPath $xpath): array
     {
-        $holydays = array();
-        $season = str_pad($ddate->getSeason(), 2, '0', STR_PAD_LEFT);
-        $day = str_pad($ddate->getDay(), 2, '0', STR_PAD_LEFT);
+        $holydays = [];
+        $season = str_pad((string)$ddate->getSeason(), 2, '0', STR_PAD_LEFT);
+        $day = str_pad((string)$ddate->getDay(), 2, '0', STR_PAD_LEFT);
         $holydayNodeList = $xpath->query("//h:name[..//h:season='$season' and ..//h:day='$day']");
         foreach ($holydayNodeList as $element) {
             /** @var \DOMElement $element */
@@ -115,9 +117,9 @@ abstract class Holydays
      * @param DOMXPath $xpath
      * @return string[]
      */
-    private function getHolydayGregorian(Value $ddate, DOMXPath $xpath)
+    private function getHolydayGregorian(Value $ddate, DOMXPath $xpath): array
     {
-        $holydays = array();
+        $holydays = [];
         $month = $ddate->getGregorian()->format('m');
         $day = $ddate->getGregorian()->format('d');
         $holydayNodeList = $xpath->query("//h:name[..//h:month='$month' and ..//h:day='$day']");
@@ -132,10 +134,10 @@ abstract class Holydays
     /**
      * Get DOMXPath Object for XML containing translations.
      *
-     * @param $locale
+     * @param  mixed $locale
      * @return DOMXPath
      */
-    private function getXpath($locale)
+    private function getXpath(mixed $locale): DOMXPath
     {
         $domDocument = new DOMDocument();
         $domDocument->load($this->getPathToXML($locale));

@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib\Holydays;
 
 use EmperorNortonCommands\lib\Value;
@@ -24,6 +26,7 @@ class FunFriday implements NoFixedDateHolydayInterface
      * @param Value $ddate
      * @return boolean
      */
+    #[\Override]
     public function is(Value $ddate)
     {
         if ($ddate->getGregorian()->format('j') < 29) {

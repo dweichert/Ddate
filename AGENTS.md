@@ -15,8 +15,11 @@ the `ddate` command once shipped with util-linux. Published on Packagist as
 
 | Branch | Purpose                                                                                       |
 |--------|-----------------------------------------------------------------------------------------------|
-| `1.1`  | Maintenance line for 1.1.x (latest tag `v1.1.4`, probably the last 1.1 release). PHP 5.3 to 8.5.|
-| `main` | Default branch on GitHub. Development of 2.0: modernised code, PHP 8.3+, PHPUnit 11, PSR-4.     |
+| `1.1`  | Maintenance line for 1.1.x (latest tag `v1.1.4`), fixes until 2029-12-31. PHP 5.3 to 8.5.      |
+| `main` | Default branch on GitHub. Development of 2.0 (PHP 8.6+, same API as 1.1).                       |
+
+Release lines and support periods are defined in
+[docs/release-plan.md on `main`](https://github.com/dweichert/Ddate/blob/main/docs/release-plan.md).
 
 Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 
@@ -36,6 +39,9 @@ compatibility do not apply to `main`.
 
 ## Goals for 1.1.x
 
+- 1.1 is stable and feature complete. It receives bug and security fixes
+  until 2029-12-31 (end of PHP 8.5 security support), nothing else: no new
+  features, no refactorings.
 - Preserve existing behaviour and public API. Output strings of `Ddate::ddate()`
   are effectively API: do not change them.
 - Stay compatible with every PHP version from 5.3 to 8.5. The code must run

@@ -126,7 +126,8 @@ runs the same tests on GitHub Actions.
 Runs `.docker/output-matrix.php` (about 15,000 calls of the public API: every
 day of 2012 and 2013 plus special dates, all format fields, holyday sets,
 locales and invalid input, including exceptions and PHP warnings) against the
-working tree and the 1.1 tag, and prints the differences. 2.0 must produce the
+working tree and the 1.1 tag, with and without the calendar extension, and
+prints the differences. 2.0 must produce the
 same output as 1.1 except for documented bug fixes: run it for every change to
 library code.
 

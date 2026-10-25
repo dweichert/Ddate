@@ -1,10 +1,11 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: dave
- * Date: 02.07.17
- * Time: 00:24
+ * This file is part of the Emperor Norton Commands.
+ *
+ * Public domain. All rites reversed.
  */
+
+declare(strict_types=1);
 
 namespace EmperorNortonCommands\lib\Holydays;
 
@@ -13,23 +14,21 @@ use EmperorNortonCommands\lib\Value;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
-class EristerTest extends TestCase
+/**
+ * Class EristerTest.
+ *
+ * @package EmperorNortonCommands\lib\Holydays
+ */
+final class EristerTest extends TestCase
 {
     #[DataProvider('isEristerProvider')]
-    public function testIsErister($expectedTrue, $gregorian, $usePhpCalendarExt)
+    public function testIsErister($expectedTrue, $gregorian, $usePhpCalendarExt): void
     {
         $object = new Erister($usePhpCalendarExt);
-        if ($expectedTrue)
-        {
-            self::assertTrue($object->is($this->getValue($gregorian)));
-        }
-        else
-        {
-            self::assertFalse($object->is($this->getValue($gregorian)));
-        }
+        self::assertSame($expectedTrue, $object->is($this->getValue($gregorian)));
     }
 
-    public static function isEristerProvider()
+    public static function isEristerProvider(): array
     {
         return [
             '27.03.354' =>  [true, '27030354', true],
@@ -46,7 +45,7 @@ class EristerTest extends TestCase
         ];
     }
 
-    private function getValue($gregorian)
+    private function getValue(string $gregorian): Value
     {
         return new Value(0, 0, 0, 0, 0, 0, DateTime::createFromFormat('dmY', $gregorian));
     }

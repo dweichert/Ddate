@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\locale\de\StandardFormatter as GermanStandardFormatter;
@@ -20,7 +22,7 @@ use stdClass;
  *
  * @package EmperorNortonCommands\tests\lib
  */
-class FormatterFactoryTest extends TestCase
+final class FormatterFactoryTest extends TestCase
 {
     /**
      * Object instance to be tested.
@@ -33,7 +35,7 @@ class FormatterFactoryTest extends TestCase
      * Set up.
      */
     #[Before]
-    public function createObject()
+    public function createObject(): void
     {
         $this->_object = new FormatterFactory();
     }
@@ -43,7 +45,7 @@ class FormatterFactoryTest extends TestCase
      *
      * @return array
      */
-    public static function dataProvider()
+    public static function dataProvider(): array
     {
         return [
             ['Foo', EnglishStandardFormatter::class],
@@ -57,8 +59,8 @@ class FormatterFactoryTest extends TestCase
      * Test getFormatter()
      */
     #[DataProvider('dataProvider')]
-    public function testGetFormatter($locale, $expected)
+    public function testGetFormatter($locale, $expected): void
     {
-        self::assertTrue($this->_object->getFormatter($locale) instanceof $expected);
+        self::assertInstanceOf($expected, $this->_object->getFormatter($locale));
     }
 }

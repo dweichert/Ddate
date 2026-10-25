@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\tests\lib;
 
 use EmperorNortonCommands\lib\Ddate;
@@ -19,7 +21,7 @@ use PHPUnit\Framework\TestCase;
  *
  * @package EmperorNortonCommands\tests\lib
  */
-class DdateLocalizedTest extends TestCase
+final class DdateLocalizedTest extends TestCase
 {
     /**
      * Object instance to be tested.
@@ -32,7 +34,7 @@ class DdateLocalizedTest extends TestCase
      * Set up.
      */
     #[Before]
-    public function createObject()
+    public function createObject(): void
     {
         $this->_object = new Ddate();
     }
@@ -42,7 +44,7 @@ class DdateLocalizedTest extends TestCase
      *
      * @return array
      */
-    public static function dataProvider()
+    public static function dataProvider(): array
     {
         return [
             ['03051998', 'Pungenday, Discord 50, 3164 YOLD', null, 'en'],
@@ -67,7 +69,7 @@ class DdateLocalizedTest extends TestCase
      * Test ddate() with locale.
      */
     #[DataProvider('dataProvider')]
-    public function testDdateLocalized($gregorian, $discordian, $format, $locale)
+    public function testDdateLocalized($gregorian, $discordian, $format, $locale): void
     {
         $expected = $discordian;
         $actual = $this->_object->ddate($format, $gregorian, $locale);
@@ -77,7 +79,7 @@ class DdateLocalizedTest extends TestCase
     /**
      * Test makes sure that output with locale 'en' matches default output.
      */
-    public function testLocaleEn()
+    public function testLocaleEn(): void
     {
         self::assertEquals($this->_object->ddate(), $this->_object->ddate(null, null, 'en'));
     }
@@ -85,7 +87,7 @@ class DdateLocalizedTest extends TestCase
     /**
      * Test getSupportedFormatFields('de').
      */
-    public function testGetSupportedFormatFieldsLocaleDe()
+    public function testGetSupportedFormatFieldsLocaleDe(): void
     {
         $formatter = new GermanStandardFormatter();
         $expected = $formatter->getSupportedFormatStringFields();
@@ -98,7 +100,7 @@ class DdateLocalizedTest extends TestCase
      *
      * Unsupported locale, should default to English standard formatter.
      */
-    public function testGetSupportedFormatFieldsLocaleZz()
+    public function testGetSupportedFormatFieldsLocaleZz(): void
     {
         $formatter = new EnglishStandardFormatter();
         $expected = $formatter->getSupportedFormatStringFields();

@@ -167,11 +167,18 @@ protected class, method or property. In short:
   return types on methods subclasses may override, no new `final`.
 - Output of `Ddate::ddate()` and `bin/ddate` stays the same.
 
+Library code declares `strict_types=1`. Where 1.1 relied on PHP's type
+juggling (user input, internal function calls), convert explicitly so the
+behaviour stays the same. Mark methods that override or implement a parent
+method with `#[\Override]`.
+
 Tests use PHPUnit 13:
 
+- `declare(strict_types=1)`, `final` test classes, `void` return types
 - attributes, not docblock annotations: `#[DataProvider('name')]`,
   `#[Before]` (annotations are ignored since PHPUnit 12)
-- data providers are `public static`
+- data providers are `public static` and return `array`
+- `expectException()` / `expectExceptionMessage()` for exceptions
 - every test needs at least one assertion
 
 Style: 4 spaces, LF, Allman braces for classes/methods/control structures as

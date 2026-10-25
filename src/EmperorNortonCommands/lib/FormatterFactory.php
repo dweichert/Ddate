@@ -39,7 +39,7 @@ class FormatterFactory
      */
     public function getFormatter($locale)
     {
-        if (is_object($locale) && !method_exists($locale, '__toString'))
+        if (null === $locale || (is_object($locale) && !method_exists($locale, '__toString')))
         {
             $locale = 'en';
         }

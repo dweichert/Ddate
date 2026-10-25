@@ -4,6 +4,8 @@
  *
  * Public domain. All rites reversed.
  */
+
+declare(strict_types=1);
 namespace EmperorNortonCommands\lib\Holydays;
 
 
@@ -15,11 +17,12 @@ use EmperorNortonCommands\lib\Holydays;
  */
 class RevDrJonSwabeyWhollydays extends Holydays
 {
-    const KEY = 'rev_drjon_swabey';
+    public const KEY = 'rev_drjon_swabey';
 
     /**
      * @inheritdoc
      */
+    #[\Override]
     protected function getPathToXML($locale)
     {
         return __DIR__ . '/../locale/' . $locale . '/data/rev_drjon_swabey_whollydays.xml';

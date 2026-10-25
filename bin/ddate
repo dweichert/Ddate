@@ -6,6 +6,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 use EmperorNortonCommands\lib\Ddate;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -15,7 +17,7 @@ $locale = 'en';
 $format = null;
 $gregorian = null;
 
-if (isset($argv[1]) && '--help' == $argv[1])
+if (isset($argv[1]) && '--help' === $argv[1])
 {
     echo "Synopsis\n";
     echo "ddate [+format] [date] [locale]\n";
@@ -31,16 +33,16 @@ if (isset($argv[1]) && '--help' == $argv[1])
     echo "\nDate: dmY, e.g. 01012016 for 1st of January 2016";
     echo "\nLocale: two letter locale identifier, e.g. 'en' for English\n";
 }
-elseif (isset($argv[1]) && '-en' == $argv[1])
+elseif (isset($argv[1]) && '-en' === $argv[1])
 {
     echo $ddate->ddate(
             'Today is %{%A, the %e of %B%}, %Y.%N %nCelebrate %H'
         ) . "\n";
 }
-elseif (isset($argv[1]) && '-de' == $argv[1])
+elseif (isset($argv[1]) && '-de' === $argv[1])
 {
     echo $ddate->ddate(
-            'Heute ist %{%A, %e %C%}, %Y.%N %nCelebrate %H', null, 'de'
+            'Heute ist %{%A, %e %C%}, %Y.%N %nFeiert %H', null, 'de'
         ) . "\n";
 }
 else

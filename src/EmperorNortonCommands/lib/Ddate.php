@@ -5,10 +5,13 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib;
 use DateTime;
 use DateTimeZone;
 use InvalidArgumentException;
+use Stringable;
 
 /**
  * Class Ddate.
@@ -19,24 +22,20 @@ class Ddate
 {
     /**
      * Discordian date formatter factory.
-     *
-     * @var FormatterFactory
      */
-    private $formatterFactory;
+    private readonly FormatterFactory $formatterFactory;
 
     /**
      * Discordian date converter.
-     *
-     * @var Converter
      */
-    private $converter;
+    private readonly Converter $converter;
 
     /**
      * Constructor method.
      *
-     * The parameters are deliberately not type-declared: an implicitly
-     * nullable type ("Converter $converter = null") is deprecated as of
-     * PHP 8.4 and the explicit "?Converter" requires PHP 7.1.
+     * The parameters are deliberately not type-declared: arguments of the
+     * wrong type are rejected with an InvalidArgumentException, which is
+     * part of the API (a type declaration would throw a TypeError instead).
      *
      * @param Converter|null        $converter         OPTIONAL Converts Gregorian to Discordian dates
      * @param FormatterFactory|null $formatterFactory  OPTIONAL Discordian date formatter
@@ -47,30 +46,16 @@ class Ddate
         $formatterFactory = null
     )
     {
-        if (!is_null($converter) && !$converter instanceof Converter)
+        if (null !== $converter && !$converter instanceof Converter)
         {
             throw new InvalidArgumentException('First argument expected to be an instance of Converter or null.');
         }
-        if (!is_null($formatterFactory) && !$formatterFactory instanceof FormatterFactory)
+        if (null !== $formatterFactory && !$formatterFactory instanceof FormatterFactory)
         {
             throw new InvalidArgumentException('Second argument expected to be an instance of FormatterFactory or null.');
         }
-        if (is_null($formatterFactory))
-        {
-            $this->formatterFactory = new FormatterFactory();
-        }
-        else
-        {
-            $this->formatterFactory = $formatterFactory;
-        }
-        if (is_null($converter))
-        {
-            $this->converter = new Converter();
-        }
-        else
-        {
-            $this->converter = $converter;
-        }
+        $this->formatterFactory = $formatterFactory ?? new FormatterFactory();
+        $this->converter = $converter ?? new Converter();
     }
 
     /**
@@ -115,21 +100,24 @@ class Ddate
     /**
      * Get date object from input.
      *
-     * @param  string $date Gregorian date (dmY)
-     * @return DateTime
+     * Scalars and Stringable objects are converted to string the way 1.1
+     * (without strict types) did; other values fail with the same TypeError.
+     *
+     * @param  mixed $date Gregorian date (dmY)
      * @throws InvalidArgumentException
      */
-    private function getDateObject($date)
+    private function getDateObject(mixed $date): DateTime
     {
         if (null === $date)
         {
             return new DateTime();
         }
-        if (!is_numeric($date) && 8 !== strlen($date))
+        $string = is_scalar($date) || $date instanceof Stringable ? (string)$date : $date;
+        if (!is_numeric($date) && 8 !== strlen($string))
         {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
         }
-        list($year, $month, $day) = $this->splitIntoParts($date);
+        [$year, $month, $day] = $this->splitIntoParts($string);
         if (!checkdate($month, $day, $year))
         {
             throw new InvalidArgumentException('Second argument expected to be a Gregorian date (dmY).');
@@ -141,16 +129,16 @@ class Ddate
     /**
      * Splits date string into parts.
      *
-     * Returns array($day, $month, $year).
+     * Returns [$year, $month, $day].
      *
      * @param  string $date Gregorian date (dmY)
-     * @return array
+     * @return int[]
      */
-    private function splitIntoParts($date)
+    private function splitIntoParts(string $date): array
     {
         $year = (int)substr($date, 4, 4);
         $month = (int)substr($date, 2, 2);
         $day = (int)substr($date, 0, 2);
-        return array($year, $month, $day);
+        return [$year, $month, $day];
     }
 }

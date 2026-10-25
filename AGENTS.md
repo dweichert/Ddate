@@ -66,7 +66,7 @@ code; modernising it is the work for 2.0 (see "Coding rules for 2.0").
 bin/ddate                                  CLI entry point (also PHAR entry point)
 docs/release-plan.md                       release lines, support periods, scope of 2.0/3.0
 SECURITY.md                                supported versions, reporting vulnerabilities
-src/EmperorNortonCommands/lib/             library code (PSR-0, namespace EmperorNortonCommands\lib)
+src/EmperorNortonCommands/lib/             library code (PSR-4, namespace EmperorNortonCommands\lib)
   Ddate.php                                public facade: ddate($format, $date, $locale)
   Converter.php                            Gregorian DateTime -> Value
   Value.php                                Discordian date value object
@@ -76,6 +76,7 @@ src/EmperorNortonCommands/lib/             library code (PSR-0, namespace Empero
   Holydays.php, Holydays/*                 holyday sets (XML based) and computed holydays
 src/EmperorNortonCommands/tests/           PHPUnit tests (live under src/, not tests/)
 .docker/run-tests.sh                       runs the test suite on every supported PHP version
+.docker/compare-with-1.1.sh                compares the output with a 1.1 release
 .github/workflows/continuous-integration.yml   GitHub Actions CI (PHP 8.6), PHAR build and release
 box.json                                   PHAR configuration for Box
 ```
@@ -117,6 +118,20 @@ nightly build of the PHP-8.6 branch.
 `failOnWarning`: any PHP deprecation, notice or warning fails the build. CI
 runs the same tests on GitHub Actions.
 
+```sh
+# compare the output with the newest 1.1 release (or a given tag or branch)
+.docker/compare-with-1.1.sh [v1.1.4 | origin/1.1]
+```
+
+Runs `.docker/output-matrix.php` (about 15,000 calls of the public API: every
+day of 2012 and 2013 plus special dates, all format fields, holyday sets,
+locales and invalid input, including exceptions and PHP warnings) against the
+working tree and the 1.1 tag, with and without the calendar extension, and
+prints the differences. 2.0 must produce the
+same output as 1.1 except for documented bug fixes: run it for every change to
+library code. Bug fixes that change output go into `1.1` as well; until they
+are released, compare against the branch (`origin/1.1`) instead of the tag.
+
 ## PHAR
 
 CI builds `ddate.phar` with [Box](https://github.com/box-project/box) on
@@ -153,11 +168,18 @@ protected class, method or property. In short:
   return types on methods subclasses may override, no new `final`.
 - Output of `Ddate::ddate()` and `bin/ddate` stays the same.
 
+Library code declares `strict_types=1`. Where 1.1 relied on PHP's type
+juggling (user input, internal function calls), convert explicitly so the
+behaviour stays the same. Mark methods that override or implement a parent
+method with `#[\Override]`.
+
 Tests use PHPUnit 13:
 
+- `declare(strict_types=1)`, `final` test classes, `void` return types
 - attributes, not docblock annotations: `#[DataProvider('name')]`,
   `#[Before]` (annotations are ignored since PHPUnit 12)
-- data providers are `public static`
+- data providers are `public static` and return `array`
+- `expectException()` / `expectExceptionMessage()` for exceptions
 - every test needs at least one assertion
 
 Style: 4 spaces, LF, Allman braces for classes/methods/control structures as

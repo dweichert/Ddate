@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib\locale\en;
 
 use EmperorNortonCommands\lib\Formatter;
@@ -25,7 +27,7 @@ class StandardFormatter extends Formatter
      *
      * @var string[]
      */
-    protected $supportedFormatStringFields = array(
+    protected $supportedFormatStringFields = [
         '%A' => 'Full name of the day of the week (e.g. Sweetmorn)',
         '%a' => 'Abbreviated name of the day of the week (e.g. SM)',
         '%B' => 'Full name of the season (e.g. Chaos)',
@@ -45,7 +47,7 @@ class StandardFormatter extends Formatter
         '%2' => 'add "Camden Beneres\' Holidays" to Holydays',
         '%3' => 'add "Reverent DrJon Swabey\'s Whollydays" to Holydays',
         '%4' => 'add "Reverent Loveshade\'s Whollydays" to Holydays',
-    );
+    ];
 
     /**
      * Default format.
@@ -59,28 +61,28 @@ class StandardFormatter extends Formatter
      *
      * @var string[]
      */
-    protected $days = array('Sweetmorn', 'Boomtime', 'Pungenday', 'Prickle-Prickle', 'Setting Orange');
+    protected $days = ['Sweetmorn', 'Boomtime', 'Pungenday', 'Prickle-Prickle', 'Setting Orange'];
 
     /**
      * Abbreviated names of the day of the week.
      *
      * @var string[]
      */
-    protected $abbrevDays = array('SM', 'BT', 'PD', 'PP', 'SO');
+    protected $abbrevDays = ['SM', 'BT', 'PD', 'PP', 'SO'];
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $seasons = array('Chaos', 'Discord', 'Confusion', 'Bureaucracy', 'The Aftermath');
+    protected $seasons = ['Chaos', 'Discord', 'Confusion', 'Bureaucracy', 'The Aftermath'];
 
     /**
      * Abbreviated names of the seasons.
      *
      * @var string[]
      */
-    protected $abbrevSeasons = array('Chs', 'Dsc', 'Cfn', 'Bcy', 'Afm');
+    protected $abbrevSeasons = ['Chs', 'Dsc', 'Cfn', 'Bcy', 'Afm'];
 
     /**
      * No Holyday (msgid) string.
@@ -95,6 +97,7 @@ class StandardFormatter extends Formatter
      * @param  Value $ddate
      * @return string
      */
+    #[\Override]
     public function format(Value $ddate)
     {
         $output = $this->format;
@@ -106,10 +109,10 @@ class StandardFormatter extends Formatter
         $output = str_replace('%B', $this->getDiscordianSeasonName($ddate->getSeason()), $output);
         $output = str_replace('%b', $this->getAbbreviatedSeasonName($ddate->getSeason()), $output);
         $output = str_replace('%e', $this->getCardinalDay($ddate->getDay()), $output);
-        $output = str_replace('%d', $this->getOrdinalDay($ddate), $output);
-        $output = str_replace('%Y', $ddate->getYear(), $output);
-        $output = str_replace('%X', $ddate->getDaysUntilRealXDay(), $output);
-        $output = str_replace('%x', $ddate->getDaysUntilOriginalXDay(), $output);
+        $output = str_replace('%d', (string)$this->getOrdinalDay($ddate), $output);
+        $output = str_replace('%Y', (string)$ddate->getYear(), $output);
+        $output = str_replace('%X', (string)$ddate->getDaysUntilRealXDay(), $output);
+        $output = str_replace('%x', (string)$ddate->getDaysUntilOriginalXDay(), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
@@ -213,23 +216,15 @@ class StandardFormatter extends Formatter
             return 'FNORD';
         }
         $suffix = 'th';
-        if (!in_array($day, array(11, 12, 13)))
+        if (!in_array($day, [11, 12, 13]))
         {
-            $lastDigitDay = substr($day, -1, 1);
-            switch ($lastDigitDay)
+            $suffix = match (substr((string)$day, -1, 1))
             {
-                case '1':
-                    $suffix = 'st';
-                    break;
-                case '2':
-                    $suffix = 'nd';
-                    break;
-                case '3':
-                    $suffix = 'rd';
-                    break;
-                default:
-                    break;
-            }
+                '1' => 'st',
+                '2' => 'nd',
+                '3' => 'rd',
+                default => 'th',
+            };
         }
         return $day . $suffix;
     }
@@ -251,6 +246,12 @@ class StandardFormatter extends Formatter
         return $ddate->getDay();
     }
 
+    /**
+     * Removes %1 to %4 from given string and toggles the holyday sets.
+     *
+     * @param  string $string
+     * @return string
+     */
     protected function replaceHolidaySetPlaceholders($string)
     {
         $turnOffStandardHolydays = 0;
@@ -276,6 +277,7 @@ class StandardFormatter extends Formatter
     /**
      * Get localized string with all holydays.
      */
+    #[\Override]
     protected function getHolydayString($holydays)
     {
         if (empty($holydays)) {

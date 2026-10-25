@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib\locale\de;
 
 use EmperorNortonCommands\lib\Value;
@@ -21,8 +23,8 @@ class StandardFormatter extends EnglishStandardFormatter
      *
      * @var string[]
      */
-    protected $supportedFormatStringFields = array(
-        '%A' => 'Vollständiger Name des Woechentages (z.B. Süßmorgen)',
+    protected $supportedFormatStringFields = [
+        '%A' => 'Vollständiger Name des Wochentages (z.B. Süßmorgen)',
         '%a' => 'Abgekürzter Name des Wochentages (z.B. SM)',
         '%B' => 'Vollständiger Name der Saison (z.B. Verwirrung)',
         '%b' => 'Abgekürzter Name der Saison (z.B. Ve)',
@@ -43,23 +45,23 @@ class StandardFormatter extends EnglishStandardFormatter
         '%2' => 'füge "Camden Beneres\' Holidays" zu den Holydays (Feiertagen) hinzu',
         '%3' => 'füge "Reverent DrJon Swabey\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
         '%4' => 'füge "Reverent Loveshade\'s Whollydays" zu den Holydays (Feiertagen) hinzu',
-    );
+    ];
 
     /**
      * Cardinal numbers.
      *
      * @var string[]
      */
-    protected $_cardinalNumbers = array(
+    protected $_cardinalNumbers = [
         'Erster', 'Zweiter', 'Dritter', 'Vierter', 'Fünfter', 'Sechster', 'Siebter', 'Achter', 'Neunter', 'Zehnter',
-        'Elfter', 'Zwölfter', 'Dreizehnter', 'Vierzehnter', 'Fünfzehnter', 'Sechzehnter', 'Siebzehnter', 'Achtzehnter', 'Neunzehnter', 'vierzigster',
-        'Einundfünfzigster', 'Zweiundzwanzigster', 'Dreiundzwanzigster', 'Vierundzwanzigster', 'Fünfundzwanzigster', 'Sechsundzwanzigster', 'Siebenundzwanzigster', 'Achtundzwanzigster', 'Neunundzwanzigster', 'Dreißigster',
+        'Elfter', 'Zwölfter', 'Dreizehnter', 'Vierzehnter', 'Fünfzehnter', 'Sechzehnter', 'Siebzehnter', 'Achtzehnter', 'Neunzehnter', 'Zwanzigster',
+        'Einundzwanzigster', 'Zweiundzwanzigster', 'Dreiundzwanzigster', 'Vierundzwanzigster', 'Fünfundzwanzigster', 'Sechsundzwanzigster', 'Siebenundzwanzigster', 'Achtundzwanzigster', 'Neunundzwanzigster', 'Dreißigster',
         'Einunddreißigster', 'Zweiunddreißigster', 'Dreiunddreißigster', 'Vierunddreißigster', 'Fünfunddreißigster', 'Sechsunddreißigster', 'Siebenunddreißigster', 'Achtunddreißigster', 'Neununddreißigster', 'Vierzigster',
         'Einundvierzigster', 'Zweiundvierzigster', 'Dreiundvierzigster', 'Vierundvierzigster', 'Fünfundvierzigster', 'Sechsundvierzigster', 'Siebenundvierzigster', 'Achtundvierzigster', 'Neunundvierzigster', 'Fünfzigster',
         'Einundfünfzigster', 'Zweiundfünfzigster', 'Dreiundfünfzigster', 'Vierundfünfzigster', 'Fünfundfünfzigster', 'Sechsundfünfzigster', 'Siebenundfünfzigster', 'Achtundfünfzigster', 'Neunundfünfzigster', 'Sechzigster',
         'Einundsechzigster', 'Zweiundsechzigster', 'Dreiundsechzigster', 'Vierundsechzigster', 'Fünfundsechzigster', 'Sechsundsechzigster', 'Siebenundsechzigster', 'Achtundsechzigster', 'Neunundsechzigster', 'Siebzigster',
         'Einundsiebzigster', 'Zweiundsiebzigster', 'Dreiundsiebzigster'
-    );
+    ];
 
     /**
      * Default format.
@@ -73,35 +75,35 @@ class StandardFormatter extends EnglishStandardFormatter
      *
      * @var string[]
      */
-    protected $days = array('Süßmorgen', 'Blütezeit', 'Stichtag', 'Prickel-Prickel', 'Orangewerdend');
+    protected $days = ['Süßmorgen', 'Blütezeit', 'Stichtag', 'Prickel-Prickel', 'Orangewerdend'];
 
     /**
      * Abbreviated names of the day of the week.
      *
      * @var string[]
      */
-    protected $abbrevDays = array('SM', 'BZ', 'ST', 'PP', 'OW');
+    protected $abbrevDays = ['SM', 'BZ', 'ST', 'PP', 'OW'];
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $seasons = array('Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Grummet');
+    protected $seasons = ['Verwirrung', 'Zweitracht', 'Unordnung', 'Beamtenherrschaft', 'Grummet'];
 
     /**
      * Full names of the season.
      *
      * @var string[]
      */
-    protected $seasonsGenitive = array('der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Grummets');
+    protected $seasonsGenitive = ['der Verwirrung', 'der Zweitracht', 'der Unordnung', 'der Beamtenherrschaft', 'des Grummets'];
 
     /**
      * Abbreviated names of the seasons.
      *
      * @var string[]
      */
-    protected $abbrevSeasons = array('Ve', 'Zw', 'Un', 'Be', 'Au');
+    protected $abbrevSeasons = ['Ve', 'Zw', 'Un', 'Be', 'Au'];
 
     /**
      * No Holyday (msgid) string.
@@ -116,6 +118,7 @@ class StandardFormatter extends EnglishStandardFormatter
      * @param  Value $ddate
      * @return string
      */
+    #[\Override]
     public function format(Value $ddate)
     {
         $output = $this->format;
@@ -129,10 +132,10 @@ class StandardFormatter extends EnglishStandardFormatter
         $output = str_replace('%C', $this->getDiscordianSeasonNameGenitive($ddate->getSeason()), $output);
         $output = str_replace('%e', $this->getCardinalDay($ddate), $output);
         $output = str_replace('%E', $this->getCardinalDayFull($ddate->getDay()), $output);
-        $output = str_replace('%d', $this->getOrdinalDay($ddate), $output);
-        $output = str_replace('%Y', $ddate->getYear(), $output);
-        $output = str_replace('%X', $ddate->getDaysUntilRealXDay(), $output);
-        $output = str_replace('%x', $ddate->getDaysUntilOriginalXDay(), $output);
+        $output = str_replace('%d', (string)$this->getOrdinalDay($ddate), $output);
+        $output = str_replace('%Y', (string)$ddate->getYear(), $output);
+        $output = str_replace('%X', (string)$ddate->getDaysUntilRealXDay(), $output);
+        $output = str_replace('%x', (string)$ddate->getDaysUntilOriginalXDay(), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
@@ -145,6 +148,7 @@ class StandardFormatter extends EnglishStandardFormatter
      * @param  Value $ddate
      * @return string
      */
+    #[\Override]
     protected function replaceStTibsPlaceholders($string, Value $ddate)
     {
         if (Value::ST_TIBS_DAY === $ddate->getDay())
@@ -168,6 +172,7 @@ class StandardFormatter extends EnglishStandardFormatter
      * @param Value $ddate
      * @return string
      */
+    #[\Override]
     protected function getCardinalDay($ddate)
     {
         if (Value::ST_TIBS_DAY == $ddate->getDay())
@@ -211,14 +216,22 @@ class StandardFormatter extends EnglishStandardFormatter
         return (string)$this->seasonsGenitive[$season];
     }
 
-        /**
-         * Get localized string with all holydays.
-         */
-        protected function getHolydayString($holydays)
+    /**
+     * Get localized string with all holydays.
+     *
+     * Joins the last two holydays with "und" (the English formatter uses
+     * "and"); holyday names themselves are left unchanged.
+     */
+    #[\Override]
+    protected function getHolydayString($holydays)
+    {
+        if (count($holydays) < 2)
         {
-            $holydayString = parent::getHolydayString($holydays);
-
-            return str_replace('and', 'und', $holydayString);
-
+            return parent::getHolydayString($holydays);
         }
+
+        $lastHolyday = array_pop($holydays);
+
+        return implode(', ', $holydays) . ' und ' . $lastHolyday;
+    }
 }

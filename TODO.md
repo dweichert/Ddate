@@ -10,10 +10,11 @@ release: the README here calls 2.0 the current version and links to
 
 ## Before the release day
 
-- [ ] Decide whether the output fixes from the previous `main` (updated
-      holyday data `2fe4715`, German translation fix `4e1d175`) go into
-      1.1.5 as bug fixes, so 1.1.5 and 2.0.0 produce the same output. If
-      yes, port them to this branch with tests.
+- [x] German fixes (ordinals, holyday names, help text, CLI) on `1.1`
+      (branch `dev/fix-german`). Supersedes `4e1d175` from the previous
+      `main`, which introduced a broken `%Feiert`.
+- [ ] Review the updated holyday data from the previous `main` (`2fe4715`);
+      if it fixes data, add it to `1.1` and `main` with tests.
 - [ ] Run the test suite on all PHP versions: `.docker/run-tests.sh`
 - [ ] Private vulnerability reporting is enabled on GitHub (SECURITY.md on
       `main` links to it): `gh api repos/dweichert/Ddate/private-vulnerability-reporting`
@@ -58,4 +59,6 @@ release: the README here calls 2.0 the current version and links to
 - [ ] Composer picks the right version for `"^1.1 || ^2.0"`: 1.1.5 on
       PHP 8.5, 2.0.0 on PHP 8.6.
 - [ ] Edit the release notes: end of life 31 December 2029, pointer to 2.0,
-      `"^1.1 || ^2.0"`; changelog link `v1.1.4...v1.1.5`.
+      `"^1.1 || ^2.0"`; output changes (bug fixes): German `%E` for days 20
+      and 21, holyday names containing "and", `%A` description, `-de`;
+      changelog link `v1.1.4...v1.1.5`.

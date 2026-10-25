@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib\locale\en;
 
 use EmperorNortonCommands\lib\Formatter;
@@ -106,10 +108,10 @@ class StandardFormatter extends Formatter
         $output = str_replace('%B', $this->getDiscordianSeasonName($ddate->getSeason()), $output);
         $output = str_replace('%b', $this->getAbbreviatedSeasonName($ddate->getSeason()), $output);
         $output = str_replace('%e', $this->getCardinalDay($ddate->getDay()), $output);
-        $output = str_replace('%d', $this->getOrdinalDay($ddate), $output);
-        $output = str_replace('%Y', $ddate->getYear(), $output);
-        $output = str_replace('%X', $ddate->getDaysUntilRealXDay(), $output);
-        $output = str_replace('%x', $ddate->getDaysUntilOriginalXDay(), $output);
+        $output = str_replace('%d', (string)$this->getOrdinalDay($ddate), $output);
+        $output = str_replace('%Y', (string)$ddate->getYear(), $output);
+        $output = str_replace('%X', (string)$ddate->getDaysUntilRealXDay(), $output);
+        $output = str_replace('%x', (string)$ddate->getDaysUntilOriginalXDay(), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;
@@ -215,7 +217,7 @@ class StandardFormatter extends Formatter
         $suffix = 'th';
         if (!in_array($day, [11, 12, 13]))
         {
-            $lastDigitDay = substr($day, -1, 1);
+            $lastDigitDay = substr((string)$day, -1, 1);
             switch ($lastDigitDay)
             {
                 case '1':

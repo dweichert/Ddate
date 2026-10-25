@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib\Holydays;
 
 use EmperorNortonCommands\lib\Value;
@@ -24,7 +26,7 @@ class Erister implements NoFixedDateHolydayInterface
      *
      * @var boolean
      */
-    private $usePhpCalendarExt = true;
+    private bool $usePhpCalendarExt = true;
 
     /**
      * Erister constructor.
@@ -62,18 +64,18 @@ class Erister implements NoFixedDateHolydayInterface
      * @param Value $ddate
      * @return bool
      */
-    private function isEristerCalendarExtension(Value $ddate)
+    private function isEristerCalendarExtension(Value $ddate): bool
     {
         $year = $ddate->getGregorian()->format('Y');
-        $easterDays = easter_days($year) + 21;
+        $easterDays = easter_days((int)$year) + 21;
         if ($easterDays < 32)
         {
-            $day = str_pad($easterDays, 2, '0', STR_PAD_LEFT);
+            $day = str_pad((string)$easterDays, 2, '0', STR_PAD_LEFT);
             $month = '03';
         }
         else
         {
-            $day = str_pad($easterDays - 31, 2, '0', STR_PAD_LEFT);
+            $day = str_pad((string)($easterDays - 31), 2, '0', STR_PAD_LEFT);
             $month = '04';
         }
         if ($ddate->getGregorian()->format('dmY') == $day . $month . $year)
@@ -90,7 +92,7 @@ class Erister implements NoFixedDateHolydayInterface
      * @param Value $ddate
      * @return bool
      */
-    private function isEristerNoCalendarExtension(Value $ddate)
+    private function isEristerNoCalendarExtension(Value $ddate): bool
     {
         $year = (int)$ddate->getGregorian()->format('Y');
 
@@ -103,9 +105,9 @@ class Erister implements NoFixedDateHolydayInterface
             [$month, $day] = $this->getEristerNewYorkCorrespondent($year);
         }
 
-        $erister = str_pad($day, 2, '0', STR_PAD_LEFT);
+        $erister = str_pad((string)$day, 2, '0', STR_PAD_LEFT);
         $erister .= $month === 3 ? '03' : '04';
-        $erister .= str_pad($year, 4, '0', STR_PAD_LEFT);
+        $erister .= str_pad((string)$year, 4, '0', STR_PAD_LEFT);
 
         if ($erister === $ddate->getGregorian()->format('dmY'))
         {
@@ -122,10 +124,10 @@ class Erister implements NoFixedDateHolydayInterface
      * year 1753 and onwards.
      *
      * @see https://en.wikipedia.org/wiki/Computus#Anonymous_Gregorian_algorithm
-     * @param string $year
-     * @return array
+     * @param integer $year
+     * @return int[] month and day
      */
-    private function getEristerNewYorkCorrespondent($year)
+    private function getEristerNewYorkCorrespondent(int $year): array
     {
         $a = $year % 19;
         $b = floor($year / 100);
@@ -151,10 +153,10 @@ class Erister implements NoFixedDateHolydayInterface
      * extensions's easter_days() method for years before 1753.
      *
      * @see https://en.wikipedia.org/wiki/Computus#Meeus.27_Julian_algorithm
-     * @param string $year
-     * @return array
+     * @param integer $year
+     * @return int[] month and day
      */
-    private function getEristerMeeusJulian($year)
+    private function getEristerMeeusJulian(int $year): array
     {
         $a = $year % 4;
         $b = $year % 7;

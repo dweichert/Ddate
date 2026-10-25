@@ -5,7 +5,11 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib;
+
+use Stringable;
 
 /**
  * Class FormatterFactory
@@ -18,7 +22,7 @@ class FormatterFactory
      *
      * @var mixed[]
      */
-    private $availableFormatters = [
+    private array $availableFormatters = [
         'en' => [
             'lang' => 'English',
             'class' => locale\en\StandardFormatter::class,
@@ -42,6 +46,11 @@ class FormatterFactory
         if (null === $locale || (is_object($locale) && !method_exists($locale, '__toString')))
         {
             $locale = 'en';
+        }
+        // converted to string the way 1.1 (without strict types) did
+        if (is_scalar($locale) || $locale instanceof Stringable)
+        {
+            $locale = (string)$locale;
         }
         $locale = strtolower(substr($locale, 0, 2));
         if (!array_key_exists($locale, $this->availableFormatters))

@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib\locale\de;
 
 use EmperorNortonCommands\lib\Value;
@@ -129,10 +131,10 @@ class StandardFormatter extends EnglishStandardFormatter
         $output = str_replace('%C', $this->getDiscordianSeasonNameGenitive($ddate->getSeason()), $output);
         $output = str_replace('%e', $this->getCardinalDay($ddate), $output);
         $output = str_replace('%E', $this->getCardinalDayFull($ddate->getDay()), $output);
-        $output = str_replace('%d', $this->getOrdinalDay($ddate), $output);
-        $output = str_replace('%Y', $ddate->getYear(), $output);
-        $output = str_replace('%X', $ddate->getDaysUntilRealXDay(), $output);
-        $output = str_replace('%x', $ddate->getDaysUntilOriginalXDay(), $output);
+        $output = str_replace('%d', (string)$this->getOrdinalDay($ddate), $output);
+        $output = str_replace('%Y', (string)$ddate->getYear(), $output);
+        $output = str_replace('%X', (string)$ddate->getDaysUntilRealXDay(), $output);
+        $output = str_replace('%x', (string)$ddate->getDaysUntilOriginalXDay(), $output);
         $output = str_replace('%t', "\t", $output);
         $output = str_replace('%n', "\n", $output);
         return (string)$output;

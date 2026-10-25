@@ -5,6 +5,8 @@
  * Public domain. All rites reversed.
  */
 
+declare(strict_types=1);
+
 namespace EmperorNortonCommands\lib;
 
 use DateTime;
@@ -49,7 +51,7 @@ class Converter
      */
     public function convert(DateTime $date)
     {
-        if ($this->isStTibsDay($date->format('m'), $date->format('d')))
+        if ($this->isStTibsDay((int)$date->format('m'), (int)$date->format('d')))
         {
             return $this->calculateDdateStTibs($date);
         }
@@ -62,7 +64,7 @@ class Converter
      * @param DateTime $date
      * @return Value
      */
-    private function calculateDdateStTibs(DateTime $date)
+    private function calculateDdateStTibs(DateTime $date): Value
     {
         $ddate = new Value(
             Value::ST_TIBS_DAY,
@@ -82,7 +84,7 @@ class Converter
      * @param DateTime $date
      * @return Value
      */
-    private function calculateDdate(DateTime $date)
+    private function calculateDdate(DateTime $date): Value
     {
         $ddate = new Value(
             $this->calculateDayofSeason($date),
@@ -103,7 +105,7 @@ class Converter
      * @param  DateTime $date
      * @return integer
      */
-    private function calculateDayOfWeek(DateTime $date)
+    private function calculateDayOfWeek(DateTime $date): int
     {
         $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
         $leapYear = $this->isLeapYear($date);
@@ -117,7 +119,7 @@ class Converter
      * @param  DateTime $date
      * @return integer
      */
-    private function calculateDayofSeason(DateTime $date)
+    private function calculateDayofSeason(DateTime $date): int
     {
         $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
         return (($dayOfYear - (1 + $this->getOffset($this->isLeapYear($date), $dayOfYear))) % 73) + 1;
@@ -129,7 +131,7 @@ class Converter
      * @param  DateTime $date
      * @return integer
      */
-    private function calculateSeason(DateTime $date)
+    private function calculateSeason(DateTime $date): int
     {
         $seasonIdx = 0;
         $dayOfYear = $this->getDaysSinceFirstOfChaos($date);
@@ -154,7 +156,7 @@ class Converter
      * @param  DateTime $date
      * @return integer
      */
-    private function calculateYear(DateTime $date)
+    private function calculateYear(DateTime $date): int
     {
         return (int)$date->format('Y') + self::CURSE_OF_GREYFACE;
     }
@@ -165,7 +167,7 @@ class Converter
      * @param  DateTime $date
      * @return integer
      */
-    private function calculateDaysUntilXday(DateTime $date)
+    private function calculateDaysUntilXday(DateTime $date): int
     {
         return $this->dateDiffInDays($date, self::REAL_X_DAY);
     }
@@ -176,7 +178,7 @@ class Converter
      * @param DateTime $date
      * @return integer
      */
-    private function calculateDaysUntilOriginalXday(DateTime $date)
+    private function calculateDaysUntilOriginalXday(DateTime $date): int
     {
         return $this->dateDiffInDays($date, self::ORIGINAL_X_DAY);
     }
@@ -188,7 +190,7 @@ class Converter
      * @param string $iso8601Date
      * @return integer
      */
-    private function dateDiffInDays(DateTime $date, $iso8601Date)
+    private function dateDiffInDays(DateTime $date, string $iso8601Date): int
     {
         $xDay = new DateTime($iso8601Date);
         $diff = $xDay->diff($date);
@@ -206,9 +208,11 @@ class Converter
      * In leap years for days after the 60th day of the year, i.e. 29th of
      * February there is an offset of 1 day to be taken into account.
      *
+     * @param  boolean $leapYear
+     * @param  integer $dayOfYear
      * @return integer
      */
-    private function getOffset($leapYear, $dayOfYear)
+    private function getOffset(bool $leapYear, int $dayOfYear): int
     {
         if ($dayOfYear < 60)
         {
@@ -224,9 +228,9 @@ class Converter
      * @param  integer $dayGregorian
      * @return boolean
      */
-    private function isStTibsDay($monthGregorian, $dayGregorian)
+    private function isStTibsDay(int $monthGregorian, int $dayGregorian): bool
     {
-        return 2 == $monthGregorian && 29 == $dayGregorian;
+        return 2 === $monthGregorian && 29 === $dayGregorian;
     }
 
     /**
@@ -235,10 +239,10 @@ class Converter
      * @param  DateTime $date
      * @return integer
      */
-    private function getDaysSinceFirstOfChaos(DateTime $date)
+    private function getDaysSinceFirstOfChaos(DateTime $date): int
     {
-        $firstOfChaos = gmmktime(0, 0, 0, 1, 1, $date->format('Y'));
-        return (int)($this->getTimestamp($date) - $firstOfChaos) / 86400 + 1;
+        $firstOfChaos = gmmktime(0, 0, 0, 1, 1, (int)$date->format('Y'));
+        return intdiv($this->getTimestamp($date) - $firstOfChaos, 86400) + 1;
     }
 
     /**
@@ -247,7 +251,7 @@ class Converter
      * @param DateTime $date
      * @return boolean
      */
-    private function isLeapYear(DateTime $date)
+    private function isLeapYear(DateTime $date): bool
     {
         return (bool)date('L', $this->getTimestamp($date));
     }
@@ -258,8 +262,8 @@ class Converter
      * @param  DateTime $date
      * @return integer
      */
-    private function getTimestamp(DateTime $date)
+    private function getTimestamp(DateTime $date): int
     {
-        return gmmktime(0, 0, 0, $date->format('m'), $date->format('d'), $date->format('Y'));
+        return gmmktime(0, 0, 0, (int)$date->format('m'), (int)$date->format('d'), (int)$date->format('Y'));
     }
 }

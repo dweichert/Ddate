@@ -14,8 +14,8 @@ release: the README here calls 2.0 the current version and links to
       v1.1.6 (#72; v1.1.5 was released from `main` by mistake). Supersedes
       `4e1d175` from the previous `main`, which introduced a broken `%Feiert`.
 - [ ] Release guard checks the tag version (#73 on `main`, #74 on `1.1`).
-- [ ] Review the updated holyday data from the previous `main` (`2fe4715`);
-      if it fixes data, add it to `1.1` (for 1.1.7) and `main` with tests.
+- [x] Holyday data from the previous `main` (`2fe4715`) reviewed: no data
+      fix, nothing for 1.1.7 (comment changes ported to `main`, #75).
 - [ ] Run the test suite on all PHP versions: `.docker/run-tests.sh`
 - [ ] Private vulnerability reporting is enabled on GitHub (SECURITY.md on
       `main` links to it): `gh api repos/dweichert/Ddate/private-vulnerability-reporting`
@@ -61,5 +61,4 @@ release: the README here calls 2.0 the current version and links to
 - [ ] Composer picks the right version for `"^1.1 || ^2.0"`: 1.1.7 on
       PHP 8.5, 2.0.0 on PHP 8.6.
 - [ ] Edit the release notes: end of life 31 December 2029, pointer to 2.0,
-      `"^1.1 || ^2.0"`; output changes from the holyday data review, if any;
-      changelog link `v1.1.6...v1.1.7`.
+      `"^1.1 || ^2.0"`; no output changes; changelog link `v1.1.6...v1.1.7`.

@@ -17,9 +17,9 @@ Release 2.0.0 first, then v1.1.5 (see `TODO.md` on branch
 - [x] Composer constraint `^8.6`, PHPUnit 13, CI and `.docker/run-tests.sh`
       on PHP 8.6 only, `box.json` without the old-PHP workarounds, AGENTS.md
       coding rules for 2.0 (branch `dev/php-8.6`, merged into `main`).
-- [ ] Output of `Ddate::ddate()` and `bin/ddate` is identical to v1.1.5
-      (comparison test over dates, format strings and locales). Differences
-      only for documented bug fixes, which are in v1.1.5 as well.
+- [ ] Output of `Ddate::ddate()` and `bin/ddate` is identical to v1.1.5:
+      `.docker/compare-with-1.1.sh v1.1.5` (or `origin/1.1` before 1.1.5 is
+      tagged) reports no differences.
 - [ ] README on `main`: install with `"^2.0"`, PHP 8.6 requirement, release
       table (2.0.x current, 1.1.x until 31 December 2029, 1.0.x end of
       life), PHAR section (PHAR requires PHP 8.6), upgrade note (only PHP
@@ -68,7 +68,9 @@ Release 2.0.0 first, then v1.1.5 (see `TODO.md` on branch
       PHP 8.6, 1.1.x on PHP 8.5.
 - [ ] Edit the release notes: modernised for PHP 8.6, same API as 1.1,
       upgrade = PHP 8.6 only, 1.1 supported until 31 December 2029, API
-      changes planned for 3.0.
+      changes planned for 3.0; output changes compared with 1.1.4 (bug
+      fixes, also in 1.1.5): German `%E` for days 20 and 21, holyday names
+      containing "and", `%A` description, `-de`.
 - [ ] Release v1.1.5 (checklist on `dev/release-1.1.5`).
 - [ ] Issues: close #58 (refactor tests) if done in 2.0; #59 (`@api`,
       `@internal`) stays open for 3.0 (label or milestone).

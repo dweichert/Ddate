@@ -1,0 +1,20 @@
+{
+    "output": "build/phar/ddate.phar",
+    "alias": "ddate.phar",
+    "banner": [
+        "ddate - converts Gregorian to Discordian dates.",
+        "",
+        "Public domain. All rites reversed.",
+        "https://github.com/dweichert/Ddate"
+    ],
+    "directories": [
+        "src/EmperorNortonCommands/lib",
+        "vendor/composer"
+    ],
+    "files": [
+        "LICENSE",
+        "vendor/autoload.php"
+    ],
+    "dump-autoload": false,
+    "check-requirements": false
+}

@@ -1,0 +1,79 @@
+# Release plan
+
+Release lines, support periods and the scope of each major version of
+`ddate/ddate`. Decided 2026-10-25 by the maintainer. Update this file when the
+plan changes.
+
+## Overview
+
+| Version | Branch | PHP           | Scope                                     | Support                                                        |
+|---------|--------|---------------|-------------------------------------------|----------------------------------------------------------------|
+| 1.1.x   | `1.1`  | 5.3 to 8.5    | stable, feature complete                  | bug and security fixes until 2029-12-31 (end of PHP 8.5 security support) |
+| 2.0.x   | `main` | 8.6 and newer | modernised implementation, **same API as 1.1** | released together with (or as close as possible to) PHP 8.6     |
+| 3.0     | later  | tbd           | API changes and BC breaks                 | not scheduled                                                  |
+
+## 1.1: stable, bug and security fixes only
+
+- Supported with bug and security fixes until PHP 8.5 no longer receives
+  official security fixes, planned for **2029-12-31**.
+- Otherwise 1.1 is stable and feature complete: no new features, no
+  refactorings, and in particular **no API-breaking changes**.
+- Fixes are made on the `1.1` branch and released as `v1.1.x` tags on `1.1`
+  (see AGENTS.md on that branch for the PHP 5.3 coding rules).
+- 1.1 is the only line for users on PHP 5.3 to 8.5.
+
+## 2.0: modernise only, no API changes
+
+- Supported PHP versions: **PHP 8.6 and newer** only. The exact Composer
+  constraint (`^8.6` or `>=8.6`) is still to be decided.
+- Release 2.0.0 at the same time as PHP 8.6, or as close to it as possible.
+- Scope: modernise the implementation so it takes advantage of current PHP
+  language features, without changing the API. Upgrading from 1.1 to 2.0
+  must require nothing but PHP 8.6.
+- Developed on `main`, released as `v2.*` tags on `main`.
+
+### What "no API changes" means
+
+1.1 marks nothing as `@api` or `@internal` and declares no class `final`, so
+every public class, interface, method, constant and property in
+`EmperorNortonCommands\lib` is treated as API. In 2.0:
+
+- Class, interface and namespace names stay the same. Switching from PSR-0 to
+  PSR-4 autoloading is fine as long as the fully qualified names do not
+  change.
+- Public and protected method signatures stay compatible: same names, same
+  parameters and defaults. Parameter types may be added only if they accept
+  every value 1.1 accepts (e.g. `?string` where `null` is allowed).
+- No return types on methods that subclasses may override (a subclass
+  without the return type would fail with a fatal error); no new `final`
+  classes or methods; no removed or renamed public or protected members.
+- The output of `Ddate::ddate()` and of `bin/ddate`, the format string
+  fields, the `dmY` date argument, the locales and the CLI options stay the
+  same. Fixing an actual bug in the output is allowed but must be documented
+  in the release notes.
+- Allowed: `declare(strict_types=1)` in library files, types on private
+  members and internal code, readonly and typed private properties, `match`,
+  enums and other new language features in internal code, new PHPUnit,
+  static analysis, CI and tooling changes.
+
+When in doubt whether a change breaks the API, it belongs in 3.0.
+
+## 3.0: API changes (later)
+
+- API changes and BC breaks that were mixed into the previous 2.x work
+  (`a2bf1bd`, branch `dev/refactoring-and-improvement`) are deferred to 3.0.
+  Examples: moving classes to `Internal/` or `Formatter/`, new public types
+  (`DiscordianDate/*`, `XDay`, `Locale`), removing members from `Value`,
+  making classes `final`, marking API with `@api`/`@internal` (#59).
+- Not scheduled yet. When 3.0 development starts on `main`, a `2.x`
+  maintenance branch is created from the last 2.x release; the support period
+  for 2.x is decided then.
+
+## Open points
+
+- Composer constraint for 2.0 (`^8.6` or `>=8.6`).
+- CI on `main` for PHP 8.6 (pre-release builds until PHP 8.6 is released).
+- Release guard (tag must be on `1.1`) for the release job on `1.1`, before
+  the next 1.1.x fix release.
+- Support table in README.md on both branches; possibly a `SECURITY.md` with
+  supported versions and how to report vulnerabilities.

@@ -15,8 +15,12 @@ the `ddate` command once shipped with util-linux. Published on Packagist as
 
 | Branch | Purpose                                                                                         |
 |--------|-------------------------------------------------------------------------------------------------|
-| `main` | Default branch on GitHub. Development of 2.0, releases `v2.*` are tagged here.                  |
-| `1.1`  | 1.1.x line (latest tag `v1.1.4`, probably the last 1.1 release). PHP 5.3 to 8.5.                |
+| `main` | Default branch on GitHub. Development of 2.0 (PHP 8.6+, same API as 1.1), tags `v2.*`.          |
+| `1.1`  | 1.1.x line (latest tag `v1.1.4`), bug and security fixes until 2029-12-31. PHP 5.3 to 8.5.      |
+
+Release lines, support periods and the scope of 2.0 and 3.0 are defined in
+[docs/release-plan.md](docs/release-plan.md). Read it before changing code on
+`main`.
 
 Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 
@@ -38,25 +42,29 @@ Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 `main` was restarted from `1.1` (`v1.1.4`) with merge commit `22eb45a`. Its
 content is identical to `1.1`; the previous `main` (`a2bf1bd`) is the first
 parent of that merge and stays available in the history. 2.0 changes are
-ported step by step, each in its own pull request with green CI. Sources:
+ported step by step, each in its own pull request with green CI.
 
-- previous `main` (`a2bf1bd`): PHP 8.3, PHPUnit 11, PSR-4, dev tooling,
-  updated holyday data, German translation fix
+**2.0 modernises the implementation for PHP 8.6+ without changing the API**;
+API changes and BC breaks belong in 3.0. See "What 'no API changes' means" in
+[docs/release-plan.md](docs/release-plan.md). Sources for porting:
+
+- previous `main` (`a2bf1bd`): PHPUnit 11, PSR-4, dev tooling, updated
+  holyday data, German translation fix
 - branch `dev/refactoring-and-improvement` (based on the previous `main`):
-  new structure (`Internal/`, `DiscordianDate/`, `XDay`, `Locale`),
-  `strict_types`, refactored tests (#58), `@api`/`@internal` (#59)
+  `strict_types`, refactored tests (#58); its new structure (`Internal/`,
+  `DiscordianDate/`, `XDay`, `Locale`), `final` classes and `@api`/`@internal`
+  (#59) change the API and are deferred to 3.0
 
-Not everything there still applies; port deliberately, not wholesale. Output
-strings of `Ddate::ddate()` are effectively API: change them only on purpose
-and document it.
+Port deliberately, not wholesale. Output strings of `Ddate::ddate()` are API.
 
-Until the minimum PHP version for 2.0 is raised, `main` is still tested on
-PHP 5.3 to 8.5 and the PHP 5.3 coding rules below apply.
+Until the minimum PHP version on `main` is raised to 8.6, `main` is still
+tested on PHP 5.3 to 8.5 and the PHP 5.3 coding rules below apply.
 
 ## Repository layout
 
 ```
 bin/ddate                                  CLI entry point (also PHAR entry point)
+docs/release-plan.md                       release lines, support periods, scope of 2.0/3.0
 src/EmperorNortonCommands/lib/             library code (PSR-0, namespace EmperorNortonCommands\lib)
   Ddate.php                                public facade: ddate($format, $date, $locale)
   Converter.php                            Gregorian DateTime -> Value

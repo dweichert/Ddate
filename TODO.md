@@ -5,8 +5,8 @@ Checklist for 2.0.0, planned for the PHP 8.6 release (19 November 2026).
 [docs/release-plan.md](docs/release-plan.md) (modernise only, no API
 changes, PHP 8.6+).
 
-Release 2.0.0 first, then v1.1.6 (see `TODO.md` on branch
-`dev/release-1.1.6`).
+Release 2.0.0 first, then v1.1.7 (see `TODO.md` on branch
+`dev/release-1.1.7`).
 
 ## Before the release day
 
@@ -19,7 +19,7 @@ Release 2.0.0 first, then v1.1.6 (see `TODO.md` on branch
       coding rules for 2.0 (branch `dev/php-8.6`, merged into `main`).
 - [ ] Output of `Ddate::ddate()` and `bin/ddate` is identical to 1.1:
       `.docker/compare-with-1.1.sh` (newest v1.1.* tag) and
-      `.docker/compare-with-1.1.sh origin/1.1` (fixes for 1.1.6 not yet
+      `.docker/compare-with-1.1.sh origin/1.1` (fixes for 1.1.7 not yet
       tagged) report no differences.
 - [ ] README on `main`: install with `"^2.0"`, PHP 8.6 requirement, release
       table (2.0.x current, 1.1.x until 31 December 2029, 1.0.x end of
@@ -43,8 +43,9 @@ Release 2.0.0 first, then v1.1.6 (see `TODO.md` on branch
       supported versions, open points resolved).
 - [ ] Delete `TODO.md` (`git rm TODO.md`), commit, push.
 - [ ] Pull request into `main`, CI green, merge with "Create a merge commit".
-- [ ] Tag on `main` and push the tag. Do **not** create the release in the
-      GitHub UI first.
+- [ ] Tag on `main` with `git tag` and push the tag. Do **not** create the
+      tag or the release in the GitHub release form. The release guard
+      accepts only `v2.*` tags on `main` (#73).
       ```sh
       git fetch origin
       git log --oneline -1 origin/main    # the merge of this branch
@@ -70,8 +71,8 @@ Release 2.0.0 first, then v1.1.6 (see `TODO.md` on branch
 - [ ] Edit the release notes: modernised for PHP 8.6, same API as 1.1,
       upgrade = PHP 8.6 only, 1.1 supported until 31 December 2029, API
       changes planned for 3.0; output changes compared with 1.1.4 (bug
-      fixes, released in 1.1.5): German `%E` for days 20 and 21, holyday names
+      fixes, released in 1.1.6): German `%E` for days 20 and 21, holyday names
       containing "and", `%A` description, `-de`.
-- [ ] Release v1.1.6 (checklist on `dev/release-1.1.6`).
+- [ ] Release v1.1.7 (checklist on `dev/release-1.1.7`).
 - [ ] Issues: close #58 (refactor tests) if done in 2.0; #59 (`@api`,
       `@internal`) stays open for 3.0 (label or milestone).

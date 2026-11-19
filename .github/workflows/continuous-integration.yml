@@ -31,7 +31,6 @@ jobs:
             fail-fast: false
             matrix:
                 php-version:
-                    # nightly build of the PHP-8.6 branch until 8.6.0 is released
                     - "8.6"
 
         steps:
@@ -96,7 +95,6 @@ jobs:
             fail-fast: false
             matrix:
                 php-version:
-                    # nightly build of the PHP-8.6 branch until 8.6.0 is released
                     - "8.6"
 
         steps:

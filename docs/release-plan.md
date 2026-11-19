@@ -91,8 +91,8 @@ Security vulnerabilities are reported and handled as described in
 
 ## Open points
 
-- CI and `.docker/run-tests.sh` use PHP 8.6 pre-release builds (setup-php
-  nightly, `8.6-rc-cli` image); switch to the final 8.6.0 when it is released.
+- Done: CI and the `.docker` scripts test on the final PHP 8.6.0 (released
+  19 November 2026) instead of pre-release builds.
 - Bug fixes that change output go into 1.1.x as well, so the 1.1.x release
   next to 2.0.0 (1.1.7) and 2.0.0 produce the same output. Done: German
   ordinals, holyday names, help text and CLI (#72 for `1.1`, released in

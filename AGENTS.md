@@ -117,9 +117,7 @@ dependencies there with a Composer platform override, then runs PHPUnit and a
 CLI smoke test in a Docker container for that PHP version. The project's own
 `vendor/` is left untouched. Images come from `mirror.gcr.io` (set
 `DOCKER_REGISTRY=docker.io` to change) and are extended locally with mbstring,
-which PHPUnit needs and the official 8.6 images no longer include. Until PHP
-8.6.0 is released, 8.6 runs on the `8.6-rc-cli` image; CI uses setup-php's
-nightly build of the PHP-8.6 branch.
+which PHPUnit needs and the official 8.6 images no longer include.
 
 `phpunit.xml.dist` sets `failOnDeprecation`, `failOnNotice` and
 `failOnWarning`: any PHP deprecation, notice or warning fails the build. CI

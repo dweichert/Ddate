@@ -29,12 +29,8 @@ image_for() {
 
 # The official php images for 8.6 no longer include mbstring, which PHPUnit
 # needs; build a local image with it (cached by Docker after the first run).
-# PHP 8.6 is not released yet, so its release candidate image is used.
 build_image() {
     local base="$DOCKER_REGISTRY/library/php:$1-cli"
-    case "$1" in
-        8.6) base="$DOCKER_REGISTRY/library/php:8.6-rc-cli" ;;
-    esac
     docker build --quiet --tag "$(image_for "$1")" - > /dev/null <<DOCKERFILE
 FROM $base
 RUN apt-get update && apt-get install -y --no-install-recommends libonig-dev \

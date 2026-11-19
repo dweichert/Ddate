@@ -17,9 +17,8 @@ set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TAG="${1:-$(git -C "$PROJECT_DIR" tag --list 'v1.1.*' --sort=-v:refname | head -n 1)}"
 DOCKER_REGISTRY="${DOCKER_REGISTRY:-mirror.gcr.io}"
-# PHP 8.6 is not released yet, so its release candidate image is used.
-IMAGE="$DOCKER_REGISTRY/library/php:8.6-rc-cli"
-IMAGE_CALENDAR="ddate-test/php:8.6-rc-calendar"
+IMAGE="$DOCKER_REGISTRY/library/php:8.6-cli"
+IMAGE_CALENDAR="ddate-test/php:8.6-calendar"
 WORKDIR="$PROJECT_DIR/build/compare"
 
 docker build --quiet --tag "$IMAGE_CALENDAR" - > /dev/null <<DOCKERFILE

@@ -15,7 +15,7 @@ the `ddate` command once shipped with util-linux. Published on Packagist as
 
 | Branch | Purpose                                                                                         |
 |--------|-------------------------------------------------------------------------------------------------|
-| `main` | Default branch on GitHub. Development of 2.0 (PHP 8.6+, same API as 1.1), tags `v2.*`.          |
+| `main` | Default branch on GitHub. 2.x line (2.0.0 released 2026-11-19, PHP 8.6+), tags `v2.*`.          |
 | `1.1`  | 1.1.x line (latest tag `v1.1.6`), bug and security fixes until 2029-12-31. PHP 5.3 to 8.5.      |
 
 Release lines, support periods and the scope of 2.0 and 3.0 are defined in
@@ -54,9 +54,9 @@ API changes and BC breaks belong in 3.0. See "What 'no API changes' means" in
 
 The modernisation is done (#71, #76): `main` requires PHP `^8.6` and
 PHPUnit 13, uses strict types, typed private members and PSR-4, and produces
-the same output as 1.1 (`.docker/compare-with-1.1.sh`). Until 2.0.0, `main`
-only gets bug fixes (also for `1.1`) and further changes without API
-changes.
+the same output as 1.1 (`.docker/compare-with-1.1.sh`). 2.0.0 was released
+on 19 November 2026; 2.x on `main` only gets bug fixes (also for `1.1`) and
+further changes without API changes.
 
 Material for 3.0 (API changes, not for 2.0):
 

@@ -34,10 +34,10 @@ Release 2.0.0 first, then v1.1.7 (see `TODO.md` on branch
 - [ ] Merge `main` into this branch if `main` changed since; run
       `.docker/run-tests.sh` and `.docker/compare-with-1.1.sh` (newest
       v1.1.* tag and `origin/1.1`): no differences.
-- [ ] README: "last updated" date is the actual release day. Compute it with
+- [x] README: "last updated" date is the actual release day. Compute it with
       `php bin/ddate '%A, %e of %B, %Y' DDMMYYYY`
       (19 November 2026 = Pungenday, 31st of The Aftermath, 3192).
-- [ ] `docs/release-plan.md` and `SECURITY.md` still match the plan (dates,
+- [x] `docs/release-plan.md` and `SECURITY.md` still match the plan (dates,
       supported versions, open points resolved).
 - [ ] Delete `TODO.md` (`git rm TODO.md`), commit, push.
 - [ ] Pull request into `main`, CI green, merge with "Create a merge commit".

@@ -82,8 +82,6 @@ Security vulnerabilities are reported and handled as described in
 
 - 1.1.x releases are created with `--latest=false`, so "Latest" on GitHub
   (and the PHAR at `/releases/latest`) stays with the current major version.
-  As long as 2.0.0 is not released, mark a new 1.1.x release as "Latest" by
-  hand after the release job: `gh release edit v1.1.x --latest`.
 - Both release jobs check the tag before attesting and uploading the PHAR:
   `v1.1.*` tags on `1.1`, `v2.*` tags on `main` (`RELEASE_TAGS`,
   `RELEASE_BRANCH`). Create tags with `git tag`, never in the GitHub release
@@ -105,6 +103,3 @@ Security vulnerabilities are reported and handled as described in
   Whollydays in addition to the Standard Holydays (still true, the "%1"
   handling relies on it); "Bogart Tag" -> "Bogarts Tag" is a naming change
   for 3.0, see above.
-- Support table in README.md on `main`.
-- Enable private vulnerability reporting on GitHub (referenced by
-  SECURITY.md).

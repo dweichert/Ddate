@@ -75,7 +75,7 @@ final class DdateLocalizedTest extends TestCase
      * Test ddate() with locale.
      */
     #[DataProvider('dataProvider')]
-    public function testDdateLocalized($gregorian, $discordian, $format, $locale): void
+    public function testDdateLocalized(string $gregorian, string $discordian, ?string $format, string $locale): void
     {
         $expected = $discordian;
         $actual = $this->_object->ddate($format, $gregorian, $locale);

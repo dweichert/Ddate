@@ -16,7 +16,7 @@ the `ddate` command once shipped with util-linux. Published on Packagist as
 | Branch | Purpose                                                                                         |
 |--------|-------------------------------------------------------------------------------------------------|
 | `main` | Default branch on GitHub. Development of 2.0 (PHP 8.6+, same API as 1.1), tags `v2.*`.          |
-| `1.1`  | 1.1.x line (latest tag `v1.1.4`), bug and security fixes until 2029-12-31. PHP 5.3 to 8.5.      |
+| `1.1`  | 1.1.x line (latest tag `v1.1.6`), bug and security fixes until 2029-12-31. PHP 5.3 to 8.5.      |
 
 Release lines, support periods and the scope of 2.0 and 3.0 are defined in
 [docs/release-plan.md](docs/release-plan.md). Read it before changing code on
@@ -44,26 +44,27 @@ Releases are git tags (`vX.Y.Z`); Packagist picks them up automatically.
 
 ## 2.0 development
 
-`main` was restarted from `1.1` (`v1.1.4`) with merge commit `22eb45a`. Its
-content is identical to `1.1`; the previous `main` (`a2bf1bd`) is the first
-parent of that merge and stays available in the history. 2.0 changes are
-ported step by step, each in its own pull request with green CI.
+`main` was restarted from `1.1` (`v1.1.4`) with merge commit `22eb45a`; the
+previous `main` (`a2bf1bd`) is the first parent of that merge and stays
+available in the history.
 
 **2.0 modernises the implementation for PHP 8.6+ without changing the API**;
 API changes and BC breaks belong in 3.0. See "What 'no API changes' means" in
-[docs/release-plan.md](docs/release-plan.md). Sources for porting:
+[docs/release-plan.md](docs/release-plan.md).
 
-- previous `main` (`a2bf1bd`): PHPUnit 11, PSR-4, dev tooling, updated
-  holyday data, German translation fix
-- branch `dev/refactoring-and-improvement` (based on the previous `main`):
-  `strict_types`, refactored tests (#58); its new structure (`Internal/`,
-  `DiscordianDate/`, `XDay`, `Locale`), `final` classes and `@api`/`@internal`
-  (#59) change the API and are deferred to 3.0
+The modernisation is done (#71, #76): `main` requires PHP `^8.6` and
+PHPUnit 13, uses strict types, typed private members and PSR-4, and produces
+the same output as 1.1 (`.docker/compare-with-1.1.sh`). Until 2.0.0, `main`
+only gets bug fixes (also for `1.1`) and further changes without API
+changes.
 
-Port deliberately, not wholesale. Output strings of `Ddate::ddate()` are API.
+Material for 3.0 (API changes, not for 2.0):
 
-`main` requires PHP `^8.6` and PHPUnit 13. The source code is still the 1.1
-code; modernising it is the work for 2.0 (see "Coding rules for 2.0").
+- previous `main` (`a2bf1bd`) and branch `dev/refactoring-and-improvement`
+  (based on it): new structure (`Internal/`, `DiscordianDate/`, `XDay`,
+  `Locale`), `final` classes, `@api`/`@internal` (#59)
+
+Output strings of `Ddate::ddate()` are API.
 
 ## Repository layout
 
@@ -99,7 +100,8 @@ branch.
 3. `FormatterFactory` picks a locale formatter (`en` fallback); the formatter
    expands the format string and looks up holydays. `%1` to `%4` toggle holyday
    sets, which are read from the locale's XML files or computed (Erister, Fun
-   Friday, ...).
+   Friday, ...). Each XML file is parsed once per process (static cache in
+   `Holydays`).
 
 ## Testing
 
@@ -125,7 +127,7 @@ runs the same tests on GitHub Actions.
 
 ```sh
 # compare the output with the newest 1.1 release (or a given tag or branch)
-.docker/compare-with-1.1.sh [v1.1.4 | origin/1.1]
+.docker/compare-with-1.1.sh [v1.1.6 | origin/1.1]
 ```
 
 Runs `.docker/output-matrix.php` (about 15,000 calls of the public API: every

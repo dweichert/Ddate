@@ -140,7 +140,7 @@ final class DdateTest extends TestCase
      * Test ddate().
      */
     #[DataProvider('ddateDataProvider')]
-    public function testDdate($gregorian, $discordian, $format): void
+    public function testDdate(string|int $gregorian, string $discordian, string|object|null $format): void
     {
         $expected = $discordian;
         $actual = $this->_object->ddate($format, $gregorian);
@@ -239,7 +239,7 @@ final class DdateTest extends TestCase
      * Test constructor rejects invalid arguments.
      */
     #[DataProvider('invalidConstructorArgumentsProvider')]
-    public function testConstructorInvalidArguments($converter, $formatterFactory, $message): void
+    public function testConstructorInvalidArguments(mixed $converter, mixed $formatterFactory, string $message): void
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($message);

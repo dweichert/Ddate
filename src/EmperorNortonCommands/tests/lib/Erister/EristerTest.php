@@ -22,7 +22,7 @@ use PHPUnit\Framework\TestCase;
 final class EristerTest extends TestCase
 {
     #[DataProvider('isEristerProvider')]
-    public function testIsErister($expectedTrue, $gregorian, $usePhpCalendarExt): void
+    public function testIsErister(bool $expectedTrue, string $gregorian, bool $usePhpCalendarExt): void
     {
         $object = new Erister($usePhpCalendarExt);
         self::assertSame($expectedTrue, $object->is($this->getValue($gregorian)));
